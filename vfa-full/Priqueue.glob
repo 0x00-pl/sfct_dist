@@ -1,0 +1,482 @@
+DIGEST 323667cc22af22b8ddd15b5b4580268c
+FTop.Priqueue
+R2676:2679 Top.Perm <> <> lib
+modtype 2695:2702 <> PRIQUEUE
+ax 2717:2724 PRIQUEUE priqueue
+def 2746:2748 PRIQUEUE key
+R2753:2755 Coq.Init.Datatypes <> nat ind
+ax 2771:2775 PRIQUEUE empty
+R2778:2785 Top.Priqueue PRIQUEUE priqueue defax
+ax 2800:2805 PRIQUEUE insert
+R2811:2814 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R2823:2826 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R2827:2834 Top.Priqueue PRIQUEUE priqueue defax
+R2815:2822 Top.Priqueue PRIQUEUE priqueue defax
+R2808:2810 Top.Priqueue PRIQUEUE key def
+ax 2849:2858 PRIQUEUE delete_max
+R2869:2872 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R2873:2878 Coq.Init.Datatypes <> option ind
+R2884:2886 Coq.Init.Datatypes <> :type_scope:x_'*'_x not
+R2881:2883 Top.Priqueue PRIQUEUE key def
+R2887:2894 Top.Priqueue PRIQUEUE priqueue defax
+R2861:2868 Top.Priqueue PRIQUEUE priqueue defax
+ax 2910:2914 PRIQUEUE merge
+R2925:2928 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R2937:2940 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R2941:2948 Top.Priqueue PRIQUEUE priqueue defax
+R2929:2936 Top.Priqueue PRIQUEUE priqueue defax
+R2917:2924 Top.Priqueue PRIQUEUE priqueue defax
+ax 2964:2967 PRIQUEUE priq
+R2978:2981 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R2970:2977 Top.Priqueue PRIQUEUE priqueue defax
+ax 3000:3002 PRIQUEUE Abs
+R3013:3016 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R3025:3028 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R3017:3020 Coq.Init.Datatypes <> list ind
+R3022:3024 Top.Priqueue PRIQUEUE key def
+R3005:3012 Top.Priqueue PRIQUEUE priqueue defax
+ax 3043:3052 PRIQUEUE can_relate
+R3072:3075 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R3076:3082 Coq.Init.Logic <> :type_scope:'exists'_x_'..'_x_','_x not
+R3085:3086 Coq.Init.Logic <> :type_scope:'exists'_x_'..'_x_','_x not
+R3087:3089 Top.Priqueue PRIQUEUE Abs defax
+R3093:3094 Top.Priqueue <> al var
+R3091:3091 Top.Priqueue <> p var
+R3066:3069 Top.Priqueue PRIQUEUE priq defax
+R3071:3071 Top.Priqueue <> p var
+ax 3105:3112 PRIQUEUE abs_perm
+R3141:3144 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R3153:3156 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R3165:3168 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R3169:3179 Coq.Sorting.Permutation <> Permutation ind
+R3184:3185 Top.Priqueue <> bl var
+R3181:3182 Top.Priqueue <> al var
+R3157:3159 Top.Priqueue PRIQUEUE Abs defax
+R3163:3164 Top.Priqueue <> bl var
+R3161:3161 Top.Priqueue <> p var
+R3145:3147 Top.Priqueue PRIQUEUE Abs defax
+R3151:3152 Top.Priqueue <> al var
+R3149:3149 Top.Priqueue <> p var
+R3135:3138 Top.Priqueue PRIQUEUE priq defax
+R3140:3140 Top.Priqueue <> p var
+ax 3197:3206 PRIQUEUE empty_priq
+R3209:3212 Top.Priqueue PRIQUEUE priq defax
+R3214:3218 Top.Priqueue PRIQUEUE empty defax
+ax 3229:3240 PRIQUEUE empty_relate
+R3244:3246 Top.Priqueue PRIQUEUE Abs defax
+R3254:3256 Coq.Init.Datatypes <> nil constr
+R3248:3252 Top.Priqueue PRIQUEUE empty defax
+ax 3267:3277 PRIQUEUE insert_priq
+R3298:3301 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R3302:3305 Top.Priqueue PRIQUEUE priq defax
+R3308:3313 Top.Priqueue PRIQUEUE insert defax
+R3317:3317 Top.Priqueue <> p var
+R3315:3315 Top.Priqueue <> k var
+R3292:3295 Top.Priqueue PRIQUEUE priq defax
+R3297:3297 Top.Priqueue <> p var
+ax 3329:3341 PRIQUEUE insert_relate
+R3373:3376 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R3385:3388 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R3389:3391 Top.Priqueue PRIQUEUE Abs defax
+R3408:3409 Coq.Init.Datatypes <> :list_scope:x_'::'_x not
+R3407:3407 Top.Priqueue <> k var
+R3410:3411 Top.Priqueue <> al var
+R3394:3399 Top.Priqueue PRIQUEUE insert defax
+R3403:3403 Top.Priqueue <> p var
+R3401:3401 Top.Priqueue <> k var
+R3377:3379 Top.Priqueue PRIQUEUE Abs defax
+R3383:3384 Top.Priqueue <> al var
+R3381:3381 Top.Priqueue <> p var
+R3367:3370 Top.Priqueue PRIQUEUE priq defax
+R3372:3372 Top.Priqueue <> p var
+ax 3423:3444 PRIQUEUE delete_max_None_relate
+R3471:3475 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R3509:3509 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R3485:3489 Coq.Init.Logic <> :type_scope:x_'<->'_x not
+R3476:3478 Top.Priqueue PRIQUEUE Abs defax
+R3482:3484 Coq.Init.Datatypes <> nil constr
+R3480:3480 Top.Priqueue <> p var
+R3502:3504 Coq.Init.Logic <> :type_scope:x_'='_x not
+R3490:3499 Top.Priqueue PRIQUEUE delete_max defax
+R3501:3501 Top.Priqueue <> p var
+R3505:3508 Coq.Init.Datatypes <> None constr
+R3465:3468 Top.Priqueue PRIQUEUE priq defax
+R3470:3470 Top.Priqueue <> p var
+ax 3520:3539 PRIQUEUE delete_max_Some_priq
+R3568:3571 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R3596:3599 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R3600:3603 Top.Priqueue PRIQUEUE priq defax
+R3605:3605 Top.Priqueue <> q var
+R3584:3586 Coq.Init.Logic <> :type_scope:x_'='_x not
+R3572:3581 Top.Priqueue PRIQUEUE delete_max defax
+R3583:3583 Top.Priqueue <> p var
+R3587:3590 Coq.Init.Datatypes <> Some constr
+R3591:3591 Coq.Init.Datatypes <> :core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R3593:3593 Coq.Init.Datatypes <> :core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R3595:3595 Coq.Init.Datatypes <> :core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R3592:3592 Top.Priqueue <> k var
+R3594:3594 Top.Priqueue <> q var
+R3562:3565 Top.Priqueue PRIQUEUE priq defax
+R3567:3567 Top.Priqueue <> p var
+ax 3616:3637 PRIQUEUE delete_max_Some_relate
+R3655:3662 Top.Priqueue PRIQUEUE priqueue defax
+R3675:3678 Coq.Init.Datatypes <> list ind
+R3680:3682 Top.Priqueue PRIQUEUE key def
+R3692:3698 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R3707:3713 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R3739:3745 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R3754:3760 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R3783:3786 Coq.Init.Logic <> :type_scope:x_'/\'_x not
+R3761:3771 Coq.Sorting.Permutation <> Permutation ind
+R3778:3779 Coq.Init.Datatypes <> :list_scope:x_'::'_x not
+R3777:3777 Top.Priqueue <> k var
+R3780:3781 Top.Priqueue <> ql var
+R3773:3774 Top.Priqueue <> pl var
+R3787:3792 Coq.Lists.List <> Forall ind
+R3801:3802 Top.Priqueue <> ql var
+R3795:3796 Coq.Init.Peano <> ge def
+R3798:3798 Top.Priqueue <> k var
+R3746:3748 Top.Priqueue PRIQUEUE Abs defax
+R3752:3753 Top.Priqueue <> ql var
+R3750:3750 Top.Priqueue <> q var
+R3726:3728 Coq.Init.Logic <> :type_scope:x_'='_x not
+R3714:3723 Top.Priqueue PRIQUEUE delete_max defax
+R3725:3725 Top.Priqueue <> p var
+R3729:3732 Coq.Init.Datatypes <> Some constr
+R3734:3734 Coq.Init.Datatypes <> :core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R3736:3736 Coq.Init.Datatypes <> :core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R3738:3738 Coq.Init.Datatypes <> :core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R3735:3735 Top.Priqueue <> k var
+R3737:3737 Top.Priqueue <> q var
+R3699:3701 Top.Priqueue PRIQUEUE Abs defax
+R3705:3706 Top.Priqueue <> pl var
+R3703:3703 Top.Priqueue <> p var
+R3686:3689 Top.Priqueue PRIQUEUE priq defax
+R3691:3691 Top.Priqueue <> p var
+ax 3813:3822 PRIQUEUE merge_priq
+R3843:3846 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R3853:3856 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R3857:3860 Top.Priqueue PRIQUEUE priq defax
+R3863:3867 Top.Priqueue PRIQUEUE merge defax
+R3871:3871 Top.Priqueue <> q var
+R3869:3869 Top.Priqueue <> p var
+R3847:3850 Top.Priqueue PRIQUEUE priq defax
+R3852:3852 Top.Priqueue <> q var
+R3837:3840 Top.Priqueue PRIQUEUE priq defax
+R3842:3842 Top.Priqueue <> p var
+ax 3883:3894 PRIQUEUE merge_relate
+R3936:3939 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R3946:3956 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R3965:3968 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R3977:3980 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R3999:4009 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R4010:4020 Coq.Sorting.Permutation <> Permutation ind
+R4028:4029 Coq.Init.Datatypes <> :list_scope:x_'++'_x not
+R4026:4027 Top.Priqueue <> pl var
+R4030:4031 Top.Priqueue <> ql var
+R4022:4023 Top.Priqueue <> al var
+R3981:3983 Top.Priqueue PRIQUEUE Abs defax
+R3997:3998 Top.Priqueue <> al var
+R3986:3990 Top.Priqueue PRIQUEUE merge defax
+R3994:3994 Top.Priqueue <> q var
+R3992:3992 Top.Priqueue <> p var
+R3969:3971 Top.Priqueue PRIQUEUE Abs defax
+R3975:3976 Top.Priqueue <> ql var
+R3973:3973 Top.Priqueue <> q var
+R3957:3959 Top.Priqueue PRIQUEUE Abs defax
+R3963:3964 Top.Priqueue <> pl var
+R3961:3961 Top.Priqueue <> p var
+R3940:3943 Top.Priqueue PRIQUEUE priq defax
+R3945:3945 Top.Priqueue <> q var
+R3930:3933 Top.Priqueue PRIQUEUE priq defax
+R3935:3935 Top.Priqueue <> p var
+R4039:4046 Top.Priqueue PRIQUEUE <> modtype
+R4350:4357 Top.Priqueue PRIQUEUE <> mod
+mod 4333:4345 <> List_Priqueue
+def 4956:4961 List_Priqueue select
+R4967:4969 Coq.Init.Datatypes <> nat ind
+R4976:4979 Coq.Init.Datatypes <> list ind
+R4981:4983 Coq.Init.Datatypes <> nat ind
+R4991:4993 Coq.Init.Datatypes <> :type_scope:x_'*'_x not
+R4988:4990 Coq.Init.Datatypes <> nat ind
+R4994:4997 Coq.Init.Datatypes <> list ind
+R4999:5001 Coq.Init.Datatypes <> nat ind
+R5012:5012 Top.Priqueue <> l var
+R5022:5024 Coq.Init.Datatypes <> nil constr
+R5029:5029 Coq.Init.Datatypes <> :core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R5031:5032 Coq.Init.Datatypes <> :core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R5036:5036 Coq.Init.Datatypes <> :core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R5030:5030 Top.Priqueue <> i var
+R5033:5035 Coq.Init.Datatypes <> nil constr
+R5042:5043 Coq.Init.Datatypes <> :list_scope:x_'::'_x not
+R5053:5057 Top.Perm <> :nat_scope:x_'>=?'_x not
+R5052:5052 Top.Priqueue <> i var
+R5155:5160 Top.Priqueue <> select def
+R5169:5169 Coq.Init.Datatypes <> :core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R5171:5172 Coq.Init.Datatypes <> :core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R5178:5178 Coq.Init.Datatypes <> :core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R5170:5170 Top.Priqueue <> j var
+R5174:5175 Coq.Init.Datatypes <> :list_scope:x_'::'_x not
+R5173:5173 Top.Priqueue <> i var
+R5176:5177 Top.Priqueue <> l' var
+R5096:5101 Top.Priqueue <> select def
+R5103:5103 Top.Priqueue <> i var
+R5110:5110 Coq.Init.Datatypes <> :core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R5112:5113 Coq.Init.Datatypes <> :core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R5119:5119 Coq.Init.Datatypes <> :core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R5111:5111 Top.Priqueue <> j var
+R5115:5116 Coq.Init.Datatypes <> :list_scope:x_'::'_x not
+R5117:5118 Top.Priqueue <> l' var
+prf 5237:5247 List_Priqueue select_perm
+R5278:5283 Top.Priqueue List_Priqueue select def
+R5287:5287 Top.Priqueue <> l var
+R5285:5285 Top.Priqueue <> i var
+R5295:5305 Coq.Sorting.Permutation <> Permutation ind
+R5316:5317 Coq.Init.Datatypes <> :list_scope:x_'::'_x not
+R5315:5315 Top.Priqueue <> j var
+R5318:5318 Top.Priqueue <> r var
+R5309:5310 Coq.Init.Datatypes <> :list_scope:x_'::'_x not
+R5308:5308 Top.Priqueue <> i var
+R5311:5311 Top.Priqueue <> l var
+prf 5496:5513 List_Priqueue select_biggest_aux
+R5567:5574 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R5595:5602 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R5604:5607 Coq.Init.Peano <> :nat_scope:x_'>='_x not
+R5603:5603 Top.Priqueue <> j var
+R5608:5608 Top.Priqueue <> i var
+R5586:5588 Coq.Init.Logic <> :type_scope:x_'='_x not
+R5575:5580 Top.Priqueue List_Priqueue select def
+R5584:5585 Top.Priqueue <> al var
+R5582:5582 Top.Priqueue <> i var
+R5589:5589 Coq.Init.Datatypes <> :core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R5591:5591 Coq.Init.Datatypes <> :core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R5594:5594 Coq.Init.Datatypes <> :core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R5590:5590 Top.Priqueue <> j var
+R5592:5593 Top.Priqueue <> bl var
+R5540:5545 Coq.Lists.List <> Forall ind
+R5565:5566 Top.Priqueue <> bl var
+R5558:5561 Coq.Init.Peano <> :nat_scope:x_'>='_x not
+R5557:5557 Top.Priqueue <> j var
+R5562:5562 Top.Priqueue <> x var
+prf 5731:5744 List_Priqueue select_biggest
+R5787:5795 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R5796:5801 Coq.Lists.List <> Forall ind
+R5821:5822 Top.Priqueue <> bl var
+R5814:5817 Coq.Init.Peano <> :nat_scope:x_'>='_x not
+R5813:5813 Top.Priqueue <> j var
+R5818:5818 Top.Priqueue <> x var
+R5778:5780 Coq.Init.Logic <> :type_scope:x_'='_x not
+R5767:5772 Top.Priqueue List_Priqueue select def
+R5776:5777 Top.Priqueue <> al var
+R5774:5774 Top.Priqueue <> i var
+R5781:5781 Coq.Init.Datatypes <> :core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R5783:5783 Coq.Init.Datatypes <> :core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R5786:5786 Coq.Init.Datatypes <> :core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R5782:5782 Top.Priqueue <> j var
+R5784:5785 Top.Priqueue <> bl var
+R5999:6003 Top.Perm <> :nat_scope:x_'>=?'_x not
+R5999:6003 Top.Perm <> :nat_scope:x_'>=?'_x not
+R6020:6025 Top.Priqueue List_Priqueue select def
+R6020:6025 Top.Priqueue List_Priqueue select def
+def 6188:6190 List_Priqueue key
+R6195:6197 Coq.Init.Datatypes <> nat ind
+def 6212:6219 List_Priqueue priqueue
+R6224:6227 Coq.Init.Datatypes <> list ind
+R6229:6231 Top.Priqueue List_Priqueue key def
+def 6246:6250 List_Priqueue empty
+R6254:6261 Top.Priqueue List_Priqueue priqueue def
+R6266:6268 Coq.Init.Datatypes <> nil constr
+def 6282:6287 List_Priqueue insert
+R6294:6296 Top.Priqueue List_Priqueue key def
+R6302:6309 Top.Priqueue List_Priqueue priqueue def
+R6316:6317 Coq.Init.Datatypes <> :list_scope:x_'::'_x not
+R6315:6315 Top.Priqueue <> k var
+R6318:6318 Top.Priqueue <> p var
+def 6332:6341 List_Priqueue delete_max
+R6347:6354 Top.Priqueue List_Priqueue priqueue def
+R6368:6368 Top.Priqueue <> p var
+R6380:6381 Coq.Init.Datatypes <> :list_scope:x_'::'_x not
+R6388:6391 Coq.Init.Datatypes <> Some constr
+R6394:6399 Top.Priqueue List_Priqueue select def
+R6411:6413 Coq.Init.Datatypes <> nil constr
+R6418:6421 Coq.Init.Datatypes <> None constr
+def 6441:6445 List_Priqueue merge
+R6453:6460 Top.Priqueue List_Priqueue priqueue def
+R6465:6472 Top.Priqueue List_Priqueue priqueue def
+R6478:6479 Coq.Init.Datatypes <> :list_scope:x_'++'_x not
+R6477:6477 Top.Priqueue <> p var
+R6480:6480 Top.Priqueue <> q var
+def 6833:6836 List_Priqueue priq
+R6842:6849 Top.Priqueue List_Priqueue priqueue def
+R6855:6858 Coq.Init.Logic <> True ind
+ind 6921:6924 List_Priqueue Abs'
+constr 6961:6969 List_Priqueue Abs_intro
+R6936:6939 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R6948:6951 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R6940:6943 Coq.Init.Datatypes <> list ind
+R6945:6947 Top.Priqueue List_Priqueue key def
+R6928:6935 Top.Priqueue List_Priqueue priqueue def
+R6982:6985 Top.Priqueue <> Abs' ind
+R6989:6989 Top.Priqueue <> p var
+R6987:6987 Top.Priqueue <> p var
+def 7004:7006 List_Priqueue Abs
+R7011:7014 Top.Priqueue List_Priqueue Abs' ind
+prf 7149:7158 List_Priqueue can_relate
+R7178:7181 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R7182:7188 Coq.Init.Logic <> :type_scope:'exists'_x_'..'_x_','_x not
+R7191:7192 Coq.Init.Logic <> :type_scope:'exists'_x_'..'_x_','_x not
+R7193:7195 Top.Priqueue List_Priqueue Abs def
+R7199:7200 Top.Priqueue <> al var
+R7197:7197 Top.Priqueue <> p var
+R7172:7175 Top.Priqueue List_Priqueue priq def
+R7177:7177 Top.Priqueue <> p var
+prf 7506:7513 List_Priqueue abs_perm
+R7542:7545 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R7554:7557 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R7566:7569 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R7570:7580 Coq.Sorting.Permutation <> Permutation ind
+R7585:7586 Top.Priqueue <> bl var
+R7582:7583 Top.Priqueue <> al var
+R7558:7560 Top.Priqueue List_Priqueue Abs def
+R7564:7565 Top.Priqueue <> bl var
+R7562:7562 Top.Priqueue <> p var
+R7546:7548 Top.Priqueue List_Priqueue Abs def
+R7552:7553 Top.Priqueue <> al var
+R7550:7550 Top.Priqueue <> p var
+R7536:7539 Top.Priqueue List_Priqueue priq def
+R7541:7541 Top.Priqueue <> p var
+R7626:7641 Coq.Sorting.Permutation <> Permutation_refl thm
+R7626:7641 Coq.Sorting.Permutation <> Permutation_refl thm
+prf 7785:7794 List_Priqueue empty_priq
+R7797:7800 Top.Priqueue List_Priqueue priq def
+R7802:7806 Top.Priqueue List_Priqueue empty def
+prf 7841:7852 List_Priqueue empty_relate
+R7856:7858 Top.Priqueue List_Priqueue Abs def
+R7866:7868 Coq.Init.Datatypes <> nil constr
+R7860:7864 Top.Priqueue List_Priqueue empty def
+prf 7903:7913 List_Priqueue insert_priq
+R7934:7937 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R7938:7941 Top.Priqueue List_Priqueue priq def
+R7944:7949 Top.Priqueue List_Priqueue insert def
+R7953:7953 Top.Priqueue <> p var
+R7951:7951 Top.Priqueue <> k var
+R7928:7931 Top.Priqueue List_Priqueue priq def
+R7933:7933 Top.Priqueue <> p var
+prf 7997:8009 List_Priqueue insert_relate
+R8037:8040 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R8049:8052 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R8053:8055 Top.Priqueue List_Priqueue Abs def
+R8072:8073 Coq.Init.Datatypes <> :list_scope:x_'::'_x not
+R8071:8071 Top.Priqueue <> k var
+R8074:8075 Top.Priqueue <> al var
+R8058:8063 Top.Priqueue List_Priqueue insert def
+R8067:8067 Top.Priqueue <> p var
+R8065:8065 Top.Priqueue <> k var
+R8041:8043 Top.Priqueue List_Priqueue Abs def
+R8047:8048 Top.Priqueue <> al var
+R8045:8045 Top.Priqueue <> p var
+R8031:8034 Top.Priqueue List_Priqueue priq def
+R8036:8036 Top.Priqueue <> p var
+R8101:8106 Top.Priqueue List_Priqueue insert def
+prf 8142:8161 List_Priqueue delete_max_Some_priq
+R8190:8193 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R8218:8221 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R8222:8225 Top.Priqueue List_Priqueue priq def
+R8227:8227 Top.Priqueue <> q var
+R8206:8208 Coq.Init.Logic <> :type_scope:x_'='_x not
+R8194:8203 Top.Priqueue List_Priqueue delete_max def
+R8205:8205 Top.Priqueue <> p var
+R8209:8212 Coq.Init.Datatypes <> Some constr
+R8213:8213 Coq.Init.Datatypes <> :core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R8215:8215 Coq.Init.Datatypes <> :core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R8217:8217 Coq.Init.Datatypes <> :core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R8214:8214 Top.Priqueue <> k var
+R8216:8216 Top.Priqueue <> q var
+R8184:8187 Top.Priqueue List_Priqueue priq def
+R8189:8189 Top.Priqueue <> p var
+prf 8314:8335 List_Priqueue delete_max_None_relate
+R8356:8367 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R8401:8401 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R8377:8381 Coq.Init.Logic <> :type_scope:x_'<->'_x not
+R8368:8370 Top.Priqueue List_Priqueue Abs def
+R8374:8376 Coq.Init.Datatypes <> nil constr
+R8372:8372 Top.Priqueue <> p var
+R8394:8396 Coq.Init.Logic <> :type_scope:x_'='_x not
+R8382:8391 Top.Priqueue List_Priqueue delete_max def
+R8393:8393 Top.Priqueue <> p var
+R8397:8400 Coq.Init.Datatypes <> None constr
+R8350:8353 Top.Priqueue List_Priqueue priq def
+R8355:8355 Top.Priqueue <> p var
+prf 8447:8468 List_Priqueue delete_max_Some_relate
+R8486:8493 Top.Priqueue List_Priqueue priqueue def
+R8506:8509 Coq.Init.Datatypes <> list ind
+R8511:8513 Top.Priqueue List_Priqueue key def
+R8523:8529 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R8538:8544 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R8570:8576 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R8585:8591 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R8614:8617 Coq.Init.Logic <> :type_scope:x_'/\'_x not
+R8592:8602 Coq.Sorting.Permutation <> Permutation ind
+R8609:8610 Coq.Init.Datatypes <> :list_scope:x_'::'_x not
+R8608:8608 Top.Priqueue <> k var
+R8611:8612 Top.Priqueue <> ql var
+R8604:8605 Top.Priqueue <> pl var
+R8618:8623 Coq.Lists.List <> Forall ind
+R8632:8633 Top.Priqueue <> ql var
+R8626:8627 Coq.Init.Peano <> ge def
+R8629:8629 Top.Priqueue <> k var
+R8577:8579 Top.Priqueue List_Priqueue Abs def
+R8583:8584 Top.Priqueue <> ql var
+R8581:8581 Top.Priqueue <> q var
+R8557:8559 Coq.Init.Logic <> :type_scope:x_'='_x not
+R8545:8554 Top.Priqueue List_Priqueue delete_max def
+R8556:8556 Top.Priqueue <> p var
+R8560:8563 Coq.Init.Datatypes <> Some constr
+R8565:8565 Coq.Init.Datatypes <> :core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R8567:8567 Coq.Init.Datatypes <> :core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R8569:8569 Coq.Init.Datatypes <> :core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R8566:8566 Top.Priqueue <> k var
+R8568:8568 Top.Priqueue <> q var
+R8530:8532 Top.Priqueue List_Priqueue Abs def
+R8536:8537 Top.Priqueue <> pl var
+R8534:8534 Top.Priqueue <> p var
+R8517:8520 Top.Priqueue List_Priqueue priq def
+R8522:8522 Top.Priqueue <> p var
+prf 8679:8688 List_Priqueue merge_priq
+R8711:8714 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R8721:8724 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R8725:8728 Top.Priqueue List_Priqueue priq def
+R8731:8735 Top.Priqueue List_Priqueue merge def
+R8739:8739 Top.Priqueue <> q var
+R8737:8737 Top.Priqueue <> p var
+R8715:8718 Top.Priqueue List_Priqueue priq def
+R8720:8720 Top.Priqueue <> q var
+R8705:8708 Top.Priqueue List_Priqueue priq def
+R8710:8710 Top.Priqueue <> p var
+prf 8783:8794 List_Priqueue merge_relate
+R8836:8839 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R8846:8856 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R8865:8868 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R8877:8880 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R8899:8909 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R8910:8920 Coq.Sorting.Permutation <> Permutation ind
+R8928:8929 Coq.Init.Datatypes <> :list_scope:x_'++'_x not
+R8926:8927 Top.Priqueue <> pl var
+R8930:8931 Top.Priqueue <> ql var
+R8922:8923 Top.Priqueue <> al var
+R8881:8883 Top.Priqueue List_Priqueue Abs def
+R8897:8898 Top.Priqueue <> al var
+R8886:8890 Top.Priqueue List_Priqueue merge def
+R8894:8894 Top.Priqueue <> q var
+R8892:8892 Top.Priqueue <> p var
+R8869:8871 Top.Priqueue List_Priqueue Abs def
+R8875:8876 Top.Priqueue <> ql var
+R8873:8873 Top.Priqueue <> q var
+R8857:8859 Top.Priqueue List_Priqueue Abs def
+R8863:8864 Top.Priqueue <> pl var
+R8861:8861 Top.Priqueue <> p var
+R8840:8843 Top.Priqueue List_Priqueue priq def
+R8845:8845 Top.Priqueue <> q var
+R8830:8833 Top.Priqueue List_Priqueue priq def
+R8835:8835 Top.Priqueue <> p var
+R8986:8998 Top.Priqueue List_Priqueue <> mod

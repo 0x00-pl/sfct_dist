@@ -1,0 +1,271 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<link href="common/css/sf.css" rel="stylesheet" type="text/css"/>
+<title>VFA: Verified Functional Algorithms</title>
+<link href="common/jquery-ui/jquery-ui.css" rel="stylesheet">
+<link href="common/css/logical_foundations.css" rel="stylesheet" type="text/css"/>
+<script src="common/jquery-ui/external/jquery/jquery.js"></script>
+<script src="common/jquery-ui/jquery-ui.js"></script>
+</head>
+
+<body>
+
+<div id="page">
+
+<div id="header">
+<a href="https://www.cis.upenn.edu/~bcpierce/sf/current/index.html"><img src="common/media/image/sf_logo_sm.png"></a>
+<ul id="menu">
+<li class='section_name'>Logical Foundations</li>
+<a href="toc.html"><li>Table of Contents</li></a>
+<a href="coqindex.html"><li>Index</li></a>
+<a href="deps.html"><li>Roadmap</li></a>
+</ul>
+</div>
+
+<div id="main">
+
+<h1 class="libtitle">VFA<span class="subtitle">Verified Functional Algorithms</span></h1>
+
+
+<div class="doc">
+
+<div class="paragraph"> </div>
+
+<a name="lab1"></a><h3 class="section">by Andrew W. Appel</h3>
+<a name="lab2"></a><h3 class="section">Warning! Beta release!</h3>
+
+<div class="paragraph"> </div>
+
+ This textbook is in beta release.  Do not use this
+   without permission from Andrew Appel. 
+<div class="paragraph"> </div>
+
+<a name="lab3"></a><h1 class="section">Welcome</h1>
+
+<div class="paragraph"> </div>
+
+ This electronic book is Volume 3 of the <i>Software Foundations</i>
+    series, which presents the mathematical underpinnings of reliable software.
+
+<div class="paragraph"> </div>
+
+    In this volume you will learn how to specify and verify (prove the
+    correctness of) sorting algorithms,  binary search trees, balanced
+    binary search trees, and  priority queues.  Before using  this book,
+    you should have some understanding of these algorithms and data
+    structures, available in any standard undergraduate algorithms 
+    textbook.
+
+<div class="paragraph"> </div>
+
+    You should understand all the material in
+    Software Foundations Volume 1 (Logic Foundations), 
+    but you will not need anything from Volume 2.
+    The exposition here is intended for a broad range of readers, 
+    from advanced undergraduates to PhD students and researchers. 
+
+<div class="paragraph"> </div>
+
+    The principal novelty of <i>Software Foundations</i> is that it is one hundred
+    percent formalized and machine-checked: the entire text is
+    literally a script for Coq.  It is intended to be read alongside
+    an interactive session with Coq.  All the details in the text are
+    fully formalized in Coq, and the exercises are designed to be
+    worked using Coq. 
+<div class="paragraph"> </div>
+
+<a name="lab4"></a><h1 class="section">Practicalities</h1>
+
+<div class="paragraph"> </div>
+
+<a name="lab5"></a><h2 class="section">Chapter Dependencies</h2>
+
+<div class="paragraph"> </div>
+
+ Before using <i>Verified Functional Algorithms</i>, read
+    (and do the exercises in) these chapters of
+    <i>Software Foundations Volume I</i>:
+      Preface, Basics, Induction, Lists, Poly, Tactics, Logic,
+      IndProp, Maps, and perhaps (ProofObjects), (IndPrinciples).
+
+<div class="paragraph"> </div>
+
+    In this volume, the core path is:
+
+<div class="paragraph"> </div>
+
+    <a href="VFA.html"><span class="inlineref">VFA</span></a> -&gt; <a href="Perm.html"><span class="inlineref">Perm</span></a> -&gt; <a href="Sort.html"><span class="inlineref">Sort</span></a> -&gt; <a href="SearchTree.html"><span class="inlineref">SearchTree</span></a> -&gt; <a href="Redblack.html"><span class="inlineref">Redblack</span></a>
+
+<div class="paragraph"> </div>
+
+    with many optional chapters whose dependencies are,
+
+<div class="paragraph"> </div>
+
+<ul class="doclist">
+<li> <a href="Sort.html"><span class="inlineref">Sort</span></a> -&gt; <a href="Multiset.html"><span class="inlineref">Multiset</span></a> or <a href="Selection.html"><span class="inlineref">Selection</span></a> or <a href="Decide.html"><span class="inlineref">Decide</span></a>
+
+</li>
+<li> <a href="SearchTree.html"><span class="inlineref">SearchTree</span></a> -&gt; <a href="ADT.html"><span class="inlineref">ADT</span></a> or <a href="Extraction.html"><span class="inlineref">Extraction</span></a>
+
+</li>
+<li> <a href="Perm.html"><span class="inlineref">Perm</span></a> -&gt; <a href="Trie.html"><span class="inlineref">Trie</span></a>
+
+</li>
+<li> <a href="Sort.html"><span class="inlineref">Sort</span></a> -&gt; <a href="Selection.html"><span class="inlineref">Selection</span></a> -&gt; <a href="SearchTree.html"><span class="inlineref">SearchTree</span></a> -&gt; <a href="ADT.html"><span class="inlineref">ADT</span></a> -&gt; <a href="Priqueue.html"><span class="inlineref">Priqueue</span></a> -&gt; <a href="Binom.html"><span class="inlineref">Binom</span></a>
+
+</li>
+</ul>
+    The <a href="Color.html"><span class="inlineref">Color</span></a> chapter is advanced material that should not be
+    attempted until the student has had experience with most
+    of the earlier chapters, or other experience using Coq.
+
+<div class="paragraph"> </div>
+
+<a name="lab6"></a><h2 class="section">System Requirements</h2>
+
+<div class="paragraph"> </div>
+
+ Coq runs on Windows, Linux, and OS X.  The Preface of
+    Volume 1 describes the Coq installation you will need.
+    This edition was built with Coq 8.5pl<sub>2</sub>.
+
+<div class="paragraph"> </div>
+
+   In addition, two of the chapters ask you to compile and run
+  an Ocaml program; having Ocaml installed on your computer is
+  helpful, but not essential. 
+<div class="paragraph"> </div>
+
+<a name="lab7"></a><h2 class="section">Exercises</h2>
+
+<div class="paragraph"> </div>
+
+ Each chapter includes numerous exercises.  Each is marked with a
+    "star rating," which can be interpreted as follows:
+
+<div class="paragraph"> </div>
+
+<ul class="doclist">
+<li> One star: easy exercises that underscore points in the text
+         and that, for most readers, should take only a minute or two.
+         Get in the habit of working these as you reach them.
+
+<div class="paragraph"> </div>
+
+
+</li>
+<li> Two stars: straightforward exercises (five or ten minutes).
+
+<div class="paragraph"> </div>
+
+
+</li>
+<li> Three stars: exercises requiring a bit of thought (ten
+         minutes to half an hour).
+
+<div class="paragraph"> </div>
+
+
+</li>
+<li> Four and five stars: more difficult exercises (half an hour
+         and up).
+
+</li>
+</ul>
+
+<div class="paragraph"> </div>
+
+    Also, some exercises are marked "advanced", and some are marked
+    "optional."  Doing just the non-optional, non-advanced exercises
+    should provide good coverage of the core material.  Optional
+    exercises provide a bit of extra practice with key concepts and
+    introduce secondary themes that may be of interest to some
+    readers.  Advanced exercises are for readers who want an extra
+    challenge (and, in return, a deeper contact with the material).
+
+<div class="paragraph"> </div>
+
+   <font color="red"> <i>Please do not post solutions to the exercises in any public place</i>: </font>
+    Software Foundations is widely used both for self-study and for
+    university courses.  Having solutions easily available makes it
+    much less useful for courses, which typically have graded homework
+    assignments.  The authors especially request that readers not post
+    solutions to the exercises anyplace where they can be found by
+    search engines.
+
+<div class="paragraph"> </div>
+
+<a name="lab8"></a><h2 class="section">Downloading the Coq Files</h2>
+
+<div class="paragraph"> </div>
+
+ A tar file containing the full sources for the "release version"
+    of these notes (as a collection of Coq scripts and HTML files) is
+    available here:
+<pre>
+        http://www.cs.princeton.edu/~appel/vfa
+</pre>
+    If you are using the notes as part of a class, your professor
+    may give you access to a locally extended version of the files,
+    which you should use instead of the release version.
+
+<div class="paragraph"> </div>
+
+<a name="lab9"></a><h2 class="section">For instructors and contributors</h2>
+
+<div class="paragraph"> </div>
+
+ If you intend to use these materials in your own course, you will
+    undoubtedly find things you'd like to change, improve, or add.
+    Your contributions are welcome!
+
+<div class="paragraph"> </div>
+
+    To keep the legalities of the situation clean and to have a single
+    point of responsibility in case the need should ever arise to
+    adjust the license terms, sublicense, etc., we ask all
+    contributors (i.e., everyone with access to the developers'
+    repository) to assign copyright in their contributions to the
+    appropriate "author of record," as follows:
+
+<div class="paragraph"> </div>
+
+        <i>I hereby assign copyright in my past and future contributions
+        to the Software Foundations project to the Author of Record of
+        each volume or component, to be licensed under the same terms
+        as the rest of Software Foundations.  I understand that, at
+        present, the Authors of Record are as follows: For Volumes 1
+        and 2, known until 2016 as "Software Foundations" and from
+        2016 as (respectively) "Logical Foundations" and "Programming
+        Foundations," the Author of Record is Benjamin Pierce.  For
+        Volume 3, "Verified Functional Algorithms", the Author of
+        Record is Andrew W. Appel. For components outside of
+        designated Volumes (e.g., typesetting and grading tools and
+        other software infrastructure), the Author of Record is
+        Benjamin Pierce._
+
+    To get started, please send an email to Benjamin Pierce, describing
+    yourself and how you plan to use the materials and including 
+       (1) the above copyright transfer text and 
+       (2) the result of doing "htpasswd -s -n NAME"
+    where NAME is your preferred user name.
+
+<div class="paragraph"> </div>
+
+    We'll set you up with access to the subversion repository and 
+    developers' mailing lists.  In the repository you'll find a 
+    file <span class="inlinecode"><span class="id" type="var">INSTRUCTORS</span></span> with further instructions. 
+</div>
+</div>
+
+<div id="footer">
+<hr/><a href="coqindex.html">Index</a></div>
+
+</div>
+
+</body>
+</html>
