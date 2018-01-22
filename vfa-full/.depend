@@ -14,8 +14,8 @@ SearchTree.vo SearchTree.glob SearchTree.v.beautified: SearchTree.v Maps.vo Perm
 SearchTree.vio: SearchTree.v Maps.vio Perm.vio
 ADT.vo ADT.glob ADT.v.beautified: ADT.v Maps.vo SearchTree.vo
 ADT.vio: ADT.v Maps.vio SearchTree.vio
-Extraction.vo Extraction.glob Extraction.v.beautified: Extraction.v Perm.vo Extraction.vo SearchTree.vo
-Extraction.vio: Extraction.v Perm.vio Extraction.vio SearchTree.vio
+Extraction.vo Extraction.glob Extraction.v.beautified: Extraction.v Extraction.vo Perm.vo SearchTree.vo
+Extraction.vio: Extraction.v Extraction.vio Perm.vio SearchTree.vio
 Redblack.vo Redblack.glob Redblack.v.beautified: Redblack.v Perm.vo Extraction.vo
 Redblack.vio: Redblack.v Perm.vio Extraction.vio
 Trie.vo Trie.glob Trie.v.beautified: Trie.v Perm.vo Maps.vo

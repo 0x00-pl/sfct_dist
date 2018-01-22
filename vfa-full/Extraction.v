@@ -5,6 +5,7 @@
    properties about it; then print it out as an ML (or Haskell) program
    that you can compile with your optimizing ML (or Haskell) compiler. *)
 
+Require Extraction.
 Require Import Perm.
 
 Module Sort1.
@@ -22,7 +23,6 @@ end.
 
 (** The [Extraction] command prints out a function as Ocaml code. *)
 
-Require Extraction.
 Extraction sort.
 
 (** You can see the translation of "sort" from Coq to Ocaml,
