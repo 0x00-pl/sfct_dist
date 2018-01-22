@@ -1,4 +1,4 @@
-(** * Basics: Functional Programming in Coq *)
+(** * 基础知识: Coq 中的函数式编程 *)
 
 (* REMINDER:
 

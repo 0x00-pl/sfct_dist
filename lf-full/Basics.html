@@ -4,7 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <link href="common/css/sf.css" rel="stylesheet" type="text/css"/>
-<title>Basics: Functional Programming in Coq</title>
+<title>Basics</title>
 <link href="common/jquery-ui/jquery-ui.css" rel="stylesheet">
 <link href="common/css/logical_foundations.css" rel="stylesheet" type="text/css"/>
 <script src="common/jquery-ui/external/jquery/jquery.js"></script>
@@ -27,12 +27,20 @@
 
 <div id="main">
 
-<h1 class="libtitle">Basics<span class="subtitle">Functional Programming in Coq</span></h1>
-
+<h1 class="libtitle">Basics</h1>
 
 
 <div class="doc">
-<a name="lab16"></a><h1 class="section">Introduction</h1>
+<a name="lab16"></a><h1 class="section">基础知识: Coq 中的函数式编程</h1>
+
+</div>
+<div class="code code-space">
+
+<br/>
+</div>
+
+<div class="doc">
+<a name="lab17"></a><h1 class="section">Introduction</h1>
 
 <div class="paragraph"> </div>
 
@@ -73,7 +81,7 @@
 </div>
 
 <div class="doc">
-<a name="lab17"></a><h1 class="section">Enumerated Types</h1>
+<a name="lab18"></a><h1 class="section">Enumerated Types</h1>
 
 <div class="paragraph"> </div>
 
@@ -96,7 +104,7 @@
 </div>
 
 <div class="doc">
-<a name="lab18"></a><h2 class="section">Days of the Week</h2>
+<a name="lab19"></a><h2 class="section">Days of the Week</h2>
 
 <div class="paragraph"> </div>
 
@@ -220,7 +228,7 @@ The details are not important for now (we'll come back to
 </div>
 
 <div class="doc">
-<a name="lab19"></a><h2 class="section">Homework Submission Guidelines</h2>
+<a name="lab20"></a><h2 class="section">Homework Submission Guidelines</h2>
 
 <div class="paragraph"> </div>
 
@@ -251,7 +259,7 @@ The details are not important for now (we'll come back to
 </div>
 
 <div class="doc">
-<a name="lab20"></a><h2 class="section">Booleans</h2>
+<a name="lab21"></a><h2 class="section">Booleans</h2>
 
 <div class="paragraph"> </div>
 
@@ -350,7 +358,7 @@ We can also introduce some familiar syntax for the boolean
     <span class="inlinecode"><span class="id" type="var">Admitted</span></span>s with real proofs. 
 <div class="paragraph"> </div>
 
-<a name="lab21"></a><h4 class="section">Exercise: 1 star (nandb)</h4>
+<a name="lab22"></a><h4 class="section">Exercise: 1 star (nandb)</h4>
  Remove "<span class="inlinecode"><span class="id" type="var">Admitted</span>.</span>" and complete the definition of the following
     function; then make sure that the <span class="inlinecode"><span class="id" type="keyword">Example</span></span> assertions below can
     each be verified by Coq.  (Remove "<span class="inlinecode"><span class="id" type="var">Admitted</span>.</span>" and fill in each
@@ -377,7 +385,7 @@ We can also introduce some familiar syntax for the boolean
 <div class="doc less-space">
 <div class="paragraph"> </div>
 
-<a name="lab22"></a><h4 class="section">Exercise: 1 star (andb3)</h4>
+<a name="lab23"></a><h4 class="section">Exercise: 1 star (andb3)</h4>
  Do the same for the <span class="inlinecode"><span class="id" type="var">andb3</span></span> function below. This function should
     return <span class="inlinecode"><span class="id" type="var">true</span></span> when all of its inputs are <span class="inlinecode"><span class="id" type="var">true</span></span>, and <span class="inlinecode"><span class="id" type="var">false</span></span>
     otherwise. 
@@ -400,7 +408,7 @@ We can also introduce some familiar syntax for the boolean
 <span class="proofbox">&#9744;</span> 
 
 <div class="doc">
-<a name="lab23"></a><h2 class="section">Function Types</h2>
+<a name="lab24"></a><h2 class="section">Function Types</h2>
 
 <div class="paragraph"> </div>
 
@@ -439,7 +447,7 @@ The type of <span class="inlinecode"><span class="id" type="var">negb</span></sp
 </div>
 
 <div class="doc">
-<a name="lab24"></a><h2 class="section">Modules</h2>
+<a name="lab25"></a><h2 class="section">Modules</h2>
 
 <div class="paragraph"> </div>
 
@@ -461,7 +469,7 @@ The type of <span class="inlinecode"><span class="id" type="var">negb</span></sp
 </div>
 
 <div class="doc">
-<a name="lab25"></a><h2 class="section">Numbers</h2>
+<a name="lab26"></a><h2 class="section">Numbers</h2>
 
 <div class="paragraph"> </div>
 
@@ -772,7 +780,7 @@ The _ in the first line is a <i>wildcard pattern</i>.  Writing _ in a
 </div>
 
 <div class="doc">
-<a name="lab26"></a><h4 class="section">Exercise: 1 star (factorial)</h4>
+<a name="lab27"></a><h4 class="section">Exercise: 1 star (factorial)</h4>
  Recall the standard mathematical factorial function:
 <pre>
        factorial(0)  =  1
@@ -877,7 +885,7 @@ The <span class="inlinecode"><span class="id" type="var">leb</span></span> funct
 </div>
 
 <div class="doc">
-<a name="lab27"></a><h4 class="section">Exercise: 1 star (blt_nat)</h4>
+<a name="lab28"></a><h4 class="section">Exercise: 1 star (blt_nat)</h4>
  The <span class="inlinecode"><span class="id" type="var">blt_nat</span></span> function tests <span class="inlinecode"><span class="id" type="var">nat</span></span>ural numbers for <span class="inlinecode"><span class="id" type="var">l</span></span>ess-<span class="inlinecode"><span class="id" type="var">t</span></span>han,
     yielding a <span class="inlinecode"><span class="id" type="var">b</span></span>oolean.  Instead of making up a new <span class="inlinecode"><span class="id" type="keyword">Fixpoint</span></span> for
     this one, define it in terms of a previously defined function. 
@@ -898,7 +906,7 @@ The <span class="inlinecode"><span class="id" type="var">leb</span></span> funct
 <span class="proofbox">&#9744;</span> 
 
 <div class="doc">
-<a name="lab28"></a><h1 class="section">Proof by Simplification</h1>
+<a name="lab29"></a><h1 class="section">Proof by Simplification</h1>
 
 <div class="paragraph"> </div>
 
@@ -1057,7 +1065,7 @@ The next chapter will introduce <i>induction</i>, a powerful
 </div>
 
 <div class="doc">
-<a name="lab29"></a><h1 class="section">Proof by Rewriting</h1>
+<a name="lab30"></a><h1 class="section">Proof by Rewriting</h1>
 
 <div class="paragraph"> </div>
 
@@ -1123,7 +1131,7 @@ The first line of the proof moves the universally quantified
     makes.) 
 <div class="paragraph"> </div>
 
-<a name="lab30"></a><h4 class="section">Exercise: 1 star (plus_id_exercise)</h4>
+<a name="lab31"></a><h4 class="section">Exercise: 1 star (plus_id_exercise)</h4>
  Remove "<span class="inlinecode"><span class="id" type="var">Admitted</span>.</span>" and fill in the proof. 
 </div>
 <div class="code code-tight">
@@ -1169,7 +1177,7 @@ The first line of the proof moves the universally quantified
 </div>
 
 <div class="doc">
-<a name="lab31"></a><h4 class="section">Exercise: 2 stars (mult_S_1)</h4>
+<a name="lab32"></a><h4 class="section">Exercise: 2 stars (mult_S_1)</h4>
 
 </div>
 <div class="code code-space">
@@ -1185,7 +1193,7 @@ The first line of the proof moves the universally quantified
 <span class="proofbox">&#9744;</span> 
 
 <div class="doc">
-<a name="lab32"></a><h1 class="section">Proof by Case Analysis</h1>
+<a name="lab33"></a><h1 class="section">Proof by Case Analysis</h1>
 
 <div class="paragraph"> </div>
 
@@ -1446,7 +1454,7 @@ If there are no arguments to name, we can just write <span class="inlinecode">[]
 </div>
 
 <div class="doc">
-<a name="lab33"></a><h4 class="section">Exercise: 2 stars (andb_true_elim2)</h4>
+<a name="lab34"></a><h4 class="section">Exercise: 2 stars (andb_true_elim2)</h4>
  Prove the following claim, marking cases (and subcases) with
     bullets when you use <span class="inlinecode"><span class="id" type="tactic">destruct</span></span>. 
 </div>
@@ -1463,7 +1471,7 @@ If there are no arguments to name, we can just write <span class="inlinecode">[]
 <div class="doc less-space">
 <div class="paragraph"> </div>
 
-<a name="lab34"></a><h4 class="section">Exercise: 1 star (zero_nbeq_plus_1)</h4>
+<a name="lab35"></a><h4 class="section">Exercise: 1 star (zero_nbeq_plus_1)</h4>
 
 </div>
 <div class="code code-space">
@@ -1476,7 +1484,7 @@ If there are no arguments to name, we can just write <span class="inlinecode">[]
 <span class="proofbox">&#9744;</span> 
 
 <div class="doc">
-<a name="lab35"></a><h2 class="section">More on Notation (Optional)</h2>
+<a name="lab36"></a><h2 class="section">More on Notation (Optional)</h2>
 
 <div class="paragraph"> </div>
 
@@ -1539,7 +1547,7 @@ For each notation symbol in Coq, we can specify its <i>precedence
 </div>
 
 <div class="doc">
-<a name="lab36"></a><h2 class="section">Fixpoints and Structural Recursion (Optional)</h2>
+<a name="lab37"></a><h2 class="section">Fixpoints and Structural Recursion (Optional)</h2>
 
 <div class="paragraph"> </div>
 
@@ -1573,7 +1581,7 @@ When Coq checks this definition, it notes that <span class="inlinecode"><span cl
     necessary to write functions in slightly unnatural ways. 
 <div class="paragraph"> </div>
 
-<a name="lab37"></a><h4 class="section">Exercise: 2 stars, optional (decreasing)</h4>
+<a name="lab38"></a><h4 class="section">Exercise: 2 stars, optional (decreasing)</h4>
  To get a concrete sense of this, find a way to write a sensible
     <span class="inlinecode"><span class="id" type="keyword">Fixpoint</span></span> definition (of a simple function on numbers, say) that
     <i>does</i> terminate on all inputs, but that Coq will reject because
@@ -1588,11 +1596,11 @@ When Coq checks this definition, it notes that <span class="inlinecode"><span cl
 <span class="proofbox">&#9744;</span> 
 
 <div class="doc">
-<a name="lab38"></a><h1 class="section">More Exercises</h1>
+<a name="lab39"></a><h1 class="section">More Exercises</h1>
 
 <div class="paragraph"> </div>
 
-<a name="lab39"></a><h4 class="section">Exercise: 2 starsM (boolean_functions)</h4>
+<a name="lab40"></a><h4 class="section">Exercise: 2 starsM (boolean_functions)</h4>
  Use the tactics you have learned so far to prove the following
     theorem about boolean functions. 
 </div>
@@ -1622,7 +1630,7 @@ Now state and prove a theorem <span class="inlinecode"><span class="id" type="va
 <div class="doc less-space">
 <div class="paragraph"> </div>
 
-<a name="lab40"></a><h4 class="section">Exercise: 2 stars (andb_eq_orb)</h4>
+<a name="lab41"></a><h4 class="section">Exercise: 2 stars (andb_eq_orb)</h4>
  Prove the following theorem.  (You may want to first prove a
     subsidiary lemma or two. Alternatively, remember that you do
     not have to introduce all hypotheses at the same time.) 
@@ -1642,7 +1650,7 @@ Now state and prove a theorem <span class="inlinecode"><span class="id" type="va
 <div class="doc less-space">
 <div class="paragraph"> </div>
 
-<a name="lab41"></a><h4 class="section">Exercise: 3 starsM (binary)</h4>
+<a name="lab42"></a><h4 class="section">Exercise: 3 starsM (binary)</h4>
  Consider a different, more efficient representation of natural
     numbers using a binary rather than unary system.  That is, instead
     of saying that each natural number is either zero or the successor
