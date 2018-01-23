@@ -1,395 +1,395 @@
-DIGEST 23db9fb4c642be809877f57400423ba4
+DIGEST ad5cc72811f3b1916b0e0a7204e92a31
 FTop.Extraction
-R346:355 Coq.extraction.Extraction <> <> lib
-R373:376 Top.Perm <> <> lib
-mod 387:391 <> Sort1
-def 403:408 Sort1 insert
-R413:415 Coq.Init.Datatypes <> nat ind
-R422:425 Coq.Init.Datatypes <> list ind
-R427:429 Coq.Init.Datatypes <> nat ind
-R444:444 Top.Extraction <> l var
-R455:457 Coq.Init.Datatypes <> nil constr
-R463:464 Coq.Init.Datatypes <> :list_scope:x_'::'_x not
-R462:462 Top.Extraction <> i var
-R465:467 Coq.Init.Datatypes <> nil constr
-R474:475 Coq.Init.Datatypes <> :list_scope:x_'::'_x not
-R485:489 Coq.Arith.PeanoNat <> :nat_scope:x_'<=?'_x not
-R484:484 Top.Extraction <> i var
-R511:514 Coq.Init.Datatypes <> :list_scope:x_'::'_x not
-R515:520 Top.Extraction <> insert def
-R522:522 Top.Extraction <> i var
-R498:499 Coq.Init.Datatypes <> :list_scope:x_'::'_x not
-R497:497 Top.Extraction <> i var
-R501:502 Coq.Init.Datatypes <> :list_scope:x_'::'_x not
-def 542:545 Sort1 sort
-R551:554 Coq.Init.Datatypes <> list ind
-R556:558 Coq.Init.Datatypes <> nat ind
-R563:566 Coq.Init.Datatypes <> list ind
-R568:570 Coq.Init.Datatypes <> nat ind
-R583:583 Top.Extraction <> l var
+R339:348 Coq.extraction.Extraction <> <> lib
+R366:369 Top.Perm <> <> lib
+mod 380:384 <> Sort1
+def 396:401 Sort1 insert
+R406:408 Coq.Init.Datatypes <> nat ind
+R415:418 Coq.Init.Datatypes <> list ind
+R420:422 Coq.Init.Datatypes <> nat ind
+R437:437 Top.Extraction <> l var
+R448:450 Coq.Init.Datatypes <> nil constr
+R456:457 Coq.Init.Datatypes <> :list_scope:x_'::'_x not
+R455:455 Top.Extraction <> i var
+R458:460 Coq.Init.Datatypes <> nil constr
+R467:468 Coq.Init.Datatypes <> :list_scope:x_'::'_x not
+R478:482 Coq.Arith.PeanoNat <> :nat_scope:x_'<=?'_x not
+R477:477 Top.Extraction <> i var
+R504:507 Coq.Init.Datatypes <> :list_scope:x_'::'_x not
+R508:513 Top.Extraction <> insert def
+R515:515 Top.Extraction <> i var
+R491:492 Coq.Init.Datatypes <> :list_scope:x_'::'_x not
+R490:490 Top.Extraction <> i var
+R494:495 Coq.Init.Datatypes <> :list_scope:x_'::'_x not
+def 535:538 Sort1 sort
+R544:547 Coq.Init.Datatypes <> list ind
+R549:551 Coq.Init.Datatypes <> nat ind
+R556:559 Coq.Init.Datatypes <> list ind
+R561:563 Coq.Init.Datatypes <> nat ind
+R576:576 Top.Extraction <> l var
+R587:589 Coq.Init.Datatypes <> nil constr
 R594:596 Coq.Init.Datatypes <> nil constr
-R601:603 Coq.Init.Datatypes <> nil constr
-R610:611 Coq.Init.Datatypes <> :list_scope:x_'::'_x not
-R617:622 Top.Extraction Sort1 insert def
-R627:630 Top.Extraction <> sort def
-R722:725 Top.Extraction Sort1 sort def
-R1435:1438 Coq.Init.Datatypes <> bool ind
-R1488:1491 Coq.Init.Datatypes <> list ind
-R1553:1557 Top.Extraction Sort1 <> mod
-R2999:3004 Coq.ZArith.ZArith <> <> lib
-ax 3926:3928 <> int
-ax 4057:4059 <> ltb
+R603:604 Coq.Init.Datatypes <> :list_scope:x_'::'_x not
+R610:615 Top.Extraction Sort1 insert def
+R620:623 Top.Extraction <> sort def
+R715:718 Top.Extraction Sort1 sort def
+R1428:1431 Coq.Init.Datatypes <> bool ind
+R1481:1484 Coq.Init.Datatypes <> list ind
+R1546:1550 Top.Extraction Sort1 <> mod
+R2992:2997 Coq.ZArith.ZArith <> <> lib
+ax 3919:3921 <> int
+ax 4050:4052 <> ltb
+R4058:4061 Coq.Init.Logic <> :type_scope:x_'->'_x not
 R4065:4068 Coq.Init.Logic <> :type_scope:x_'->'_x not
-R4072:4075 Coq.Init.Logic <> :type_scope:x_'->'_x not
-R4076:4079 Coq.Init.Datatypes <> bool ind
-R4069:4071 Top.Extraction <> int defax
+R4069:4072 Coq.Init.Datatypes <> bool ind
 R4062:4064 Top.Extraction <> int defax
-ax 4797:4801 <> int2Z
-R4807:4810 Coq.Init.Logic <> :type_scope:x_'->'_x not
-R4811:4811 Coq.Numbers.BinNums <> Z ind
-R4804:4806 Top.Extraction <> int defax
-ax 4822:4827 <> ltb_lt
-R4844:4846 Top.Extraction <> int defax
-R4863:4867 Coq.Init.Logic <> :type_scope:x_'<->'_x not
-R4856:4858 Coq.Init.Logic <> :type_scope:x_'='_x not
-R4849:4851 Top.Extraction <> ltb defax
-R4855:4855 Top.Extraction <> m var
-R4853:4853 Top.Extraction <> n var
-R4859:4862 Coq.Init.Datatypes <> true constr
-R4875:4877 Coq.ZArith.BinInt <> :Z_scope:x_'<'_x not
-R4868:4872 Top.Extraction <> int2Z defax
-R4874:4874 Top.Extraction <> n var
-R4878:4882 Top.Extraction <> int2Z defax
-R4884:4884 Top.Extraction <> m var
-prf 6129:6143 <> int_blt_reflect
-R6159:6165 Coq.Bool.Bool <> reflect ind
-R6188:6190 Top.Extraction <> ltb defax
-R6194:6194 Top.Extraction <> y var
-R6192:6192 Top.Extraction <> x var
-R6175:6177 Coq.ZArith.BinInt <> :Z_scope:x_'<'_x not
-R6168:6172 Top.Extraction <> int2Z defax
-R6174:6174 Top.Extraction <> x var
-R6178:6182 Top.Extraction <> int2Z defax
-R6184:6184 Top.Extraction <> y var
-R6227:6237 Coq.Bool.Bool <> iff_reflect thm
-R6227:6237 Coq.Bool.Bool <> iff_reflect thm
-R6256:6261 Top.Extraction <> ltb_lt prfax
-R6256:6261 Top.Extraction <> ltb_lt prfax
-prf 6276:6288 <> Z_eqb_reflect
-R6304:6310 Coq.Bool.Bool <> reflect ind
-R6319:6323 Coq.ZArith.BinInt Z eqb def
-R6327:6327 Top.Extraction <> y var
-R6325:6325 Top.Extraction <> x var
-R6314:6314 Coq.Init.Logic <> :type_scope:x_'='_x not
-R6313:6313 Top.Extraction <> x var
-R6315:6315 Top.Extraction <> y var
-R6360:6370 Coq.Bool.Bool <> iff_reflect thm
-R6360:6370 Coq.Bool.Bool <> iff_reflect thm
-R6389:6396 Coq.ZArith.BinInt Z eqb_eq thm
-R6389:6396 Coq.ZArith.BinInt Z eqb_eq thm
-prf 6411:6423 <> Z_ltb_reflect
-R6439:6445 Coq.Bool.Bool <> reflect ind
-R6454:6458 Coq.ZArith.BinInt Z ltb def
-R6462:6462 Top.Extraction <> y var
-R6460:6460 Top.Extraction <> x var
-R6449:6449 Coq.ZArith.BinInt <> :Z_scope:x_'<'_x not
-R6448:6448 Top.Extraction <> x var
-R6450:6450 Top.Extraction <> y var
-R6495:6505 Coq.Bool.Bool <> iff_reflect thm
-R6495:6505 Coq.Bool.Bool <> iff_reflect thm
-R6524:6531 Coq.ZArith.BinInt Z ltb_lt thm
-R6524:6531 Coq.ZArith.BinInt Z ltb_lt thm
-R7273:7306 Coq.Logic.FunctionalExtensionality <> <> lib
-mod 7317:7323 <> IntMaps
-def 7337:7345 IntMaps total_map
-R7360:7363 Coq.Init.Logic <> :type_scope:x_'->'_x not
-R7364:7364 Top.Extraction <> A var
-R7359:7359 Coq.Numbers.BinNums <> Z ind
-def 7378:7384 IntMaps t_empty
-R7400:7400 Top.Extraction <> A var
-R7405:7413 Top.Extraction IntMaps total_map def
-R7415:7415 Top.Extraction <> A var
-R7431:7431 Top.Extraction <> v var
-def 7446:7453 IntMaps t_update
-R7469:7477 Top.Extraction IntMaps total_map def
-R7479:7479 Top.Extraction <> A var
-R7487:7487 Coq.Numbers.BinNums <> Z ind
-R7495:7495 Top.Extraction <> A var
-R7516:7520 Coq.ZArith.BinInt Z eqb def
-R7524:7525 Top.Extraction <> x' var
-R7522:7522 Top.Extraction <> x var
-R7539:7539 Top.Extraction <> m var
-R7541:7542 Top.Extraction <> x' var
-R7532:7532 Top.Extraction <> v var
-prf 7551:7561 IntMaps t_update_eq
-R7578:7586 Top.Extraction IntMaps total_map def
-R7588:7588 Top.Extraction <> A var
-R7614:7616 Coq.Init.Logic <> :type_scope:x_'='_x not
-R7597:7604 Top.Extraction IntMaps t_update def
+R4055:4057 Top.Extraction <> int defax
+ax 4790:4794 <> int2Z
+R4800:4803 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R4804:4804 Coq.Numbers.BinNums <> Z ind
+R4797:4799 Top.Extraction <> int defax
+ax 4815:4820 <> ltb_lt
+R4837:4839 Top.Extraction <> int defax
+R4856:4860 Coq.Init.Logic <> :type_scope:x_'<->'_x not
+R4849:4851 Coq.Init.Logic <> :type_scope:x_'='_x not
+R4842:4844 Top.Extraction <> ltb defax
+R4848:4848 Top.Extraction <> m var
+R4846:4846 Top.Extraction <> n var
+R4852:4855 Coq.Init.Datatypes <> true constr
+R4868:4870 Coq.ZArith.BinInt <> :Z_scope:x_'<'_x not
+R4861:4865 Top.Extraction <> int2Z defax
+R4867:4867 Top.Extraction <> n var
+R4871:4875 Top.Extraction <> int2Z defax
+R4877:4877 Top.Extraction <> m var
+prf 6122:6136 <> int_blt_reflect
+R6152:6158 Coq.Bool.Bool <> reflect ind
+R6181:6183 Top.Extraction <> ltb defax
+R6187:6187 Top.Extraction <> y var
+R6185:6185 Top.Extraction <> x var
+R6168:6170 Coq.ZArith.BinInt <> :Z_scope:x_'<'_x not
+R6161:6165 Top.Extraction <> int2Z defax
+R6167:6167 Top.Extraction <> x var
+R6171:6175 Top.Extraction <> int2Z defax
+R6177:6177 Top.Extraction <> y var
+R6220:6230 Coq.Bool.Bool <> iff_reflect thm
+R6220:6230 Coq.Bool.Bool <> iff_reflect thm
+R6249:6254 Top.Extraction <> ltb_lt prfax
+R6249:6254 Top.Extraction <> ltb_lt prfax
+prf 6269:6281 <> Z_eqb_reflect
+R6297:6303 Coq.Bool.Bool <> reflect ind
+R6312:6316 Coq.ZArith.BinInt Z eqb def
+R6320:6320 Top.Extraction <> y var
+R6318:6318 Top.Extraction <> x var
+R6307:6307 Coq.Init.Logic <> :type_scope:x_'='_x not
+R6306:6306 Top.Extraction <> x var
+R6308:6308 Top.Extraction <> y var
+R6353:6363 Coq.Bool.Bool <> iff_reflect thm
+R6353:6363 Coq.Bool.Bool <> iff_reflect thm
+R6382:6389 Coq.ZArith.BinInt Z eqb_eq thm
+R6382:6389 Coq.ZArith.BinInt Z eqb_eq thm
+prf 6404:6416 <> Z_ltb_reflect
+R6432:6438 Coq.Bool.Bool <> reflect ind
+R6447:6451 Coq.ZArith.BinInt Z ltb def
+R6455:6455 Top.Extraction <> y var
+R6453:6453 Top.Extraction <> x var
+R6442:6442 Coq.ZArith.BinInt <> :Z_scope:x_'<'_x not
+R6441:6441 Top.Extraction <> x var
+R6443:6443 Top.Extraction <> y var
+R6488:6498 Coq.Bool.Bool <> iff_reflect thm
+R6488:6498 Coq.Bool.Bool <> iff_reflect thm
+R6517:6524 Coq.ZArith.BinInt Z ltb_lt thm
+R6517:6524 Coq.ZArith.BinInt Z ltb_lt thm
+R7266:7299 Coq.Logic.FunctionalExtensionality <> <> lib
+mod 7310:7316 <> IntMaps
+def 7330:7338 IntMaps total_map
+R7353:7356 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R7357:7357 Top.Extraction <> A var
+R7352:7352 Coq.Numbers.BinNums <> Z ind
+def 7371:7377 IntMaps t_empty
+R7393:7393 Top.Extraction <> A var
+R7398:7406 Top.Extraction IntMaps total_map def
+R7408:7408 Top.Extraction <> A var
+R7424:7424 Top.Extraction <> v var
+def 7439:7446 IntMaps t_update
+R7462:7470 Top.Extraction IntMaps total_map def
+R7472:7472 Top.Extraction <> A var
+R7480:7480 Coq.Numbers.BinNums <> Z ind
+R7488:7488 Top.Extraction <> A var
+R7509:7513 Coq.ZArith.BinInt Z eqb def
+R7517:7518 Top.Extraction <> x' var
+R7515:7515 Top.Extraction <> x var
+R7532:7532 Top.Extraction <> m var
+R7534:7535 Top.Extraction <> x' var
+R7525:7525 Top.Extraction <> v var
+prf 7544:7554 IntMaps t_update_eq
+R7571:7579 Top.Extraction IntMaps total_map def
+R7581:7581 Top.Extraction <> A var
+R7607:7609 Coq.Init.Logic <> :type_scope:x_'='_x not
+R7590:7597 Top.Extraction IntMaps t_update def
+R7603:7603 Top.Extraction <> v var
+R7601:7601 Top.Extraction <> x var
+R7599:7599 Top.Extraction <> m var
+R7606:7606 Top.Extraction <> x var
 R7610:7610 Top.Extraction <> v var
-R7608:7608 Top.Extraction <> x var
-R7606:7606 Top.Extraction <> m var
-R7613:7613 Top.Extraction <> x var
-R7617:7617 Top.Extraction <> v var
-R7644:7651 Top.Extraction IntMaps t_update def
-R7668:7669 Coq.ZArith.BinInt <> :Z_scope:x_'=?'_x not
-R7668:7669 Coq.ZArith.BinInt <> :Z_scope:x_'=?'_x not
-prf 7704:7715 IntMaps t_update_neq
-R7748:7756 Top.Extraction IntMaps total_map def
-R7758:7758 Top.Extraction <> X var
-R7772:7776 Coq.Init.Logic <> :type_scope:x_'->'_x not
-R7797:7799 Coq.Init.Logic <> :type_scope:x_'='_x not
-R7778:7785 Top.Extraction IntMaps t_update def
-R7792:7792 Top.Extraction <> v var
-R7789:7790 Top.Extraction <> x1 var
-R7787:7787 Top.Extraction <> m var
+R7637:7644 Top.Extraction IntMaps t_update def
+R7661:7662 Coq.ZArith.BinInt <> :Z_scope:x_'=?'_x not
+R7661:7662 Coq.ZArith.BinInt <> :Z_scope:x_'=?'_x not
+prf 7697:7708 IntMaps t_update_neq
+R7741:7749 Top.Extraction IntMaps total_map def
+R7751:7751 Top.Extraction <> X var
+R7765:7769 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R7790:7792 Coq.Init.Logic <> :type_scope:x_'='_x not
+R7771:7778 Top.Extraction IntMaps t_update def
+R7785:7785 Top.Extraction <> v var
+R7782:7783 Top.Extraction <> x1 var
+R7780:7780 Top.Extraction <> m var
+R7788:7789 Top.Extraction <> x2 var
+R7793:7793 Top.Extraction <> m var
 R7795:7796 Top.Extraction <> x2 var
-R7800:7800 Top.Extraction <> m var
-R7802:7803 Top.Extraction <> x2 var
-R7766:7769 Coq.Init.Logic <> :type_scope:x_'<>'_x not
-R7764:7765 Top.Extraction <> x1 var
-R7770:7771 Top.Extraction <> x2 var
-R7830:7837 Top.Extraction IntMaps t_update def
-R7855:7856 Coq.ZArith.BinInt <> :Z_scope:x_'=?'_x not
-R7855:7856 Coq.ZArith.BinInt <> :Z_scope:x_'=?'_x not
-prf 7889:7903 IntMaps t_update_shadow
-R7920:7928 Top.Extraction IntMaps total_map def
-R7930:7930 Top.Extraction <> A var
-R7977:7980 Coq.Init.Logic <> :type_scope:x_'='_x not
-R7946:7953 Top.Extraction IntMaps t_update def
-R7975:7976 Top.Extraction <> v2 var
-R7973:7973 Top.Extraction <> x var
-R7956:7963 Top.Extraction IntMaps t_update def
-R7969:7970 Top.Extraction <> v1 var
-R7967:7967 Top.Extraction <> x var
-R7965:7965 Top.Extraction <> m var
-R7981:7988 Top.Extraction IntMaps t_update def
-R7994:7995 Top.Extraction <> v2 var
-R7992:7992 Top.Extraction <> x var
-R7990:7990 Top.Extraction <> m var
-R8022:8029 Top.Extraction IntMaps t_update def
-R8067:8068 Coq.ZArith.BinInt <> :Z_scope:x_'=?'_x not
-R8067:8068 Coq.ZArith.BinInt <> :Z_scope:x_'=?'_x not
-R8090:8096 Top.Extraction IntMaps <> mod
-mod 8241:8251 <> SearchTree2
-sec 8262:8266 SearchTree2 TREES
-var 8278:8278 SearchTree2.TREES V
-var 8297:8303 SearchTree2.TREES default
-R8306:8306 Top.Extraction <> SearchTree2.TREES.V var
-def 8321:8323 SearchTree2 key
-R8328:8330 Top.Extraction <> int defax
-ind 8344:8347 SearchTree2 tree
-constr 8362:8362 SearchTree2 E
-constr 8374:8374 SearchTree2 T
-R8366:8369 Top.Extraction <> tree ind
+R7759:7762 Coq.Init.Logic <> :type_scope:x_'<>'_x not
+R7757:7758 Top.Extraction <> x1 var
+R7763:7764 Top.Extraction <> x2 var
+R7823:7830 Top.Extraction IntMaps t_update def
+R7848:7849 Coq.ZArith.BinInt <> :Z_scope:x_'=?'_x not
+R7848:7849 Coq.ZArith.BinInt <> :Z_scope:x_'=?'_x not
+prf 7882:7896 IntMaps t_update_shadow
+R7913:7921 Top.Extraction IntMaps total_map def
+R7923:7923 Top.Extraction <> A var
+R7970:7973 Coq.Init.Logic <> :type_scope:x_'='_x not
+R7939:7946 Top.Extraction IntMaps t_update def
+R7968:7969 Top.Extraction <> v2 var
+R7966:7966 Top.Extraction <> x var
+R7949:7956 Top.Extraction IntMaps t_update def
+R7962:7963 Top.Extraction <> v1 var
+R7960:7960 Top.Extraction <> x var
+R7958:7958 Top.Extraction <> m var
+R7974:7981 Top.Extraction IntMaps t_update def
+R7987:7988 Top.Extraction <> v2 var
+R7985:7985 Top.Extraction <> x var
+R7983:7983 Top.Extraction <> m var
+R8015:8022 Top.Extraction IntMaps t_update def
+R8060:8061 Coq.ZArith.BinInt <> :Z_scope:x_'=?'_x not
+R8060:8061 Coq.ZArith.BinInt <> :Z_scope:x_'=?'_x not
+R8083:8089 Top.Extraction IntMaps <> mod
+mod 8234:8244 <> SearchTree2
+sec 8255:8259 SearchTree2 TREES
+var 8271:8271 SearchTree2.TREES V
+var 8290:8296 SearchTree2.TREES default
+R8299:8299 Top.Extraction <> SearchTree2.TREES.V var
+def 8314:8316 SearchTree2 key
+R8321:8323 Top.Extraction <> int defax
+ind 8337:8340 SearchTree2 tree
+constr 8355:8355 SearchTree2 E
+constr 8367:8367 SearchTree2 T
+R8359:8362 Top.Extraction <> tree ind
+R8374:8377 Coq.Init.Logic <> :type_scope:x_'->'_x not
 R8381:8384 Coq.Init.Logic <> :type_scope:x_'->'_x not
-R8388:8391 Coq.Init.Logic <> :type_scope:x_'->'_x not
-R8393:8396 Coq.Init.Logic <> :type_scope:x_'->'_x not
-R8401:8404 Coq.Init.Logic <> :type_scope:x_'->'_x not
-R8405:8408 Top.Extraction <> tree ind
-R8397:8400 Top.Extraction <> tree ind
-R8392:8392 Top.Extraction <> SearchTree2.TREES.V var
-R8385:8387 Top.Extraction SearchTree2 key def
-R8377:8380 Top.Extraction <> tree ind
-def 8423:8432 SearchTree2 empty_tree
-R8436:8439 Top.Extraction SearchTree2 tree ind
-R8444:8444 Top.Extraction SearchTree2 E constr
-def 8457:8462 SearchTree2 lookup
-R8468:8470 Top.Extraction SearchTree2 key def
-R8478:8481 Top.Extraction SearchTree2 tree ind
-R8486:8486 Top.Extraction <> SearchTree2.TREES.V var
-R8499:8499 Top.Extraction <> t var
-R8510:8510 Top.Extraction SearchTree2 E constr
-R8515:8521 Top.Extraction <> SearchTree2.TREES.default var
-R8527:8527 Top.Extraction SearchTree2 T constr
-R8545:8547 Top.Extraction <> ltb defax
-R8549:8549 Top.Extraction <> x var
-R8604:8606 Top.Extraction <> ltb defax
-R8610:8610 Top.Extraction <> x var
-R8617:8622 Top.Extraction <> lookup def
-R8624:8624 Top.Extraction <> x var
-R8558:8563 Top.Extraction <> lookup def
-R8565:8565 Top.Extraction <> x var
-def 8678:8683 SearchTree2 insert
-R8689:8691 Top.Extraction SearchTree2 key def
-R8698:8698 Top.Extraction <> SearchTree2.TREES.V var
-R8705:8708 Top.Extraction SearchTree2 tree ind
-R8713:8716 Top.Extraction SearchTree2 tree ind
-R8728:8728 Top.Extraction <> s var
+R8386:8389 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R8394:8397 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R8398:8401 Top.Extraction <> tree ind
+R8390:8393 Top.Extraction <> tree ind
+R8385:8385 Top.Extraction <> SearchTree2.TREES.V var
+R8378:8380 Top.Extraction SearchTree2 key def
+R8370:8373 Top.Extraction <> tree ind
+def 8416:8425 SearchTree2 empty_tree
+R8429:8432 Top.Extraction SearchTree2 tree ind
+R8437:8437 Top.Extraction SearchTree2 E constr
+def 8450:8455 SearchTree2 lookup
+R8461:8463 Top.Extraction SearchTree2 key def
+R8471:8474 Top.Extraction SearchTree2 tree ind
+R8479:8479 Top.Extraction <> SearchTree2.TREES.V var
+R8492:8492 Top.Extraction <> t var
+R8503:8503 Top.Extraction SearchTree2 E constr
+R8508:8514 Top.Extraction <> SearchTree2.TREES.default var
+R8520:8520 Top.Extraction SearchTree2 T constr
+R8538:8540 Top.Extraction <> ltb defax
+R8542:8542 Top.Extraction <> x var
+R8597:8599 Top.Extraction <> ltb defax
+R8603:8603 Top.Extraction <> x var
+R8610:8615 Top.Extraction <> lookup def
+R8617:8617 Top.Extraction <> x var
+R8551:8556 Top.Extraction <> lookup def
+R8558:8558 Top.Extraction <> x var
+def 8671:8676 SearchTree2 insert
+R8682:8684 Top.Extraction SearchTree2 key def
+R8691:8691 Top.Extraction <> SearchTree2.TREES.V var
+R8698:8701 Top.Extraction SearchTree2 tree ind
+R8706:8709 Top.Extraction SearchTree2 tree ind
+R8721:8721 Top.Extraction <> s var
+R8732:8732 Top.Extraction SearchTree2 E constr
+R8737:8737 Top.Extraction SearchTree2 T constr
+R8745:8745 Top.Extraction SearchTree2 E constr
+R8743:8743 Top.Extraction <> v var
+R8741:8741 Top.Extraction <> x var
 R8739:8739 Top.Extraction SearchTree2 E constr
-R8744:8744 Top.Extraction SearchTree2 T constr
-R8752:8752 Top.Extraction SearchTree2 E constr
-R8750:8750 Top.Extraction <> v var
-R8748:8748 Top.Extraction <> x var
-R8746:8746 Top.Extraction SearchTree2 E constr
-R8757:8757 Top.Extraction SearchTree2 T constr
-R8775:8777 Top.Extraction <> ltb defax
-R8779:8779 Top.Extraction <> x var
-R8844:8846 Top.Extraction <> ltb defax
-R8850:8850 Top.Extraction <> x var
-R8910:8910 Top.Extraction SearchTree2 T constr
-R8916:8916 Top.Extraction <> v var
-R8914:8914 Top.Extraction <> x var
-R8857:8857 Top.Extraction SearchTree2 T constr
-R8867:8872 Top.Extraction <> insert def
-R8876:8876 Top.Extraction <> v var
-R8874:8874 Top.Extraction <> x var
-R8788:8788 Top.Extraction SearchTree2 T constr
-R8791:8796 Top.Extraction <> insert def
-R8800:8800 Top.Extraction <> v var
-R8798:8798 Top.Extraction <> x var
-def 8936:8944 SearchTree2 elements'
-R8950:8953 Top.Extraction SearchTree2 tree ind
-R8963:8966 Coq.Init.Datatypes <> list ind
-R8972:8972 Coq.Init.Datatypes <> :type_scope:x_'*'_x not
-R8969:8971 Top.Extraction SearchTree2 key def
-R8973:8973 Top.Extraction <> SearchTree2.TREES.V var
-R8979:8982 Coq.Init.Datatypes <> list ind
-R8988:8990 Coq.Init.Datatypes <> :type_scope:x_'*'_x not
-R8985:8987 Top.Extraction SearchTree2 key def
-R8991:8991 Top.Extraction <> SearchTree2.TREES.V var
-R9004:9004 Top.Extraction <> s var
-R9014:9014 Top.Extraction SearchTree2 E constr
-R9019:9022 Top.Extraction <> base var
-R9027:9027 Top.Extraction SearchTree2 T constr
-R9040:9048 Top.Extraction <> elements' def
-R9058:9061 Coq.Init.Datatypes <> :list_scope:x_'::'_x not
-R9053:9053 Coq.Init.Datatypes <> :core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R9055:9055 Coq.Init.Datatypes <> :core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R9057:9057 Coq.Init.Datatypes <> :core_scope:'('_x_','_x_','_'..'_','_x_')' not
-R9062:9070 Top.Extraction <> elements' def
-R9074:9077 Top.Extraction <> base var
-def 9098:9105 SearchTree2 elements
-R9111:9114 Top.Extraction SearchTree2 tree ind
-R9119:9122 Coq.Init.Datatypes <> list ind
-R9128:9130 Coq.Init.Datatypes <> :type_scope:x_'*'_x not
-R9125:9127 Top.Extraction SearchTree2 key def
-R9131:9131 Top.Extraction <> SearchTree2.TREES.V var
-R9137:9145 Top.Extraction SearchTree2 elements' def
-R9149:9151 Coq.Init.Datatypes <> nil constr
-R9147:9147 Top.Extraction <> s var
-def 9166:9172 SearchTree2 combine
-R9186:9186 Coq.Numbers.BinNums <> Z ind
-R9197:9205 Top.Extraction IntMaps total_map def
-R9207:9207 Top.Extraction <> A var
-R9212:9220 Top.Extraction IntMaps total_map def
-R9222:9222 Top.Extraction <> A var
-R9241:9245 Coq.ZArith.BinInt Z ltb def
-R9249:9253 Top.Extraction <> pivot var
-R9247:9247 Top.Extraction <> x var
-R9271:9272 Top.Extraction <> m2 var
-R9274:9274 Top.Extraction <> x var
-R9261:9262 Top.Extraction <> m1 var
-R9264:9264 Top.Extraction <> x var
-ind 9288:9290 SearchTree2 Abs
-constr 9327:9331 SearchTree2 Abs_E
-constr 9360:9364 SearchTree2 Abs_T
-R9298:9301 Coq.Init.Logic <> :type_scope:x_'->'_x not
-R9313:9316 Coq.Init.Logic <> :type_scope:x_'->'_x not
-R9302:9310 Top.Extraction IntMaps total_map def
-R9312:9312 Top.Extraction <> SearchTree2.TREES.V var
-R9294:9297 Top.Extraction SearchTree2 tree ind
-R9334:9336 Top.Extraction <> Abs ind
-R9341:9347 Top.Extraction IntMaps t_empty def
-R9349:9355 Top.Extraction <> SearchTree2.TREES.default var
-R9338:9338 Top.Extraction SearchTree2 E constr
-R9400:9409 Coq.Init.Logic <> :type_scope:x_'->'_x not
-R9417:9426 Coq.Init.Logic <> :type_scope:x_'->'_x not
-R9427:9429 Top.Extraction <> Abs ind
-R9445:9452 Top.Extraction IntMaps t_update def
-R9488:9488 Top.Extraction <> v var
-R9479:9483 Top.Extraction <> int2Z defax
-R9485:9485 Top.Extraction <> k var
-R9455:9461 Top.Extraction SearchTree2 combine def
-R9475:9475 Top.Extraction <> b var
-R9473:9473 Top.Extraction <> a var
-R9464:9468 Top.Extraction <> int2Z defax
-R9470:9470 Top.Extraction <> k var
-R9432:9432 Top.Extraction SearchTree2 T constr
-R9440:9440 Top.Extraction <> r var
-R9438:9438 Top.Extraction <> v var
-R9436:9436 Top.Extraction <> k var
-R9434:9434 Top.Extraction <> l var
-R9410:9412 Top.Extraction <> Abs ind
-R9416:9416 Top.Extraction <> b var
-R9414:9414 Top.Extraction <> r var
-R9393:9395 Top.Extraction <> Abs ind
-R9399:9399 Top.Extraction <> a var
-R9397:9397 Top.Extraction <> l var
-prf 9501:9517 SearchTree2 empty_tree_relate
-R9520:9522 Top.Extraction SearchTree2 Abs ind
-R9536:9542 Top.Extraction IntMaps t_empty def
-R9544:9550 Top.Extraction <> SearchTree2.TREES.default var
-R9524:9533 Top.Extraction SearchTree2 empty_tree def
-prf 9635:9647 SearchTree2 lookup_relate
-R9680:9683 Coq.Init.Logic <> :type_scope:x_'->'_x not
-R9694:9697 Coq.Init.Logic <> :type_scope:x_'='_x not
-R9684:9689 Top.Extraction SearchTree2 lookup def
-R9693:9693 Top.Extraction <> t var
-R9691:9691 Top.Extraction <> k var
-R9698:9700 Top.Extraction <> cts var
-R9703:9707 Top.Extraction <> int2Z defax
-R9709:9709 Top.Extraction <> k var
-R9671:9673 Top.Extraction SearchTree2 Abs ind
-R9677:9679 Top.Extraction <> cts var
-R9675:9675 Top.Extraction <> t var
-prf 9871:9883 SearchTree2 insert_relate
-R9918:9925 Coq.Init.Logic <> :type_scope:x_'->'_x not
-R9926:9928 Top.Extraction SearchTree2 Abs ind
-R9946:9953 Top.Extraction IntMaps t_update def
-R9969:9969 Top.Extraction <> v var
-R9960:9964 Top.Extraction <> int2Z defax
-R9966:9966 Top.Extraction <> k var
-R9955:9957 Top.Extraction <> cts var
-R9931:9936 Top.Extraction SearchTree2 insert def
-R9942:9942 Top.Extraction <> t var
-R9940:9940 Top.Extraction <> v var
-R9938:9938 Top.Extraction <> k var
-R9909:9911 Top.Extraction SearchTree2 Abs ind
-R9915:9917 Top.Extraction <> cts var
-R9913:9913 Top.Extraction <> t var
-prf 10148:10180 SearchTree2 unrealistically_strong_can_relate
-R10195:10201 Coq.Init.Logic <> :type_scope:'exists'_x_'..'_x_','_x not
-R10205:10206 Coq.Init.Logic <> :type_scope:'exists'_x_'..'_x_','_x not
-R10207:10209 Top.Extraction SearchTree2 Abs ind
-R10213:10215 Top.Extraction <> cts var
-R10211:10211 Top.Extraction <> t var
-R10339:10343 Top.Extraction SearchTree2.TREES <> sec
-R10834:10844 Top.Extraction SearchTree2 <> mod
-R13311:13320 Top.SearchTree <> <> lib
-mod 13330:13340 <> Experiments
-def 13376:13385 Experiments empty_tree
-R13390:13410 Top.SearchTree <> empty_tree def
-R13412:13414 Coq.Init.Datatypes <> nat ind
-def 13428:13433 Experiments insert
-R13438:13454 Top.SearchTree <> insert def
-R13456:13458 Coq.Init.Datatypes <> nat ind
-def 13472:13477 Experiments lookup
-R13482:13498 Top.SearchTree <> lookup def
-R13500:13502 Coq.Init.Datatypes <> nat ind
-def 13518:13518 Experiments E
-R13523:13534 Top.SearchTree <> E constr
-R13536:13538 Coq.Init.Datatypes <> nat ind
-def 13552:13552 Experiments T
-R13557:13568 Top.SearchTree <> T constr
-R13570:13572 Coq.Init.Datatypes <> nat ind
-R13667:13670 Coq.Init.Logic <> :type_scope:x_'<>'_x not
-R13581:13586 Top.Extraction Experiments insert def
-R13593:13598 Top.Extraction Experiments insert def
-R13605:13610 Top.Extraction Experiments insert def
-R13617:13622 Top.Extraction Experiments insert def
-R13629:13634 Top.Extraction Experiments insert def
-R13641:13646 Top.Extraction Experiments insert def
-R13652:13661 Top.Extraction Experiments empty_tree def
-R13671:13671 Top.Extraction Experiments E def
-R13686:13686 Top.Extraction Experiments E def
-R13701:13701 Top.Extraction Experiments T def
-R13686:13686 Top.Extraction Experiments E def
-R13701:13701 Top.Extraction Experiments T def
-R13701:13701 Top.Extraction Experiments T def
-R13701:13701 Top.Extraction Experiments T def
-R13701:13701 Top.Extraction Experiments T def
-R13701:13701 Top.Extraction Experiments T def
-R13701:13701 Top.Extraction Experiments T def
-R13701:13701 Top.Extraction Experiments T def
-R14207:14217 Top.Extraction Experiments <> mod
+R8750:8750 Top.Extraction SearchTree2 T constr
+R8768:8770 Top.Extraction <> ltb defax
+R8772:8772 Top.Extraction <> x var
+R8837:8839 Top.Extraction <> ltb defax
+R8843:8843 Top.Extraction <> x var
+R8903:8903 Top.Extraction SearchTree2 T constr
+R8909:8909 Top.Extraction <> v var
+R8907:8907 Top.Extraction <> x var
+R8850:8850 Top.Extraction SearchTree2 T constr
+R8860:8865 Top.Extraction <> insert def
+R8869:8869 Top.Extraction <> v var
+R8867:8867 Top.Extraction <> x var
+R8781:8781 Top.Extraction SearchTree2 T constr
+R8784:8789 Top.Extraction <> insert def
+R8793:8793 Top.Extraction <> v var
+R8791:8791 Top.Extraction <> x var
+def 8929:8937 SearchTree2 elements'
+R8943:8946 Top.Extraction SearchTree2 tree ind
+R8956:8959 Coq.Init.Datatypes <> list ind
+R8965:8965 Coq.Init.Datatypes <> :type_scope:x_'*'_x not
+R8962:8964 Top.Extraction SearchTree2 key def
+R8966:8966 Top.Extraction <> SearchTree2.TREES.V var
+R8972:8975 Coq.Init.Datatypes <> list ind
+R8981:8983 Coq.Init.Datatypes <> :type_scope:x_'*'_x not
+R8978:8980 Top.Extraction SearchTree2 key def
+R8984:8984 Top.Extraction <> SearchTree2.TREES.V var
+R8997:8997 Top.Extraction <> s var
+R9007:9007 Top.Extraction SearchTree2 E constr
+R9012:9015 Top.Extraction <> base var
+R9020:9020 Top.Extraction SearchTree2 T constr
+R9033:9041 Top.Extraction <> elements' def
+R9051:9054 Coq.Init.Datatypes <> :list_scope:x_'::'_x not
+R9046:9046 Coq.Init.Datatypes <> :core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9048:9048 Coq.Init.Datatypes <> :core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9050:9050 Coq.Init.Datatypes <> :core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9055:9063 Top.Extraction <> elements' def
+R9067:9070 Top.Extraction <> base var
+def 9091:9098 SearchTree2 elements
+R9104:9107 Top.Extraction SearchTree2 tree ind
+R9112:9115 Coq.Init.Datatypes <> list ind
+R9121:9123 Coq.Init.Datatypes <> :type_scope:x_'*'_x not
+R9118:9120 Top.Extraction SearchTree2 key def
+R9124:9124 Top.Extraction <> SearchTree2.TREES.V var
+R9130:9138 Top.Extraction SearchTree2 elements' def
+R9142:9144 Coq.Init.Datatypes <> nil constr
+R9140:9140 Top.Extraction <> s var
+def 9159:9165 SearchTree2 combine
+R9179:9179 Coq.Numbers.BinNums <> Z ind
+R9190:9198 Top.Extraction IntMaps total_map def
+R9200:9200 Top.Extraction <> A var
+R9205:9213 Top.Extraction IntMaps total_map def
+R9215:9215 Top.Extraction <> A var
+R9234:9238 Coq.ZArith.BinInt Z ltb def
+R9242:9246 Top.Extraction <> pivot var
+R9240:9240 Top.Extraction <> x var
+R9264:9265 Top.Extraction <> m2 var
+R9267:9267 Top.Extraction <> x var
+R9254:9255 Top.Extraction <> m1 var
+R9257:9257 Top.Extraction <> x var
+ind 9281:9283 SearchTree2 Abs
+constr 9320:9324 SearchTree2 Abs_E
+constr 9353:9357 SearchTree2 Abs_T
+R9291:9294 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R9306:9309 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R9295:9303 Top.Extraction IntMaps total_map def
+R9305:9305 Top.Extraction <> SearchTree2.TREES.V var
+R9287:9290 Top.Extraction SearchTree2 tree ind
+R9327:9329 Top.Extraction <> Abs ind
+R9334:9340 Top.Extraction IntMaps t_empty def
+R9342:9348 Top.Extraction <> SearchTree2.TREES.default var
+R9331:9331 Top.Extraction SearchTree2 E constr
+R9393:9402 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R9410:9419 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R9420:9422 Top.Extraction <> Abs ind
+R9438:9445 Top.Extraction IntMaps t_update def
+R9481:9481 Top.Extraction <> v var
+R9472:9476 Top.Extraction <> int2Z defax
+R9478:9478 Top.Extraction <> k var
+R9448:9454 Top.Extraction SearchTree2 combine def
+R9468:9468 Top.Extraction <> b var
+R9466:9466 Top.Extraction <> a var
+R9457:9461 Top.Extraction <> int2Z defax
+R9463:9463 Top.Extraction <> k var
+R9425:9425 Top.Extraction SearchTree2 T constr
+R9433:9433 Top.Extraction <> r var
+R9431:9431 Top.Extraction <> v var
+R9429:9429 Top.Extraction <> k var
+R9427:9427 Top.Extraction <> l var
+R9403:9405 Top.Extraction <> Abs ind
+R9409:9409 Top.Extraction <> b var
+R9407:9407 Top.Extraction <> r var
+R9386:9388 Top.Extraction <> Abs ind
+R9392:9392 Top.Extraction <> a var
+R9390:9390 Top.Extraction <> l var
+prf 9494:9510 SearchTree2 empty_tree_relate
+R9513:9515 Top.Extraction SearchTree2 Abs ind
+R9529:9535 Top.Extraction IntMaps t_empty def
+R9537:9543 Top.Extraction <> SearchTree2.TREES.default var
+R9517:9526 Top.Extraction SearchTree2 empty_tree def
+prf 9628:9640 SearchTree2 lookup_relate
+R9673:9676 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R9687:9690 Coq.Init.Logic <> :type_scope:x_'='_x not
+R9677:9682 Top.Extraction SearchTree2 lookup def
+R9686:9686 Top.Extraction <> t var
+R9684:9684 Top.Extraction <> k var
+R9691:9693 Top.Extraction <> cts var
+R9696:9700 Top.Extraction <> int2Z defax
+R9702:9702 Top.Extraction <> k var
+R9664:9666 Top.Extraction SearchTree2 Abs ind
+R9670:9672 Top.Extraction <> cts var
+R9668:9668 Top.Extraction <> t var
+prf 9864:9876 SearchTree2 insert_relate
+R9911:9918 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R9919:9921 Top.Extraction SearchTree2 Abs ind
+R9939:9946 Top.Extraction IntMaps t_update def
+R9962:9962 Top.Extraction <> v var
+R9953:9957 Top.Extraction <> int2Z defax
+R9959:9959 Top.Extraction <> k var
+R9948:9950 Top.Extraction <> cts var
+R9924:9929 Top.Extraction SearchTree2 insert def
+R9935:9935 Top.Extraction <> t var
+R9933:9933 Top.Extraction <> v var
+R9931:9931 Top.Extraction <> k var
+R9902:9904 Top.Extraction SearchTree2 Abs ind
+R9908:9910 Top.Extraction <> cts var
+R9906:9906 Top.Extraction <> t var
+prf 10141:10173 SearchTree2 unrealistically_strong_can_relate
+R10188:10194 Coq.Init.Logic <> :type_scope:'exists'_x_'..'_x_','_x not
+R10198:10199 Coq.Init.Logic <> :type_scope:'exists'_x_'..'_x_','_x not
+R10200:10202 Top.Extraction SearchTree2 Abs ind
+R10206:10208 Top.Extraction <> cts var
+R10204:10204 Top.Extraction <> t var
+R10332:10336 Top.Extraction SearchTree2.TREES <> sec
+R10827:10837 Top.Extraction SearchTree2 <> mod
+R13304:13313 Top.SearchTree <> <> lib
+mod 13323:13333 <> Experiments
+def 13369:13378 Experiments empty_tree
+R13383:13403 Top.SearchTree <> empty_tree def
+R13405:13407 Coq.Init.Datatypes <> nat ind
+def 13421:13426 Experiments insert
+R13431:13447 Top.SearchTree <> insert def
+R13449:13451 Coq.Init.Datatypes <> nat ind
+def 13465:13470 Experiments lookup
+R13475:13491 Top.SearchTree <> lookup def
+R13493:13495 Coq.Init.Datatypes <> nat ind
+def 13511:13511 Experiments E
+R13516:13527 Top.SearchTree <> E constr
+R13529:13531 Coq.Init.Datatypes <> nat ind
+def 13545:13545 Experiments T
+R13550:13561 Top.SearchTree <> T constr
+R13563:13565 Coq.Init.Datatypes <> nat ind
+R13660:13663 Coq.Init.Logic <> :type_scope:x_'<>'_x not
+R13574:13579 Top.Extraction Experiments insert def
+R13586:13591 Top.Extraction Experiments insert def
+R13598:13603 Top.Extraction Experiments insert def
+R13610:13615 Top.Extraction Experiments insert def
+R13622:13627 Top.Extraction Experiments insert def
+R13634:13639 Top.Extraction Experiments insert def
+R13645:13654 Top.Extraction Experiments empty_tree def
+R13664:13664 Top.Extraction Experiments E def
+R13679:13679 Top.Extraction Experiments E def
+R13694:13694 Top.Extraction Experiments T def
+R13679:13679 Top.Extraction Experiments E def
+R13694:13694 Top.Extraction Experiments T def
+R13694:13694 Top.Extraction Experiments T def
+R13694:13694 Top.Extraction Experiments T def
+R13694:13694 Top.Extraction Experiments T def
+R13694:13694 Top.Extraction Experiments T def
+R13694:13694 Top.Extraction Experiments T def
+R13694:13694 Top.Extraction Experiments T def
+R14200:14210 Top.Extraction Experiments <> mod

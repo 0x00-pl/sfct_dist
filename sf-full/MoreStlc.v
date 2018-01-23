@@ -17,7 +17,7 @@ Require Import Stlc.
     straightforward treatments at the level of typing. *)
 
 (* ================================================================= *)
-(** ** Numbers *)
+(** ** 数 *)
 
 (** As we saw in exercise [stlc_arith] at the end of the [StlcProp]
     chapter, adding types, constants, and primitive operations for

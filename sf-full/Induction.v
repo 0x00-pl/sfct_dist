@@ -396,7 +396,7 @@ Proof.
 [] *)
 
 (* ################################################################# *)
-(** * More Exercises *)
+(** * 更多练习 *)
 
 (** **** Exercise: 3 stars, recommended (mult_comm)  *)
 (** Use [assert] to help prove this theorem.  You shouldn't need to

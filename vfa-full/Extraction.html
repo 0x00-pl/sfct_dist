@@ -4,7 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <link href="common/css/sf.css" rel="stylesheet" type="text/css"/>
-<title>Extraction: Running Coq programs in ML</title>
+<title>Extraction</title>
 <link href="common/jquery-ui/jquery-ui.css" rel="stylesheet">
 <link href="common/css/logical_foundations.css" rel="stylesheet" type="text/css"/>
 <script src="common/jquery-ui/external/jquery/jquery.js"></script>
@@ -27,10 +27,11 @@
 
 <div id="main">
 
-<h1 class="libtitle">Extraction<span class="subtitle">Running Coq programs in ML</span></h1>
+<h1 class="libtitle">Extraction</h1>
 
 
 <div class="doc">
+<a name="lab92"></a><h1 class="section">提取: 在ML里运行Coq程序</h1>
 
 <div class="paragraph"> </div>
 
@@ -246,7 +247,7 @@ Both of these axioms are sound.  There does (abstractly) exist a
   So we won't axiomatize Ocaml addition. 
 <div class="paragraph"> </div>
 
-<a name="lab92"></a><h1 class="section">Utilities for Ocaml integer comparisons.</h1>
+<a name="lab93"></a><h1 class="section">Utilities for Ocaml integer comparisons.</h1>
 
 <div class="paragraph"> </div>
 
@@ -276,14 +277,14 @@ Both of these axioms are sound.  There does (abstractly) exist a
 </div>
 
 <div class="doc">
-<a name="lab93"></a><h1 class="section">SearchTrees, extracted</h1>
+<a name="lab94"></a><h1 class="section">SearchTrees, extracted</h1>
 
 <div class="paragraph"> </div>
 
  Let us re-do binary search trees, but with Ocaml integers instead of  Coq nats. 
 <div class="paragraph"> </div>
 
-<a name="lab94"></a><h2 class="section">Maps, on <span class="inlinecode"><span class="id" type="var">Z</span></span> instead of <span class="inlinecode"><span class="id" type="var">nat</span></span>.</h2>
+<a name="lab95"></a><h2 class="section">Maps, on <span class="inlinecode"><span class="id" type="var">Z</span></span> instead of <span class="inlinecode"><span class="id" type="var">nat</span></span>.</h2>
  Our original proof with nats used <span class="inlinecode"><span class="id" type="var">Maps.total_map</span></span> in its abstraction relation,
      but that won't work here because we need maps over <span class="inlinecode"><span class="id" type="var">Z</span></span> rather than <span class="inlinecode"><span class="id" type="var">nat</span></span>.
      So, we copy-paste-edit to make <span class="inlinecode"><span class="id" type="var">total_map</span></span> over <span class="inlinecode"><span class="id" type="var">Z</span></span>. 
@@ -337,7 +338,7 @@ Both of these axioms are sound.  There does (abstractly) exist a
 </div>
 
 <div class="doc">
-<a name="lab95"></a><h2 class="section">Trees, on <span class="inlinecode"><span class="id" type="var">int</span></span> instead of <span class="inlinecode"><span class="id" type="var">nat</span></span>.</h2>
+<a name="lab96"></a><h2 class="section">Trees, on <span class="inlinecode"><span class="id" type="var">int</span></span> instead of <span class="inlinecode"><span class="id" type="var">nat</span></span>.</h2>
 
 </div>
 <div class="code code-space">
@@ -387,7 +388,7 @@ Both of these axioms are sound.  There does (abstractly) exist a
 </div>
 
 <div class="doc">
-<a name="lab96"></a><h4 class="section">Exercise: 3 stars (lookup_relate)</h4>
+<a name="lab97"></a><h4 class="section">Exercise: 3 stars (lookup_relate)</h4>
 
 </div>
 <div class="code code-space">
@@ -401,7 +402,7 @@ Both of these axioms are sound.  There does (abstractly) exist a
 <div class="doc less-space">
 <div class="paragraph"> </div>
 
-<a name="lab97"></a><h4 class="section">Exercise: 3 stars (insert_relate)</h4>
+<a name="lab98"></a><h4 class="section">Exercise: 3 stars (insert_relate)</h4>
 
 </div>
 <div class="code code-space">
@@ -417,7 +418,7 @@ Both of these axioms are sound.  There does (abstractly) exist a
 <div class="doc less-space">
 <div class="paragraph"> </div>
 
-<a name="lab98"></a><h4 class="section">Exercise: 1 star (unrealistically_strong_can_relate)</h4>
+<a name="lab99"></a><h4 class="section">Exercise: 1 star (unrealistically_strong_can_relate)</h4>
 
 </div>
 <div class="code code-space">
@@ -466,7 +467,7 @@ Note: we've done the extraction <i>inside</i> the module, even though
 </div>
 
 <div class="doc">
-<a name="lab99"></a><h1 class="section">Performance tests</h1>
+<a name="lab100"></a><h1 class="section">Performance tests</h1>
 
 <div class="paragraph"> </div>
 
@@ -538,7 +539,7 @@ Insert and lookup 20000 consecutive integers in 0.374 seconds.
 
 <div class="paragraph"> </div>
 
-<a name="lab100"></a><h1 class="section">Unbalanced binary search trees</h1>
+<a name="lab101"></a><h1 class="section">Unbalanced binary search trees</h1>
  Why is the performance of the algorithm so much worse when the
    keys are all inserted consecutively?  To examine this, let's compute
    with some searchtrees inside Coq.  We cannot do this with the search
@@ -577,7 +578,7 @@ Look here!  The tree is completely unbalanced.  Looking up <span class="inlineco
 </div>
 
 <div class="doc">
-<a name="lab101"></a><h1 class="section">Balanced binary search trees</h1>
+<a name="lab102"></a><h1 class="section">Balanced binary search trees</h1>
  To achieve robust performance (that stays  N log N  for a sequence of N operations,
     and does not degenerate to N*N), we must keep the search trees balanced.
     The next chapter, <a href="Redblack.html"><span class="inlineref">Redblack</span></a>, implements that idea. 

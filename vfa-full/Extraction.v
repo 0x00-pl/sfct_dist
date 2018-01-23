@@ -1,4 +1,4 @@
-(** * Extraction: Running Coq programs in ML *)
+(** * 提取: 在ML里运行Coq程序 *)
 
 (** Coq's [Extraction] feature allows you to write a functional program
    inside Coq; (presumably) use Coq's logic to prove some correctness
