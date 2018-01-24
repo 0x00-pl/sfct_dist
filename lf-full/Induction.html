@@ -4,7 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <link href="common/css/sf.css" rel="stylesheet" type="text/css"/>
-<title>Induction: Proof by Induction</title>
+<title>Induction</title>
 <link href="common/jquery-ui/jquery-ui.css" rel="stylesheet">
 <link href="common/css/logical_foundations.css" rel="stylesheet" type="text/css"/>
 <script src="common/jquery-ui/external/jquery/jquery.js"></script>
@@ -27,15 +27,15 @@
 
 <div id="main">
 
-<h1 class="libtitle">Induction<span class="subtitle">Proof by Induction</span></h1>
+<h1 class="libtitle">Induction</h1>
 
 
 <div class="doc">
+<a name="lab43"></a><h1 class="section">归纳法：用归纳法证明</h1>
 
 <div class="paragraph"> </div>
 
- Before getting started, we need to import all of our
-    definitions from the previous chapter: 
+ 在开始之前，我们需要把上一章中所有的定义都导入进来： 
 </div>
 <div class="code code-tight">
 
@@ -44,51 +44,34 @@
 </div>
 
 <div class="doc">
-For the <span class="inlinecode"><span class="id" type="keyword">Require</span></span> <span class="inlinecode"><span class="id" type="keyword">Export</span></span> to work, you first need to use
-    <span class="inlinecode"><span class="id" type="var">coqc</span></span> to compile <span class="inlinecode"><span class="id" type="var">Basics.v</span></span> into <span class="inlinecode"><span class="id" type="var">Basics.vo</span></span>.  This is like
-    making a .class file from a .java file, or a .o file from a .c
-    file.  There are two ways to do it:
+为了让 <span class="inlinecode"><span class="id" type="keyword">Require</span></span> <span class="inlinecode"><span class="id" type="keyword">Export</span></span> 起效，首先你需要用 <span class="inlinecode"><span class="id" type="var">coqc</span></span> 将 <span class="inlinecode"><span class="id" type="var">Basics.v</span></span> 编译成
+    <span class="inlinecode"><span class="id" type="var">Basics.vo</span></span>，这类似于将 .java 文件编译成 .class 文件，或将 .c 文件编译成 .o
+    文件。我们有两种方法：
 
 <div class="paragraph"> </div>
 
 <ul class="doclist">
-<li> In CoqIDE:
-
-<div class="paragraph"> </div>
-
-         Open <span class="inlinecode"><span class="id" type="var">Basics.v</span></span>.  In the "Compile" menu, click on "Compile
-         Buffer".
-
-<div class="paragraph"> </div>
-
+<li> 在 CoqIDE 中：
+         打开 <span class="inlinecode"><span class="id" type="var">Basics.v</span></span>。在「Compile」菜单中点击「Compile Buffer」。
 
 </li>
-<li> From the command line:
-
-<div class="paragraph"> </div>
-
-         <span class="inlinecode"><span class="id" type="var">coqc</span></span> <span class="inlinecode"><span class="id" type="var">Basics.v</span></span>
+<li> 在命令行中：
+         执行 <span class="inlinecode"><span class="id" type="var">coqc</span></span> <span class="inlinecode"><span class="id" type="var">Basics.v</span></span>
 
 </li>
 </ul>
-
-<div class="paragraph"> </div>
-
-   If you have trouble (e.g., if you get complaints about missing
-   identifiers later in the file), it may be because the "load path"
-   for Coq is not set up correctly.  The <span class="inlinecode"><span class="id" type="keyword">Print</span></span> <span class="inlinecode"><span class="id" type="var">LoadPath</span>.</span> command may
-   be helpful in sorting out such issues. 
+   如果你遇到了问题（例如，稍后你可能会在本文件中遇到缺少标识符的提示），
+   那可能是因为没有正确设置 Coq 的「加载路径」。命令 <span class="inlinecode"><span class="id" type="keyword">Print</span></span> <span class="inlinecode"><span class="id" type="var">LoadPath</span>.</span>
+   能帮你理清这类问题。 
 </div>
 
 <div class="doc">
-<a name="lab43"></a><h1 class="section">Proof by Induction</h1>
+<a name="lab44"></a><h1 class="section">归纳法证明</h1>
 
 <div class="paragraph"> </div>
 
- We proved in the last chapter that <span class="inlinecode">0</span> is a neutral element
-    for <span class="inlinecode">+</span> on the left, using an easy argument based on
-    simplification.  We also observed that proving the fact that it is
-    also a neutral element on the <i>right</i>... 
+ 我们在上一章中用一个基于化简的简单论据证明了 <span class="inlinecode">0</span> 是 <span class="inlinecode">+</span> 的左幺元。
+    我们也观察到，当我们打算证明 <span class="inlinecode">0</span> 也是 <span class="inlinecode">+</span> 的 <i>'右'</i> 幺元时... 
 </div>
 <div class="code code-tight">
 
@@ -98,25 +81,21 @@ For the <span class="inlinecode"><span class="id" type="keyword">Require</span><
 </div>
 
 <div class="doc">
-... can't be done in the same simple way.  Just applying
-  <span class="inlinecode"><span class="id" type="tactic">reflexivity</span></span> doesn't work, since the <span class="inlinecode"><span class="id" type="var">n</span></span> in <span class="inlinecode"><span class="id" type="var">n</span></span> <span class="inlinecode">+</span> <span class="inlinecode">0</span> is an arbitrary
-  unknown number, so the <span class="inlinecode"><span class="id" type="keyword">match</span></span> in the definition of <span class="inlinecode">+</span> can't be
-  simplified.  
+...事情就没这么简单了。只应用 <span class="inlinecode"><span class="id" type="tactic">reflexivity</span></span> 的话不起作用，因为 <span class="inlinecode"><span class="id" type="var">n</span></span> <span class="inlinecode">+</span> <span class="inlinecode">0</span> 中的
+    <span class="inlinecode"><span class="id" type="var">n</span></span> 是任意未知数，所以在 <span class="inlinecode">+</span> 的定义中 <span class="inlinecode"><span class="id" type="keyword">match</span></span> 无法被化简。  
 </div>
 <div class="code code-tight">
 
 <br/>
 <span class="id" type="keyword">Proof</span>.<br/>
 &nbsp;&nbsp;<span class="id" type="tactic">intros</span> <span class="id" type="var">n</span>.<br/>
-&nbsp;&nbsp;<span class="id" type="tactic">simpl</span>. <span class="comment">(*&nbsp;Does&nbsp;nothing!&nbsp;*)</span><br/>
+&nbsp;&nbsp;<span class="id" type="tactic">simpl</span>. <span class="comment">(*&nbsp;不起作用！&nbsp;*)</span><br/>
 <span class="id" type="keyword">Abort</span>.<br/>
 </div>
 
 <div class="doc">
-And reasoning by cases using <span class="inlinecode"><span class="id" type="tactic">destruct</span></span> <span class="inlinecode"><span class="id" type="var">n</span></span> doesn't get us much
-    further: the branch of the case analysis where we assume <span class="inlinecode"><span class="id" type="var">n</span></span> <span class="inlinecode">=</span> <span class="inlinecode">0</span>
-    goes through fine, but in the branch where <span class="inlinecode"><span class="id" type="var">n</span></span> <span class="inlinecode">=</span> <span class="inlinecode"><span class="id" type="var">S</span></span> <span class="inlinecode"><span class="id" type="var">n'</span></span> for some <span class="inlinecode"><span class="id" type="var">n'</span></span> we
-    get stuck in exactly the same way. 
+即便用 <span class="inlinecode"><span class="id" type="tactic">destruct</span></span> <span class="inlinecode"><span class="id" type="var">n</span></span> 分类讨论也不会有所改善：诚然，我们能够轻易地证明 <span class="inlinecode"><span class="id" type="var">n</span></span> <span class="inlinecode">=</span> <span class="inlinecode">0</span>
+    时的情况；但在证明对于某些 <span class="inlinecode"><span class="id" type="var">n'</span></span> 而言 <span class="inlinecode"><span class="id" type="var">n</span></span> <span class="inlinecode">=</span> <span class="inlinecode"><span class="id" type="var">S</span></span> <span class="inlinecode"><span class="id" type="var">n'</span></span> 时，我们又会遇到与此前相同的问题。 
 </div>
 <div class="code code-tight">
 
@@ -126,51 +105,39 @@ And reasoning by cases using <span class="inlinecode"><span class="id" type="tac
 <span class="id" type="keyword">Proof</span>.<br/>
 &nbsp;&nbsp;<span class="id" type="tactic">intros</span> <span class="id" type="var">n</span>. <span class="id" type="tactic">destruct</span> <span class="id" type="var">n</span> <span class="id" type="keyword">as</span> [| <span class="id" type="var">n'</span>].<br/>
 &nbsp;&nbsp;- <span class="comment">(*&nbsp;n&nbsp;=&nbsp;0&nbsp;*)</span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">reflexivity</span>. <span class="comment">(*&nbsp;so&nbsp;far&nbsp;so&nbsp;good...&nbsp;*)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">reflexivity</span>. <span class="comment">(*&nbsp;虽然目前还没啥问题...&nbsp;*)</span><br/>
 &nbsp;&nbsp;- <span class="comment">(*&nbsp;n&nbsp;=&nbsp;S&nbsp;n'&nbsp;*)</span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">simpl</span>. <span class="comment">(*&nbsp;...but&nbsp;here&nbsp;we&nbsp;are&nbsp;stuck&nbsp;again&nbsp;*)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">simpl</span>. <span class="comment">(*&nbsp;...不过我们又卡在这儿了&nbsp;*)</span><br/>
 <span class="id" type="keyword">Abort</span>.<br/>
 </div>
 
 <div class="doc">
-We could use <span class="inlinecode"><span class="id" type="tactic">destruct</span></span> <span class="inlinecode"><span class="id" type="var">n'</span></span> to get one step further, but,
-    since <span class="inlinecode"><span class="id" type="var">n</span></span> can be arbitrarily large, if we just go on like this
-    we'll never finish. 
+虽然还可以用 <span class="inlinecode"><span class="id" type="tactic">destruct</span></span> <span class="inlinecode"><span class="id" type="var">n'</span></span> 再推进一步，但由于 <span class="inlinecode"><span class="id" type="var">n</span></span> 可以任意大，
+    如果照这个思路继续证明的话，我们永远也证不完。 
 <div class="paragraph"> </div>
 
- To prove interesting facts about numbers, lists, and other
-    inductively defined sets, we usually need a more powerful
-    reasoning principle: <i>induction</i>.
-
-<div class="paragraph"> </div>
-
-    Recall (from high school, a discrete math course, etc.) the
-    <i>principle of induction over natural numbers</i>: If <span class="inlinecode"><span class="id" type="var">P</span>(<span class="id" type="var">n</span>)</span> is some
-    proposition involving a natural number <span class="inlinecode"><span class="id" type="var">n</span></span> and we want to show
-    that <span class="inlinecode"><span class="id" type="var">P</span></span> holds for all numbers <span class="inlinecode"><span class="id" type="var">n</span></span>, we can reason like this:
+ 为了证明这种关于数字、列表等归纳定理的集合的有趣事实，
+    我们通常需要一个更强大的推理原理： <i>'归纳'</i> 。
+    回忆一下<i>自然数的归纳原理<i>，你也许曾在高中的数学课上，在某门离散数学课上或
+    在其它类似的课上学到过它：若 <span class="inlinecode"><span class="id" type="var">P</span>(<span class="id" type="var">n</span>)</span> 为涉及自然数的命题，而我们想要证明 <span class="inlinecode"><span class="id" type="var">P</span></span>
+    对于所有自然数 <span class="inlinecode"><span class="id" type="var">n</span></span> 都成立，那么可以这样推理：
 
 <div class="paragraph"> </div>
 
 <ul class="doclist">
-<li> show that <span class="inlinecode"><span class="id" type="var">P</span>(<span class="id" type="var">O</span>)</span> holds;
+<li> 证明 <span class="inlinecode"><span class="id" type="var">P</span>(<span class="id" type="var">O</span>)</span> 成立；
 
 </li>
-<li> show that, for any <span class="inlinecode"><span class="id" type="var">n'</span></span>, if <span class="inlinecode"><span class="id" type="var">P</span>(<span class="id" type="var">n'</span>)</span> holds, then so does
-           <span class="inlinecode"><span class="id" type="var">P</span>(<span class="id" type="var">S</span></span> <span class="inlinecode"><span class="id" type="var">n'</span>)</span>;
+<li> 证明对于任何 <span class="inlinecode"><span class="id" type="var">n'</span></span>，若 <span class="inlinecode"><span class="id" type="var">P</span>(<span class="id" type="var">n'</span>)</span> 成立，那么 <span class="inlinecode"><span class="id" type="var">P</span>(<span class="id" type="var">S</span></span> <span class="inlinecode"><span class="id" type="var">n'</span>)</span> 也成立。
 
 </li>
-<li> conclude that <span class="inlinecode"><span class="id" type="var">P</span>(<span class="id" type="var">n</span>)</span> holds for all <span class="inlinecode"><span class="id" type="var">n</span></span>.
+<li> 最后得出 <span class="inlinecode"><span class="id" type="var">P</span>(<span class="id" type="var">n</span>)</span> 对于所有 <span class="inlinecode"><span class="id" type="var">n</span></span> 都成立的结论。
 
 </li>
 </ul>
-
-<div class="paragraph"> </div>
-
-    In Coq, the steps are the same: we begin with the goal of proving
-    <span class="inlinecode"><span class="id" type="var">P</span>(<span class="id" type="var">n</span>)</span> for all <span class="inlinecode"><span class="id" type="var">n</span></span> and break it down (by applying the <span class="inlinecode"><span class="id" type="tactic">induction</span></span>
-    tactic) into two separate subgoals: one where we must show <span class="inlinecode"><span class="id" type="var">P</span>(<span class="id" type="var">O</span>)</span>
-    and another where we must show <span class="inlinecode"><span class="id" type="var">P</span>(<span class="id" type="var">n'</span>)</span> <span class="inlinecode"><span style="font-family: arial;">&rarr;</span></span> <span class="inlinecode"><span class="id" type="var">P</span>(<span class="id" type="var">S</span></span> <span class="inlinecode"><span class="id" type="var">n'</span>)</span>.  Here's how
-    this works for the theorem at hand: 
+    在 Coq 中的过程也一样：我们以证明 <span class="inlinecode"><span class="id" type="var">P</span>(<span class="id" type="var">n</span>)</span> 对于所有 <span class="inlinecode"><span class="id" type="var">n</span></span> 都成立的证明目标开始，
+    然后（通过应用 <span class="inlinecode"><span class="id" type="tactic">induction</span></span> 策略）把它分为两个子目标：一个是我们必须证明
+    <span class="inlinecode"><span class="id" type="var">P</span>(<span class="id" type="var">O</span>)</span> 成立，另一个是我们必须证明 <span class="inlinecode"><span class="id" type="var">P</span>(<span class="id" type="var">n'</span>)</span> <span class="inlinecode"><span style="font-family: arial;">&rarr;</span></span> <span class="inlinecode"><span class="id" type="var">P</span>(<span class="id" type="var">S</span></span> <span class="inlinecode"><span class="id" type="var">n'</span>)</span>。下面就是该定理的用法： 
 </div>
 <div class="code code-tight">
 
@@ -183,28 +150,17 @@ We could use <span class="inlinecode"><span class="id" type="tactic">destruct</s
 </div>
 
 <div class="doc">
-Like <span class="inlinecode"><span class="id" type="tactic">destruct</span></span>, the <span class="inlinecode"><span class="id" type="tactic">induction</span></span> tactic takes an <span class="inlinecode"><span class="id" type="keyword">as</span>...</span>
-    clause that specifies the names of the variables to be introduced
-    in the subgoals.  Since there are two subgoals, the <span class="inlinecode"><span class="id" type="keyword">as</span>...</span> clause
-    has two parts, separated by <span class="inlinecode">|</span>.  (Strictly speaking, we can omit
-    the <span class="inlinecode"><span class="id" type="keyword">as</span>...</span> clause and Coq will choose names for us.  In practice,
-    this is a bad idea, as Coq's automatic choices tend to be
-    confusing.)
-
-<div class="paragraph"> </div>
-
-    In the first subgoal, <span class="inlinecode"><span class="id" type="var">n</span></span> is replaced by <span class="inlinecode">0</span>.  No new variables
-    are introduced (so the first part of the <span class="inlinecode"><span class="id" type="keyword">as</span>...</span> is empty), and
-    the goal becomes <span class="inlinecode">0</span> <span class="inlinecode">+</span> <span class="inlinecode">0</span> <span class="inlinecode">=</span> <span class="inlinecode">0</span>, which follows by simplification.
-
-<div class="paragraph"> </div>
-
-    In the second subgoal, <span class="inlinecode"><span class="id" type="var">n</span></span> is replaced by <span class="inlinecode"><span class="id" type="var">S</span></span> <span class="inlinecode"><span class="id" type="var">n'</span></span>, and the
-    assumption <span class="inlinecode"><span class="id" type="var">n'</span></span> <span class="inlinecode">+</span> <span class="inlinecode">0</span> <span class="inlinecode">=</span> <span class="inlinecode"><span class="id" type="var">n'</span></span> is added to the context with the name
-    <span class="inlinecode"><span class="id" type="var">IHn'</span></span> (i.e., the Induction Hypothesis for <span class="inlinecode"><span class="id" type="var">n'</span></span>).  These two names
-    are specified in the second part of the <span class="inlinecode"><span class="id" type="keyword">as</span>...</span> clause.  The goal
-    in this case becomes <span class="inlinecode">(<span class="id" type="var">S</span></span> <span class="inlinecode"><span class="id" type="var">n'</span>)</span> <span class="inlinecode">+</span> <span class="inlinecode">0</span> <span class="inlinecode">=</span> <span class="inlinecode"><span class="id" type="var">S</span></span> <span class="inlinecode"><span class="id" type="var">n'</span></span>, which simplifies to
-    <span class="inlinecode"><span class="id" type="var">S</span></span> <span class="inlinecode">(<span class="id" type="var">n'</span></span> <span class="inlinecode">+</span> <span class="inlinecode">0)</span> <span class="inlinecode">=</span> <span class="inlinecode"><span class="id" type="var">S</span></span> <span class="inlinecode"><span class="id" type="var">n'</span></span>, which in turn follows from <span class="inlinecode"><span class="id" type="var">IHn'</span></span>. 
+和 <span class="inlinecode"><span class="id" type="tactic">destruct</span></span> 一样，<span class="inlinecode"><span class="id" type="tactic">induction</span></span> 策略也能通过 <span class="inlinecode"><span class="id" type="keyword">as</span>...</span> 子句为引入到
+    子目标中的变量指定名字。由于这次有两个子目标，因此 <span class="inlinecode"><span class="id" type="keyword">as</span>...</span> 有两部分，用 <span class="inlinecode">|</span>
+    隔开。（严格来说，我们可以忽略 <span class="inlinecode"><span class="id" type="keyword">as</span>...</span> 子句，Coq 会为它们选择名字。
+    然而在实践中这样不好，因为让 Coq 自行选择名字的话更容易导致理解上的困难。）
+    在第一个子目标中 <span class="inlinecode"><span class="id" type="var">n</span></span> 被 <span class="inlinecode">0</span> 取代。由于没有新的变量会被引入，因此 <span class="inlinecode"><span class="id" type="keyword">as</span></span> <span class="inlinecode">...</span>
+    字句的第一部分为空；而当前的目标会变成 <span class="inlinecode">0</span> <span class="inlinecode">+</span> <span class="inlinecode">0</span> <span class="inlinecode">=</span> <span class="inlinecode">0</span>：使用化简就能得到此结论。
+    在第二个子目标中，<span class="inlinecode"><span class="id" type="var">n</span></span> 被 <span class="inlinecode"><span class="id" type="var">S</span></span> <span class="inlinecode"><span class="id" type="var">n'</span></span> 所取代，而对 <span class="inlinecode"><span class="id" type="var">n'</span></span> 的归纳假设（Inductive
+    Hypothesis），即 <span class="inlinecode"><span class="id" type="var">n'</span></span> <span class="inlinecode">+</span> <span class="inlinecode">0</span> <span class="inlinecode">=</span> <span class="inlinecode"><span class="id" type="var">n'</span></span> 则以 <span class="inlinecode"><span class="id" type="var">IHn'</span></span> 为名被添加到了上下文中。
+    这两个名字在 <span class="inlinecode"><span class="id" type="keyword">as</span>...</span> 子句的第二部分中指定。在此上下文中，待证目标变成了
+    <span class="inlinecode">(<span class="id" type="var">S</span></span> <span class="inlinecode"><span class="id" type="var">n'</span>)</span> <span class="inlinecode">+</span> <span class="inlinecode">0</span> <span class="inlinecode">=</span> <span class="inlinecode"><span class="id" type="var">S</span></span> <span class="inlinecode"><span class="id" type="var">n'</span></span>；它可被化简为 <span class="inlinecode"><span class="id" type="var">S</span></span> <span class="inlinecode">(<span class="id" type="var">n'</span></span> <span class="inlinecode">+</span> <span class="inlinecode">0)</span> <span class="inlinecode">=</span> <span class="inlinecode"><span class="id" type="var">S</span></span> <span class="inlinecode"><span class="id" type="var">n'</span></span>，而此结论可通过
+    <span class="inlinecode"><span class="id" type="var">IHn'</span></span> 得出。 
 </div>
 <div class="code code-tight">
 
@@ -221,15 +177,12 @@ Like <span class="inlinecode"><span class="id" type="tactic">destruct</span></sp
 </div>
 
 <div class="doc">
-(The use of the <span class="inlinecode"><span class="id" type="tactic">intros</span></span> tactic in these proofs is actually
-    redundant.  When applied to a goal that contains quantified
-    variables, the <span class="inlinecode"><span class="id" type="tactic">induction</span></span> tactic will automatically move them
-    into the context as needed.) 
+（其实在这些证明中我们并不需要 <span class="inlinecode"><span class="id" type="tactic">intros</span></span>：当 <span class="inlinecode"><span class="id" type="tactic">induction</span></span> 策略被应用到
+    包含量化变量的目标中时，它会自动将需要的变量移到上下文中。） 
 <div class="paragraph"> </div>
 
-<a name="lab44"></a><h4 class="section">Exercise: 2 stars, recommended (basic_induction)</h4>
- Prove the following using induction. You might need previously
-    proven results. 
+<a name="lab45"></a><h4 class="section">Exercise: 2 stars, recommended (basic_induction)</h4>
+ 用归纳法证明以下命题。你可能需要之前的证明结果。 
 </div>
 <div class="code code-tight">
 
@@ -256,8 +209,8 @@ Like <span class="inlinecode"><span class="id" type="tactic">destruct</span></sp
 <div class="doc less-space">
 <div class="paragraph"> </div>
 
-<a name="lab45"></a><h4 class="section">Exercise: 2 stars (double_plus)</h4>
- Consider the following function, which doubles its argument: 
+<a name="lab46"></a><h4 class="section">Exercise: 2 stars (double_plus)</h4>
+ 考虑以下函数，它将其参数乘二： 
 </div>
 <div class="code code-tight">
 
@@ -270,7 +223,7 @@ Like <span class="inlinecode"><span class="id" type="tactic">destruct</span></sp
 </div>
 
 <div class="doc">
-Use induction to prove this simple fact about <span class="inlinecode"><span class="id" type="var">double</span></span>: 
+用归纳法证明以下关于 <span class="inlinecode"><span class="id" type="var">double</span></span> 的简单事实： 
 </div>
 <div class="code code-tight">
 
@@ -284,13 +237,14 @@ Use induction to prove this simple fact about <span class="inlinecode"><span cla
 <div class="doc less-space">
 <div class="paragraph"> </div>
 
-<a name="lab46"></a><h4 class="section">Exercise: 2 stars, optional (evenb_S)</h4>
- One inconveninent aspect of our definition of <span class="inlinecode"><span class="id" type="var">evenb</span></span> <span class="inlinecode"><span class="id" type="var">n</span></span> is the
-    recursive call on <span class="inlinecode"><span class="id" type="var">n</span></span> <span class="inlinecode">-</span> <span class="inlinecode">2</span>. This makes proofs about <span class="inlinecode"><span class="id" type="var">evenb</span></span> <span class="inlinecode"><span class="id" type="var">n</span></span>
-    harder when done by induction on <span class="inlinecode"><span class="id" type="var">n</span></span>, since we may need an
-    induction hypothesis about <span class="inlinecode"><span class="id" type="var">n</span></span> <span class="inlinecode">-</span> <span class="inlinecode">2</span>. The following lemma gives an
-    alternative characterization of <span class="inlinecode"><span class="id" type="var">evenb</span></span> <span class="inlinecode">(<span class="id" type="var">S</span></span> <span class="inlinecode"><span class="id" type="var">n</span>)</span> that works better
-    with induction: 
+<a name="lab47"></a><h4 class="section">Exercise: 2 stars, optional (evenb_S)</h4>
+ 我们的 <span class="inlinecode"><span class="id" type="var">evenb</span></span> <span class="inlinecode"><span class="id" type="var">n</span></span> 定义对 <span class="inlinecode"><span class="id" type="var">n</span></span> <span class="inlinecode">-</span> <span class="inlinecode">2</span> 的递归调用不大方便。这让证明 <span class="inlinecode"><span class="id" type="var">evenb</span></span> <span class="inlinecode"><span class="id" type="var">n</span></span>
+    时更难对 <span class="inlinecode"><span class="id" type="var">n</span></span> 进行归纳，因此我们需要一个关于 <span class="inlinecode"><span class="id" type="var">n</span></span> <span class="inlinecode">-</span> <span class="inlinecode">2</span> 的归纳假设。
+    以下引理给予了 <span class="inlinecode"><span class="id" type="var">evenb</span></span> <span class="inlinecode">(<span class="id" type="var">S</span></span> <span class="inlinecode"><span class="id" type="var">n</span>)</span> 另一个表征，使其在归纳时能够更好地工作：
+    我们对 <span class="inlinecode"><span class="id" type="var">evenb</span></span> <span class="inlinecode"><span class="id" type="var">n</span></span> 的定义有一点不太方便的地方：它以 <span class="inlinecode"><span class="id" type="var">n</span></span> <span class="inlinecode">-</span> <span class="inlinecode">2</span> 为参数进行了递归调用；
+    在为了证明与 <span class="inlinecode"><span class="id" type="var">evenb</span></span> <span class="inlinecode"><span class="id" type="var">n</span></span> 有关的事实而对 <span class="inlinecode"><span class="id" type="var">n</span></span> 使用归纳法时，这会让证明过程变得更为困难，
+    因为我们可能会需要一个关于 <span class="inlinecode"><span class="id" type="var">n</span></span> <span class="inlinecode">-</span> <span class="inlinecode">2</span> 的归纳假设。以下引理用一种不同的方式刻画了
+    <span class="inlinecode"><span class="id" type="var">evenb</span></span> <span class="inlinecode">(<span class="id" type="var">S</span></span> <span class="inlinecode"><span class="id" type="var">n</span>)</span> 的性质，这将使归纳过程变得更加容易。 
 </div>
 <div class="code code-tight">
 
@@ -305,32 +259,24 @@ Use induction to prove this simple fact about <span class="inlinecode"><span cla
 <div class="doc less-space">
 <div class="paragraph"> </div>
 
-<a name="lab47"></a><h4 class="section">Exercise: 1 starM (destruct_induction)</h4>
- Briefly explain the difference between the tactics <span class="inlinecode"><span class="id" type="tactic">destruct</span></span>
-    and <span class="inlinecode"><span class="id" type="tactic">induction</span></span>.
-
-<div class="paragraph"> </div>
-
+<a name="lab48"></a><h4 class="section">Exercise: 1 starM (destruct_induction)</h4>
+ 简要说明一下 <span class="inlinecode"><span class="id" type="tactic">destruct</span></span> 策略和 <span class="inlinecode"><span class="id" type="tactic">induction</span></span> 策略之间的区别。
 <span class="comment">(*&nbsp;FILL&nbsp;IN&nbsp;HERE&nbsp;*)</span><br/>
  <span class="proofbox">&#9744;</span> 
 </div>
 
 <div class="doc">
-<a name="lab48"></a><h1 class="section">Proofs Within Proofs</h1>
+<a name="lab49"></a><h1 class="section">证明里的证明</h1>
 
 <div class="paragraph"> </div>
 
- In Coq, as in informal mathematics, large proofs are often
-    broken into a sequence of theorems, with later proofs referring to
-    earlier theorems.  But sometimes a proof will require some
-    miscellaneous fact that is too trivial and of too little general
-    interest to bother giving it its own top-level name.  In such
-    cases, it is convenient to be able to simply state and prove the
-    needed "sub-theorem" right at the point where it is used.  The
-    <span class="inlinecode"><span class="id" type="tactic">assert</span></span> tactic allows us to do this.  For example, our earlier
-    proof of the <span class="inlinecode"><span class="id" type="var">mult_0_plus</span></span> theorem referred to a previous theorem
-    named <span class="inlinecode"><span class="id" type="var">plus_O_n</span></span>.  We could instead use <span class="inlinecode"><span class="id" type="tactic">assert</span></span> to state and
-    prove <span class="inlinecode"><span class="id" type="var">plus_O_n</span></span> in-line: 
+ 和在非形式化的数学中一样，在 Coq 中，大的证明通常会被分为一系列定理，
+    后面的定理引用之前的定理。但有时一个证明会需要一些繁杂琐碎的事实，
+    而这些事实缺乏普遍性，以至于我们甚至都不应该给它们单独取顶级的名字。
+    此时，如果能仅在需要时简单地陈述并立即证明所需的「子定理」就会很方便。
+    我们可以用 <span class="inlinecode"><span class="id" type="tactic">assert</span></span> 策略来做到。例如，我们之前对 <span class="inlinecode"><span class="id" type="var">mult_0_plus</span></span>
+    定理的证明引用了前一个名为 <span class="inlinecode"><span class="id" type="var">plus_O_n</span></span> 的定理，而我们只需内联使用 <span class="inlinecode"><span class="id" type="tactic">assert</span></span>
+    就能陈述并证明 <span class="inlinecode"><span class="id" type="var">plus_O_n</span></span>： 
 </div>
 <div class="code code-tight">
 
@@ -345,34 +291,24 @@ Use induction to prove this simple fact about <span class="inlinecode"><span cla
 </div>
 
 <div class="doc">
-The <span class="inlinecode"><span class="id" type="tactic">assert</span></span> tactic introduces two sub-goals.  The first is
-    the assertion itself; by prefixing it with <span class="inlinecode"><span class="id" type="var">H</span>:</span> we name the
-    assertion <span class="inlinecode"><span class="id" type="var">H</span></span>.  (We can also name the assertion with <span class="inlinecode"><span class="id" type="keyword">as</span></span> just as
-    we did above with <span class="inlinecode"><span class="id" type="tactic">destruct</span></span> and <span class="inlinecode"><span class="id" type="tactic">induction</span></span>, i.e., <span class="inlinecode"><span class="id" type="tactic">assert</span></span> <span class="inlinecode">(0</span> <span class="inlinecode">+</span> <span class="inlinecode"><span class="id" type="var">n</span></span>
-    <span class="inlinecode">=</span> <span class="inlinecode"><span class="id" type="var">n</span>)</span> <span class="inlinecode"><span class="id" type="keyword">as</span></span> <span class="inlinecode"><span class="id" type="var">H</span></span>.)  Note that we surround the proof of this assertion
-    with curly braces <span class="inlinecode">{</span> <span class="inlinecode">...</span> <span class="inlinecode">}</span>, both for readability and so that,
-    when using Coq interactively, we can see more easily when we have
-    finished this sub-proof.  The second goal is the same as the one
-    at the point where we invoke <span class="inlinecode"><span class="id" type="tactic">assert</span></span> except that, in the context,
-    we now have the assumption <span class="inlinecode"><span class="id" type="var">H</span></span> that <span class="inlinecode">0</span> <span class="inlinecode">+</span> <span class="inlinecode"><span class="id" type="var">n</span></span> <span class="inlinecode">=</span> <span class="inlinecode"><span class="id" type="var">n</span></span>.  That is,
-    <span class="inlinecode"><span class="id" type="tactic">assert</span></span> generates one subgoal where we must prove the asserted
-    fact and a second subgoal where we can use the asserted fact to
-    make progress on whatever we were trying to prove in the first
-    place. 
+<span class="inlinecode"><span class="id" type="tactic">assert</span></span> 策略引入两个子目标。第一个为断言本身，通过给它加前缀 <span class="inlinecode"><span class="id" type="var">H</span>:</span>
+    我们将该断言命名为 <span class="inlinecode"><span class="id" type="var">H</span></span>。（我们也可以用 <span class="inlinecode"><span class="id" type="keyword">as</span></span> 来命名该断言，就像我们前面用
+    <span class="inlinecode"><span class="id" type="tactic">destruct</span></span> 和 <span class="inlinecode"><span class="id" type="tactic">induction</span></span> 做的那样。例如 <span class="inlinecode"><span class="id" type="tactic">assert</span></span> <span class="inlinecode">(0</span> <span class="inlinecode">+</span> <span class="inlinecode"><span class="id" type="var">n</span></span> <span class="inlinecode">=</span> <span class="inlinecode"><span class="id" type="var">n</span>)</span> <span class="inlinecode"><span class="id" type="keyword">as</span></span> <span class="inlinecode"><span class="id" type="var">H</span></span>。）
+    注意我们用花括号 <span class="inlinecode">{</span> <span class="inlinecode">...</span> <span class="inlinecode">}</span> 将该断言的证明括了起来。这么做不仅是为了提高可读性，
+    同时也为了在交互地使用 Coq 时能更容易地看到我们已经证明了这个子目标。第二个目标
+    跟执行 <span class="inlinecode"><span class="id" type="tactic">assert</span></span> 之前的子目标一样，只是这次在上下文中，我们有了名为 <span class="inlinecode"><span class="id" type="var">H</span></span> 的前提
+    <span class="inlinecode">0</span> <span class="inlinecode">+</span> <span class="inlinecode"><span class="id" type="var">n</span></span> <span class="inlinecode">=</span> <span class="inlinecode"><span class="id" type="var">n</span></span>。也就是说，<span class="inlinecode"><span class="id" type="tactic">assert</span></span> 生成的第一个子目标是我们必须证明的已断言的事实，
+    而在第二个子目标中，我们可以使用已断言的事实在一开始试图证明的事情上取得进展。 
 <div class="paragraph"> </div>
 
- Another example of <span class="inlinecode"><span class="id" type="tactic">assert</span></span>... 
+ 另一个 <span class="inlinecode"><span class="id" type="tactic">assert</span></span> 的例子... 
 <div class="paragraph"> </div>
 
- For example, suppose we want to prove that <span class="inlinecode">(<span class="id" type="var">n</span></span> <span class="inlinecode">+</span> <span class="inlinecode"><span class="id" type="var">m</span>)</span> <span class="inlinecode">+</span> <span class="inlinecode">(<span class="id" type="var">p</span></span> <span class="inlinecode">+</span> <span class="inlinecode"><span class="id" type="var">q</span>)</span>
-    <span class="inlinecode">=</span> <span class="inlinecode">(<span class="id" type="var">m</span></span> <span class="inlinecode">+</span> <span class="inlinecode"><span class="id" type="var">n</span>)</span> <span class="inlinecode">+</span> <span class="inlinecode">(<span class="id" type="var">p</span></span> <span class="inlinecode">+</span> <span class="inlinecode"><span class="id" type="var">q</span>)</span>. The only difference between the two sides of
-    the <span class="inlinecode">=</span> is that the arguments <span class="inlinecode"><span class="id" type="var">m</span></span> and <span class="inlinecode"><span class="id" type="var">n</span></span> to the first inner <span class="inlinecode">+</span>
-    are swapped, so it seems we should be able to use the
-    commutativity of addition (<span class="inlinecode"><span class="id" type="var">plus_comm</span></span>) to rewrite one into the
-    other.  However, the <span class="inlinecode"><span class="id" type="tactic">rewrite</span></span> tactic is not very smart about
-    <i>where</i> it applies the rewrite.  There are three uses of <span class="inlinecode">+</span> here,
-    and it turns out that doing <span class="inlinecode"><span class="id" type="tactic">rewrite</span></span> <span class="inlinecode"><span style="font-family: arial;">&rarr;</span></span> <span class="inlinecode"><span class="id" type="var">plus_comm</span></span> will affect
-    only the <i>outer</i> one... 
+ 例如，假设我们想要证明 <span class="inlinecode">(<span class="id" type="var">n</span></span> <span class="inlinecode">+</span> <span class="inlinecode"><span class="id" type="var">m</span>)</span> <span class="inlinecode">+</span> <span class="inlinecode">(<span class="id" type="var">p</span></span> <span class="inlinecode">+</span> <span class="inlinecode"><span class="id" type="var">q</span>)</span> <span class="inlinecode">=</span> <span class="inlinecode">(<span class="id" type="var">m</span></span> <span class="inlinecode">+</span> <span class="inlinecode"><span class="id" type="var">n</span>)</span> <span class="inlinecode">+</span> <span class="inlinecode">(<span class="id" type="var">p</span></span> <span class="inlinecode">+</span> <span class="inlinecode"><span class="id" type="var">q</span>)</span>。
+    <span class="inlinecode">=</span> 两边唯一的不同就是第一个内部的 <span class="inlinecode">+</span> 的参数 <span class="inlinecode"><span class="id" type="var">m</span></span> 和 <span class="inlinecode"><span class="id" type="var">n</span></span> 交换了位置，
+    所以看起来我们可以用加法交换律（<span class="inlinecode"><span class="id" type="var">plus_comm</span></span>）来将它重写为另一个。然而，
+    <span class="inlinecode"><span class="id" type="tactic">rewrite</span></span> 策略对于应该在<i>哪里<i>起作用这点一并不聪明。本命题中 <span class="inlinecode">+</span> 用了三次 ，
+    结果 <span class="inlinecode"><span class="id" type="tactic">rewrite</span></span> <span class="inlinecode"><span style="font-family: arial;">&rarr;</span></span> <span class="inlinecode"><span class="id" type="var">plus_comm</span></span> 只对<i>外层<i>那个起了作用... 
 </div>
 <div class="code code-tight">
 
@@ -381,18 +317,16 @@ The <span class="inlinecode"><span class="id" type="tactic">assert</span></span>
 &nbsp;&nbsp;(<span class="id" type="var">n</span> + <span class="id" type="var">m</span>) + (<span class="id" type="var">p</span> + <span class="id" type="var">q</span>) = (<span class="id" type="var">m</span> + <span class="id" type="var">n</span>) + (<span class="id" type="var">p</span> + <span class="id" type="var">q</span>).<br/>
 <span class="id" type="keyword">Proof</span>.<br/>
 &nbsp;&nbsp;<span class="id" type="tactic">intros</span> <span class="id" type="var">n</span> <span class="id" type="var">m</span> <span class="id" type="var">p</span> <span class="id" type="var">q</span>.<br/>
-&nbsp;&nbsp;<span class="comment">(*&nbsp;We&nbsp;just&nbsp;need&nbsp;to&nbsp;swap&nbsp;(n&nbsp;+&nbsp;m)&nbsp;for&nbsp;(m&nbsp;+&nbsp;n)...&nbsp;seems<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;like&nbsp;plus_comm&nbsp;should&nbsp;do&nbsp;the&nbsp;trick!&nbsp;*)</span><br/>
+&nbsp;&nbsp;<span class="comment">(*&nbsp;我们只需要为&nbsp;(m&nbsp;+&nbsp;n)&nbsp;交换&nbsp;(n&nbsp;+&nbsp;m)...&nbsp;看起来&nbsp;plus_comm&nbsp;能搞定！*)</span><br/>
 &nbsp;&nbsp;<span class="id" type="tactic">rewrite</span> <span style="font-family: arial;">&rarr;</span> <span class="id" type="var">plus_comm</span>.<br/>
-&nbsp;&nbsp;<span class="comment">(*&nbsp;Doesn't&nbsp;work...Coq&nbsp;rewrote&nbsp;the&nbsp;wrong&nbsp;plus!&nbsp;*)</span><br/>
+&nbsp;&nbsp;<span class="comment">(*&nbsp;不起作用...&nbsp;Coq&nbsp;选错了要改写的加法！&nbsp;*)</span><br/>
 <span class="id" type="keyword">Abort</span>.<br/>
 </div>
 
 <div class="doc">
-To use <span class="inlinecode"><span class="id" type="var">plus_comm</span></span> at the point where we need it, we can introduce
-    a local lemma stating that <span class="inlinecode"><span class="id" type="var">n</span></span> <span class="inlinecode">+</span> <span class="inlinecode"><span class="id" type="var">m</span></span> <span class="inlinecode">=</span> <span class="inlinecode"><span class="id" type="var">m</span></span> <span class="inlinecode">+</span> <span class="inlinecode"><span class="id" type="var">n</span></span> (for the particular <span class="inlinecode"><span class="id" type="var">m</span></span>
-    and <span class="inlinecode"><span class="id" type="var">n</span></span> that we are talking about here), prove this lemma using
-    <span class="inlinecode"><span class="id" type="var">plus_comm</span></span>, and then use it to do the desired rewrite. 
+为了在需要的地方使用 <span class="inlinecode"><span class="id" type="var">plus_comm</span></span>，我们可以（为此处讨论的特定的 <span class="inlinecode"><span class="id" type="var">m</span></span> 和 <span class="inlinecode"><span class="id" type="var">n</span></span>）
+    引入一个局部引理来陈述 <span class="inlinecode"><span class="id" type="var">n</span></span> <span class="inlinecode">+</span> <span class="inlinecode"><span class="id" type="var">m</span></span> <span class="inlinecode">=</span> <span class="inlinecode"><span class="id" type="var">m</span></span> <span class="inlinecode">+</span> <span class="inlinecode"><span class="id" type="var">n</span></span>，然后我们用 <span class="inlinecode"><span class="id" type="var">plus_comm</span></span> 证明它，
+    并用它来进行期望的改写。 
 </div>
 <div class="code code-tight">
 
@@ -407,11 +341,11 @@ To use <span class="inlinecode"><span class="id" type="var">plus_comm</span></sp
 </div>
 
 <div class="doc">
-<a name="lab49"></a><h1 class="section">Formal vs. Informal Proof</h1>
+<a name="lab50"></a><h1 class="section">Formal vs. Informal Proof</h1>
 
 <div class="paragraph"> </div>
 
- <div class="quote">"<i>Informal proofs are algorithms; formal proofs are code</i>."</div> 
+ <div class="quote">「非形式化证明是算法，形式化证明是代码。」</div> 
 <div class="paragraph"> </div>
 
  What constitutes a successful proof of a mathematical claim?
@@ -469,7 +403,7 @@ To use <span class="inlinecode"><span class="id" type="var">plus_comm</span></sp
     communicating ideas between human beings. 
 <div class="paragraph"> </div>
 
- For example, here is a proof that addition is associative: 
+ 例如，下面是加法交换律的一个证明： 
 </div>
 <div class="code code-tight">
 
@@ -481,9 +415,8 @@ To use <span class="inlinecode"><span class="id" type="var">plus_comm</span></sp
 </div>
 
 <div class="doc">
-Coq is perfectly happy with this.  For a human, however, it
-    is difficult to make much sense of it.  We can use comments and
-    bullets to show the structure a little more clearly... 
+Coq 对此表示十分满意。然而人类却很难理解它。我们可以用注释和标号让它
+    的结构看上去更清晰一点... 
 </div>
 <div class="code code-tight">
 
@@ -499,23 +432,16 @@ Coq is perfectly happy with this.  For a human, however, it
 </div>
 
 <div class="doc">
-... and if you're used to Coq you may be able to step
-    through the tactics one after the other in your mind and imagine
-    the state of the context and goal stack at each point, but if the
-    proof were even a little bit more complicated this would be next
-    to impossible.
-
-<div class="paragraph"> </div>
-
-    A (pedantic) mathematician might write the proof something like
-    this: 
+...而且如果你习惯了 Coq，你可能会在脑袋里逐步过一遍策略，并想象出
+    每一点的上下文和目标栈的状态。不过若证明再复杂一点，那就几乎不可能了。
+    一个（迂腐的）数学家可能把证明写成这样： 
 <div class="paragraph"> </div>
 
 
 <div class="paragraph"> </div>
 
 <ul class="doclist">
-<li> <i>Theorem</i>: For any <span class="inlinecode"><span class="id" type="var">n</span></span>, <span class="inlinecode"><span class="id" type="var">m</span></span> and <span class="inlinecode"><span class="id" type="var">p</span></span>,
+<li> <i>'定理'</i> ：对于任何 <span class="inlinecode"><span class="id" type="var">n</span></span>, <span class="inlinecode"><span class="id" type="var">m</span></span> 和 <span class="inlinecode"><span class="id" type="var">p</span></span>,
 
 <div class="paragraph"> </div>
 
@@ -524,12 +450,9 @@ Coq is perfectly happy with this.  For a human, however, it
 <div class="paragraph"> </div>
 
 </div>
-    <i>Proof</i>: By induction on <span class="inlinecode"><span class="id" type="var">n</span></span>.
-
-<div class="paragraph"> </div>
-
+    <i>'证明'</i> ：对 <span class="inlinecode"><span class="id" type="var">n</span></span> 使用归纳法。
 <ul class="doclist">
-<li> First, suppose <span class="inlinecode"><span class="id" type="var">n</span></span> <span class="inlinecode">=</span> <span class="inlinecode">0</span>.  We must show
+<li> 首先，设 <span class="inlinecode"><span class="id" type="var">n</span></span> <span class="inlinecode">=</span> <span class="inlinecode">0</span>。我们必须证明
 
 <div class="paragraph"> </div>
 
@@ -538,13 +461,10 @@ Coq is perfectly happy with this.  For a human, however, it
 <div class="paragraph"> </div>
 
 </div>
-      This follows directly from the definition of <span class="inlinecode">+</span>.
-
-<div class="paragraph"> </div>
-
+      此结论可从 <span class="inlinecode">+</span> 的定义直接得到。
 
 </li>
-<li> Next, suppose <span class="inlinecode"><span class="id" type="var">n</span></span> <span class="inlinecode">=</span> <span class="inlinecode"><span class="id" type="var">S</span></span> <span class="inlinecode"><span class="id" type="var">n'</span></span>, where
+<li> 接着，设 <span class="inlinecode"><span class="id" type="var">n</span></span> <span class="inlinecode">=</span> <span class="inlinecode"><span class="id" type="var">S</span></span> <span class="inlinecode"><span class="id" type="var">n'</span></span>，其中
 
 <div class="paragraph"> </div>
 
@@ -553,7 +473,7 @@ Coq is perfectly happy with this.  For a human, however, it
 <div class="paragraph"> </div>
 
 </div>
-      We must show
+      我们必须证明
 
 <div class="paragraph"> </div>
 
@@ -562,7 +482,7 @@ Coq is perfectly happy with this.  For a human, however, it
 <div class="paragraph"> </div>
 
 </div>
-      By the definition of <span class="inlinecode">+</span>, this follows from
+      根据 <span class="inlinecode">+</span> 的定义，由此式可得
 
 <div class="paragraph"> </div>
 
@@ -571,7 +491,7 @@ Coq is perfectly happy with this.  For a human, however, it
 <div class="paragraph"> </div>
 
 </div>
-      which is immediate from the induction hypothesis.  <i>Qed</i>. 
+      它由归纳假设直接得出。 <i>'证毕'</i> 。 
 </li>
 </ul>
 
@@ -580,54 +500,35 @@ Coq is perfectly happy with this.  For a human, however, it
 
 <div class="paragraph"> </div>
 
- The overall form of the proof is basically similar, and of
-    course this is no accident: Coq has been designed so that its
-    <span class="inlinecode"><span class="id" type="tactic">induction</span></span> tactic generates the same sub-goals, in the same
-    order, as the bullet points that a mathematician would write.  But
-    there are significant differences of detail: the formal proof is
-    much more explicit in some ways (e.g., the use of <span class="inlinecode"><span class="id" type="tactic">reflexivity</span></span>)
-    but much less explicit in others (in particular, the "proof state"
-    at any given point in the Coq proof is completely implicit,
-    whereas the informal proof reminds the reader several times where
-    things stand). 
+ 证明的总体形式大体类似，当然这并非偶然：Coq 的设计使其 <span class="inlinecode"><span class="id" type="tactic">induction</span></span>
+    策略会像数学家写出的标号那样，按相同的顺序生成相同的子目标。但咱细节上则有
+    明显的不同：形式化证明在某些方面更为明确（例如对 <span class="inlinecode"><span class="id" type="tactic">reflexivity</span></span> 的使用），
+    但在其它方面则不够明确（特别是 Coq 证明中任何给定点的「证明状态」都是完全
+    隐含的，而非形式化证明则常会反复告诉读者目前证明进行的状态）。 
 <div class="paragraph"> </div>
 
-<a name="lab50"></a><h4 class="section">Exercise: 2 stars, advanced, recommendedM (plus_comm_informal)</h4>
- Translate your solution for <span class="inlinecode"><span class="id" type="var">plus_comm</span></span> into an informal proof:
-
-<div class="paragraph"> </div>
-
-    Theorem: Addition is commutative.
-
-<div class="paragraph"> </div>
-
-    Proof: <span class="comment">(*&nbsp;FILL&nbsp;IN&nbsp;HERE&nbsp;*)</span><br/>
+<a name="lab51"></a><h4 class="section">Exercise: 2 stars, advanced, recommendedM (plus_comm_informal)</h4>
+ 将你对 <span class="inlinecode"><span class="id" type="var">plus_comm</span></span> 的解答翻译成非形式化证明：
+    定理：加法满足交换律。
+    证明： <span class="comment">(*&nbsp;FILL&nbsp;IN&nbsp;HERE&nbsp;*)</span><br/>
  <span class="proofbox">&#9744;</span> 
 <div class="paragraph"> </div>
 
-<a name="lab51"></a><h4 class="section">Exercise: 2 stars, optionalM (beq_nat_refl_informal)</h4>
- Write an informal proof of the following theorem, using the
-    informal proof of <span class="inlinecode"><span class="id" type="var">plus_assoc</span></span> as a model.  Don't just
-    paraphrase the Coq tactics into English!
-
-<div class="paragraph"> </div>
-
-    Theorem: <span class="inlinecode"><span class="id" type="var">true</span></span> <span class="inlinecode">=</span> <span class="inlinecode"><span class="id" type="var">beq_nat</span></span> <span class="inlinecode"><span class="id" type="var">n</span></span> <span class="inlinecode"><span class="id" type="var">n</span></span> for any <span class="inlinecode"><span class="id" type="var">n</span></span>.
-
-<div class="paragraph"> </div>
-
-    Proof: <span class="comment">(*&nbsp;FILL&nbsp;IN&nbsp;HERE&nbsp;*)</span><br/>
+<a name="lab52"></a><h4 class="section">Exercise: 2 stars, optionalM (beq_nat_refl_informal)</h4>
+ 以 <span class="inlinecode"><span class="id" type="var">plus_assoc</span></span> 的非形式化证明为范本，写出以下定理的非形式化证明。
+    不要只是用中文来解释 Coq 策略！
+    定理： 对于任何 <span class="inlinecode"><span class="id" type="var">n</span></span>，均有 <span class="inlinecode"><span class="id" type="var">true</span></span> <span class="inlinecode">=</span> <span class="inlinecode"><span class="id" type="var">beq_nat</span></span> <span class="inlinecode"><span class="id" type="var">n</span></span> <span class="inlinecode"><span class="id" type="var">n</span></span>。
+    证明 <span class="comment">(*&nbsp;FILL&nbsp;IN&nbsp;HERE&nbsp;*)</span><br/>
 <span class="proofbox">&#9744;</span> 
 </div>
 
 <div class="doc">
-<a name="lab52"></a><h1 class="section">更多练习</h1>
+<a name="lab53"></a><h1 class="section">更多练习</h1>
 
 <div class="paragraph"> </div>
 
-<a name="lab53"></a><h4 class="section">Exercise: 3 stars, recommended (mult_comm)</h4>
- Use <span class="inlinecode"><span class="id" type="tactic">assert</span></span> to help prove this theorem.  You shouldn't need to
-    use induction on <span class="inlinecode"><span class="id" type="var">plus_swap</span></span>. 
+<a name="lab54"></a><h4 class="section">Exercise: 3 stars, recommended (mult_comm)</h4>
+ 用 <span class="inlinecode"><span class="id" type="tactic">assert</span></span> 来帮助证明此定理。你应该不需要对 <span class="inlinecode"><span class="id" type="var">plus_swap</span></span> 进行归纳。 
 </div>
 <div class="code code-tight">
 
@@ -639,10 +540,8 @@ Coq is perfectly happy with this.  For a human, however, it
 </div>
 
 <div class="doc">
-Now prove commutativity of multiplication.  (You will probably
-    need to define and prove a separate subsidiary theorem to be used
-    in the proof of this one.  You may find that <span class="inlinecode"><span class="id" type="var">plus_swap</span></span> comes in
-    handy.) 
+现在证明乘法交换律。（你在证明过程中可能需要定义并证明一个独立的辅助定理。
+    你可能会用上 <span class="inlinecode"><span class="id" type="var">plus_swap</span></span>。） 
 </div>
 <div class="code code-tight">
 
@@ -657,14 +556,10 @@ Now prove commutativity of multiplication.  (You will probably
 <div class="doc less-space">
 <div class="paragraph"> </div>
 
-<a name="lab54"></a><h4 class="section">Exercise: 3 stars, optional (more_exercises)</h4>
- Take a piece of paper.  For each of the following theorems, first
-    <i>think</i> about whether (a) it can be proved using only
-    simplification and rewriting, (b) it also requires case
-    analysis (<span class="inlinecode"><span class="id" type="tactic">destruct</span></span>), or (c) it also requires induction.  Write
-    down your prediction.  Then fill in the proof.  (There is no need
-    to turn in your piece of paper; this is just to encourage you to
-    reflect before you hack!) 
+<a name="lab55"></a><h4 class="section">Exercise: 3 stars, optional (more_exercises)</h4>
+ 找一张纸。对于以下定理，首先请<i>思考_ (a) 它能否能只用化简和改写来证明，
+    (b) 它还需要分类讨论（<span class="inlinecode"><span class="id" type="tactic">destruct</span></span>），以及 (c) 它还需要归纳证明。先写下你的
+    预判，然后填写下面的证明（你的纸不用交上来，这只是鼓励你先思考再行动！） 
 </div>
 <div class="code code-tight">
 
@@ -714,12 +609,10 @@ Now prove commutativity of multiplication.  (You will probably
 <div class="doc less-space">
 <div class="paragraph"> </div>
 
-<a name="lab55"></a><h4 class="section">Exercise: 2 stars, optional (beq_nat_refl)</h4>
- Prove the following theorem.  (Putting the <span class="inlinecode"><span class="id" type="var">true</span></span> on the left-hand
-    side of the equality may look odd, but this is how the theorem is
-    stated in the Coq standard library, so we follow suit.  Rewriting
-    works equally well in either direction, so we will have no problem
-    using the theorem no matter which way we state it.) 
+<a name="lab56"></a><h4 class="section">Exercise: 2 stars, optional (beq_nat_refl)</h4>
+ 证明以下定理。（把 <span class="inlinecode"><span class="id" type="var">true</span></span> 放在等式左边可能看起来有点奇怪，不过 Coq 标准库中
+    就是这样表示的，我们照做就是。无论按哪个方向改写都一样好用，所以无论我们如何
+    表示定理，用起来都没问题。） 
 </div>
 <div class="code code-tight">
 
@@ -734,17 +627,13 @@ Now prove commutativity of multiplication.  (You will probably
 <div class="doc less-space">
 <div class="paragraph"> </div>
 
-<a name="lab56"></a><h4 class="section">Exercise: 2 stars, optional (plus_swap')</h4>
- The <span class="inlinecode"><span class="id" type="tactic">replace</span></span> tactic allows you to specify a particular subterm to
-   rewrite and what you want it rewritten to: <span class="inlinecode"><span class="id" type="tactic">replace</span></span> <span class="inlinecode">(<span class="id" type="var">t</span>)</span> <span class="inlinecode"><span class="id" type="keyword">with</span></span> <span class="inlinecode">(<span class="id" type="var">u</span>)</span>
-   replaces (all copies of) expression <span class="inlinecode"><span class="id" type="var">t</span></span> in the goal by expression
-   <span class="inlinecode"><span class="id" type="var">u</span></span>, and generates <span class="inlinecode"><span class="id" type="var">t</span></span> <span class="inlinecode">=</span> <span class="inlinecode"><span class="id" type="var">u</span></span> as an additional subgoal. This is often
-   useful when a plain <span class="inlinecode"><span class="id" type="tactic">rewrite</span></span> acts on the wrong part of the goal.
-
-<div class="paragraph"> </div>
-
-   Use the <span class="inlinecode"><span class="id" type="tactic">replace</span></span> tactic to do a proof of <span class="inlinecode"><span class="id" type="var">plus_swap'</span></span>, just like
-   <span class="inlinecode"><span class="id" type="var">plus_swap</span></span> but without needing <span class="inlinecode"><span class="id" type="tactic">assert</span></span> <span class="inlinecode">(<span class="id" type="var">n</span></span> <span class="inlinecode">+</span> <span class="inlinecode"><span class="id" type="var">m</span></span> <span class="inlinecode">=</span> <span class="inlinecode"><span class="id" type="var">m</span></span> <span class="inlinecode">+</span> <span class="inlinecode"><span class="id" type="var">n</span>)</span>. 
+<a name="lab57"></a><h4 class="section">Exercise: 2 stars, optional (plus_swap')</h4>
+ <span class="inlinecode"><span class="id" type="tactic">replace</span></span> 策略允许你指定一个具体的要改写的子项和你想要将它改写成的项：
+    <span class="inlinecode"><span class="id" type="tactic">replace</span></span> <span class="inlinecode">(<span class="id" type="var">t</span>)</span> <span class="inlinecode"><span class="id" type="keyword">with</span></span> <span class="inlinecode">(<span class="id" type="var">u</span>)</span> 会将目标中表达式 <span class="inlinecode"><span class="id" type="var">t</span></span>（的所有副本）替换为表达式 <span class="inlinecode"><span class="id" type="var">u</span></span>，
+    并生成 <span class="inlinecode"><span class="id" type="var">t</span></span> <span class="inlinecode">=</span> <span class="inlinecode"><span class="id" type="var">u</span></span> 作为附加的子目标。在简单的 <span class="inlinecode"><span class="id" type="tactic">rewrite</span></span> 作用在目标错误的部分上时
+    这种做法通常很有用。
+   用 <span class="inlinecode"><span class="id" type="tactic">replace</span></span> 策略来证明 <span class="inlinecode"><span class="id" type="var">plus_swap'</span></span>，除了无需 <span class="inlinecode"><span class="id" type="tactic">assert</span></span> <span class="inlinecode">(<span class="id" type="var">n</span></span> <span class="inlinecode">+</span> <span class="inlinecode"><span class="id" type="var">m</span></span> <span class="inlinecode">=</span> <span class="inlinecode"><span class="id" type="var">m</span></span> <span class="inlinecode">+</span> <span class="inlinecode"><span class="id" type="var">n</span>)</span>
+   外和 <span class="inlinecode"><span class="id" type="var">plus_swap</span></span> 一样。 
 </div>
 <div class="code code-tight">
 
@@ -759,10 +648,9 @@ Now prove commutativity of multiplication.  (You will probably
 <div class="doc less-space">
 <div class="paragraph"> </div>
 
-<a name="lab57"></a><h4 class="section">Exercise: 3 stars, recommendedM (binary_commute)</h4>
- Recall the <span class="inlinecode"><span class="id" type="var">incr</span></span> and <span class="inlinecode"><span class="id" type="var">bin_to_nat</span></span> functions that you
-    wrote for the <span class="inlinecode"><span class="id" type="var">binary</span></span> exercise in the <a href="Basics.html"><span class="inlineref">Basics</span></a> chapter.  Prove
-    that the following diagram commutes:
+<a name="lab58"></a><h4 class="section">Exercise: 3 stars, recommendedM (binary_commute)</h4>
+ 回忆一下你在 <a href="Basics.html"><span class="inlineref">Basics</span></a> 中为练习 <span class="inlinecode"><span class="id" type="var">binary</span></span> 编写的 <span class="inlinecode"><span class="id" type="var">incr</span></span> 和 <span class="inlinecode"><span class="id" type="var">bin_to_nat</span></span>
+    函数。证明下图可交换。
 
 <div class="paragraph"> </div>
 
@@ -778,18 +666,12 @@ Now prove commutativity of multiplication.  (You will probably
 <div class="paragraph"> </div>
 
 </div>
-    That is, incrementing a binary number and then converting it to
-    a (unary) natural number yields the same result as first converting
-    it to a natural number and then incrementing.
-    Name your theorem <span class="inlinecode"><span class="id" type="var">bin_to_nat_pres_incr</span></span> ("pres" for "preserves").
-
-<div class="paragraph"> </div>
-
-    Before you start working on this exercise, copy the definitions
-    from your solution to the <span class="inlinecode"><span class="id" type="var">binary</span></span> exercise here so that this file
-    can be graded on its own.  If you want to change your original
-    definitions to make the property easier to prove, feel free to
-    do so! 
+    也就是说，一个二进制数先自增然后将它转换为（一进制）自然数，和先将它转换为
+    自然数后再自增会产生相同的结果。将你的定理命名为 <span class="inlinecode"><span class="id" type="var">bin_to_nat_pres_incr</span></span>
+    （「pres」即「preserves」的简写，意为「保持原状」）。
+    在你开始做这个练习前，将你在 <span class="inlinecode"><span class="id" type="var">binary</span></span> 练习的解中的定义复制到这里，
+    让这个文件可以被单独评分。若你想要更改你的原始定义以便让此属性更易证明，
+    请自便！ 
 </div>
 <div class="code code-tight">
 
@@ -801,39 +683,17 @@ Now prove commutativity of multiplication.  (You will probably
 <div class="doc less-space">
 <div class="paragraph"> </div>
 
-<a name="lab58"></a><h4 class="section">Exercise: 5 stars, advancedM (binary_inverse)</h4>
- This exercise is a continuation of the previous exercise about
-    binary numbers.  You will need your definitions and theorems from
-    there to complete this one; please copy them to this file to make
-    it self contained for grading.
-
-<div class="paragraph"> </div>
-
-    (a) First, write a function to convert natural numbers to binary
-        numbers.  Then prove that starting with any natural number,
-        converting to binary, then converting back yields the same
-        natural number you started with.
-
-<div class="paragraph"> </div>
-
-    (b) You might naturally think that we should also prove the
-        opposite direction: that starting with a binary number,
-        converting to a natural, and then back to binary yields the
-        same number we started with.  However, this is not true!
-        Explain what the problem is.
-
-<div class="paragraph"> </div>
-
-    (c) Define a "direct" normalization function &mdash; i.e., a function
-        <span class="inlinecode"><span class="id" type="var">normalize</span></span> from binary numbers to binary numbers such that,
-        for any binary number b, converting to a natural and then back
-        to binary yields <span class="inlinecode">(<span class="id" type="var">normalize</span></span> <span class="inlinecode"><span class="id" type="var">b</span>)</span>.  Prove it.  (Warning: This
-        part is tricky!)
-
-<div class="paragraph"> </div>
-
-    Again, feel free to change your earlier definitions if this helps
-    here. 
+<a name="lab59"></a><h4 class="section">Exercise: 5 stars, advancedM (binary_inverse)</h4>
+ 本练习是前一个关于二进制数的练习的延续。你需要你在其中的定义和定理来完成这个；
+    请将它们复制到本文件中让它自包含以便评分。
+    (a) 首先，写一个将自然数转换为二进制数的的函数。然后证明对于所有自然数，
+        用此函数将其转换为二进制数后，再转换回自然数会得到和原来一样的自然数。
+    (b) 你也许会自然而然地想到，将一个二进制数转换为自然数再转换为二进制数之后
+        应该得到与原二进制数相同的结果。然而，这并不是真的！解释问题出在哪。
+    (c) 定义一个「直接的」规范化函数——即，一个从二进制数到二进制数的函数
+        <span class="inlinecode"><span class="id" type="var">normalize</span></span>，使得对于任何二进制数 b，将其转换为自然数后再转换二进制数
+        会产生 <span class="inlinecode">(<span class="id" type="var">normalize</span></span> <span class="inlinecode"><span class="id" type="var">b</span>)</span>。证明它。（警告：这部分有点棘手！）
+    再次说明，如果对此有帮助的话，请随意更改你之前的定义。 
 </div>
 <div class="code code-tight">
 

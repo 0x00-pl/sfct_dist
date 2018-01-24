@@ -118,7 +118,7 @@ The evaluators we have seen so far (for <span class="inlinecode"><span class="id
 </div>
 
 <div class="doc">
-<a name="lab490"></a><h1 class="section">A Toy Language</h1>
+<a name="lab491"></a><h1 class="section">A Toy Language</h1>
 
 <div class="paragraph"> </div>
 
@@ -325,7 +325,7 @@ Things to notice:
 </div>
 
 <div class="doc">
-<a name="lab491"></a><h4 class="section">Exercise: 1 star (test_step_2)</h4>
+<a name="lab492"></a><h4 class="section">Exercise: 1 star (test_step_2)</h4>
  Right-hand sides of sums can take a step only when the
     left-hand side is finished: if <span class="inlinecode"><span class="id" type="var">t<sub>2</sub></span></span> can take a step to <span class="inlinecode"><span class="id" type="var">t<sub>2</sub>'</span></span>,
     then <span class="inlinecode"><span class="id" type="var">P</span></span> <span class="inlinecode">(<span class="id" type="var">C</span></span> <span class="inlinecode"><span class="id" type="var">n</span>)</span> <span class="inlinecode"><span class="id" type="var">t<sub>2</sub></span></span> steps to <span class="inlinecode"><span class="id" type="var">P</span></span> <span class="inlinecode">(<span class="id" type="var">C</span></span> <span class="inlinecode"><span class="id" type="var">n</span>)</span>
@@ -358,7 +358,7 @@ Things to notice:
 </div>
 
 <div class="doc">
-<a name="lab492"></a><h1 class="section">Relations</h1>
+<a name="lab493"></a><h1 class="section">Relations</h1>
 
 <div class="paragraph"> </div>
 
@@ -552,7 +552,7 @@ Let's see how a proof of the previous theorem can be simplified
 </div>
 
 <div class="doc">
-<a name="lab493"></a><h2 class="section">Values</h2>
+<a name="lab494"></a><h2 class="section">Values</h2>
 
 <div class="paragraph"> </div>
 
@@ -704,7 +704,7 @@ Having introduced the idea of values, we can use it in the
 </div>
 
 <div class="doc">
-<a name="lab494"></a><h4 class="section">Exercise: 3 stars, recommended (redo_determinism)</h4>
+<a name="lab495"></a><h4 class="section">Exercise: 3 stars, recommended (redo_determinism)</h4>
  As a sanity check on this change, let's re-verify determinism.
 
 <div class="paragraph"> </div>
@@ -764,7 +764,7 @@ Having introduced the idea of values, we can use it in the
 <span class="proofbox">&#9744;</span> 
 
 <div class="doc">
-<a name="lab495"></a><h2 class="section">Strong Progress and Normal Forms</h2>
+<a name="lab496"></a><h2 class="section">Strong Progress and Normal Forms</h2>
 
 <div class="paragraph"> </div>
 
@@ -940,7 +940,7 @@ Why is this interesting?
     written the definitions so that they would <i>not</i> coincide. 
 <div class="paragraph"> </div>
 
-<a name="lab496"></a><h4 class="section">Exercise: 3 stars, optional (value_not_same_as_normal_form1)</h4>
+<a name="lab497"></a><h4 class="section">Exercise: 3 stars, optional (value_not_same_as_normal_form1)</h4>
  We might, for example, mistakenly define <span class="inlinecode"><span class="id" type="var">value</span></span> so that it
     includes some terms that are not finished reducing.  (Even if you don't work this exercise and the following ones
     in Coq, make sure you can think of an example of such a term.) 
@@ -976,7 +976,7 @@ Why is this interesting?
 <span class="proofbox">&#9744;</span> 
 
 <div class="doc">
-<a name="lab497"></a><h4 class="section">Exercise: 2 stars, optional (value_not_same_as_normal_form2)</h4>
+<a name="lab498"></a><h4 class="section">Exercise: 2 stars, optional (value_not_same_as_normal_form2)</h4>
  Alternatively, we might mistakenly define <span class="inlinecode"><span class="id" type="var">step</span></span> so that it
     permits something designated as a value to reduce further. 
 </div>
@@ -1015,7 +1015,7 @@ Why is this interesting?
 <div class="doc less-space">
 <div class="paragraph"> </div>
 
-<a name="lab498"></a><h4 class="section">Exercise: 3 stars, optional (value_not_same_as_normal_form3)</h4>
+<a name="lab499"></a><h4 class="section">Exercise: 3 stars, optional (value_not_same_as_normal_form3)</h4>
  Finally, we might define <span class="inlinecode"><span class="id" type="var">value</span></span> and <span class="inlinecode"><span class="id" type="var">step</span></span> so that there is some
     term that is not a value but that cannot take a step in the <span class="inlinecode"><span class="id" type="var">step</span></span>
     relation.  Such terms are said to be <i>stuck</i>. In this case this is
@@ -1056,7 +1056,7 @@ Why is this interesting?
 <span class="proofbox">&#9744;</span> 
 
 <div class="doc">
-<a name="lab499"></a><h3 class="section">Additional Exercises</h3>
+<a name="lab500"></a><h3 class="section">Additional Exercises</h3>
 
 </div>
 <div class="code code-space">
@@ -1094,7 +1094,7 @@ Here is another very simple language whose terms, instead of being
 </div>
 
 <div class="doc">
-<a name="lab500"></a><h4 class="section">Exercise: 1 starM (smallstep_bools)</h4>
+<a name="lab501"></a><h4 class="section">Exercise: 1 starM (smallstep_bools)</h4>
  Which of the following propositions are provable?  (This is just a
     thought exercise, but for an extra challenge feel free to prove
     your answers in Coq.) 
@@ -1130,7 +1130,7 @@ Here is another very simple language whose terms, instead of being
 <div class="doc less-space">
 <div class="paragraph"> </div>
 
-<a name="lab501"></a><h4 class="section">Exercise: 3 stars, optional (progress_bool)</h4>
+<a name="lab502"></a><h4 class="section">Exercise: 3 stars, optional (progress_bool)</h4>
  Just as we proved a progress theorem for plus expressions, we can
     do so for boolean expressions, as well. 
 </div>
@@ -1147,7 +1147,7 @@ Here is another very simple language whose terms, instead of being
 <div class="doc less-space">
 <div class="paragraph"> </div>
 
-<a name="lab502"></a><h4 class="section">Exercise: 2 stars, optional (step_deterministic)</h4>
+<a name="lab503"></a><h4 class="section">Exercise: 2 stars, optional (step_deterministic)</h4>
 
 </div>
 <div class="code code-space">
@@ -1165,7 +1165,7 @@ Here is another very simple language whose terms, instead of being
 </div>
 
 <div class="doc">
-<a name="lab503"></a><h4 class="section">Exercise: 2 stars (smallstep_bool_shortcut)</h4>
+<a name="lab504"></a><h4 class="section">Exercise: 2 stars (smallstep_bool_shortcut)</h4>
  Suppose we want to add a "short circuit" to the step relation for
     boolean expressions, so that it can recognize when the <span class="inlinecode"><span class="id" type="keyword">then</span></span> and
     <span class="inlinecode"><span class="id" type="keyword">else</span></span> branches of a conditional are the same value (either
@@ -1224,7 +1224,7 @@ Here is another very simple language whose terms, instead of being
 <div class="doc less-space">
 <div class="paragraph"> </div>
 
-<a name="lab504"></a><h4 class="section">Exercise: 3 stars, optional (properties_of_altered_step)</h4>
+<a name="lab505"></a><h4 class="section">Exercise: 3 stars, optional (properties_of_altered_step)</h4>
  It can be shown that the determinism and strong progress theorems
     for the step relation in the lecture notes also hold for the
     definition of step given above.  After we add the clause
@@ -1297,7 +1297,7 @@ Here is another very simple language whose terms, instead of being
 </div>
 
 <div class="doc">
-<a name="lab505"></a><h1 class="section">Multi-Step Reduction</h1>
+<a name="lab506"></a><h1 class="section">Multi-Step Reduction</h1>
 
 <div class="paragraph"> </div>
 
@@ -1460,7 +1460,7 @@ In particular, for the <span class="inlinecode"><span class="id" type="var">mult
 </div>
 
 <div class="doc">
-<a name="lab506"></a><h2 class="section">Examples</h2>
+<a name="lab507"></a><h2 class="section">Examples</h2>
 
 <div class="paragraph"> </div>
 
@@ -1511,7 +1511,7 @@ Here's an alternate proof of the same fact that uses <span class="inlinecode"><s
 </div>
 
 <div class="doc">
-<a name="lab507"></a><h4 class="section">Exercise: 1 star, optional (test_multistep_2)</h4>
+<a name="lab508"></a><h4 class="section">Exercise: 1 star, optional (test_multistep_2)</h4>
 
 </div>
 <div class="code code-space">
@@ -1525,7 +1525,7 @@ Here's an alternate proof of the same fact that uses <span class="inlinecode"><s
 <div class="doc less-space">
 <div class="paragraph"> </div>
 
-<a name="lab508"></a><h4 class="section">Exercise: 1 star, optional (test_multistep_3)</h4>
+<a name="lab509"></a><h4 class="section">Exercise: 1 star, optional (test_multistep_3)</h4>
 
 </div>
 <div class="code code-space">
@@ -1541,7 +1541,7 @@ Here's an alternate proof of the same fact that uses <span class="inlinecode"><s
 <div class="doc less-space">
 <div class="paragraph"> </div>
 
-<a name="lab509"></a><h4 class="section">Exercise: 2 stars (test_multistep_4)</h4>
+<a name="lab510"></a><h4 class="section">Exercise: 2 stars (test_multistep_4)</h4>
 
 </div>
 <div class="code code-space">
@@ -1562,7 +1562,7 @@ Here's an alternate proof of the same fact that uses <span class="inlinecode"><s
 <span class="proofbox">&#9744;</span> 
 
 <div class="doc">
-<a name="lab510"></a><h2 class="section">Normal Forms Again</h2>
+<a name="lab511"></a><h2 class="section">Normal Forms Again</h2>
 
 <div class="paragraph"> </div>
 
@@ -1586,7 +1586,7 @@ We have already seen that, for our language, single-step reduction is
     normal form of <span class="inlinecode"><span class="id" type="var">t</span></span>." 
 <div class="paragraph"> </div>
 
-<a name="lab511"></a><h4 class="section">Exercise: 3 stars, optional (normal_forms_unique)</h4>
+<a name="lab512"></a><h4 class="section">Exercise: 3 stars, optional (normal_forms_unique)</h4>
 
 </div>
 <div class="code code-space">
@@ -1651,7 +1651,7 @@ To prove that <span class="inlinecode"><span class="id" type="var">step</span></
 </div>
 
 <div class="doc">
-<a name="lab512"></a><h4 class="section">Exercise: 2 stars (multistep_congr_2)</h4>
+<a name="lab513"></a><h4 class="section">Exercise: 2 stars (multistep_congr_2)</h4>
 
 </div>
 <div class="code code-space">
@@ -1752,7 +1752,7 @@ To prove that <span class="inlinecode"><span class="id" type="var">step</span></
 </div>
 
 <div class="doc">
-<a name="lab513"></a><h2 class="section">Equivalence of Big-Step and Small-Step</h2>
+<a name="lab514"></a><h2 class="section">Equivalence of Big-Step and Small-Step</h2>
 
 <div class="paragraph"> </div>
 
@@ -1763,7 +1763,7 @@ To prove that <span class="inlinecode"><span class="id" type="var">step</span></
     details are left as an exercise. 
 <div class="paragraph"> </div>
 
-<a name="lab514"></a><h4 class="section">Exercise: 3 stars (eval__multistep)</h4>
+<a name="lab515"></a><h4 class="section">Exercise: 3 stars (eval__multistep)</h4>
 
 </div>
 <div class="code code-space">
@@ -1830,7 +1830,7 @@ The key ideas in the proof can be seen in the following picture:
 <div class="doc less-space">
 <div class="paragraph"> </div>
 
-<a name="lab515"></a><h4 class="section">Exercise: 3 stars, advanced (eval__multistep_inf)</h4>
+<a name="lab516"></a><h4 class="section">Exercise: 3 stars, advanced (eval__multistep_inf)</h4>
  Write a detailed informal version of the proof of <span class="inlinecode"><span class="id" type="var">eval__multistep</span></span>.
 
 <div class="paragraph"> </div>
@@ -1844,7 +1844,7 @@ The key ideas in the proof can be seen in the following picture:
     relation between single-step reduction and big-step evaluation. 
 <div class="paragraph"> </div>
 
-<a name="lab516"></a><h4 class="section">Exercise: 3 stars (step__eval)</h4>
+<a name="lab517"></a><h4 class="section">Exercise: 3 stars (step__eval)</h4>
 
 </div>
 <div class="code code-space">
@@ -1874,7 +1874,7 @@ The key ideas in the proof can be seen in the following picture:
     work on the proof.  
 <div class="paragraph"> </div>
 
-<a name="lab517"></a><h4 class="section">Exercise: 3 stars (multistep__eval)</h4>
+<a name="lab518"></a><h4 class="section">Exercise: 3 stars (multistep__eval)</h4>
 
 </div>
 <div class="code code-space">
@@ -1887,11 +1887,11 @@ The key ideas in the proof can be seen in the following picture:
 <span class="proofbox">&#9744;</span> 
 
 <div class="doc">
-<a name="lab518"></a><h2 class="section">Additional Exercises</h2>
+<a name="lab519"></a><h2 class="section">Additional Exercises</h2>
 
 <div class="paragraph"> </div>
 
-<a name="lab519"></a><h4 class="section">Exercise: 3 stars, optional (interp_tm)</h4>
+<a name="lab520"></a><h4 class="section">Exercise: 3 stars, optional (interp_tm)</h4>
  Remember that we also defined big-step evaluation of terms as a
     function <span class="inlinecode"><span class="id" type="var">evalF</span></span>.  Prove that it is equivalent to the existing
     semantics.  (Hint: we just proved that <span class="inlinecode"><span class="id" type="var">eval</span></span> and <span class="inlinecode"><span class="id" type="var">multistep</span></span> are
@@ -1911,7 +1911,7 @@ The key ideas in the proof can be seen in the following picture:
 <div class="doc less-space">
 <div class="paragraph"> </div>
 
-<a name="lab520"></a><h4 class="section">Exercise: 4 starsM (combined_properties)</h4>
+<a name="lab521"></a><h4 class="section">Exercise: 4 starsM (combined_properties)</h4>
  We've considered arithmetic and conditional expressions
     separately.  This exercise explores how the two interact. 
 </div>
@@ -1980,7 +1980,7 @@ Earlier, we separately proved for both plus- and if-expressions...
 <span class="proofbox">&#9744;</span> 
 
 <div class="doc">
-<a name="lab521"></a><h1 class="section">Small-Step Imp</h1>
+<a name="lab522"></a><h1 class="section">Small-Step Imp</h1>
 
 <div class="paragraph"> </div>
 
@@ -2166,7 +2166,7 @@ The semantics of commands is the interesting part.  We need two
 </div>
 
 <div class="doc">
-<a name="lab522"></a><h1 class="section">Concurrent Imp</h1>
+<a name="lab523"></a><h1 class="section">Concurrent Imp</h1>
 
 <div class="paragraph"> </div>
 
@@ -2348,7 +2348,7 @@ It can also terminate with <span class="inlinecode"><span class="id" type="var">
 More generally... 
 <div class="paragraph"> </div>
 
-<a name="lab523"></a><h4 class="section">Exercise: 3 stars, optional (par_body_n__Sn)</h4>
+<a name="lab524"></a><h4 class="section">Exercise: 3 stars, optional (par_body_n__Sn)</h4>
 
 </div>
 <div class="code code-space">
@@ -2363,7 +2363,7 @@ More generally...
 <div class="doc less-space">
 <div class="paragraph"> </div>
 
-<a name="lab524"></a><h4 class="section">Exercise: 3 stars, optional (par_body_n)</h4>
+<a name="lab525"></a><h4 class="section">Exercise: 3 stars, optional (par_body_n)</h4>
 
 </div>
 <div class="code code-space">
@@ -2417,7 +2417,7 @@ More generally...
 </div>
 
 <div class="doc">
-<a name="lab525"></a><h1 class="section">A Small-Step Stack Machine</h1>
+<a name="lab526"></a><h1 class="section">A Small-Step Stack Machine</h1>
 
 <div class="paragraph"> </div>
 
@@ -2455,7 +2455,7 @@ More generally...
 </div>
 
 <div class="doc">
-<a name="lab526"></a><h4 class="section">Exercise: 3 stars, advanced (compiler_is_correct)</h4>
+<a name="lab527"></a><h4 class="section">Exercise: 3 stars, advanced (compiler_is_correct)</h4>
  Remember the definition of <span class="inlinecode"><span class="id" type="var">compile</span></span> for <span class="inlinecode"><span class="id" type="var">aexp</span></span> given in the
     <a href="Imp.html"><span class="inlineref">Imp</span></a> chapter. We want now to prove <span class="inlinecode"><span class="id" type="var">compile</span></span> correct with respect
     to the stack machine.

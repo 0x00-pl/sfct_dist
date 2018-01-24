@@ -767,7 +767,7 @@ Definition bar x :=
 Fact silly_fact_2_FAILED : forall m, bar m + 1 = bar (m + 1) + 1.
 Proof.
   intros m.
-  simpl. (* Does nothing! *)
+  simpl. (* 不起作用！ *)
 Abort.
 
 (** The reason that [simpl] doesn't make progress here is that it
@@ -933,7 +933,7 @@ Proof.
 (** [] *)
 
 (* ################################################################# *)
-(** * Review *)
+(** * 复习 *)
 
 (** We've now seen many of Coq's most fundamental tactics.  We'll
     introduce a few more in the coming chapters, and later on we'll

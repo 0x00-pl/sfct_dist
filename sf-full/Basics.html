@@ -273,7 +273,7 @@
 <div class="doc">
 <i>'关于记法的说明'</i> ：在 <span class="inlinecode">.<span class="id" type="var">v</span></span> 文件中，我们用方括号来界定注释中的 Coq 代码片段；
     这种约定也在 <span class="inlinecode"><span class="id" type="var">coqdoc</span></span> 文档工具中使用，它能让代码与周围的文本从视觉上区分开来。
-    在 HTML 版的文件中，这部分文本会以 <span class="inlinecode"></span> <span class="inlinecode">'"<span class="id" type="var">�</span>��<span class="id" type="var">�</span>��<span class="id" type="var">�</span>��<span class="id" type="var">�</span>��<span class="id" type="var">�</span>��"'</span> <span class="inlinecode"></span> 显示。
+    在 HTML 版的文件中，这部分文本会以 "不同的字体" 显示。
     特殊的短语 <span class="inlinecode"><span class="id" type="var">Admitted</span></span> 和 <span class="inlinecode"><span class="id" type="var">admit</span></span> 被用作不完整定义或证明的占位符，
     我们会在后续的例子中用它。通常，你的练习作业就是将 <span class="inlinecode"><span class="id" type="var">Admitted</span></span> 和 <span class="inlinecode"><span class="id" type="var">admit</span></span>
     替换为具体的定义和证明。 
@@ -509,7 +509,7 @@
 
 <div class="doc">
 以上这些都是作用于一个数上产生另一个数的，不过它们之间有个重要区别：
-    像 <span class="inlinecode"><span class="id" type="var">pred</span></span> 和 <span class="inlinecode"><span class="id" type="var">minustwo</span></span> 这样的函数带有 <i>计算规则_ —— 也就是说，
+    像 <span class="inlinecode"><span class="id" type="var">pred</span></span> 和 <span class="inlinecode"><span class="id" type="var">minustwo</span></span> 这样的函数带有 <i>'计算规则'</i> —— 也就是说，
     <span class="inlinecode"><span class="id" type="var">pred</span></span> 的定义表明 <span class="inlinecode"><span class="id" type="var">pred</span></span> <span class="inlinecode">2</span> 可被化简为 <span class="inlinecode">1</span> —— 然而 <span class="inlinecode"><span class="id" type="var">S</span></span> 的定义却没有
     附带这种计算行为。尽管它感觉像是个可以作用在一个参数上的函数，
     但却完全没有 <i>'执行'</i> 任何计算！它只是一种写下数字的方式。
@@ -1201,21 +1201,7 @@
 </div>
 
 <div class="doc">
-对于 Coq 中的每个记法符号，我们可以指定它的 <i>'优先级'</i> 和 <i>'结合性'</i> 。
-    优先级 <span class="inlinecode"><span class="id" type="var">n</span></span> 用 <span class="inlinecode"><span class="id" type="tactic">at</span></span> <span class="inlinecode"><span class="id" type="var">level</span></span> <span class="inlinecode"><span class="id" type="var">n</span></span> 来表示，这将有助于 Coq 分析复合表达式。
-    结合性的设置有助于消除有相同符号出现多次的表达式的歧义。比如，
-    上面这组对 <span class="inlinecode">+</span> 和 <span class="inlinecode">*</span> 的参数定义的表达式 <span class="inlinecode">1+2*3*4</span> 是 <span class="inlinecode">(1+((2*3)*4))</span> 的
-    简写。Coq 使用 0 到 100 的优先级等级，同时支持 <i>'左结合'</i> 、 <i>'右结合'</i> 和 <i>'不结合'</i> 
-    三种结合性。之后我们会看到更多与此相关的例子，比如在 <span class="inlinecode"><span class="id" type="var">�</span>��<span class="id" type="var">�</span>��</span> 一章。
-    每个记法符号还与<i>记法范围（notation scope）<i>相关。Coq 会尝试根据上下文来猜测
-    你所指的范围，因此当你写出 <span class="inlinecode"><span class="id" type="var">S</span>(0*0)</span> 时，它猜测是 <span class="inlinecode"><span class="id" type="var">nat_scope</span></span>；而当你
-    写出笛卡尔积（元组）类型 <span class="inlinecode"><span class="id" type="var">bool</span>*<span class="id" type="var">bool</span></span> 时，它猜测是 <span class="inlinecode"><span class="id" type="var">type_scope</span></span>。
-    有时你可能不得不用百分号记法写出 <span class="inlinecode">(<span class="id" type="var">x</span>*<span class="id" type="var">y</span>)%<span class="id" type="var">nat</span></span> 来帮助 Coq 确定范围，
-    另外，有时 Coq 对你的反馈中也包含 <span class="inlinecode">%<span class="id" type="var">nat</span></span> 用来指示记法所在的范围。
-    记法范围同样适用与数字表示（<span class="inlinecode">3</span>、<span class="inlinecode">4</span>、<span class="inlinecode">5</span> 等等），因此你有时候会看到
-    <span class="inlinecode">0%<span class="id" type="var">nat</span></span>，表示 <span class="inlinecode">0</span>（我们在本章中使用的自然数零 <span class="inlinecode">0</span>），而 <span class="inlinecode">0%<span class="id" type="var">Z</span></span> 表示整数零
-    （来自于标准库中的另一个部分）。
-    专业提示：Coq 的符号机制不是特别强大。别期望太多！ 
+对于 Coq 中的每个记法符号，我们可以指定它的 <i>'优先级'</i> 和 <i>'结合性'</i> 。    优先级 <span class="inlinecode"><span class="id" type="var">n</span></span> 用 <span class="inlinecode"><span class="id" type="tactic">at</span></span> <span class="inlinecode"><span class="id" type="var">level</span></span> <span class="inlinecode"><span class="id" type="var">n</span></span> 来表示，这将有助于 Coq 分析复合表达式。    结合性的设置有助于消除有相同符号出现多次的表达式的歧义。比如，    上面这组对 <span class="inlinecode">+</span> 和 <span class="inlinecode">*</span> 的参数定义的表达式 <span class="inlinecode">1+2*3*4</span> 是 <span class="inlinecode">(1+((2*3)*4))</span> 的    简写。Coq 使用 0 到 100 的优先级等级，同时支持 <i>'左结合'</i> 、 <i>'右结合'</i> 和 <i>'不结合'</i>     三种结合性。之后我们会看到更多与此相关的例子，比如在 <a href="Lists.html">"列表"(<span class="inlinecode"><span class="id" type="var">Lists</span></span>)</a> 一章。    每个记法符号还与 <i>'记法范围(notation scope)'</i> 相关。Coq 会尝试根据上下文来猜测    你所指的范围，因此当你写出 <span class="inlinecode"><span class="id" type="var">S</span>(0*0)</span> 时，它猜测是 <span class="inlinecode"><span class="id" type="var">nat_scope</span></span>；而当你    写出笛卡尔积（元组）类型 <span class="inlinecode"><span class="id" type="var">bool</span>*<span class="id" type="var">bool</span></span> 时，它猜测是 <span class="inlinecode"><span class="id" type="var">type_scope</span></span>。    有时你可能不得不用百分号记法写出 <span class="inlinecode">(<span class="id" type="var">x</span>*<span class="id" type="var">y</span>)%<span class="id" type="var">nat</span></span> 来帮助 Coq 确定范围，    另外，有时 Coq 对你的反馈中也包含 <span class="inlinecode">%<span class="id" type="var">nat</span></span> 用来指示记法所在的范围。    记法范围同样适用与数字表示（<span class="inlinecode">3</span>、<span class="inlinecode">4</span>、<span class="inlinecode">5</span> 等等），因此你有时候会看到    <span class="inlinecode">0%<span class="id" type="var">nat</span></span>，表示 <span class="inlinecode">0</span>（我们在本章中使用的自然数零 <span class="inlinecode">0</span>），而 <span class="inlinecode">0%<span class="id" type="var">Z</span></span> 表示整数零    （来自于标准库中的另一个部分）。    专业提示：Coq 的符号机制不是特别强大。别期望太多！ 
 </div>
 
 <div class="doc">
