@@ -791,7 +791,7 @@
     首先，我们使用了关键字 <span class="inlinecode"><span class="id" type="keyword">Theorem</span></span> 而非 <span class="inlinecode"><span class="id" type="keyword">Example</span></span>。这种差别纯粹是风格问题；
     在 Coq 中，关键字 <span class="inlinecode"><span class="id" type="keyword">Example</span></span> 和 <span class="inlinecode"><span class="id" type="keyword">Theorem</span></span>（以及其它一些，包括 <span class="inlinecode"><span class="id" type="keyword">Lemma</span></span>、<span class="inlinecode"><span class="id" type="keyword">Fact</span></span>
     和 <span class="inlinecode"><span class="id" type="keyword">Remark</span></span>）都表示完全一样的东西。
-    其次，我们增加了量词 <span class="inlinecode"><span style="font-family: arial;">&forall;</span></span> <span class="inlinecode"><span class="id" type="var">n</span>:<span class="id" type="var">nat</span></span>，因此我们的定理讨论了<i>所有的<i>自然数 <span class="inlinecode"><span class="id" type="var">n</span></span>。
+    其次，我们增加了量词 <span class="inlinecode"><span style="font-family: arial;">&forall;</span></span> <span class="inlinecode"><span class="id" type="var">n</span>:<span class="id" type="var">nat</span></span>，因此我们的定理讨论了 <i>'所有的'</i> 自然数 <span class="inlinecode"><span class="id" type="var">n</span></span>。
     为了证明这种形式的定理，我们需要<i>假定<i>存在一个任意自然数 <span class="inlinecode"><span class="id" type="var">n</span></span>，
     以此为依据进行推理。在证明中，这是用 <span class="inlinecode"><span class="id" type="tactic">intros</span></span> <span class="inlinecode"><span class="id" type="var">n</span></span> 来实现的，
     它将量词从证明目标移动到当前假设的「上下文」中。达到的效果就是，

@@ -4,7 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <link href="common/css/sf.css" rel="stylesheet" type="text/css"/>
-<title>Lists: Working with Structured Data</title>
+<title>Lists: 结构化的数据</title>
 <link href="common/jquery-ui/jquery-ui.css" rel="stylesheet">
 <link href="common/css/logical_foundations.css" rel="stylesheet" type="text/css"/>
 <script src="common/jquery-ui/external/jquery/jquery.js"></script>
@@ -27,7 +27,7 @@
 
 <div id="main">
 
-<h1 class="libtitle">Lists<span class="subtitle">Working with Structured Data</span></h1>
+<h1 class="libtitle">Lists<span class="subtitle">结构化的数据</span></h1>
 
 
 <div class="code code-tight">
@@ -38,13 +38,11 @@
 </div>
 
 <div class="doc">
-<a name="lab60"></a><h1 class="section">Pairs of Numbers</h1>
+<a name="lab60"></a><h1 class="section">二元组</h1>
 
 <div class="paragraph"> </div>
 
- In an <span class="inlinecode"><span class="id" type="keyword">Inductive</span></span> type definition, each constructor can take
-    any number of arguments &mdash; none (as with <span class="inlinecode"><span class="id" type="var">true</span></span> and <span class="inlinecode"><span class="id" type="var">O</span></span>), one (as
-    with <span class="inlinecode"><span class="id" type="var">S</span></span>), or more than one, as here: 
+ 在归纳类型定义中，每个构造器（Constructor）可以有任意多个参数——可以没有（就像true和O），可以有一个（就像S），也可以更多，就像接下来那个定义：  这是一个只有一个构造器的<span class="inlinecode"><span class="id" type="keyword">Inductive</span></span> 
 </div>
 <div class="code code-tight">
 
@@ -54,9 +52,7 @@
 </div>
 
 <div class="doc">
-This declaration can be read: "There is just one way to
-    construct a pair of numbers: by applying the constructor <span class="inlinecode"><span class="id" type="var">pair</span></span> to
-    two arguments of type <span class="inlinecode"><span class="id" type="var">nat</span></span>." 
+这个定义可以被理解作："只有一种方式来构造一个二元组：通过把pair这个构造器应用到两个nat类型的参数上" 
 </div>
 <div class="code code-tight">
 
@@ -65,9 +61,8 @@ This declaration can be read: "There is just one way to
 </div>
 
 <div class="doc">
-Here are two simple functions for extracting the first and
-    second components of a pair.  The definitions also illustrate how
-    to do pattern matching on two-argument constructors. 
+下面是两个简单的函数定义，这两个函数分别从一个二元组中抽取第一个和第二个分量。
+          （这个定义同时也展示了如何对一个两个参数的构造器进行模式匹配) 
 </div>
 <div class="code code-tight">
 
@@ -85,10 +80,8 @@ Here are two simple functions for extracting the first and
 </div>
 
 <div class="doc">
-Since pairs are used quite a bit, it is nice to be able to
-    write them with the standard mathematical notation <span class="inlinecode">(<span class="id" type="var">x</span>,<span class="id" type="var">y</span>)</span> instead
-    of <span class="inlinecode"><span class="id" type="var">pair</span></span> <span class="inlinecode"><span class="id" type="var">x</span></span> <span class="inlinecode"><span class="id" type="var">y</span></span>.  We can tell Coq to allow this with a <span class="inlinecode"><span class="id" type="keyword">Notation</span></span>
-    declaration. 
+因为二元组经常被用到，所以如果能有数学记号 (x,y) 来代替 pair x y 是非常好的。
+     我们可以通过声明一个Notation让Coq接受这种记号。 
 </div>
 <div class="code code-tight">
 
@@ -97,11 +90,7 @@ Since pairs are used quite a bit, it is nice to be able to
 </div>
 
 <div class="doc">
-The new pair notation can be used both in expressions and in
-    pattern matches (indeed, we've actually seen this already in the
-    previous chapter, in the definition of the <span class="inlinecode"><span class="id" type="var">minus</span></span> function &mdash;
-    this works because the pair notation is also provided as part of
-    the standard library): 
+这个新的记号既能被用在表达式也能被用在模式匹配中。（实际上，在上一章中我们已经使用过了——这个记号在标准库中也已经被提供了) 
 </div>
 <div class="code code-tight">
 
@@ -122,13 +111,8 @@ The new pair notation can be used both in expressions and in
 </div>
 
 <div class="doc">
-Let's try to prove a few simple facts about pairs.
-
-<div class="paragraph"> </div>
-
-    If we state things in a particular (and slightly peculiar) way, we
-    can complete proofs with just reflexivity (and its built-in
-    simplification): 
+我们现在来证明一些有关二元组的简单的事实。如果我们以一种特定的（稍微有点古怪）的方式来
+ 书写我们的引理，仅仅通过 <span class="inlinecode"><span class="id" type="tactic">reflexivity</span></span>（还有它自带的简化）我们就能完成证明。 
 </div>
 <div class="code code-tight">
 
@@ -140,8 +124,7 @@ Let's try to prove a few simple facts about pairs.
 </div>
 
 <div class="doc">
-But <span class="inlinecode"><span class="id" type="tactic">reflexivity</span></span> is not enough if we state the lemma in a more
-    natural way: 
+注意，但如果我们用一种自然的方式来书写这条引理的话，仅仅使用<span class="inlinecode"><span class="id" type="tactic">reflexivity</span></span>来证明是远远不够的。 
 </div>
 <div class="code code-tight">
 
@@ -154,9 +137,9 @@ But <span class="inlinecode"><span class="id" type="tactic">reflexivity</span></
 </div>
 
 <div class="doc">
-We have to expose the structure of <span class="inlinecode"><span class="id" type="var">p</span></span> so that <span class="inlinecode"><span class="id" type="tactic">simpl</span></span> can
-    perform the pattern match in <span class="inlinecode"><span class="id" type="var">fst</span></span> and <span class="inlinecode"><span class="id" type="var">snd</span></span>.  We can do this with
-    <span class="inlinecode"><span class="id" type="tactic">destruct</span></span>. 
+我们必须要像Coq展示<span class="inlinecode"><span class="id" type="var">p</span></span>的具体结构，这样<span class="inlinecode"><span class="id" type="tactic">simpl</span></span>才能对<span class="inlinecode"><span class="id" type="var">fst</span></span>和<span class="inlinecode"><span class="id" type="var">snd</span></span>
+    做模式匹配。 通过destruct可以达到这个目的。需要注意的是，不像自然数，
+    destruct不会生成一个额外的子目标，因为一共只有一种方式可以构造二元组。 
 </div>
 <div class="code code-tight">
 
@@ -200,13 +183,12 @@ Notice that, unlike its behavior with <span class="inlinecode"><span class="id" 
 <span class="proofbox">&#9744;</span> 
 
 <div class="doc">
-<a name="lab63"></a><h1 class="section">Lists of Numbers</h1>
+<a name="lab63"></a><h1 class="section">数的列表</h1>
 
 <div class="paragraph"> </div>
 
- Generalizing the definition of pairs, we can describe the
-    type of <i>lists</i> of numbers like this: "A list is either the empty
-    list or else a pair of a number and another list." 
+ 通过稍稍推广一下我们对二元组的定义，我们像可以这样描述列表：
+    "一个列表要么是空的，要么就应该是一个由一个数和另一个列表组成的二元组"。 
 </div>
 <div class="code code-tight">
 
@@ -217,23 +199,14 @@ Notice that, unlike its behavior with <span class="inlinecode"><span class="id" 
 </div>
 
 <div class="doc">
-For example, here is a three-element list: 
+例如，这就是一个有三个元素的列表。 
 </div>
 <div class="code code-tight">
 
 <br/>
 <span class="id" type="keyword">Definition</span> <span class="id" type="var">mylist</span> := <span class="id" type="var">cons</span> 1 (<span class="id" type="var">cons</span> 2 (<span class="id" type="var">cons</span> 3 <span class="id" type="var">nil</span>)).<br/>
-</div>
-
-<div class="doc">
-As with pairs, it is more convenient to write lists in
-    familiar programming notation.  The following declarations
-    allow us to use <span class="inlinecode">::</span> as an infix <span class="inlinecode"><span class="id" type="var">cons</span></span> operator and square
-    brackets as an "outfix" notation for constructing lists. 
-</div>
-<div class="code code-tight">
-
-<br/>
+<span class="comment">(**就像二元组一样，用我们已经熟悉的编程的记号来写下一个列表会显得更为方便。<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;下面两个声明让我们可以用<span class="inlinecode">::</span>来作中缀cons操作符，用方括号来做<span class="inlinecode"><span class="id" type="var">mixfix</span></span>符号来构造列表&nbsp;*)</span><br/>
 <span class="id" type="keyword">Notation</span> "x :: l" := (<span class="id" type="var">cons</span> <span class="id" type="var">x</span> <span class="id" type="var">l</span>)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" type="tactic">at</span> <span class="id" type="var">level</span> 60, <span class="id" type="var">right</span> <span class="id" type="var">associativity</span>).<br/>
 <span class="id" type="keyword">Notation</span> "[ ]" := <span class="id" type="var">nil</span>.<br/>
@@ -241,12 +214,9 @@ As with pairs, it is more convenient to write lists in
 </div>
 
 <div class="doc">
-It is not necessary to understand the details of these
-    declarations, but in case you are interested, here is roughly
-    what's going on.  The <span class="inlinecode"><span class="id" type="var">right</span></span> <span class="inlinecode"><span class="id" type="var">associativity</span></span> annotation tells Coq
-    how to parenthesize expressions involving several uses of <span class="inlinecode">::</span> so
-    that, for example, the next three declarations mean exactly the
-    same thing: 
+完全理解这些声明是不必要的，但是假使你感兴趣的话，接下来我会粗略地介绍
+    到底发生了什么。 <span class="inlinecode"><span class="id" type="var">right</span></span> <span class="inlinecode"><span class="id" type="var">associativity</span></span> 告诉 Coq 当遇到多个符号时怎么给表达式加括号。
+    如此一来下面三个声明做的就是同一件事。 
 </div>
 <div class="code code-tight">
 
@@ -257,48 +227,22 @@ It is not necessary to understand the details of these
 </div>
 
 <div class="doc">
-The <span class="inlinecode"><span class="id" type="tactic">at</span></span> <span class="inlinecode"><span class="id" type="var">level</span></span> <span class="inlinecode">60</span> part tells Coq how to parenthesize
-    expressions that involve both <span class="inlinecode">::</span> and some other infix operator.
-    For example, since we defined <span class="inlinecode">+</span> as infix notation for the <span class="inlinecode"><span class="id" type="var">plus</span></span>
-    function at level 50,
-
-<div class="paragraph"> </div>
-
-<div class="code code-tight">
-&nbsp;&nbsp;<span class="id" type="keyword">Notation</span>&nbsp;"x + y"&nbsp;:=&nbsp;(<span class="id" type="var">plus</span>&nbsp;<span class="id" type="var">x</span>&nbsp;<span class="id" type="var">y</span>)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" type="tactic">at</span>&nbsp;<span class="id" type="var">level</span>&nbsp;50,&nbsp;<span class="id" type="var">left</span>&nbsp;<span class="id" type="var">associativity</span>).
-<div class="paragraph"> </div>
-
-</div>
-   the <span class="inlinecode">+</span> operator will bind tighter than <span class="inlinecode">::</span>, so <span class="inlinecode">1</span> <span class="inlinecode">+</span> <span class="inlinecode">2</span> <span class="inlinecode">::</span> <span class="inlinecode">[3]</span>
-   will be parsed, as we'd expect, as <span class="inlinecode">(1</span> <span class="inlinecode">+</span> <span class="inlinecode">2)</span> <span class="inlinecode">::</span> <span class="inlinecode">[3]</span> rather than <span class="inlinecode">1</span>
-   <span class="inlinecode">+</span> <span class="inlinecode">(2</span> <span class="inlinecode">::</span> <span class="inlinecode">[3])</span>.
-
-<div class="paragraph"> </div>
-
-   (Expressions like "<span class="inlinecode">1</span> <span class="inlinecode">+</span> <span class="inlinecode">2</span> <span class="inlinecode">::</span> <span class="inlinecode">[3]</span>" can be a little confusing when
-   you read them in a .v file.  The inner brackets, around 3, indicate
-   a list, but the outer brackets, which are invisible in the HTML
-   rendering, are there to instruct the "coqdoc" tool that the bracketed
-   part should be displayed as Coq code rather than running text.)
-
-<div class="paragraph"> </div>
-
-   The second and third <span class="inlinecode"><span class="id" type="keyword">Notation</span></span> declarations above introduce the
-   standard square-bracket notation for lists; the right-hand side of
-   the third one illustrates Coq's syntax for declaring n-ary
-   notations and translating them to nested sequences of binary
-   constructors. 
+<span class="inlinecode"><span class="id" type="tactic">at</span></span> <span class="inlinecode"><span class="id" type="var">level</span></span> <span class="inlinecode">60</span>这部分告诉Coq当遇到表达式还有其他中缀符号的时应该如何加括号。举个例子，
+    我们已经定义了 <span class="inlinecode">+</span> 作为 <span class="inlinecode"><span class="id" type="var">plus</span></span> 的中缀符号，它的level是50。
+<span class="inlinecode">[</span> <span class="inlinecode"><span class="id" type="keyword">Notation</span></span> <span class="inlinecode">"<span class="id" type="var">x</span></span> <span class="inlinecode">+</span> <span class="inlinecode"><span class="id" type="var">y</span>"</span> <span class="inlinecode">:=</span> <span class="inlinecode">(<span class="id" type="var">plus</span></span> <span class="inlinecode"><span class="id" type="var">x</span></span> <span class="inlinecode"><span class="id" type="var">y</span>)</span>  
+              <span class="inlinecode">(<span class="id" type="tactic">at</span></span> <span class="inlinecode"><span class="id" type="var">level</span></span> <span class="inlinecode">50,</span> <span class="inlinecode"><span class="id" type="var">left</span></span> <span class="inlinecode"><span class="id" type="var">associativity</span>).</span>
+<span class="inlinecode">]</span>
+    <span class="inlinecode">+</span> 将会比 <span class="inlinecode">::</span> 结合的更紧，所以 <span class="inlinecode">1</span> <span class="inlinecode">+</span> <span class="inlinecode">2</span> <span class="inlinecode">::</span> <span class="inlinecode">[3]</span> 会被解析成 <span class="inlinecode">(1</span> <span class="inlinecode">+</span> <span class="inlinecode">2)</span> <span class="inlinecode">::</span> <span class="inlinecode">[3]</span>，就和我们期望的一样，而不是 <span class="inlinecode">1</span> <span class="inlinecode">+</span> <span class="inlinecode">(2</span> <span class="inlinecode">::</span> <span class="inlinecode">[3])</span>。
+   (值得注意的是，当你在.v文件中看到"<span class="inlinecode">1</span> <span class="inlinecode">+</span> <span class="inlinecode">(2</span> <span class="inlinecode">::</span> <span class="inlinecode">[3])</span>"这样的记号会感到非常疑惑。最里面的那个框住3的方括号，指示了其是一个列表。但是外面那个方括号，在HTML中是看不到的，是用来告诉"coqdoc"这部分要被显示为代码而非普通的文本。)
+   上面第二和第三个<span class="inlinecode"><span class="id" type="keyword">Notation</span></span>申明引入了标准的方括号记号来表示列表；第三个声明的右边部分展示了在Coq中申明n元记号的语法以及如何把它们翻译成嵌套的二元构造器的序列。 
 <div class="paragraph"> </div>
 
 <a name="lab64"></a><h3 class="section">Repeat</h3>
 
 <div class="paragraph"> </div>
 
- A number of functions are useful for manipulating lists.
-    For example, the <span class="inlinecode"><span class="id" type="tactic">repeat</span></span> function takes a number <span class="inlinecode"><span class="id" type="var">n</span></span> and a
-    <span class="inlinecode"><span class="id" type="var">count</span></span> and returns a list of length <span class="inlinecode"><span class="id" type="var">count</span></span> where every element
-    is <span class="inlinecode"><span class="id" type="var">n</span></span>. 
+ 很多有用的函数可以用来操作列表。比如<span class="inlinecode"><span class="id" type="tactic">repeat</span></span>函数接受一个数<span class="inlinecode"><span class="id" type="var">n</span></span>和<span class="inlinecode"><span class="id" type="var">count</span></span>，
+    返回一个长为<span class="inlinecode"><span class="id" type="var">count</span></span>，每个元素都是<span class="inlinecode"><span class="id" type="var">n</span></span>的列表。 
 </div>
 <div class="code code-tight">
 
@@ -315,7 +259,7 @@ The <span class="inlinecode"><span class="id" type="tactic">at</span></span> <sp
 
 <div class="paragraph"> </div>
 
- The <span class="inlinecode"><span class="id" type="var">length</span></span> function calculates the length of a list. 
+ <span class="inlinecode"><span class="id" type="var">length</span></span>函数用来计算列表的长度。 
 </div>
 <div class="code code-tight">
 
@@ -332,7 +276,7 @@ The <span class="inlinecode"><span class="id" type="tactic">at</span></span> <sp
 
 <div class="paragraph"> </div>
 
- The <span class="inlinecode"><span class="id" type="var">app</span></span> function concatenates (appends) two lists. 
+ <span class="inlinecode"><span class="id" type="var">app</span></span>函数用来把两个列表联接起来。 
 </div>
 <div class="code code-tight">
 
@@ -345,8 +289,7 @@ The <span class="inlinecode"><span class="id" type="tactic">at</span></span> <sp
 </div>
 
 <div class="doc">
-Actually, <span class="inlinecode"><span class="id" type="var">app</span></span> will be used a lot in some parts of what
-    follows, so it is convenient to have an infix operator for it. 
+实际上，在接下来的很多地方都会用到<span class="inlinecode"><span class="id" type="var">app</span></span>，所以如果它有一个中缀操作符的话会很方便。 
 </div>
 <div class="code code-tight">
 
@@ -362,16 +305,14 @@ Actually, <span class="inlinecode"><span class="id" type="var">app</span></span>
 </div>
 
 <div class="doc">
-<a name="lab67"></a><h3 class="section">Head (with default) and Tail</h3>
+<a name="lab67"></a><h3 class="section">Head(默认)和Tail</h3>
 
 <div class="paragraph"> </div>
 
- Here are two smaller examples of programming with lists.
-    The <span class="inlinecode"><span class="id" type="var">hd</span></span> function returns the first element (the "head") of the
-    list, while <span class="inlinecode"><span class="id" type="var">tl</span></span> returns everything but the first
-    element (the "tail").
-    Of course, the empty list has no first element, so we
-    must pass a default value to be returned in that case.  
+ 我们来看两个小例子，这两个例子都是有关如何编写有关列表的程序。
+    <span class="inlinecode"><span class="id" type="var">hd</span></span>函数返回列表的第一个元素（"头元素"）。类似的，<span class="inlinecode"><span class="id" type="var">tl</span></span> 返回除了第一个元素以外
+    的所有元素。
+    当然，空列表没有第一个元素，所以我们必须传入一个默认值，让这个值成为这种情况下的返回值。  
 </div>
 <div class="code code-tight">
 
@@ -400,9 +341,8 @@ Actually, <span class="inlinecode"><span class="id" type="var">app</span></span>
 <div class="paragraph"> </div>
 
 <a name="lab69"></a><h4 class="section">Exercise: 2 stars, recommended (list_funs)</h4>
- Complete the definitions of <span class="inlinecode"><span class="id" type="var">nonzeros</span></span>, <span class="inlinecode"><span class="id" type="var">oddmembers</span></span> and
-    <span class="inlinecode"><span class="id" type="var">countoddmembers</span></span> below. Have a look at the tests to understand
-    what these functions should do. 
+ 完成以下<span class="inlinecode"><span class="id" type="var">nonzeros</span></span>，<span class="inlinecode"><span class="id" type="var">oddmembers</span></span>和<span class="inlinecode"><span class="id" type="var">countoddmembers</span></span>的定义，
+ 你可以查看测试函数来理解这些函数应该做什么 
 </div>
 <div class="code code-tight">
 
@@ -435,19 +375,10 @@ Actually, <span class="inlinecode"><span class="id" type="var">app</span></span>
 <div class="paragraph"> </div>
 
 <a name="lab70"></a><h4 class="section">Exercise: 3 stars, advanced (alternate)</h4>
- Complete the definition of <span class="inlinecode"><span class="id" type="var">alternate</span></span>, which "zips up" two lists
-    into one, alternating between elements taken from the first list
-    and elements from the second.  See the tests below for more
-    specific examples.
-
-<div class="paragraph"> </div>
-
-    Note: one natural and elegant way of writing <span class="inlinecode"><span class="id" type="var">alternate</span></span> will fail
-    to satisfy Coq's requirement that all <span class="inlinecode"><span class="id" type="keyword">Fixpoint</span></span> definitions be
-    "obviously terminating."  If you find yourself in this rut, look
-    for a slightly more verbose solution that considers elements of
-    both lists at the same time.  (One possible solution requires
-    defining a new kind of pairs, but this is not the only way.)  
+ 完成<span class="inlinecode"><span class="id" type="var">alternate</span></span>的定义，它把两个列表像拉链一样"拉"起来并成为一个列表，
+    从两个列表中交替地取出元素。查看后面的tests来获得更加详细的例子。
+    注意：一种自然的，优雅的方法来书写<span class="inlinecode"><span class="id" type="var">alternate</span></span>将无法满足Coq对于<span class="inlinecode"><span class="id" type="keyword">Fixpoint</span></span>必须
+    "显然会终止"的要求。如果你发现你被这种解法束缚住了，你可以寻找一种稍微冗长一些的解法：    同时考虑两个列表。（一个可行的解法需要定义新的列表，但这不是唯一的方法） 
 </div>
 <div class="code code-tight">
 
@@ -471,13 +402,12 @@ Actually, <span class="inlinecode"><span class="id" type="var">app</span></span>
 <span class="proofbox">&#9744;</span> 
 
 <div class="doc">
-<a name="lab71"></a><h3 class="section">Bags via Lists</h3>
+<a name="lab71"></a><h2 class="section">用列表实现Bags</h2>
 
 <div class="paragraph"> </div>
 
- A <span class="inlinecode"><span class="id" type="var">bag</span></span> (or <span class="inlinecode"><span class="id" type="var">multiset</span></span>) is like a set, except that each element
-    can appear multiple times rather than just once.  One possible
-    implementation is to represent a bag of numbers as a list. 
+ <span class="inlinecode"><span class="id" type="var">bag</span></span>（或者叫<span class="inlinecode"><span class="id" type="var">multiset</span></span>）就像一个集合，但是每个元素都能够出现若干次，而不是仅仅一次。
+   背包一种合理的实现就是把它作为一个列表。 
 </div>
 <div class="code code-tight">
 
@@ -498,7 +428,7 @@ Actually, <span class="inlinecode"><span class="id" type="var">app</span></span>
 </div>
 
 <div class="doc">
-All these proofs can be done just by <span class="inlinecode"><span class="id" type="tactic">reflexivity</span></span>. 
+这些命题都能通过<span class="inlinecode"><span class="id" type="tactic">reflexivity</span></span>来证明。 
 </div>
 <div class="code code-tight">
 
@@ -510,17 +440,11 @@ All these proofs can be done just by <span class="inlinecode"><span class="id" t
 </div>
 
 <div class="doc">
-Multiset <span class="inlinecode"><span class="id" type="var">sum</span></span> is similar to set <span class="inlinecode"><span class="id" type="var">union</span></span>: <span class="inlinecode"><span class="id" type="var">sum</span></span> <span class="inlinecode"><span class="id" type="var">a</span></span> <span class="inlinecode"><span class="id" type="var">b</span></span> contains
-    all the elements of <span class="inlinecode"><span class="id" type="var">a</span></span> and of <span class="inlinecode"><span class="id" type="var">b</span></span>.  (Mathematicians usually
-    define <span class="inlinecode"><span class="id" type="var">union</span></span> on multisets a little bit differently, which
-    is why we don't use that name for this operation.)
-    For <span class="inlinecode"><span class="id" type="var">sum</span></span> we're giving you a header that does not give explicit
-    names to the arguments.  Moreover, it uses the keyword
-    <span class="inlinecode"><span class="id" type="keyword">Definition</span></span> instead of <span class="inlinecode"><span class="id" type="keyword">Fixpoint</span></span>, so even if you had names for
-    the arguments, you wouldn't be able to process them recursively.
-    The point of stating the question this way is to encourage you to
-    think about whether <span class="inlinecode"><span class="id" type="var">sum</span></span> can be implemented in another way &mdash;
-    perhaps by using functions that have already been defined.  
+多重集的<span class="inlinecode"><span class="id" type="var">sum</span></span>非常像集合的<span class="inlinecode"><span class="id" type="var">union</span></span>:<span class="inlinecode"><span class="id" type="var">sum</span></span> <span class="inlinecode"><span class="id" type="var">a</span></span> <span class="inlinecode"><span class="id" type="var">b</span></span>包含了所有<span class="inlinecode"><span class="id" type="var">a</span></span>和<span class="inlinecode"><span class="id" type="var">b</span></span>的元素。（数学上对
+    多重集上的<span class="inlinecode"><span class="id" type="var">sum</span></span>的定义常常不大一样，这也是为什么我们没有使用这个名字。
+    对于<span class="inlinecode"><span class="id" type="var">sum</span></span>来说，我们给你的声明中并没有显式的给参数指派名字。除此以外，它使用<span class="inlinecode"><span class="id" type="keyword">Definition</span></span>
+    而不是<span class="inlinecode"><span class="id" type="var">Fixpont</span></span>，所以即使你给参数安排了名字，你也不能递归的处理他们。给出这个问题的意义
+    在于鼓励你思考<span class="inlinecode"><span class="id" type="var">sum</span></span>是否能用另一种方法实现——通过使用那些你已经定义过的函数。  
 </div>
 <div class="code code-tight">
 
@@ -548,11 +472,10 @@ Multiset <span class="inlinecode"><span class="id" type="var">sum</span></span> 
 <div class="paragraph"> </div>
 
 <a name="lab73"></a><h4 class="section">Exercise: 3 stars, optional (bag_more_functions)</h4>
- Here are some more bag functions for you to practice with. 
+ 你可以把下面这些和<span class="inlinecode"><span class="id" type="var">bag</span></span>有关的函数当做额外的练习 
 <div class="paragraph"> </div>
 
- When remove_one is applied to a bag without the number to remove,
-   it should return the same bag unchanged. 
+ 当<span class="inlinecode"><span class="id" type="var">remove_one</span></span>被应用到一个没有数可以移除的背包时，它应该返回原来的那个而不做任何改变。 
 </div>
 <div class="code code-tight">
 
@@ -594,12 +517,9 @@ Multiset <span class="inlinecode"><span class="id" type="var">sum</span></span> 
 <div class="paragraph"> </div>
 
 <a name="lab74"></a><h4 class="section">Exercise: 3 stars, recommendedM (bag_theorem)</h4>
- Write down an interesting theorem <span class="inlinecode"><span class="id" type="var">bag_theorem</span></span> about bags
-    involving the functions <span class="inlinecode"><span class="id" type="var">count</span></span> and <span class="inlinecode"><span class="id" type="var">add</span></span>, and prove it.  Note
-    that, since this problem is somewhat open-ended, it's possible
-    that you may come up with a theorem which is true, but whose proof
-    requires techniques you haven't learned yet.  Feel free to ask for
-    help if you get stuck! 
+ 写下一个你认为有趣的关于<span class="inlinecode"><span class="id" type="var">bags</span></span>的定理<span class="inlinecode"><span class="id" type="var">bag_theorem</span></span>，要涉及到<span class="inlinecode"><span class="id" type="var">count</span></span>和<span class="inlinecode"><span class="id" type="var">add</span></span>。
+  证明他。注意，这个问题是开放的，很有可能你会遇到你写下了正确的定理，
+  但是其证明涉及到了你现在还没有学到的技巧。如果你陷入麻烦了，欢迎提问。 
 </div>
 <div class="code code-tight">
 
@@ -615,14 +535,12 @@ Qed.<br/>
 <span class="proofbox">&#9744;</span> 
 
 <div class="doc">
-<a name="lab75"></a><h1 class="section">Reasoning About Lists</h1>
+<a name="lab75"></a><h1 class="section">有关列表的推理</h1>
 
 <div class="paragraph"> </div>
 
- As with numbers, simple facts about list-processing
-    functions can sometimes be proved entirely by simplification.  For
-    example, the simplification performed by <span class="inlinecode"><span class="id" type="tactic">reflexivity</span></span> is enough
-    for this theorem... 
+ 就像数字一样，一些简单的有关处理列表事实，有时也能仅仅通过化简来证明。
+  比方说，对于下面这个例子，<span class="inlinecode"><span class="id" type="tactic">reflexivity</span></span>中所做的简化就已经足够了…… 
 </div>
 <div class="code code-tight">
 
@@ -633,15 +551,10 @@ Qed.<br/>
 </div>
 
 <div class="doc">
-... because the <span class="inlinecode">[]</span> is substituted into the
-    "scrutinee" (the value being "scrutinized" by the match) in the
-    definition of <span class="inlinecode"><span class="id" type="var">app</span></span>, allowing the match itself to be
-    simplified. 
+……由于<span class="inlinecode">[]</span>被替换进了<span class="inlinecode"><span class="id" type="var">app</span></span>定义中的相应的match分支，这就使得整个<span class="inlinecode"><span class="id" type="keyword">match</span></span>得以被简化并证明目标 
 <div class="paragraph"> </div>
 
- Also, as with numbers, it is sometimes helpful to perform case
-    analysis on the possible shapes (empty or non-empty) of an unknown
-    list. 
+ 并且，和数一样，又是对一个列表做分类讨论（是否是空）是非常有用的。 
 </div>
 <div class="code code-tight">
 
@@ -657,75 +570,49 @@ Qed.<br/>
 </div>
 
 <div class="doc">
-Here, the <span class="inlinecode"><span class="id" type="var">nil</span></span> case works because we've chosen to define
-    <span class="inlinecode"><span class="id" type="var">tl</span></span> <span class="inlinecode"><span class="id" type="var">nil</span></span> <span class="inlinecode">=</span> <span class="inlinecode"><span class="id" type="var">nil</span></span>. Notice that the <span class="inlinecode"><span class="id" type="keyword">as</span></span> annotation on the <span class="inlinecode"><span class="id" type="tactic">destruct</span></span>
-    tactic here introduces two names, <span class="inlinecode"><span class="id" type="var">n</span></span> and <span class="inlinecode"><span class="id" type="var">l'</span></span>, corresponding to
-    the fact that the <span class="inlinecode"><span class="id" type="var">cons</span></span> constructor for lists takes two
-    arguments (the head and tail of the list it is constructing). 
+这里，如此解决<span class="inlinecode"><span class="id" type="var">nil</span></span>这种情况是因为我们定义了<span class="inlinecode"><span class="id" type="var">tl</span></span> <span class="inlinecode"><span class="id" type="var">nil</span></span> <span class="inlinecode">=</span> <span class="inlinecode"><span class="id" type="var">nil</span></span>。至于<span class="inlinecode"><span class="id" type="tactic">destruct</span></span>策略中的<span class="inlinecode"><span class="id" type="keyword">as</span></span>注解
+  引入的两个名字，<span class="inlinecode"><span class="id" type="var">n</span></span>和<span class="inlinecode"><span class="id" type="var">l'</span></span>， 分别对应了<span class="inlinecode"><span class="id" type="var">cons</span></span>构造子的两个参数（正在构造的列表的头和尾）。 
 <div class="paragraph"> </div>
 
- Usually, though, interesting theorems about lists require
-    induction for their proofs. 
+ 通常的情况是，就算你不相信的话也没办法，要证明关于列表的有趣的定理需要用到归纳法。 
 </div>
 
 <div class="doc">
-<a name="lab76"></a><h3 class="section">Micro-Sermon</h3>
+<a name="lab76"></a><h2 class="section">一点点说教</h2>
 
 <div class="paragraph"> </div>
 
- Simply reading example proof scripts will not get you very far!
-    It is important to work through the details of each one, using Coq
-    and thinking about what each step achieves.  Otherwise it is more
-    or less guaranteed that the exercises will make no sense when you
-    get to them.  'Nuff said. 
+ 只是阅读示例证明的话，你不会获得什么特别有用的东西。搞清楚每一个的细节是非常重要的
+ 使用Coq并思考有关每一步是如何得到的。否则练习题将一点用都没有。 
 </div>
 
 <div class="doc">
-<a name="lab77"></a><h2 class="section">Induction on Lists</h2>
+<a name="lab77"></a><h2 class="section">列表上的归纳</h2>
 
 <div class="paragraph"> </div>
 
- Proofs by induction over datatypes like <span class="inlinecode"><span class="id" type="var">natlist</span></span> are a
-    little less familiar than standard natural number induction, but
-    the idea is equally simple.  Each <span class="inlinecode"><span class="id" type="keyword">Inductive</span></span> declaration defines
-    a set of data values that can be built up using the declared
-    constructors: a boolean can be either <span class="inlinecode"><span class="id" type="var">true</span></span> or <span class="inlinecode"><span class="id" type="var">false</span></span>; a number
-    can be either <span class="inlinecode"><span class="id" type="var">O</span></span> or <span class="inlinecode"><span class="id" type="var">S</span></span> applied to another number; a list can be
-    either <span class="inlinecode"><span class="id" type="var">nil</span></span> or <span class="inlinecode"><span class="id" type="var">cons</span></span> applied to a number and a list.
-
-<div class="paragraph"> </div>
-
-    Moreover, applications of the declared constructors to one another
-    are the <i>only</i> possible shapes that elements of an inductively
-    defined set can have, and this fact directly gives rise to a way
-    of reasoning about inductively defined sets: a number is either
-    <span class="inlinecode"><span class="id" type="var">O</span></span> or else it is <span class="inlinecode"><span class="id" type="var">S</span></span> applied to some <i>smaller</i> number; a list is
-    either <span class="inlinecode"><span class="id" type="var">nil</span></span> or else it is <span class="inlinecode"><span class="id" type="var">cons</span></span> applied to some number and some
-    <i>smaller</i> list; etc. So, if we have in mind some proposition <span class="inlinecode"><span class="id" type="var">P</span></span>
-    that mentions a list <span class="inlinecode"><span class="id" type="var">l</span></span> and we want to argue that <span class="inlinecode"><span class="id" type="var">P</span></span> holds for
-    <i>all</i> lists, we can reason as follows:
+ 读者对在像<span class="inlinecode"><span class="id" type="var">natlist</span></span>这样的数据类型上通过归纳进行证明和对自然数归纳相比可能没有name熟悉，
+  但是基本的想法是一样简单的。每个<span class="inlinecode"><span class="id" type="keyword">Inductive</span></span>的声明定义了一集值，这些值可以用那些被声明
+  的构造器来构建：布尔值可以是<span class="inlinecode"><span class="id" type="var">true</span></span>或者是<span class="inlinecode"><span class="id" type="var">false</span></span>；自然数可以是<span class="inlinecode"><span class="id" type="var">O</span></span>或<span class="inlinecode"><span class="id" type="var">S</span></span>应用到另一个自然数上；
+  列表可以是<span class="inlinecode"><span class="id" type="var">nil</span></span>或者是<span class="inlinecode"><span class="id" type="var">cons</span></span>应用到一个自然数和另一个列表。
+  除此以外，把声明的构造子应用到别的项上面是的归纳定义的项的 <i>'唯一'</i> 可能的形状，并且这个是个事实
+  直接就给出了一种用来推理归纳定义集的方法：一个自然数要么是<span class="inlinecode"><span class="id" type="var">O</span></span>不然就是<span class="inlinecode"><span class="id" type="var">S</span></span>应用到某个 <i>'更小'</i> 的
+  自然数；一个列表要么是<span class="inlinecode"><span class="id" type="var">nil</span></span>不然就是<span class="inlinecode"><span class="id" type="var">cons</span></span>应用到某个自然数和某个 <i>'更小'</i> 的列表上；等等。所以，
+  如果我们有某个命题<span class="inlinecode"><span class="id" type="var">P</span></span>提到了列表<span class="inlinecode"><span class="id" type="var">l</span></span>并且我们想证明<span class="inlinecode"><span class="id" type="var">P</span></span>对 <i>'一切'</i> 列表都成立，我们可以像这样推理：
 
 <div class="paragraph"> </div>
 
 <ul class="doclist">
-<li> First, show that <span class="inlinecode"><span class="id" type="var">P</span></span> is true of <span class="inlinecode"><span class="id" type="var">l</span></span> when <span class="inlinecode"><span class="id" type="var">l</span></span> is <span class="inlinecode"><span class="id" type="var">nil</span></span>.
-
-<div class="paragraph"> </div>
-
+<li> 首先，证明 <span class="inlinecode"><span class="id" type="var">P</span></span> 当 <span class="inlinecode"><span class="id" type="var">l</span></span> 是 <span class="inlinecode"><span class="id" type="var">nil</span></span> 时对 <span class="inlinecode"><span class="id" type="var">l</span></span> 成立 .
 
 </li>
-<li> Then show that <span class="inlinecode"><span class="id" type="var">P</span></span> is true of <span class="inlinecode"><span class="id" type="var">l</span></span> when <span class="inlinecode"><span class="id" type="var">l</span></span> is <span class="inlinecode"><span class="id" type="var">cons</span></span> <span class="inlinecode"><span class="id" type="var">n</span></span> <span class="inlinecode"><span class="id" type="var">l'</span></span> for
-        some number <span class="inlinecode"><span class="id" type="var">n</span></span> and some smaller list <span class="inlinecode"><span class="id" type="var">l'</span></span>, assuming that <span class="inlinecode"><span class="id" type="var">P</span></span>
-        is true for <span class="inlinecode"><span class="id" type="var">l'</span></span>.
+<li> 然后证明 <span class="inlinecode"><span class="id" type="var">P</span></span> 当 <span class="inlinecode"><span class="id" type="var">l</span></span> 是 <span class="inlinecode"><span class="id" type="var">cons</span></span> <span class="inlinecode"><span class="id" type="var">n</span></span> <span class="inlinecode"><span class="id" type="var">l'</span></span>成立， 其中 <span class="inlinecode"><span class="id" type="var">n</span></span> 是某个自然数，<span class="inlinecode"><span class="id" type="var">l'</span></span> 是某个更小的列表
 
 </li>
 </ul>
-
-<div class="paragraph"> </div>
-
-    Since larger lists can only be built up from smaller ones,
-    eventually reaching <span class="inlinecode"><span class="id" type="var">nil</span></span>, these two arguments together establish
-    the truth of <span class="inlinecode"><span class="id" type="var">P</span></span> for all lists <span class="inlinecode"><span class="id" type="var">l</span></span>.  Here's a concrete example: 
+  ，假设 <span class="inlinecode"><span class="id" type="var">P</span></span> 对 <span class="inlinecode"><span class="id" type="var">l'</span></span> 成立.
+  由于较大的列表只可能通过较小的列表构建起来，最终这个较小的列表会变成<span class="inlinecode"><span class="id" type="var">nil</span></span>，这两点合一起就完成了
+  <span class="inlinecode"><span class="id" type="var">P</span></span> 对一切列表 <span class="inlinecode"><span class="id" type="var">l</span></span> 成立的证明。 下面是一个具体的例子。 
 </div>
 <div class="code code-tight">
 
@@ -741,80 +628,42 @@ Here, the <span class="inlinecode"><span class="id" type="var">nil</span></span>
 </div>
 
 <div class="doc">
-Notice that, as when doing induction on natural numbers, the
-    <span class="inlinecode"><span class="id" type="keyword">as</span>...</span> clause provided to the <span class="inlinecode"><span class="id" type="tactic">induction</span></span> tactic gives a name to
-    the induction hypothesis corresponding to the smaller list <span class="inlinecode"><span class="id" type="var">l<sub>1</sub>'</span></span>
-    in the <span class="inlinecode"><span class="id" type="var">cons</span></span> case. Once again, this Coq proof is not especially
-    illuminating as a static written document &mdash; it is easy to see
-    what's going on if you are reading the proof in an interactive Coq
-    session and you can see the current goal and context at each
-    point, but this state is not visible in the written-down parts of
-    the Coq proof.  So a natural-language proof &mdash; one written for
-    human readers &mdash; will need to include more explicit signposts; in
-    particular, it will help the reader stay oriented if we remind
-    them exactly what the induction hypothesis is in the second
-    case. 
+再一次强调，当你把Coq的证明当做静态的文档的话你可能不会有特别多的收获——如果你
+  通过一个交互式的Coq会话去阅读证明的话你可以看到当前的目标和上下文，但是这些状态
+  对于阅读写下来的脚本的你来说是不可见的。所以一份用自然语言写成的证明——写给人看的——会
+  需要包含更多地提示，比如提醒他们第二种情况下的归纳假设到底是什么，来帮助读者明白当前的情况。 
 <div class="paragraph"> </div>
 
  For comparison, here is an informal proof of the same theorem. 
 <div class="paragraph"> </div>
 
- <i>Theorem</i>: For all lists <span class="inlinecode"><span class="id" type="var">l<sub>1</sub></span></span>, <span class="inlinecode"><span class="id" type="var">l<sub>2</sub></span></span>, and <span class="inlinecode"><span class="id" type="var">l<sub>3</sub></span></span>,
-   <span class="inlinecode">(<span class="id" type="var">l<sub>1</sub></span></span> <span class="inlinecode">++</span> <span class="inlinecode"><span class="id" type="var">l<sub>2</sub></span>)</span> <span class="inlinecode">++</span> <span class="inlinecode"><span class="id" type="var">l<sub>3</sub></span></span> <span class="inlinecode">=</span> <span class="inlinecode"><span class="id" type="var">l<sub>1</sub></span></span> <span class="inlinecode">++</span> <span class="inlinecode">(<span class="id" type="var">l<sub>2</sub></span></span> <span class="inlinecode">++</span> <span class="inlinecode"><span class="id" type="var">l<sub>3</sub></span>)</span>.
-
-<div class="paragraph"> </div>
-
-   <i>Proof</i>: By induction on <span class="inlinecode"><span class="id" type="var">l<sub>1</sub></span></span>.
+ <i>'定理'</i> : 对所有的列表 <span class="inlinecode"><span class="id" type="var">l<sub>1</sub></span></span>, <span class="inlinecode"><span class="id" type="var">l<sub>2</sub></span></span>, 和 <span class="inlinecode"><span class="id" type="var">l<sub>3</sub></span></span>， 
+  <span class="inlinecode">(<span class="id" type="var">l<sub>1</sub></span></span> <span class="inlinecode">++</span> <span class="inlinecode"><span class="id" type="var">l<sub>2</sub></span>)</span> <span class="inlinecode">++</span> <span class="inlinecode"><span class="id" type="var">l<sub>3</sub></span></span> <span class="inlinecode">=</span> <span class="inlinecode"><span class="id" type="var">l<sub>1</sub></span></span> <span class="inlinecode">++</span> <span class="inlinecode">(<span class="id" type="var">l<sub>2</sub></span></span> <span class="inlinecode">++</span> <span class="inlinecode"><span class="id" type="var">l<sub>3</sub></span>)</span>。
+  <i>'证明'</i>: 通过对 <span class="inlinecode"><span class="id" type="var">l<sub>1</sub></span></span> 使用归纳法。
 
 <div class="paragraph"> </div>
 
 <ul class="doclist">
-<li> First, suppose <span class="inlinecode"><span class="id" type="var">l<sub>1</sub></span></span> <span class="inlinecode">=</span> <span class="inlinecode">[]</span>.  We must show
+<li> 首先, 假设 <span class="inlinecode"><span class="id" type="var">l<sub>1</sub></span></span> <span class="inlinecode">=</span> <span class="inlinecode">[]</span>。  我们要证明：
 
-<div class="paragraph"> </div>
-
-<div class="code code-tight">
-&nbsp;&nbsp;([]&nbsp;++&nbsp;<span class="id" type="var">l<sub>2</sub></span>)&nbsp;++&nbsp;<span class="id" type="var">l<sub>3</sub></span>&nbsp;=&nbsp;[]&nbsp;++&nbsp;(<span class="id" type="var">l<sub>2</sub></span>&nbsp;++&nbsp;<span class="id" type="var">l<sub>3</sub></span>),
-<div class="paragraph"> </div>
-
-</div>
-     which follows directly from the definition of <span class="inlinecode">++</span>.
-
-<div class="paragraph"> </div>
-
-
-</li>
-<li> Next, suppose <span class="inlinecode"><span class="id" type="var">l<sub>1</sub></span></span> <span class="inlinecode">=</span> <span class="inlinecode"><span class="id" type="var">n</span>::<span class="id" type="var">l<sub>1</sub>'</span></span>, with
-
-<div class="paragraph"> </div>
-
-<div class="code code-tight">
-&nbsp;&nbsp;(<span class="id" type="var">l<sub>1</sub>'</span>&nbsp;++&nbsp;<span class="id" type="var">l<sub>2</sub></span>)&nbsp;++&nbsp;<span class="id" type="var">l<sub>3</sub></span>&nbsp;=&nbsp;<span class="id" type="var">l<sub>1</sub>'</span>&nbsp;++&nbsp;(<span class="id" type="var">l<sub>2</sub></span>&nbsp;++&nbsp;<span class="id" type="var">l<sub>3</sub></span>)
-<div class="paragraph"> </div>
-
-</div>
-     (the induction hypothesis). We must show
-
-<div class="paragraph"> </div>
-
-<div class="code code-tight">
-&nbsp;&nbsp;((<span class="id" type="var">n</span>&nbsp;::&nbsp;<span class="id" type="var">l<sub>1</sub>'</span>)&nbsp;++&nbsp;<span class="id" type="var">l<sub>2</sub></span>)&nbsp;++&nbsp;<span class="id" type="var">l<sub>3</sub></span>&nbsp;=&nbsp;(<span class="id" type="var">n</span>&nbsp;::&nbsp;<span class="id" type="var">l<sub>1</sub>'</span>)&nbsp;++&nbsp;(<span class="id" type="var">l<sub>2</sub></span>&nbsp;++&nbsp;<span class="id" type="var">l<sub>3</sub></span>).
-<div class="paragraph"> </div>
-
-</div>
-     By the definition of <span class="inlinecode">++</span>, this follows from
-
-<div class="paragraph"> </div>
-
-<div class="code code-tight">
-&nbsp;&nbsp;<span class="id" type="var">n</span>&nbsp;::&nbsp;((<span class="id" type="var">l<sub>1</sub>'</span>&nbsp;++&nbsp;<span class="id" type="var">l<sub>2</sub></span>)&nbsp;++&nbsp;<span class="id" type="var">l<sub>3</sub></span>)&nbsp;=&nbsp;<span class="id" type="var">n</span>&nbsp;::&nbsp;(<span class="id" type="var">l<sub>1</sub>'</span>&nbsp;++&nbsp;(<span class="id" type="var">l<sub>2</sub></span>&nbsp;++&nbsp;<span class="id" type="var">l<sub>3</sub></span>)),
-<div class="paragraph"> </div>
-
-</div>
-     which is immediate from the induction hypothesis.  <span class="proofbox">&#9744;</span> 
 </li>
 </ul>
+  (<span class="proofbox">&#9744;</span> ++ l<sub>2</sub>) ++ l<sub>3</sub> = <span class="proofbox">&#9744;</span> ++ (l<sub>2</sub> ++ l<sub>3</sub>),
+  这可以通过展开 <span class="inlinecode">++</span> 的定义得到.
 
+<div class="paragraph"> </div>
+
+<ul class="doclist">
+<li> 然后, 假设 <span class="inlinecode"><span class="id" type="var">l<sub>1</sub></span></span> <span class="inlinecode">=</span> <span class="inlinecode"><span class="id" type="var">n</span>::<span class="id" type="var">l<sub>1</sub>'</span></span>， 有：
+
+</li>
+</ul>
+  (l<sub>1</sub>' ++ l<sub>2</sub>) ++ l<sub>3</sub> = l<sub>1</sub>' ++ (l<sub>2</sub> ++ l<sub>3</sub>)
+  (归纳假设)。 我们必须证明
+  ((n :: l<sub>1</sub>') ++ l<sub>2</sub>) ++ l<sub>3</sub> = (n :: l<sub>1</sub>') ++ 用来强调目的是一个不错 根据 <span class="inlinecode">++</span> 的定义, 上面就等价于：
+  n :: ((l<sub>1</sub>' ++ l<sub>2</sub>) ++ l<sub>3</sub>) = n :: (l<sub>1</sub>' ++ (l<sub>2</sub> ++ l<sub>3</sub>)),
+  这可以通过我们的归纳假设立马得到。  <span class="proofbox">&#9744;</span>
+  
 <div class="paragraph"> </div>
 
 <a name="lab78"></a><h3 class="section">Reversing a List</h3>
@@ -840,14 +689,14 @@ Notice that, as when doing induction on natural numbers, the
 </div>
 
 <div class="doc">
-<a name="lab79"></a><h3 class="section">Properties of <span class="inlinecode"><span class="id" type="var">rev</span></span></h3>
+<a name="lab79"></a><h3 class="section">有关反转的证明</h3>
 
 <div class="paragraph"> </div>
 
- Now let's prove some theorems about our newly defined <span class="inlinecode"><span class="id" type="var">rev</span></span>.
-    For something a bit more challenging than what we've seen, let's
-    prove that reversing a list does not change its length.  Our first
-    attempt gets stuck in the successor case... 
+ 现在我们用我们新定义的<span class="inlinecode"><span class="id" type="var">snoc</span></span>和<span class="inlinecode"><span class="id" type="var">rec</span></span>来证明一些列表的定理。
+  与我们目前已经见到过的归纳证明相比，手头这个是一个更具挑战性
+  的定理：就是反转一个列表并不会改变他的长度。当我们初次尝试时
+  我们发现我们卡在了后继这种情形上。 
 </div>
 <div class="code code-tight">
 
@@ -859,16 +708,13 @@ Notice that, as when doing induction on natural numbers, the
 &nbsp;&nbsp;- <span class="comment">(*&nbsp;l&nbsp;=&nbsp;<span class="inlinecode"></span>&nbsp;*)</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">reflexivity</span>.<br/>
 &nbsp;&nbsp;- <span class="comment">(*&nbsp;l&nbsp;=&nbsp;n&nbsp;::&nbsp;l'&nbsp;*)</span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">(*&nbsp;This&nbsp;is&nbsp;the&nbsp;tricky&nbsp;case.&nbsp;&nbsp;Let's&nbsp;begin&nbsp;as&nbsp;usual<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;by&nbsp;simplifying.&nbsp;*)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">(*&nbsp;这是一个比较棘手的情况。我们从普通的化简开始。&nbsp;*)</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">simpl</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">(*&nbsp;Now&nbsp;we&nbsp;seem&nbsp;to&nbsp;be&nbsp;stuck:&nbsp;the&nbsp;goal&nbsp;is&nbsp;an&nbsp;equality<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;involving&nbsp;<span class="inlinecode">++</span>,&nbsp;but&nbsp;we&nbsp;don't&nbsp;have&nbsp;any&nbsp;useful&nbsp;equations<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;in&nbsp;either&nbsp;the&nbsp;immediate&nbsp;context&nbsp;or&nbsp;in&nbsp;the&nbsp;global<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;environment!&nbsp;&nbsp;We&nbsp;can&nbsp;make&nbsp;a&nbsp;little&nbsp;progress&nbsp;by&nbsp;using<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;IH&nbsp;to&nbsp;rewrite&nbsp;the&nbsp;goal...&nbsp;*)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">(*&nbsp;现在我们好像卡在什么地方了：目标是要证明涉及<span class="inlinecode"><span class="id" type="var">snoc</span></span>的等式，<br/>
+&nbsp;&nbsp;&nbsp;但是我们在上下文和全局环境下并没有任何有关<span class="inlinecode"><span class="id" type="var">snoc</span></span>的等式！<br/>
+&nbsp;&nbsp;&nbsp;通过IH来重写目标，我们可以获得一点点进展……&nbsp;*)</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">rewrite</span> <span style="font-family: arial;">&larr;</span> <span class="id" type="var">IHl'</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">(*&nbsp;...&nbsp;but&nbsp;now&nbsp;we&nbsp;can't&nbsp;go&nbsp;any&nbsp;further.&nbsp;*)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">(*&nbsp;……但也仅此而已&nbsp;*)</span><br/>
 <span class="id" type="keyword">Abort</span>.<br/>
 </div>
 
@@ -892,15 +738,12 @@ So let's take the equation relating <span class="inlinecode">++</span> and <span
 </div>
 
 <div class="doc">
-Note that, to make the lemma as general as possible, we
-    quantify over <i>all</i> <span class="inlinecode"><span class="id" type="var">natlist</span></span>s, not just those that result from an
-    application of <span class="inlinecode"><span class="id" type="var">rev</span></span>.  This should seem natural, because the truth
-    of the goal clearly doesn't depend on the list having been
-    reversed.  Moreover, it is easier to prove the more general
-    property. 
+注意我们要使得引理尽可能的 <i>'通用'</i> : 具体来说，我们要对 <i>'所有'</i> 的<span class="inlinecode"><span class="id" type="var">natlist</span></span>
+  进行全称量化，而不仅仅是那些由<span class="inlinecode"><span class="id" type="var">rev</span></span>的来的。这很自然，因为这个证明目标
+  显然不依赖于被反转的列表。除此之外，证明一个更普遍的性质更容易。 
 <div class="paragraph"> </div>
 
- Now we can complete the original proof. 
+ 现在我们可以完成最初的那个证明。 
 </div>
 <div class="code code-tight">
 
@@ -1040,12 +883,11 @@ For comparison, here are informal proofs of these two theorems:
 
 <div class="paragraph"> </div>
 
- The style of these proofs is rather longwinded and pedantic.
-    After the first few, we might find it easier to follow proofs that
-    give fewer details (which can easily work out in our own minds or
-    on scratch paper if necessary) and just highlight the non-obvious
-    steps.  In this more compressed style, the above proof might look
-    like this: 
+ 显然，这些证明的样式实在是冗长而迂腐。经历过最开始的那些以后，
+  我们可能觉得细节更少并且仅仅突出那些不十分显然的步骤的那些证明
+  更容易理解（因为我们能够的在脑子中思考他们，实在不行我们还
+  可以在纸上打草稿）。下面我们以一种更加紧凑的样式
+  呈现之前的证明： 
 <div class="paragraph"> </div>
 
  <i>Theorem</i>:
@@ -1060,11 +902,9 @@ For comparison, here are informal proofs of these two theorems:
      where <span class="inlinecode"><span class="id" type="var">l</span></span> <span class="inlinecode">=</span> <span class="inlinecode"><span class="id" type="var">n'</span>::<span class="id" type="var">l'</span></span>. <span class="proofbox">&#9744;</span> 
 <div class="paragraph"> </div>
 
- Which style is preferable in a given situation depends on
-    the sophistication of the expected audience and how similar the
-    proof at hand is to ones that the audience will already be
-    familiar with.  The more pedantic style is a good default for our
-    present purposes. 
+ 在特定情况下，我们更倾向于哪种样式取决于读者对于这个问题
+  了解程度以及当前证明和读者已经了解的那些有多相近。更加冗长
+  的版本用来强调证明目标是一个不错的方式。 
 </div>
 
 <div class="doc">
@@ -1072,18 +912,13 @@ For comparison, here are informal proofs of these two theorems:
 
 <div class="paragraph"> </div>
 
- We've seen that proofs can make use of other theorems we've
-    already proved, e.g., using <span class="inlinecode"><span class="id" type="tactic">rewrite</span></span>.  But in order to refer to a
-    theorem, we need to know its name!  Indeed, it is often hard even
-    to remember what theorems have been proven, much less what they
-    are called.
-
-<div class="paragraph"> </div>
-
-    Coq's <span class="inlinecode"><span class="id" type="var">Search</span></span> command is quite helpful with this.  Typing
-    <span class="inlinecode"><span class="id" type="var">Search</span></span> <span class="inlinecode"><span class="id" type="var">foo</span></span> will cause Coq to display a list of all theorems
-    involving <span class="inlinecode"><span class="id" type="var">foo</span></span>.  For example, try uncommenting the following line
-    to see a list of theorems that we have proved about <span class="inlinecode"><span class="id" type="var">rev</span></span>: 
+ 我们已经见到了很多证明需要使用之前已经证明过的结论，然后使用<span class="inlinecode"><span class="id" type="tactic">rewrite</span></span>来
+  改写当前目标，接下来我们会看到其他用来重用之前证明的定理的方式。但是
+  想要指定一个定理，我们需要知道其名字，记住所有定理的名字是很困难的！
+  记住哪些定理已经被证明过了甚至都是非常困难的，更不要说记住它们的名字了。
+  Coq的<span class="inlinecode"><span class="id" type="var">Search</span></span>命令在遇到这种情况的时候非常有用。用<span class="inlinecode"><span class="id" type="var">Search</span></span> <span class="inlinecode"><span class="id" type="var">foo</span></span>
+  会让Coq显示所有涉及到<span class="inlinecode"><span class="id" type="var">foo</span></span>的定理的列表。举个例子，去掉下面的注释你会看到
+  一串我们已经证明过的关于<span class="inlinecode"><span class="id" type="var">rev</span></span>的定理。 
 </div>
 <div class="code code-tight">
 
@@ -1142,7 +977,7 @@ There is a short solution to the next one.  If you find yourself
 </div>
 
 <div class="doc">
-An exercise about your implementation of <span class="inlinecode"><span class="id" type="var">nonzeros</span></span>: 
+关于你所实现的<span class="inlinecode"><span class="id" type="var">nonzeros</span></span>的习题 
 </div>
 <div class="code code-tight">
 
@@ -1241,16 +1076,10 @@ The following lemma about <span class="inlinecode"><span class="id" type="var">l
 <div class="paragraph"> </div>
 
 <a name="lab87"></a><h4 class="section">Exercise: 4 stars, advancedM (rev_injective)</h4>
- Prove that the <span class="inlinecode"><span class="id" type="var">rev</span></span> function is injective &mdash; that is,
+ 证明<span class="inlinecode"><span class="id" type="var">rev</span></span>是一个单射，也就是说，
+  forall (l<sub>1</sub> l<sub>2</sub> : natlist), rev l<sub>1</sub> = rev l<sub>2</sub> -&gt; l<sub>1</sub> = l<sub>2</sub>.
+  这个问题既可以用简单的方式解决也可以用繁琐的方式来解决。
 
-<div class="paragraph"> </div>
-
-<div class="code code-tight">
-&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-family: arial;">&forall;</span>(<span class="id" type="var">l<sub>1</sub></span>&nbsp;<span class="id" type="var">l<sub>2</sub></span>&nbsp;:&nbsp;<span class="id" type="var">natlist</span>),&nbsp;<span class="id" type="var">rev</span>&nbsp;<span class="id" type="var">l<sub>1</sub></span>&nbsp;=&nbsp;<span class="id" type="var">rev</span>&nbsp;<span class="id" type="var">l<sub>2</sub></span>&nbsp;<span style="font-family: arial;">&rarr;</span>&nbsp;<span class="id" type="var">l<sub>1</sub></span>&nbsp;=&nbsp;<span class="id" type="var">l<sub>2</sub></span>.
-<div class="paragraph"> </div>
-
-</div>
-(There is a hard way and an easy way to do this.) 
 </div>
 <div class="code code-tight">
 
@@ -1261,14 +1090,13 @@ The following lemma about <span class="inlinecode"><span class="id" type="var">l
 <span class="proofbox">&#9744;</span> 
 
 <div class="doc">
-<a name="lab88"></a><h1 class="section">Options</h1>
+<a name="lab88"></a><h1 class="section">可能的失败</h1>
 
 <div class="paragraph"> </div>
 
- Suppose we want to write a function that returns the <span class="inlinecode"><span class="id" type="var">n</span></span>th
-    element of some list.  If we give it type <span class="inlinecode"><span class="id" type="var">nat</span></span> <span class="inlinecode"><span style="font-family: arial;">&rarr;</span></span> <span class="inlinecode"><span class="id" type="var">natlist</span></span> <span class="inlinecode"><span style="font-family: arial;">&rarr;</span></span> <span class="inlinecode"><span class="id" type="var">nat</span></span>,
-    then we'll have to choose some number to return when the list is
-    too short... 
+ 另一方面，如果我们让它的类型成为<span class="inlinecode"><span class="id" type="var">nat</span></span> <span class="inlinecode"><span style="font-family: arial;">&rarr;</span></span> <span class="inlinecode"><span class="id" type="var">natlist</span></span> <span class="inlinecode"><span style="font-family: arial;">&rarr;</span></span> <span class="inlinecode"><span class="id" type="var">natoption</span></span>，
+  那么当列表不够长时，我们就能返回<span class="inlinecode"><span class="id" type="var">None</span></span>，当列表有足够的元素时返回<span class="inlinecode"><span class="id" type="var">Some</span></span> <span class="inlinecode"><span class="id" type="var">a</span></span>，
+  其中<span class="inlinecode"><span class="id" type="var">a</span></span>出现在列表的第<span class="inlinecode"><span class="id" type="var">n</span></span>位。 
 </div>
 <div class="code code-tight">
 
@@ -1402,7 +1230,7 @@ Coq's conditionals are exactly like those found in any other
 <div class="paragraph"> </div>
 
 <a name="lab90"></a><h4 class="section">Exercise: 1 star, optional (option_elim_hd)</h4>
- This exercise relates your new <span class="inlinecode"><span class="id" type="var">hd_error</span></span> to the old <span class="inlinecode"><span class="id" type="var">hd</span></span>. 
+ 这个练习帮助你在新的<span class="inlinecode"><span class="id" type="var">hd_opt</span></span>和旧的<span class="inlinecode"><span class="id" type="var">hd</span></span>之间建立联系 
 </div>
 <div class="code code-tight">
 
@@ -1421,14 +1249,13 @@ Coq's conditionals are exactly like those found in any other
 </div>
 
 <div class="doc">
-<a name="lab91"></a><h1 class="section">Partial Maps</h1>
+<a name="lab91"></a><h1 class="section">字典</h1>
 
 <div class="paragraph"> </div>
 
- As a final illustration of how data structures can be defined in
-    Coq, here is a simple <i>partial map</i> data type, analogous to the
-    map or dictionary data structures found in most programming
-    languages. 
+ 作为最后一个演示在Coq中如何定义基础的数据结构的例子，这里是
+  一个简单的<span class="inlinecode"><span class="id" type="var">dictionary</span></span>的声明，使用数作为关键字和值
+  （也就是说，一个字典代表了一个有限的从自然数到自然数的映射。） 
 <div class="paragraph"> </div>
 
  First, we define a new inductive datatype <span class="inlinecode"><span class="id" type="var">id</span></span> to serve as the
