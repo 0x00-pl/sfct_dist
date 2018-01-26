@@ -1,4 +1,4 @@
-DIGEST 1f7a854929a06db1ef62dd9c2c6c8ba4
+DIGEST 852f61628af0ee1584c0bf9bf79bd93e
 FTop.Tactics
 R612:615 Top.Poly <> <> lib
 prf 891:896 <> silly1
@@ -724,52 +724,52 @@ R33115:33115 Top.Tactics <> f var
 R33117:33117 Top.Tactics <> b var
 R33123:33123 Top.Tactics <> f var
 R33125:33125 Top.Tactics <> b var
-prf 35436:35446 <> beq_nat_sym
-R35464:35466 Coq.Init.Datatypes <> nat ind
-R35483:35485 Coq.Init.Logic <> :type_scope:x_'='_x not
-R35472:35478 Top.Basics <> beq_nat def
-R35482:35482 Top.Tactics <> m var
-R35480:35480 Top.Tactics <> n var
-R35486:35492 Top.Basics <> beq_nat def
-R35496:35496 Top.Tactics <> n var
-R35494:35494 Top.Tactics <> m var
-prf 35875:35887 <> beq_nat_trans
-R35925:35930 Coq.Init.Logic <> :type_scope:x_'->'_x not
-R35949:35954 Coq.Init.Logic <> :type_scope:x_'->'_x not
-R35966:35968 Coq.Init.Logic <> :type_scope:x_'='_x not
-R35955:35961 Top.Basics <> beq_nat def
-R35965:35965 Top.Tactics <> p var
-R35963:35963 Top.Tactics <> n var
-R35969:35972 Top.Basics <> true constr
-R35942:35944 Coq.Init.Logic <> :type_scope:x_'='_x not
-R35931:35937 Top.Basics <> beq_nat def
-R35941:35941 Top.Tactics <> p var
-R35939:35939 Top.Tactics <> m var
-R35945:35948 Top.Basics <> true constr
-R35918:35920 Coq.Init.Logic <> :type_scope:x_'='_x not
-R35907:35913 Top.Basics <> beq_nat def
-R35917:35917 Top.Tactics <> m var
-R35915:35915 Top.Tactics <> n var
-R35921:35924 Top.Basics <> true constr
-def 36719:36741 <> split_combine_statement
-prf 36915:36927 <> split_combine
-R36931:36953 Top.Tactics <> split_combine_statement prfax
-prf 37172:37186 <> filter_exercise
-R37217:37220 Coq.Init.Logic <> :type_scope:x_'->'_x not
-R37221:37224 Top.Basics <> bool ind
-R37216:37216 Top.Tactics <> X var
-R37261:37261 Top.Tactics <> X var
-R37272:37275 Top.Poly <> list ind
-R37277:37277 Top.Tactics <> X var
-R37309:37317 Coq.Init.Logic <> :type_scope:x_'->'_x not
-R37324:37326 Coq.Init.Logic <> :type_scope:x_'='_x not
-R37318:37321 Top.Tactics <> test var
-R37323:37323 Top.Tactics <> x var
-R37327:37330 Top.Basics <> true constr
-R37299:37301 Coq.Init.Logic <> :type_scope:x_'='_x not
-R37286:37291 Top.Poly <> filter def
-R37298:37298 Top.Tactics <> l var
-R37293:37296 Top.Tactics <> test var
-R37303:37306 Top.Poly <> ::x_'::'_x not
-R37302:37302 Top.Tactics <> x var
-R37307:37308 Top.Tactics <> lf var
+prf 35425:35435 <> beq_nat_sym
+R35453:35455 Coq.Init.Datatypes <> nat ind
+R35472:35474 Coq.Init.Logic <> :type_scope:x_'='_x not
+R35461:35467 Top.Basics <> beq_nat def
+R35471:35471 Top.Tactics <> m var
+R35469:35469 Top.Tactics <> n var
+R35475:35481 Top.Basics <> beq_nat def
+R35485:35485 Top.Tactics <> n var
+R35483:35483 Top.Tactics <> m var
+prf 35864:35876 <> beq_nat_trans
+R35914:35919 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R35938:35943 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R35955:35957 Coq.Init.Logic <> :type_scope:x_'='_x not
+R35944:35950 Top.Basics <> beq_nat def
+R35954:35954 Top.Tactics <> p var
+R35952:35952 Top.Tactics <> n var
+R35958:35961 Top.Basics <> true constr
+R35931:35933 Coq.Init.Logic <> :type_scope:x_'='_x not
+R35920:35926 Top.Basics <> beq_nat def
+R35930:35930 Top.Tactics <> p var
+R35928:35928 Top.Tactics <> m var
+R35934:35937 Top.Basics <> true constr
+R35907:35909 Coq.Init.Logic <> :type_scope:x_'='_x not
+R35896:35902 Top.Basics <> beq_nat def
+R35906:35906 Top.Tactics <> m var
+R35904:35904 Top.Tactics <> n var
+R35910:35913 Top.Basics <> true constr
+def 36708:36730 <> split_combine_statement
+prf 36904:36916 <> split_combine
+R36920:36942 Top.Tactics <> split_combine_statement prfax
+prf 37161:37175 <> filter_exercise
+R37206:37209 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R37210:37213 Top.Basics <> bool ind
+R37205:37205 Top.Tactics <> X var
+R37250:37250 Top.Tactics <> X var
+R37261:37264 Top.Poly <> list ind
+R37266:37266 Top.Tactics <> X var
+R37298:37306 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R37313:37315 Coq.Init.Logic <> :type_scope:x_'='_x not
+R37307:37310 Top.Tactics <> test var
+R37312:37312 Top.Tactics <> x var
+R37316:37319 Top.Basics <> true constr
+R37288:37290 Coq.Init.Logic <> :type_scope:x_'='_x not
+R37275:37280 Top.Poly <> filter def
+R37287:37287 Top.Tactics <> l var
+R37282:37285 Top.Tactics <> test var
+R37292:37295 Top.Poly <> ::x_'::'_x not
+R37291:37291 Top.Tactics <> x var
+R37296:37297 Top.Tactics <> lf var

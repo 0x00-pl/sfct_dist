@@ -996,7 +996,7 @@ Proof.
         hypothesis in the goal formula *)
 
 (* ################################################################# *)
-(** * Additional Exercises *)
+(** * 附加题 *)
 
 (** **** Exercise: 3 stars (beq_nat_sym)  *)
 Theorem beq_nat_sym : forall (n m : nat),

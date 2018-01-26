@@ -195,7 +195,7 @@ Proof.
        for example [st3] instead of [st'0]. *)
     (* new: *) intros st3 Red1 Red2.
     assert (st' = st3) as EQ1.
-    { (* Proof of assertion *) apply IHE1_1; assumption. }
+    { (* 断言的证明 *) apply IHE1_1; assumption. }
     subst st3.
     apply IHE1_2. assumption.
   (* E_IfTrue *)
@@ -736,7 +736,7 @@ Proof.
   - (* E_Seq *)
     intros st3 Red1 Red2.
     assert (st' = st3) as EQ1.
-    { (* Proof of assertion *)
+    { (* 断言的证明 *)
       (* was: [apply IHE1_1; assumption.] *)
       (* new: *) eapply IH. eapply E1_1. eapply Red1. }
     subst st3.

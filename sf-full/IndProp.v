@@ -1414,7 +1414,7 @@ Proof.
     small proof steps with boolean computations. *)
 
 (* ################################################################# *)
-(** * Additional Exercises *)
+(** * 附加题 *)
 
 (** **** Exercise: 3 stars, recommended (nostutter)  *)
 (** Formulating inductive definitions of properties is an important

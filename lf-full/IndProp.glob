@@ -1,4 +1,4 @@
-DIGEST bf0e8f5d8b303eb2edc0574fa14b65a5
+DIGEST 4c774ba26966cd0ce5349bc19056510e
 FTop.IndProp
 R67:71 Top.Logic <> <> lib
 ind 2880:2881 <> ev
@@ -1211,73 +1211,73 @@ R48885:48887 Coq.Init.Logic <> :type_scope:x_'='_x not
 R48876:48880 Top.IndProp <> count def
 R48884:48884 Top.IndProp <> l var
 R48882:48882 Top.IndProp <> n var
-ind 50290:50298 <> nostutter
-R50317:50320 Coq.Init.Logic <> :type_scope:x_'->'_x not
-R50311:50314 Top.Poly <> list ind
-def 50945:50960 <> test_nostutter_1
-R50963:50971 Top.IndProp <> nostutter ind
-R50973:50973 Top.Poly <> ::'['_x_';'_'..'_';'_x_']' not
-R50975:50975 Top.Poly <> ::'['_x_';'_'..'_';'_x_']' not
-R50977:50977 Top.Poly <> ::'['_x_';'_'..'_';'_x_']' not
-R50979:50979 Top.Poly <> ::'['_x_';'_'..'_';'_x_']' not
-R50981:50981 Top.Poly <> ::'['_x_';'_'..'_';'_x_']' not
-R50983:50983 Top.Poly <> ::'['_x_';'_'..'_';'_x_']' not
-R50985:50985 Top.Poly <> ::'['_x_';'_'..'_';'_x_']' not
-def 51100:51115 <> test_nostutter_2
-R51119:51127 Top.IndProp <> nostutter ind
-R51131:51133 Top.Poly <> nil constr
-R51135:51137 Coq.Init.Datatypes <> nat ind
-def 51253:51268 <> test_nostutter_3
-R51272:51280 Top.IndProp <> nostutter ind
-R51282:51282 Top.Poly <> ::'['_x_';'_'..'_';'_x_']' not
-R51284:51284 Top.Poly <> ::'['_x_';'_'..'_';'_x_']' not
-def 51393:51408 <> test_nostutter_4
-R51416:51418 Coq.Init.Logic <> not def
-R51421:51429 Top.IndProp <> nostutter ind
-R51431:51431 Top.Poly <> ::'['_x_';'_'..'_';'_x_']' not
-R51433:51433 Top.Poly <> ::'['_x_';'_'..'_';'_x_']' not
-R51435:51435 Top.Poly <> ::'['_x_';'_'..'_';'_x_']' not
-R51437:51437 Top.Poly <> ::'['_x_';'_'..'_';'_x_']' not
-R51439:51439 Top.Poly <> ::'['_x_';'_'..'_';'_x_']' not
-prf 55599:55606 <> in_split
+ind 50279:50287 <> nostutter
+R50306:50309 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R50300:50303 Top.Poly <> list ind
+def 50934:50949 <> test_nostutter_1
+R50952:50960 Top.IndProp <> nostutter ind
+R50962:50962 Top.Poly <> ::'['_x_';'_'..'_';'_x_']' not
+R50964:50964 Top.Poly <> ::'['_x_';'_'..'_';'_x_']' not
+R50966:50966 Top.Poly <> ::'['_x_';'_'..'_';'_x_']' not
+R50968:50968 Top.Poly <> ::'['_x_';'_'..'_';'_x_']' not
+R50970:50970 Top.Poly <> ::'['_x_';'_'..'_';'_x_']' not
+R50972:50972 Top.Poly <> ::'['_x_';'_'..'_';'_x_']' not
+R50974:50974 Top.Poly <> ::'['_x_';'_'..'_';'_x_']' not
+def 51089:51104 <> test_nostutter_2
+R51108:51116 Top.IndProp <> nostutter ind
+R51120:51122 Top.Poly <> nil constr
+R51124:51126 Coq.Init.Datatypes <> nat ind
+def 51242:51257 <> test_nostutter_3
+R51261:51269 Top.IndProp <> nostutter ind
+R51271:51271 Top.Poly <> ::'['_x_';'_'..'_';'_x_']' not
+R51273:51273 Top.Poly <> ::'['_x_';'_'..'_';'_x_']' not
+def 51382:51397 <> test_nostutter_4
+R51405:51407 Coq.Init.Logic <> not def
+R51410:51418 Top.IndProp <> nostutter ind
+R51420:51420 Top.Poly <> ::'['_x_';'_'..'_';'_x_']' not
+R51422:51422 Top.Poly <> ::'['_x_';'_'..'_';'_x_']' not
+R51424:51424 Top.Poly <> ::'['_x_';'_'..'_';'_x_']' not
+R51426:51426 Top.Poly <> ::'['_x_';'_'..'_';'_x_']' not
+R51428:51428 Top.Poly <> ::'['_x_';'_'..'_';'_x_']' not
+prf 55588:55595 <> in_split
+R55618:55618 Top.IndProp <> X var
+R55624:55627 Top.Poly <> list ind
 R55629:55629 Top.IndProp <> X var
-R55635:55638 Top.Poly <> list ind
-R55640:55640 Top.IndProp <> X var
-R55652:55657 Coq.Init.Logic <> :type_scope:x_'->'_x not
-R55658:55664 Coq.Init.Logic <> :type_scope:'exists'_x_'..'_x_','_x not
-R55670:55671 Coq.Init.Logic <> :type_scope:'exists'_x_'..'_x_','_x not
-R55673:55675 Coq.Init.Logic <> :type_scope:x_'='_x not
-R55672:55672 Top.IndProp <> l var
-R55678:55681 Top.Poly <> ::x_'++'_x not
-R55676:55677 Top.IndProp <> l1 var
-R55683:55686 Top.Poly <> ::x_'::'_x not
-R55682:55682 Top.IndProp <> x var
-R55687:55688 Top.IndProp <> l2 var
-R55646:55647 Top.Logic <> In def
-R55651:55651 Top.IndProp <> l var
-R55649:55649 Top.IndProp <> x var
-ind 55880:55886 <> repeats
-R55905:55908 Coq.Init.Logic <> :type_scope:x_'->'_x not
-R55899:55902 Top.Poly <> list ind
-prf 56628:56647 <> pigeonhole_principle
-R56674:56677 Top.Poly <> list ind
-R56679:56679 Top.IndProp <> X var
-R56701:56707 Coq.Init.Logic <> :type_scope:x_'->'_x not
-R56708:56708 Coq.Init.Logic <> :type_scope:x_'->'_x not
-R56737:56744 Coq.Init.Logic <> :type_scope:x_'->'_x not
-R56766:56772 Coq.Init.Logic <> :type_scope:x_'->'_x not
-R56773:56779 Top.IndProp <> repeats ind
-R56781:56782 Top.IndProp <> l1 var
-R56754:56756 Top.IndProp <> ::x_'<'_x not
-R56745:56750 Top.Poly <> length def
-R56752:56753 Top.IndProp <> l2 var
-R56757:56762 Top.Poly <> length def
-R56764:56765 Top.IndProp <> l1 var
-R56726:56729 Coq.Init.Logic <> :type_scope:x_'->'_x not
-R56730:56731 Top.Logic <> In def
-R56735:56736 Top.IndProp <> l2 var
-R56733:56733 Top.IndProp <> x var
+R55641:55646 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R55647:55653 Coq.Init.Logic <> :type_scope:'exists'_x_'..'_x_','_x not
+R55659:55660 Coq.Init.Logic <> :type_scope:'exists'_x_'..'_x_','_x not
+R55662:55664 Coq.Init.Logic <> :type_scope:x_'='_x not
+R55661:55661 Top.IndProp <> l var
+R55667:55670 Top.Poly <> ::x_'++'_x not
+R55665:55666 Top.IndProp <> l1 var
+R55672:55675 Top.Poly <> ::x_'::'_x not
+R55671:55671 Top.IndProp <> x var
+R55676:55677 Top.IndProp <> l2 var
+R55635:55636 Top.Logic <> In def
+R55640:55640 Top.IndProp <> l var
+R55638:55638 Top.IndProp <> x var
+ind 55869:55875 <> repeats
+R55894:55897 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R55888:55891 Top.Poly <> list ind
+prf 56617:56636 <> pigeonhole_principle
+R56663:56666 Top.Poly <> list ind
+R56668:56668 Top.IndProp <> X var
+R56690:56696 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R56697:56697 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R56726:56733 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R56755:56761 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R56762:56768 Top.IndProp <> repeats ind
+R56770:56771 Top.IndProp <> l1 var
+R56743:56745 Top.IndProp <> ::x_'<'_x not
+R56734:56739 Top.Poly <> length def
+R56741:56742 Top.IndProp <> l2 var
+R56746:56751 Top.Poly <> length def
+R56753:56754 Top.IndProp <> l1 var
+R56715:56718 Coq.Init.Logic <> :type_scope:x_'->'_x not
 R56719:56720 Top.Logic <> In def
-R56724:56725 Top.IndProp <> l1 var
+R56724:56725 Top.IndProp <> l2 var
 R56722:56722 Top.IndProp <> x var
-R56686:56700 Top.Logic <> excluded_middle def
+R56708:56709 Top.Logic <> In def
+R56713:56714 Top.IndProp <> l1 var
+R56711:56711 Top.IndProp <> x var
+R56675:56689 Top.Logic <> excluded_middle def

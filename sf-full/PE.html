@@ -882,7 +882,7 @@ We define the <span class="inlinecode"><span class="id" type="var">pe_compare</s
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">inversion</span> <span class="id" type="var">H<sub>0</sub></span>.<br/>
 &nbsp;&nbsp;- <span class="comment">(*&nbsp;&lt;-&nbsp;*)</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">assert</span> (<span class="id" type="var">Hagree</span>: <span class="id" type="var">pe_disagree_at</span> <span class="id" type="var">pe_st<sub>1</sub></span> <span class="id" type="var">pe_st<sub>2</sub></span> <span class="id" type="var">V</span> = <span class="id" type="var">false</span>).<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;{ <span class="comment">(*&nbsp;Proof&nbsp;of&nbsp;assertion&nbsp;*)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{ <span class="comment">(*&nbsp;断言的证明&nbsp;*)</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">remember</span> (<span class="id" type="var">pe_disagree_at</span> <span class="id" type="var">pe_st<sub>1</sub></span> <span class="id" type="var">pe_st<sub>2</sub></span> <span class="id" type="var">V</span>) <span class="id" type="keyword">as</span> <span class="id" type="var">disagree</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">destruct</span> <span class="id" type="var">disagree</span>; [| <span class="id" type="tactic">reflexivity</span>].<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">apply</span>  <span class="id" type="var">pe_disagree_domain</span> <span class="id" type="keyword">in</span> <span class="id" type="var">Heqdisagree</span>.<br/>

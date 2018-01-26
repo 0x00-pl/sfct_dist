@@ -640,7 +640,7 @@ Proof. intros pe_st1 pe_st2 V.
     inversion H0.
   - (* <- *)
     assert (Hagree: pe_disagree_at pe_st1 pe_st2 V = false).
-    { (* Proof of assertion *)
+    { (* 断言的证明 *)
       remember (pe_disagree_at pe_st1 pe_st2 V) as disagree.
       destruct disagree; [| reflexivity].
       apply  pe_disagree_domain in Heqdisagree.

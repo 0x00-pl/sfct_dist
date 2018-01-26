@@ -1,4 +1,4 @@
-DIGEST 91ec4ebb2f9b9cbffcf0708692126e69
+DIGEST 58662693eea7b4b9ce5731f038f05e3c
 FTop.StlcProp
 R54:57 Top.Maps <> <> lib
 R75:79 Top.Types <> <> lib
@@ -365,60 +365,60 @@ R23862:23862 Top.StlcProp <> t var
 R23868:23868 Top.StlcProp <> T var
 R23951:23955 Top.StlcProp STLCProp stuck def
 R23990:24000 Top.Smallstep <> normal_form def
-R29339:29346 Top.StlcProp STLCProp <> mod
-mod 29667:29675 <> STLCArith
-ind 29798:29799 STLCArith ty
-constr 29815:29820 STLCArith TArrow
-constr 29843:29846 STLCArith TNat
-R29826:29829 Coq.Init.Logic <> :type_scope:x_'->'_x not
-R29832:29835 Coq.Init.Logic <> :type_scope:x_'->'_x not
-R29836:29837 Top.StlcProp <> ty ind
-R29830:29831 Top.StlcProp <> ty ind
-R29824:29825 Top.StlcProp <> ty ind
-R29852:29853 Top.StlcProp <> ty ind
-ind 29991:29992 STLCArith tm
-constr 30008:30011 STLCArith tvar
-constr 30028:30031 STLCArith tapp
-constr 30054:30057 STLCArith tabs
-constr 30086:30089 STLCArith tnat
-constr 30108:30112 STLCArith tsucc
-constr 30129:30133 STLCArith tpred
-constr 30150:30154 STLCArith tmult
-constr 30177:30180 STLCArith tif0
-R30017:30020 Coq.Init.Logic <> :type_scope:x_'->'_x not
-R30021:30022 Top.StlcProp <> tm ind
-R30015:30016 Top.Maps <> id ind
-R30037:30040 Coq.Init.Logic <> :type_scope:x_'->'_x not
-R30043:30046 Coq.Init.Logic <> :type_scope:x_'->'_x not
-R30047:30048 Top.StlcProp <> tm ind
-R30041:30042 Top.StlcProp <> tm ind
-R30035:30036 Top.StlcProp <> tm ind
-R30063:30066 Coq.Init.Logic <> :type_scope:x_'->'_x not
-R30069:30072 Coq.Init.Logic <> :type_scope:x_'->'_x not
-R30075:30078 Coq.Init.Logic <> :type_scope:x_'->'_x not
-R30079:30080 Top.StlcProp <> tm ind
-R30073:30074 Top.StlcProp <> tm ind
-R30067:30068 Top.StlcProp STLCArith ty ind
-R30061:30062 Top.Maps <> id ind
-R30097:30100 Coq.Init.Logic <> :type_scope:x_'->'_x not
-R30101:30102 Top.StlcProp <> tm ind
-R30094:30096 Coq.Init.Datatypes <> nat ind
-R30118:30121 Coq.Init.Logic <> :type_scope:x_'->'_x not
-R30122:30123 Top.StlcProp <> tm ind
-R30116:30117 Top.StlcProp <> tm ind
-R30139:30142 Coq.Init.Logic <> :type_scope:x_'->'_x not
-R30143:30144 Top.StlcProp <> tm ind
-R30137:30138 Top.StlcProp <> tm ind
-R30160:30163 Coq.Init.Logic <> :type_scope:x_'->'_x not
-R30166:30169 Coq.Init.Logic <> :type_scope:x_'->'_x not
-R30170:30171 Top.StlcProp <> tm ind
-R30164:30165 Top.StlcProp <> tm ind
-R30158:30159 Top.StlcProp <> tm ind
-R30187:30190 Coq.Init.Logic <> :type_scope:x_'->'_x not
-R30193:30196 Coq.Init.Logic <> :type_scope:x_'->'_x not
-R30199:30202 Coq.Init.Logic <> :type_scope:x_'->'_x not
-R30203:30204 Top.StlcProp <> tm ind
-R30197:30198 Top.StlcProp <> tm ind
-R30191:30192 Top.StlcProp <> tm ind
-R30185:30186 Top.StlcProp <> tm ind
-R31129:31137 Top.StlcProp STLCArith <> mod
+R29328:29335 Top.StlcProp STLCProp <> mod
+mod 29656:29664 <> STLCArith
+ind 29787:29788 STLCArith ty
+constr 29804:29809 STLCArith TArrow
+constr 29832:29835 STLCArith TNat
+R29815:29818 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R29821:29824 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R29825:29826 Top.StlcProp <> ty ind
+R29819:29820 Top.StlcProp <> ty ind
+R29813:29814 Top.StlcProp <> ty ind
+R29841:29842 Top.StlcProp <> ty ind
+ind 29980:29981 STLCArith tm
+constr 29997:30000 STLCArith tvar
+constr 30017:30020 STLCArith tapp
+constr 30043:30046 STLCArith tabs
+constr 30075:30078 STLCArith tnat
+constr 30097:30101 STLCArith tsucc
+constr 30118:30122 STLCArith tpred
+constr 30139:30143 STLCArith tmult
+constr 30166:30169 STLCArith tif0
+R30006:30009 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R30010:30011 Top.StlcProp <> tm ind
+R30004:30005 Top.Maps <> id ind
+R30026:30029 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R30032:30035 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R30036:30037 Top.StlcProp <> tm ind
+R30030:30031 Top.StlcProp <> tm ind
+R30024:30025 Top.StlcProp <> tm ind
+R30052:30055 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R30058:30061 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R30064:30067 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R30068:30069 Top.StlcProp <> tm ind
+R30062:30063 Top.StlcProp <> tm ind
+R30056:30057 Top.StlcProp STLCArith ty ind
+R30050:30051 Top.Maps <> id ind
+R30086:30089 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R30090:30091 Top.StlcProp <> tm ind
+R30083:30085 Coq.Init.Datatypes <> nat ind
+R30107:30110 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R30111:30112 Top.StlcProp <> tm ind
+R30105:30106 Top.StlcProp <> tm ind
+R30128:30131 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R30132:30133 Top.StlcProp <> tm ind
+R30126:30127 Top.StlcProp <> tm ind
+R30149:30152 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R30155:30158 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R30159:30160 Top.StlcProp <> tm ind
+R30153:30154 Top.StlcProp <> tm ind
+R30147:30148 Top.StlcProp <> tm ind
+R30176:30179 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R30182:30185 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R30188:30191 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R30192:30193 Top.StlcProp <> tm ind
+R30186:30187 Top.StlcProp <> tm ind
+R30180:30181 Top.StlcProp <> tm ind
+R30174:30175 Top.StlcProp <> tm ind
+R31118:31126 Top.StlcProp STLCArith <> mod

@@ -1326,7 +1326,7 @@ Proof.
   - (* E_Ass *) reflexivity.
   - (* E_Seq *)
     assert (st' = st'0) as EQ1.
-    { (* Proof of assertion *) apply IHE1_1; assumption. }
+    { (* 断言的证明 *) apply IHE1_1; assumption. }
     subst st'0.
     apply IHE1_2. assumption.
   - (* E_IfTrue, b1 evaluates to true *)
@@ -1345,7 +1345,7 @@ Proof.
     rewrite H in H4. inversion H4.
   - (* E_WhileLoop, b1 evaluates to true *)
       assert (st' = st'0) as EQ1.
-      { (* Proof of assertion *) apply IHE1_1; assumption. }
+      { (* 断言的证明 *) apply IHE1_1; assumption. }
       subst st'0.
       apply IHE1_2. assumption.  Qed.
 
@@ -1435,7 +1435,7 @@ Proof.
 (** [] *)
 
 (* ################################################################# *)
-(** * Additional Exercises *)
+(** * 附加题 *)
 
 (** **** Exercise: 3 stars (stack_compiler)  *)
 (** HP Calculators, programming languages like Forth and Postscript

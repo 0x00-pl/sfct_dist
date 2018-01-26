@@ -4,7 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <link href="common/css/sf.css" rel="stylesheet" type="text/css"/>
-<title>Equiv: Program Equivalence</title>
+<title>Equiv: 程序等价性</title>
 <link href="common/jquery-ui/jquery-ui.css" rel="stylesheet">
 <link href="common/css/logical_foundations.css" rel="stylesheet" type="text/css"/>
 <script src="common/jquery-ui/external/jquery/jquery.js"></script>
@@ -27,7 +27,7 @@
 
 <div id="main">
 
-<h1 class="libtitle">Equiv<span class="subtitle">Program Equivalence</span></h1>
+<h1 class="libtitle">Equiv<span class="subtitle">程序等价性</span></h1>
 
 
 <div class="code code-tight">
@@ -47,73 +47,56 @@
 </div>
 
 <div class="doc">
-<a name="lab367"></a><h3 class="section">Some Advice for Working on Exercises:</h3>
+<a name="lab367"></a><h3 class="section">一些关于练习的一般性建议:</h3>
 
 
 <div class="paragraph"> </div>
 
 <ul class="doclist">
-<li> Most of the Coq proofs we ask you to do are similar to proofs
-      that we've provided.  Before starting to work on exercises
-      problems, take the time to work through our proofs (both
-      informally, on paper, and in Coq) and make sure you understand
-      them in detail.  This will save you a lot of time.
-
-<div class="paragraph"> </div>
-
+<li> 这里要进行的大多数Coq证明都与先前我们所提供的相似. 在做作业之前, 花一些时间
+      （非形式化的在纸上和Coq中）思考我们的证明确保你理解他们的的每一个细节. 这会节省你
+      大量的时间.
 
 </li>
-<li> The Coq proofs we're doing now are sufficiently complicated that
-      it is more or less impossible to complete them simply by random
-      experimentation or "following your nose."  You need to start
-      with an idea about why the property is true and how the proof is
-      going to go.  The best way to do this is to write out at least a
-      sketch of an informal proof on paper &mdash; one that intuitively
-      convinces you of the truth of the theorem &mdash; before starting to
-      work on the formal one.  Alternately, grab a friend and try to
-      convince them that the theorem is true; then try to formalize
-      your explanation.
-
-<div class="paragraph"> </div>
-
+<li> 我们现在进行的Coq证明已经足够复杂，以至于近乎不可能单靠“灵感”或者以随机的尝试误打误撞的完成证明。你需要一个关于为何
+      某个属性为真以及如何进行证明的概念并从这个概念开始。完成这一项任务的最好的方
+      法是在开始进行形式化证明之前至少在纸上写出一个非形式化证明的梗概
+<ul class="doclist">
+<li>-直观的说服自己相信定理成立&mdash;然后再进行形式化证明。另外，
 
 </li>
-<li> Use automation to save work!  The proofs in this chapter's
-      exercises can get pretty long if you try to write out all the
-      cases explicitly. 
+</ul>
+      你也可以拉来一个好友，尝试说服他相信这条定理成立; 然后试着形式化你刚才的解释。
+
+</li>
+<li> 使用自动化工具来减少工作量！本章的一些证明练习，如果全部一个个分类去分析的话
+      会非常长. 
 </li>
 </ul>
 
 </div>
 
 <div class="doc">
-<a name="lab368"></a><h1 class="section">Behavioral Equivalence</h1>
+<a name="lab368"></a><h1 class="section">行为的等价性</h1>
 
 <div class="paragraph"> </div>
 
- In an earlier chapter, we investigated the correctness of a very
-    simple program transformation: the <span class="inlinecode"><span class="id" type="var">optimize_0plus</span></span> function.  The
-    programming language we were considering was the first version of
-    the language of arithmetic expressions &mdash; with no variables &mdash; so
-    in that setting it was very easy to define what it means for a
-    program transformation to be correct: it should always yield a
-    program that evaluates to the same number as the original.
+ 在上一章中我们讨论了一个非常简单的程序变换的正确性; <span class="inlinecode"><span class="id" type="var">optimize_0plus</span></span> 函数。
+    这是我们考虑的算数表达式语言的第一个版本&mdash;它没有变量&mdash;所以很容易定义 <i>'什么是'</i> 
+    正确的程序变换： 即输出一个求值结果与原程序相同的程序。
 
 <div class="paragraph"> </div>
 
-    To talk about the correctness of program transformations for the
-    full Imp language, including assignment and other commands, we
-    need to consider the role of variables and state. 
+    为了更进一步的讨论整个Imp语言变换的正确性，我们需要考虑状态和变量的作用。 
 </div>
 
 <div class="doc">
-<a name="lab369"></a><h2 class="section">Definitions</h2>
+<a name="lab369"></a><h2 class="section">定义</h2>
 
 <div class="paragraph"> </div>
 
- For <span class="inlinecode"><span class="id" type="var">aexp</span></span>s and <span class="inlinecode"><span class="id" type="var">bexp</span></span>s with variables, the definition we want is
-    clear.  We say that two <span class="inlinecode"><span class="id" type="var">aexp</span></span>s or <span class="inlinecode"><span class="id" type="var">bexp</span></span>s are <i>behaviorally
-    equivalent</i> if they evaluate to the same result in every state. 
+ 对于包含变量的 <span class="inlinecode"><span class="id" type="var">aexp</span></span> 和 <span class="inlinecode"><span class="id" type="var">bexp</span></span>, 我们需要的定义简单明了。在 <i>'所有状态'</i>
+    下两个 <span class="inlinecode"><span class="id" type="var">aexp</span></span> 或者 <span class="inlinecode"><span class="id" type="var">bexp</span></span> 的求值结果相同，我们就说他们 <i>'行为等价'</i> 。
 </div>
 <div class="code code-tight">
 
@@ -157,16 +140,11 @@ Here are some simple examples of equivalences of arithmetic
 </div>
 
 <div class="doc">
-For commands, the situation is a little more subtle.  We can't
-    simply say "two commands are behaviorally equivalent if they
-    evaluate to the same ending state whenever they are started in the
-    same initial state," because some commands, when run in some
-    starting states, don't terminate in any final state at all!  What
-    we need instead is this: two commands are behaviorally equivalent
-    if, for any given starting state, they either (1) both diverge
-    or (2) both terminate in the same final state.  A compact way to
-    express this is "if the first one terminates in a particular state
-    then so does the second, and vice versa." 
+对于命令，情况有些微妙。我们不能简单的说：“如果两个指令在相同的初始状态下求值到相同
+    的终止状态，那么说这两个指令等价。”，因为有些命令（在某些初始状态下）根本不会在任何
+    状态终止！我们实际上需要的是：“若两个指令在给出任何初始状态时都发散或者终止在相同
+    的状态上，则这两个指令行为等价。”。简单的说就是：“如果其中一个终止在某
+    状态上那么另一个也终止在这个状态上，反之亦然。” 
 </div>
 <div class="code code-tight">
 
@@ -208,8 +186,7 @@ For commands, the situation is a little more subtle.  We can't
 
 <div class="doc">
 <a name="lab371"></a><h4 class="section">Exercise: 2 stars (skip_right)</h4>
- Prove that adding a <span class="inlinecode"><span class="id" type="var">SKIP</span></span> after a command results in an
-    equivalent program 
+ 试证在任一命令后加上SKIP所变换出的新程序与原程序等价。 
 </div>
 <div class="code code-tight">
 
@@ -226,8 +203,7 @@ For commands, the situation is a little more subtle.  We can't
 <div class="doc less-space">
 <div class="paragraph"> </div>
 
- Similarly, here is a simple transformation that optimizes <span class="inlinecode"><span class="id" type="var">IFB</span></span>
-    commands: 
+ 类似的，这里是一些简化 <span class="inlinecode"><span class="id" type="var">IFB</span></span> 的简单变换: 
 </div>
 <div class="code code-tight">
 
@@ -251,10 +227,10 @@ For commands, the situation is a little more subtle.  We can't
 </div>
 
 <div class="doc">
-Of course, few programmers would be tempted to write a conditional
-    whose guard is literally <span class="inlinecode"><span class="id" type="var">BTrue</span></span>.  A more interesting case is when
-    the guard is <i>equivalent</i> to true:  <i>Theorem</i>: If <span class="inlinecode"><span class="id" type="var">b</span></span> is equivalent to <span class="inlinecode"><span class="id" type="var">BTrue</span></span>, then <span class="inlinecode"><span class="id" type="var">IFB</span></span> <span class="inlinecode"><span class="id" type="var">b</span></span> <span class="inlinecode"><span class="id" type="var">THEN</span></span> <span class="inlinecode"><span class="id" type="var">c<sub>1</sub></span></span>
-    <span class="inlinecode"><span class="id" type="var">ELSE</span></span> <span class="inlinecode"><span class="id" type="var">c<sub>2</sub></span></span> <span class="inlinecode"><span class="id" type="var">FI</span></span> is equivalent to <span class="inlinecode"><span class="id" type="var">c<sub>1</sub></span></span>. 
+当然，一些程序员会尝试以IF的判断条件字面上是否等于 <span class="inlinecode"><span class="id" type="var">BTrue</span></span> 作为优化前提。但一个
+    更有趣的方式是看IF的判断条件是否等价于真:  <i>Theorem</i>: 如果 <span class="inlinecode"><span class="id" type="var">b</span></span> 等价于 <span class="inlinecode"><span class="id" type="var">BTrue</span></span>, 那么 <span class="inlinecode"><span class="id" type="var">IFB</span></span> <span class="inlinecode"><span class="id" type="var">b</span></span> <span class="inlinecode"><span class="id" type="var">THEN</span></span> <span class="inlinecode"><span class="id" type="var">c<sub>1</sub></span></span>
+   <span class="inlinecode"><span class="id" type="var">ELSE</span></span> <span class="inlinecode"><span class="id" type="var">c<sub>2</sub></span></span> <span class="inlinecode"><span class="id" type="var">FI</span></span> 等价于 <span class="inlinecode"><span class="id" type="var">c<sub>1</sub></span></span>.
+
 <div class="paragraph"> </div>
 
    <i>Proof</i>:
@@ -262,63 +238,36 @@ Of course, few programmers would be tempted to write a conditional
 <div class="paragraph"> </div>
 
 <ul class="doclist">
-<li> (<span class="inlinecode"><span style="font-family: arial;">&rarr;</span></span>) We must show, for all <span class="inlinecode"><span class="id" type="var">st</span></span> and <span class="inlinecode"><span class="id" type="var">st'</span></span>, that if <span class="inlinecode"><span class="id" type="var">IFB</span></span> <span class="inlinecode"><span class="id" type="var">b</span></span>
-       <span class="inlinecode"><span class="id" type="var">THEN</span></span> <span class="inlinecode"><span class="id" type="var">c<sub>1</sub></span></span> <span class="inlinecode"><span class="id" type="var">ELSE</span></span> <span class="inlinecode"><span class="id" type="var">c<sub>2</sub></span></span> <span class="inlinecode"><span class="id" type="var">FI</span></span> <span class="inlinecode">/</span> <span class="inlinecode"><span class="id" type="var">st</span></span> <span class="inlinecode"><span style="font-family: arial;">&dArr;</span></span> <span class="inlinecode"><span class="id" type="var">st'</span></span> then <span class="inlinecode"><span class="id" type="var">c<sub>1</sub></span></span> <span class="inlinecode">/</span> <span class="inlinecode"><span class="id" type="var">st</span></span> <span class="inlinecode"><span style="font-family: arial;">&dArr;</span></span> <span class="inlinecode"><span class="id" type="var">st'</span></span>.
-
-<div class="paragraph"> </div>
-
-       Proceed by cases on the rules that could possibly have been
-       used to show <span class="inlinecode"><span class="id" type="var">IFB</span></span> <span class="inlinecode"><span class="id" type="var">b</span></span> <span class="inlinecode"><span class="id" type="var">THEN</span></span> <span class="inlinecode"><span class="id" type="var">c<sub>1</sub></span></span> <span class="inlinecode"><span class="id" type="var">ELSE</span></span> <span class="inlinecode"><span class="id" type="var">c<sub>2</sub></span></span> <span class="inlinecode"><span class="id" type="var">FI</span></span> <span class="inlinecode">/</span> <span class="inlinecode"><span class="id" type="var">st</span></span> <span class="inlinecode"><span style="font-family: arial;">&dArr;</span></span> <span class="inlinecode"><span class="id" type="var">st'</span></span>, namely
-       <span class="inlinecode"><span class="id" type="var">E_IfTrue</span></span> and <span class="inlinecode"><span class="id" type="var">E_IfFalse</span></span>.
-
-<div class="paragraph"> </div>
-
+<li> (<span class="inlinecode"><span style="font-family: arial;">&rarr;</span></span>) 我们必须证明, 对于所有 <span class="inlinecode"><span class="id" type="var">st</span></span> 和 <span class="inlinecode"><span class="id" type="var">st'</span></span>, 如果 <span class="inlinecode"><span class="id" type="var">IFB</span></span> <span class="inlinecode"><span class="id" type="var">b</span></span>
+       <span class="inlinecode"><span class="id" type="var">THEN</span></span> <span class="inlinecode"><span class="id" type="var">c<sub>1</sub></span></span> <span class="inlinecode"><span class="id" type="var">ELSE</span></span> <span class="inlinecode"><span class="id" type="var">c<sub>2</sub></span></span> <span class="inlinecode"><span class="id" type="var">FI</span></span> <span class="inlinecode">/</span> <span class="inlinecode"><span class="id" type="var">st</span></span> <span class="inlinecode">||</span> <span class="inlinecode"><span class="id" type="var">st'</span></span> 则 <span class="inlinecode"><span class="id" type="var">c<sub>1</sub></span></span> <span class="inlinecode">/</span> <span class="inlinecode"><span class="id" type="var">st</span></span> <span class="inlinecode">||</span> <span class="inlinecode"><span class="id" type="var">st'</span></span>.
+       能够应用于 <span class="inlinecode"><span class="id" type="var">IFB</span></span> <span class="inlinecode"><span class="id" type="var">b</span></span> <span class="inlinecode"><span class="id" type="var">THEN</span></span> <span class="inlinecode"><span class="id" type="var">c<sub>1</sub></span></span> <span class="inlinecode"><span class="id" type="var">ELSE</span></span> <span class="inlinecode"><span class="id" type="var">c<sub>2</sub></span></span> <span class="inlinecode"><span class="id" type="var">FI</span></span> <span class="inlinecode">/</span> <span class="inlinecode"><span class="id" type="var">st</span></span> <span class="inlinecode">||</span> <span class="inlinecode"><span class="id" type="var">st'</span></span> 的证明规则只有两条：
+       <span class="inlinecode"><span class="id" type="var">E_IfTrue</span></span> 和 <span class="inlinecode"><span class="id" type="var">E_IfFalse</span></span>.
 <ul class="doclist">
-<li> Suppose the final rule rule in the derivation of <span class="inlinecode"><span class="id" type="var">IFB</span></span> <span class="inlinecode"><span class="id" type="var">b</span></span> <span class="inlinecode"><span class="id" type="var">THEN</span></span>
-         <span class="inlinecode"><span class="id" type="var">c<sub>1</sub></span></span> <span class="inlinecode"><span class="id" type="var">ELSE</span></span> <span class="inlinecode"><span class="id" type="var">c<sub>2</sub></span></span> <span class="inlinecode"><span class="id" type="var">FI</span></span> <span class="inlinecode">/</span> <span class="inlinecode"><span class="id" type="var">st</span></span> <span class="inlinecode"><span style="font-family: arial;">&dArr;</span></span> <span class="inlinecode"><span class="id" type="var">st'</span></span> was <span class="inlinecode"><span class="id" type="var">E_IfTrue</span></span>.  We then have, by
-         the premises of <span class="inlinecode"><span class="id" type="var">E_IfTrue</span></span>, that <span class="inlinecode"><span class="id" type="var">c<sub>1</sub></span></span> <span class="inlinecode">/</span> <span class="inlinecode"><span class="id" type="var">st</span></span> <span class="inlinecode"><span style="font-family: arial;">&dArr;</span></span> <span class="inlinecode"><span class="id" type="var">st'</span></span>.  This is
-         exactly what we set out to prove.
-
-<div class="paragraph"> </div>
-
+<li> 假设 <span class="inlinecode"><span class="id" type="var">IFB</span></span> <span class="inlinecode"><span class="id" type="var">b</span></span> <span class="inlinecode"><span class="id" type="var">THEN</span></span> <span class="inlinecode"><span class="id" type="var">c<sub>1</sub></span></span> <span class="inlinecode"><span class="id" type="var">ELSE</span></span> <span class="inlinecode"><span class="id" type="var">c<sub>2</sub></span></span> <span class="inlinecode"><span class="id" type="var">FI</span></span> <span class="inlinecode">/</span> <span class="inlinecode"><span class="id" type="var">st</span></span> <span class="inlinecode">||</span> <span class="inlinecode"><span class="id" type="var">st'</span></span> 证明自 <span class="inlinecode"><span class="id" type="var">E_IfTrue</span></span>
+         这条证明规则.  若使用证明规则 <span class="inlinecode"><span class="id" type="var">E_IfTrue</span></span> 其必备的前提条件 <span class="inlinecode"><span class="id" type="var">c<sub>1</sub></span></span> <span class="inlinecode">/</span> <span class="inlinecode"><span class="id" type="var">st</span></span> <span class="inlinecode">||</span> <span class="inlinecode"><span class="id" type="var">st'</span></span> 必为真， 而这正好是
+         我们的证明所需要的条件。
 
 </li>
-<li> On the other hand, suppose the final rule in the derivation
-         of <span class="inlinecode"><span class="id" type="var">IFB</span></span> <span class="inlinecode"><span class="id" type="var">b</span></span> <span class="inlinecode"><span class="id" type="var">THEN</span></span> <span class="inlinecode"><span class="id" type="var">c<sub>1</sub></span></span> <span class="inlinecode"><span class="id" type="var">ELSE</span></span> <span class="inlinecode"><span class="id" type="var">c<sub>2</sub></span></span> <span class="inlinecode"><span class="id" type="var">FI</span></span> <span class="inlinecode">/</span> <span class="inlinecode"><span class="id" type="var">st</span></span> <span class="inlinecode"><span style="font-family: arial;">&dArr;</span></span> <span class="inlinecode"><span class="id" type="var">st'</span></span> was <span class="inlinecode"><span class="id" type="var">E_IfFalse</span></span>.
-         We then know that <span class="inlinecode"><span class="id" type="var">beval</span></span> <span class="inlinecode"><span class="id" type="var">st</span></span> <span class="inlinecode"><span class="id" type="var">b</span></span> <span class="inlinecode">=</span> <span class="inlinecode"><span class="id" type="var">false</span></span> and <span class="inlinecode"><span class="id" type="var">c<sub>2</sub></span></span> <span class="inlinecode">/</span> <span class="inlinecode"><span class="id" type="var">st</span></span> <span class="inlinecode"><span style="font-family: arial;">&dArr;</span></span> <span class="inlinecode"><span class="id" type="var">st'</span></span>.
-
-<div class="paragraph"> </div>
-
-         Recall that <span class="inlinecode"><span class="id" type="var">b</span></span> is equivalent to <span class="inlinecode"><span class="id" type="var">BTrue</span></span>, i.e., forall <span class="inlinecode"><span class="id" type="var">st</span></span>,
-         <span class="inlinecode"><span class="id" type="var">beval</span></span> <span class="inlinecode"><span class="id" type="var">st</span></span> <span class="inlinecode"><span class="id" type="var">b</span></span> <span class="inlinecode">=</span> <span class="inlinecode"><span class="id" type="var">beval</span></span> <span class="inlinecode"><span class="id" type="var">st</span></span> <span class="inlinecode"><span class="id" type="var">BTrue</span></span>.  In particular, this means
-         that <span class="inlinecode"><span class="id" type="var">beval</span></span> <span class="inlinecode"><span class="id" type="var">st</span></span> <span class="inlinecode"><span class="id" type="var">b</span></span> <span class="inlinecode">=</span> <span class="inlinecode"><span class="id" type="var">true</span></span>, since <span class="inlinecode"><span class="id" type="var">beval</span></span> <span class="inlinecode"><span class="id" type="var">st</span></span> <span class="inlinecode"><span class="id" type="var">BTrue</span></span> <span class="inlinecode">=</span> <span class="inlinecode"><span class="id" type="var">true</span></span>.  But
-         this is a contradiction, since <span class="inlinecode"><span class="id" type="var">E_IfFalse</span></span> requires that
-         <span class="inlinecode"><span class="id" type="var">beval</span></span> <span class="inlinecode"><span class="id" type="var">st</span></span> <span class="inlinecode"><span class="id" type="var">b</span></span> <span class="inlinecode">=</span> <span class="inlinecode"><span class="id" type="var">false</span></span>.  Thus, the final rule could not have
-         been <span class="inlinecode"><span class="id" type="var">E_IfFalse</span></span>.
-
-<div class="paragraph"> </div>
-
+<li> 另一方面, 假设 <span class="inlinecode"><span class="id" type="var">IFB</span></span> <span class="inlinecode"><span class="id" type="var">b</span></span> <span class="inlinecode"><span class="id" type="var">THEN</span></span> <span class="inlinecode"><span class="id" type="var">c<sub>1</sub></span></span> <span class="inlinecode"><span class="id" type="var">ELSE</span></span> <span class="inlinecode"><span class="id" type="var">c<sub>2</sub></span></span> <span class="inlinecode"><span class="id" type="var">FI</span></span> <span class="inlinecode">/</span> <span class="inlinecode"><span class="id" type="var">st</span></span> <span class="inlinecode">||</span> <span class="inlinecode"><span class="id" type="var">st'</span></span> 证明自
+         <span class="inlinecode"><span class="id" type="var">E_IfFalse</span></span>. 我们能得知 <span class="inlinecode"><span class="id" type="var">beval</span></span> <span class="inlinecode"><span class="id" type="var">st</span></span> <span class="inlinecode"><span class="id" type="var">b</span></span> <span class="inlinecode">=</span> <span class="inlinecode"><span class="id" type="var">false</span></span> 和 <span class="inlinecode"><span class="id" type="var">c<sub>2</sub></span></span> <span class="inlinecode">/</span> <span class="inlinecode"><span class="id" type="var">st</span></span> <span class="inlinecode">||</span> <span class="inlinecode"><span class="id" type="var">st'</span></span>.
+         之前提到 <span class="inlinecode"><span class="id" type="var">b</span></span> 等价于 <span class="inlinecode"><span class="id" type="var">BTrue</span></span>, 也就是说对于所有 <span class="inlinecode"><span class="id" type="var">st</span></span>, 有<span class="inlinecode"><span class="id" type="var">beval</span></span> <span class="inlinecode"><span class="id" type="var">st</span></span> <span class="inlinecode"><span class="id" type="var">b</span></span> <span class="inlinecode">=</span> <span class="inlinecode"><span class="id" type="var">beval</span></span> <span class="inlinecode"><span class="id" type="var">st</span></span> <span class="inlinecode"><span class="id" type="var">BTrue</span></span>.
+         具体的说就是 <span class="inlinecode"><span class="id" type="var">beval</span></span> <span class="inlinecode"><span class="id" type="var">st</span></span> <span class="inlinecode"><span class="id" type="var">b</span></span> <span class="inlinecode">=</span> <span class="inlinecode"><span class="id" type="var">true</span></span> 成立, 导致 <span class="inlinecode"><span class="id" type="var">beval</span></span> <span class="inlinecode"><span class="id" type="var">st</span></span> <span class="inlinecode"><span class="id" type="var">BTrue</span></span> <span class="inlinecode">=</span> <span class="inlinecode"><span class="id" type="var">true</span></span> 成立。 
+         但是与此同时，之前假设 <span class="inlinecode"><span class="id" type="var">E_IfFalse</span></span> 必备的前提条件 <span class="inlinecode"><span class="id" type="var">beval</span></span> <span class="inlinecode"><span class="id" type="var">st</span></span> <span class="inlinecode"><span class="id" type="var">b</span></span> <span class="inlinecode">=</span> <span class="inlinecode"><span class="id" type="var">false</span></span> 也成立，
+         这就构成了一组矛盾。从而说明不可能使用了 <span class="inlinecode"><span class="id" type="var">E_IfFalse</span></span> 这条证明规则。
 
 </li>
 </ul>
 
 </li>
-<li> (<span class="inlinecode"><span style="font-family: arial;">&larr;</span></span>) We must show, for all <span class="inlinecode"><span class="id" type="var">st</span></span> and <span class="inlinecode"><span class="id" type="var">st'</span></span>, that if <span class="inlinecode"><span class="id" type="var">c<sub>1</sub></span></span> <span class="inlinecode">/</span> <span class="inlinecode"><span class="id" type="var">st</span></span>
-       <span class="inlinecode"><span style="font-family: arial;">&dArr;</span></span> <span class="inlinecode"><span class="id" type="var">st'</span></span> then <span class="inlinecode"><span class="id" type="var">IFB</span></span> <span class="inlinecode"><span class="id" type="var">b</span></span> <span class="inlinecode"><span class="id" type="var">THEN</span></span> <span class="inlinecode"><span class="id" type="var">c<sub>1</sub></span></span> <span class="inlinecode"><span class="id" type="var">ELSE</span></span> <span class="inlinecode"><span class="id" type="var">c<sub>2</sub></span></span> <span class="inlinecode"><span class="id" type="var">FI</span></span> <span class="inlinecode">/</span> <span class="inlinecode"><span class="id" type="var">st</span></span> <span class="inlinecode"><span style="font-family: arial;">&dArr;</span></span> <span class="inlinecode"><span class="id" type="var">st'</span></span>.
-
-<div class="paragraph"> </div>
-
-       Since <span class="inlinecode"><span class="id" type="var">b</span></span> is equivalent to <span class="inlinecode"><span class="id" type="var">BTrue</span></span>, we know that <span class="inlinecode"><span class="id" type="var">beval</span></span> <span class="inlinecode"><span class="id" type="var">st</span></span> <span class="inlinecode"><span class="id" type="var">b</span></span> =
-       <span class="inlinecode"><span class="id" type="var">beval</span></span> <span class="inlinecode"><span class="id" type="var">st</span></span> <span class="inlinecode"><span class="id" type="var">BTrue</span></span> = <span class="inlinecode"><span class="id" type="var">true</span></span>.  Together with the assumption that
-       <span class="inlinecode"><span class="id" type="var">c<sub>1</sub></span></span> <span class="inlinecode">/</span> <span class="inlinecode"><span class="id" type="var">st</span></span> <span class="inlinecode"><span style="font-family: arial;">&dArr;</span></span> <span class="inlinecode"><span class="id" type="var">st'</span></span>, we can apply <span class="inlinecode"><span class="id" type="var">E_IfTrue</span></span> to derive <span class="inlinecode"><span class="id" type="var">IFB</span></span> <span class="inlinecode"><span class="id" type="var">b</span></span> <span class="inlinecode"><span class="id" type="var">THEN</span></span>
-       <span class="inlinecode"><span class="id" type="var">c<sub>1</sub></span></span> <span class="inlinecode"><span class="id" type="var">ELSE</span></span> <span class="inlinecode"><span class="id" type="var">c<sub>2</sub></span></span> <span class="inlinecode"><span class="id" type="var">FI</span></span> <span class="inlinecode">/</span> <span class="inlinecode"><span class="id" type="var">st</span></span> <span class="inlinecode"><span style="font-family: arial;">&dArr;</span></span> <span class="inlinecode"><span class="id" type="var">st'</span></span>.  <span class="proofbox">&#9744;</span>
+<li> (<span class="inlinecode"><span style="font-family: arial;">&larr;</span></span>) 我们必须证明，对于所有 <span class="inlinecode"><span class="id" type="var">st</span></span> 和 <span class="inlinecode"><span class="id" type="var">st'</span></span>, 如果 <span class="inlinecode"><span class="id" type="var">c<sub>1</sub></span></span> <span class="inlinecode">/</span> <span class="inlinecode"><span class="id" type="var">st</span></span> <span class="inlinecode">||</span> <span class="inlinecode"><span class="id" type="var">st'</span></span>  
+       则 <span class="inlinecode"><span class="id" type="var">IFB</span></span> <span class="inlinecode"><span class="id" type="var">b</span></span> <span class="inlinecode"><span class="id" type="var">THEN</span></span> <span class="inlinecode"><span class="id" type="var">c<sub>1</sub></span></span> <span class="inlinecode"><span class="id" type="var">ELSE</span></span> <span class="inlinecode"><span class="id" type="var">c<sub>2</sub></span></span> <span class="inlinecode"><span class="id" type="var">FI</span></span> <span class="inlinecode">/</span> <span class="inlinecode"><span class="id" type="var">st</span></span> <span class="inlinecode">||</span> <span class="inlinecode"><span class="id" type="var">st'</span></span>.
+       已知 <span class="inlinecode"><span class="id" type="var">b</span></span> 等价于 <span class="inlinecode"><span class="id" type="var">BTrue</span></span>, 我们知道 <span class="inlinecode"><span class="id" type="var">beval</span></span> <span class="inlinecode"><span class="id" type="var">st</span></span> <span class="inlinecode"><span class="id" type="var">b</span></span> = <span class="inlinecode"><span class="id" type="var">beval</span></span> <span class="inlinecode"><span class="id" type="var">st</span></span> <span class="inlinecode"><span class="id" type="var">BTrue</span></span> = <span class="inlinecode"><span class="id" type="var">true</span></span>.
+       结合 <span class="inlinecode"><span class="id" type="var">c<sub>1</sub></span></span> <span class="inlinecode">/</span> <span class="inlinecode"><span class="id" type="var">st</span></span> <span class="inlinecode">||</span> <span class="inlinecode"><span class="id" type="var">st'</span></span> 这条假设, 我们能应用 <span class="inlinecode"><span class="id" type="var">E_IfTrue</span></span> 来证明出 <span class="inlinecode"><span class="id" type="var">IFB</span></span> <span class="inlinecode"><span class="id" type="var">b</span></span> <span class="inlinecode"><span class="id" type="var">THEN</span></span>
+       <span class="inlinecode"><span class="id" type="var">c<sub>1</sub></span></span> <span class="inlinecode"><span class="id" type="var">ELSE</span></span> <span class="inlinecode"><span class="id" type="var">c<sub>2</sub></span></span> <span class="inlinecode"><span class="id" type="var">FI</span></span> <span class="inlinecode">/</span> <span class="inlinecode"><span class="id" type="var">st</span></span> <span class="inlinecode">||</span> <span class="inlinecode"><span class="id" type="var">st'</span></span>.  <span class="proofbox">&#9744;</span>
 
 </li>
 </ul>
-
-<div class="paragraph"> </div>
-
-   Here is the formal version of this proof: 
+   下面是这个证明的形式化版本: 
 </div>
 <div class="code code-tight">
 
@@ -335,9 +284,9 @@ Of course, few programmers would be tempted to write a conditional
 &nbsp;&nbsp;<span class="id" type="tactic">split</span>; <span class="id" type="tactic">intros</span> <span class="id" type="var">H</span>.<br/>
 &nbsp;&nbsp;- <span class="comment">(*&nbsp;-&gt;&nbsp;*)</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">inversion</span> <span class="id" type="var">H</span>; <span class="id" type="tactic">subst</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="comment">(*&nbsp;b&nbsp;evaluates&nbsp;to&nbsp;true&nbsp;*)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="comment">(*&nbsp;b&nbsp;求值得出&nbsp;true&nbsp;*)</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">assumption</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="comment">(*&nbsp;b&nbsp;evaluates&nbsp;to&nbsp;false&nbsp;(contradiction)&nbsp;*)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="comment">(*&nbsp;b&nbsp;求值得出&nbsp;false&nbsp;(矛盾)&nbsp;*)</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">unfold</span> <span class="id" type="var">bequiv</span> <span class="id" type="keyword">in</span> <span class="id" type="var">Hb</span>. <span class="id" type="tactic">simpl</span> <span class="id" type="keyword">in</span> <span class="id" type="var">Hb</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">rewrite</span> <span class="id" type="var">Hb</span> <span class="id" type="keyword">in</span> <span class="id" type="var">H<sub>5</sub></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">inversion</span> <span class="id" type="var">H<sub>5</sub></span>.<br/>
@@ -369,8 +318,7 @@ Of course, few programmers would be tempted to write a conditional
 <div class="paragraph"> </div>
 
 <a name="lab373"></a><h4 class="section">Exercise: 3 stars (swap_if_branches)</h4>
- Show that we can swap the branches of an IF if we also negate its
-    guard. 
+ 证明我们可以通过对条件取反来交换 IF 的两个分支 
 </div>
 <div class="code code-tight">
 
@@ -387,11 +335,10 @@ Of course, few programmers would be tempted to write a conditional
 <div class="doc less-space">
 <div class="paragraph"> </div>
 
- For <span class="inlinecode"><span class="id" type="var">WHILE</span></span> loops, we can give a similar pair of theorems.  A loop
-    whose guard is equivalent to <span class="inlinecode"><span class="id" type="var">BFalse</span></span> is equivalent to <span class="inlinecode"><span class="id" type="var">SKIP</span></span>,
-    while a loop whose guard is equivalent to <span class="inlinecode"><span class="id" type="var">BTrue</span></span> is equivalent to
-    <span class="inlinecode"><span class="id" type="var">WHILE</span></span> <span class="inlinecode"><span class="id" type="var">BTrue</span></span> <span class="inlinecode"><span class="id" type="var">DO</span></span> <span class="inlinecode"><span class="id" type="var">SKIP</span></span> <span class="inlinecode"><span class="id" type="var">END</span></span> (or any other non-terminating program).
-    The first of these facts is easy. 
+ 对于 <span class="inlinecode"><span class="id" type="var">WHILE</span></span> 循环我们能够给出一组相似的定理：当一个循环的条件等价于 <span class="inlinecode"><span class="id" type="var">BFalse</span></span> 的
+    时候它等价于 <span class="inlinecode"><span class="id" type="var">SKIP</span></span>, 当一个循环的条件等价于 <span class="inlinecode"><span class="id" type="var">BTrue</span></span> 的时候它等价于
+    <span class="inlinecode"><span class="id" type="var">WHILE</span></span> <span class="inlinecode"><span class="id" type="var">BTrue</span></span> <span class="inlinecode"><span class="id" type="var">DO</span></span> <span class="inlinecode"><span class="id" type="var">SKIP</span></span> <span class="inlinecode"><span class="id" type="var">END</span></span> （或者任意不终止的程序）。
+    前者比较简单. 
 </div>
 <div class="code code-tight">
 
@@ -423,53 +370,35 @@ Of course, few programmers would be tempted to write a conditional
 
 <div class="doc">
 <a name="lab374"></a><h4 class="section">Exercise: 2 stars, advanced, optional (WHILE_false_informal)</h4>
- Write an informal proof of <span class="inlinecode"><span class="id" type="var">WHILE_false</span></span>.
-
-<div class="paragraph"> </div>
-
+ 写出 <span class="inlinecode"><span class="id" type="var">WHILE_false</span></span> 的非形式化证明.
 <span class="comment">(*&nbsp;FILL&nbsp;IN&nbsp;HERE&nbsp;*)</span><br/>
 <span class="proofbox">&#9744;</span>
 
 <div class="paragraph"> </div>
 
- To prove the second fact, we need an auxiliary lemma stating that
-    <span class="inlinecode"><span class="id" type="var">WHILE</span></span> loops whose guards are equivalent to <span class="inlinecode"><span class="id" type="var">BTrue</span></span> never
-    terminate. 
+ 为了证明第2个定理, 我们需要一个辅助定理: <span class="inlinecode"><span class="id" type="var">WHILE</span></span> 循环在条件等价于
+     <span class="inlinecode"><span class="id" type="var">BTrue</span></span> 的时候循环不会终止: 
 <div class="paragraph"> </div>
 
- <i>Lemma</i>: If <span class="inlinecode"><span class="id" type="var">b</span></span> is equivalent to <span class="inlinecode"><span class="id" type="var">BTrue</span></span>, then it cannot be the
-    case that <span class="inlinecode">(<span class="id" type="var">WHILE</span></span> <span class="inlinecode"><span class="id" type="var">b</span></span> <span class="inlinecode"><span class="id" type="var">DO</span></span> <span class="inlinecode"><span class="id" type="var">c</span></span> <span class="inlinecode"><span class="id" type="var">END</span>)</span> <span class="inlinecode">/</span> <span class="inlinecode"><span class="id" type="var">st</span></span> <span class="inlinecode"><span style="font-family: arial;">&dArr;</span></span> <span class="inlinecode"><span class="id" type="var">st'</span></span>.
-
-<div class="paragraph"> </div>
-
-    <i>Proof</i>: Suppose that <span class="inlinecode">(<span class="id" type="var">WHILE</span></span> <span class="inlinecode"><span class="id" type="var">b</span></span> <span class="inlinecode"><span class="id" type="var">DO</span></span> <span class="inlinecode"><span class="id" type="var">c</span></span> <span class="inlinecode"><span class="id" type="var">END</span>)</span> <span class="inlinecode">/</span> <span class="inlinecode"><span class="id" type="var">st</span></span> <span class="inlinecode"><span style="font-family: arial;">&dArr;</span></span> <span class="inlinecode"><span class="id" type="var">st'</span></span>.  We show,
-    by induction on a derivation of <span class="inlinecode">(<span class="id" type="var">WHILE</span></span> <span class="inlinecode"><span class="id" type="var">b</span></span> <span class="inlinecode"><span class="id" type="var">DO</span></span> <span class="inlinecode"><span class="id" type="var">c</span></span> <span class="inlinecode"><span class="id" type="var">END</span>)</span> <span class="inlinecode">/</span> <span class="inlinecode"><span class="id" type="var">st</span></span> <span class="inlinecode"><span style="font-family: arial;">&dArr;</span></span> <span class="inlinecode"><span class="id" type="var">st'</span></span>,
-    that this assumption leads to a contradiction.
+ <i>Lemma</i>: 如果 <span class="inlinecode"><span class="id" type="var">b</span></span> 等价于 <span class="inlinecode"><span class="id" type="var">BTrue</span></span>, 则不可能像
+     <span class="inlinecode">(<span class="id" type="var">WHILE</span></span> <span class="inlinecode"><span class="id" type="var">b</span></span> <span class="inlinecode"><span class="id" type="var">DO</span></span> <span class="inlinecode"><span class="id" type="var">c</span></span> <span class="inlinecode"><span class="id" type="var">END</span>)</span> <span class="inlinecode">/</span> <span class="inlinecode"><span class="id" type="var">st</span></span> <span class="inlinecode">||</span> <span class="inlinecode"><span class="id" type="var">st'</span></span> 这样会终止。
+    <i>Proof</i>: 假设循环会终止，即 <span class="inlinecode">(<span class="id" type="var">WHILE</span></span> <span class="inlinecode"><span class="id" type="var">b</span></span> <span class="inlinecode"><span class="id" type="var">DO</span></span> <span class="inlinecode"><span class="id" type="var">c</span></span> <span class="inlinecode"><span class="id" type="var">END</span>)</span> <span class="inlinecode">/</span> <span class="inlinecode"><span class="id" type="var">st</span></span> <span class="inlinecode">||</span> <span class="inlinecode"><span class="id" type="var">st'</span></span>.  我们将证明在通过
+    对 <span class="inlinecode">(<span class="id" type="var">WHILE</span></span> <span class="inlinecode"><span class="id" type="var">b</span></span> <span class="inlinecode"><span class="id" type="var">DO</span></span> <span class="inlinecode"><span class="id" type="var">c</span></span> <span class="inlinecode"><span class="id" type="var">END</span>)</span> <span class="inlinecode">/</span> <span class="inlinecode"><span class="id" type="var">st</span></span> <span class="inlinecode">||</span> <span class="inlinecode"><span class="id" type="var">st'</span></span> 使用归纳法可以引出矛盾。
 
 <div class="paragraph"> </div>
 
 <ul class="doclist">
-<li> Suppose <span class="inlinecode">(<span class="id" type="var">WHILE</span></span> <span class="inlinecode"><span class="id" type="var">b</span></span> <span class="inlinecode"><span class="id" type="var">DO</span></span> <span class="inlinecode"><span class="id" type="var">c</span></span> <span class="inlinecode"><span class="id" type="var">END</span>)</span> <span class="inlinecode">/</span> <span class="inlinecode"><span class="id" type="var">st</span></span> <span class="inlinecode"><span style="font-family: arial;">&dArr;</span></span> <span class="inlinecode"><span class="id" type="var">st'</span></span> is proved using rule
-        <span class="inlinecode"><span class="id" type="var">E_WhileEnd</span></span>.  Then by assumption <span class="inlinecode"><span class="id" type="var">beval</span></span> <span class="inlinecode"><span class="id" type="var">st</span></span> <span class="inlinecode"><span class="id" type="var">b</span></span> <span class="inlinecode">=</span> <span class="inlinecode"><span class="id" type="var">false</span></span>.  But
-        this contradicts the assumption that <span class="inlinecode"><span class="id" type="var">b</span></span> is equivalent to
-        <span class="inlinecode"><span class="id" type="var">BTrue</span></span>.
-
-<div class="paragraph"> </div>
-
+<li> 假设 <span class="inlinecode">(<span class="id" type="var">WHILE</span></span> <span class="inlinecode"><span class="id" type="var">b</span></span> <span class="inlinecode"><span class="id" type="var">DO</span></span> <span class="inlinecode"><span class="id" type="var">c</span></span> <span class="inlinecode"><span class="id" type="var">END</span>)</span> <span class="inlinecode">/</span> <span class="inlinecode"><span class="id" type="var">st</span></span> <span class="inlinecode">||</span> <span class="inlinecode"><span class="id" type="var">st'</span></span> 使用了 <span class="inlinecode"><span class="id" type="var">E_WhileEnd</span></span> 这条证明规则。
+        那么根据假设得出 <span class="inlinecode"><span class="id" type="var">beval</span></span> <span class="inlinecode"><span class="id" type="var">st</span></span> <span class="inlinecode"><span class="id" type="var">b</span></span> <span class="inlinecode">=</span> <span class="inlinecode"><span class="id" type="var">false</span></span> 。但是这和 <span class="inlinecode"><span class="id" type="var">b</span></span> 等价于 <span class="inlinecode"><span class="id" type="var">BTrue</span></span> 矛盾。
 
 </li>
-<li> Suppose <span class="inlinecode">(<span class="id" type="var">WHILE</span></span> <span class="inlinecode"><span class="id" type="var">b</span></span> <span class="inlinecode"><span class="id" type="var">DO</span></span> <span class="inlinecode"><span class="id" type="var">c</span></span> <span class="inlinecode"><span class="id" type="var">END</span>)</span> <span class="inlinecode">/</span> <span class="inlinecode"><span class="id" type="var">st</span></span> <span class="inlinecode"><span style="font-family: arial;">&dArr;</span></span> <span class="inlinecode"><span class="id" type="var">st'</span></span> is proved using rule
-        <span class="inlinecode"><span class="id" type="var">E_WhileLoop</span></span>.  Then we are given the induction hypothesis
-        that <span class="inlinecode">(<span class="id" type="var">WHILE</span></span> <span class="inlinecode"><span class="id" type="var">b</span></span> <span class="inlinecode"><span class="id" type="var">DO</span></span> <span class="inlinecode"><span class="id" type="var">c</span></span> <span class="inlinecode"><span class="id" type="var">END</span>)</span> <span class="inlinecode">/</span> <span class="inlinecode"><span class="id" type="var">st</span></span> <span class="inlinecode"><span style="font-family: arial;">&dArr;</span></span> <span class="inlinecode"><span class="id" type="var">st'</span></span> is contradictory, which
-        is exactly what we are trying to prove!
-
-<div class="paragraph"> </div>
-
+<li> 假设 <span class="inlinecode">(<span class="id" type="var">WHILE</span></span> <span class="inlinecode"><span class="id" type="var">b</span></span> <span class="inlinecode"><span class="id" type="var">DO</span></span> <span class="inlinecode"><span class="id" type="var">c</span></span> <span class="inlinecode"><span class="id" type="var">END</span>)</span> <span class="inlinecode">/</span> <span class="inlinecode"><span class="id" type="var">st</span></span> <span class="inlinecode">||</span> <span class="inlinecode"><span class="id" type="var">st'</span></span> 使用了 <span class="inlinecode"><span class="id" type="var">E_WhileLoop</span></span> 这条证明规则.
+        结果就是给出了一个和 <span class="inlinecode">(<span class="id" type="var">WHILE</span></span> <span class="inlinecode"><span class="id" type="var">b</span></span> <span class="inlinecode"><span class="id" type="var">DO</span></span> <span class="inlinecode"><span class="id" type="var">c</span></span> <span class="inlinecode"><span class="id" type="var">END</span>)</span> <span class="inlinecode">/</span> <span class="inlinecode"><span class="id" type="var">st</span></span> <span class="inlinecode">||</span> <span class="inlinecode"><span class="id" type="var">st'</span></span> 矛盾的假设, 正巧是
+        我们正要证明的那个!
 
 </li>
-<li> Since these are the only rules that could have been used to
-        prove <span class="inlinecode">(<span class="id" type="var">WHILE</span></span> <span class="inlinecode"><span class="id" type="var">b</span></span> <span class="inlinecode"><span class="id" type="var">DO</span></span> <span class="inlinecode"><span class="id" type="var">c</span></span> <span class="inlinecode"><span class="id" type="var">END</span>)</span> <span class="inlinecode">/</span> <span class="inlinecode"><span class="id" type="var">st</span></span> <span class="inlinecode"><span style="font-family: arial;">&dArr;</span></span> <span class="inlinecode"><span class="id" type="var">st'</span></span>, the other cases of
-        the induction are immediately contradictory. <span class="proofbox">&#9744;</span> 
+<li> 由于只有以上的几条规则可以证明出 <span class="inlinecode">(<span class="id" type="var">WHILE</span></span> <span class="inlinecode"><span class="id" type="var">b</span></span> <span class="inlinecode"><span class="id" type="var">DO</span></span> <span class="inlinecode"><span class="id" type="var">c</span></span> <span class="inlinecode"><span class="id" type="var">END</span>)</span> <span class="inlinecode">/</span> <span class="inlinecode"><span class="id" type="var">st</span></span> <span class="inlinecode">||</span> <span class="inlinecode"><span class="id" type="var">st'</span></span> 所以归纳时
+        的其他的情况会立即导致矛盾。 <span class="proofbox">&#9744;</span> 
 </li>
 </ul>
 
@@ -486,31 +415,26 @@ Of course, few programmers would be tempted to write a conditional
 &nbsp;&nbsp;<span class="id" type="tactic">intros</span> <span class="id" type="var">H</span>.<br/>
 &nbsp;&nbsp;<span class="id" type="var">remember</span> (<span class="id" type="var">WHILE</span> <span class="id" type="var">b</span> <span class="id" type="var">DO</span> <span class="id" type="var">c</span> <span class="id" type="var">END</span>) <span class="id" type="keyword">as</span> <span class="id" type="var">cw</span> <span class="id" type="var">eqn</span>:<span class="id" type="var">Heqcw</span>.<br/>
 &nbsp;&nbsp;<span class="id" type="tactic">induction</span> <span class="id" type="var">H</span>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">(*&nbsp;Most&nbsp;rules&nbsp;don't&nbsp;apply,&nbsp;and&nbsp;we&nbsp;can&nbsp;rule&nbsp;them&nbsp;out<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;by&nbsp;inversion&nbsp;*)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">(*&nbsp;大多数证明规则不可能应用，我们可以用&nbsp;反演（inversion）来去除他们&nbsp;*)</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">inversion</span> <span class="id" type="var">Heqcw</span>; <span class="id" type="tactic">subst</span>; <span class="id" type="tactic">clear</span> <span class="id" type="var">Heqcw</span>.<br/>
-&nbsp;&nbsp;<span class="comment">(*&nbsp;The&nbsp;two&nbsp;interesting&nbsp;cases&nbsp;are&nbsp;the&nbsp;ones&nbsp;for&nbsp;WHILE&nbsp;loops:&nbsp;*)</span><br/>
-&nbsp;&nbsp;- <span class="comment">(*&nbsp;E_WhileEnd&nbsp;*)</span> <span class="comment">(*&nbsp;contradictory&nbsp;--&nbsp;b&nbsp;is&nbsp;always&nbsp;true!&nbsp;*)</span><br/>
+&nbsp;&nbsp;<span class="comment">(*&nbsp;我们只关心这两个关于&nbsp;WHILE&nbsp;循环的证明规则:&nbsp;*)</span><br/>
+&nbsp;&nbsp;- <span class="comment">(*&nbsp;E_WhileEnd&nbsp;*)</span> <span class="comment">(*&nbsp;矛盾&nbsp;--&nbsp;b&nbsp;总是&nbsp;true!&nbsp;*)</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">unfold</span> <span class="id" type="var">bequiv</span> <span class="id" type="keyword">in</span> <span class="id" type="var">Hb</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">(*&nbsp;<span class="inlinecode"><span class="id" type="tactic">rewrite</span></span>&nbsp;is&nbsp;able&nbsp;to&nbsp;instantiate&nbsp;the&nbsp;quantifier&nbsp;in&nbsp;<span class="inlinecode"><span class="id" type="var">st</span></span>&nbsp;*)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">(*&nbsp;<span class="inlinecode"><span class="id" type="tactic">rewrite</span></span>&nbsp;能实例化Hb中的变量&nbsp;<span class="inlinecode"><span class="id" type="var">st</span></span>&nbsp;*)</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">rewrite</span> <span class="id" type="var">Hb</span> <span class="id" type="keyword">in</span> <span class="id" type="var">H</span>. <span class="id" type="tactic">inversion</span> <span class="id" type="var">H</span>.<br/>
-&nbsp;&nbsp;- <span class="comment">(*&nbsp;E_WhileLoop&nbsp;*)</span> <span class="comment">(*&nbsp;immediate&nbsp;from&nbsp;the&nbsp;IH&nbsp;*)</span><br/>
+&nbsp;&nbsp;- <span class="comment">(*&nbsp;E_WhileLoop&nbsp;*)</span> <span class="comment">(*&nbsp;直接使用IH&nbsp;*)</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">apply</span> <span class="id" type="var">IHceval2</span>. <span class="id" type="tactic">reflexivity</span>. <span class="id" type="keyword">Qed</span>.<br/>
 </div>
 
 <div class="doc">
 <a name="lab375"></a><h4 class="section">Exercise: 2 stars, optional (WHILE_true_nonterm_informal)</h4>
- Explain what the lemma <span class="inlinecode"><span class="id" type="var">WHILE_true_nonterm</span></span> means in English.
-
-<div class="paragraph"> </div>
-
+ 试解释 <span class="inlinecode"><span class="id" type="var">WHILE_true_nonterm</span></span> 的意义。
 <span class="comment">(*&nbsp;FILL&nbsp;IN&nbsp;HERE&nbsp;*)</span><br/>
  <span class="proofbox">&#9744;</span> 
 <div class="paragraph"> </div>
 
 <a name="lab376"></a><h4 class="section">Exercise: 2 stars, recommended (WHILE_true)</h4>
- Prove the following theorem. <i>Hint</i>: You'll want to use
-    <span class="inlinecode"><span class="id" type="var">WHILE_true_nonterm</span></span> here. 
+ 证明下面的定理. <i>'提示'</i> : 你可能需要使用 <span class="inlinecode"><span class="id" type="var">WHILE_true_nonterm</span></span>. 
 </div>
 <div class="code code-tight">
 
@@ -547,18 +471,18 @@ Of course, few programmers would be tempted to write a conditional
 &nbsp;&nbsp;<span class="id" type="tactic">split</span>; <span class="id" type="tactic">intros</span> <span class="id" type="var">Hce</span>.<br/>
 &nbsp;&nbsp;- <span class="comment">(*&nbsp;-&gt;&nbsp;*)</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">inversion</span> <span class="id" type="var">Hce</span>; <span class="id" type="tactic">subst</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="comment">(*&nbsp;loop&nbsp;doesn't&nbsp;run&nbsp;*)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="comment">(*&nbsp;不执行循环&nbsp;*)</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">apply</span> <span class="id" type="var">E_IfFalse</span>. <span class="id" type="tactic">assumption</span>. <span class="id" type="tactic">apply</span> <span class="id" type="var">E_Skip</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="comment">(*&nbsp;loop&nbsp;runs&nbsp;*)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="comment">(*&nbsp;执行循环&nbsp;*)</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">apply</span> <span class="id" type="var">E_IfTrue</span>. <span class="id" type="tactic">assumption</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">apply</span> <span class="id" type="var">E_Seq</span> <span class="id" type="keyword">with</span> (<span class="id" type="var">st'</span> := <span class="id" type="var">st'0</span>). <span class="id" type="tactic">assumption</span>. <span class="id" type="tactic">assumption</span>.<br/>
 &nbsp;&nbsp;- <span class="comment">(*&nbsp;&lt;-&nbsp;*)</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">inversion</span> <span class="id" type="var">Hce</span>; <span class="id" type="tactic">subst</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="comment">(*&nbsp;loop&nbsp;runs&nbsp;*)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="comment">(*&nbsp;执行循环&nbsp;*)</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">inversion</span> <span class="id" type="var">H<sub>5</sub></span>; <span class="id" type="tactic">subst</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">apply</span> <span class="id" type="var">E_WhileLoop</span> <span class="id" type="keyword">with</span> (<span class="id" type="var">st'</span> := <span class="id" type="var">st'0</span>).<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">assumption</span>. <span class="id" type="tactic">assumption</span>. <span class="id" type="tactic">assumption</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="comment">(*&nbsp;loop&nbsp;doesn't&nbsp;run&nbsp;*)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="comment">(*&nbsp;不执行循环&nbsp;*)</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">inversion</span> <span class="id" type="var">H<sub>5</sub></span>; <span class="id" type="tactic">subst</span>. <span class="id" type="tactic">apply</span> <span class="id" type="var">E_WhileEnd</span>. <span class="id" type="tactic">assumption</span>. <span class="id" type="keyword">Qed</span>.<br/>
 </div>
 
@@ -696,22 +620,21 @@ Of course, few programmers would be tempted to write a conditional
 <span class="proofbox">&#9744;</span> 
 
 <div class="doc">
-<a name="lab380"></a><h1 class="section">Properties of Behavioral Equivalence</h1>
+<a name="lab380"></a><h1 class="section">行为等价的性质</h1>
 
 <div class="paragraph"> </div>
 
- We next consider some fundamental properties of the program
-    equivalence relations. 
+ 现在我们开始开发之前定义的程序等价中的一些性质. 
 </div>
 
 <div class="doc">
-<a name="lab381"></a><h2 class="section">Behavioral Equivalence Is an Equivalence</h2>
+<a name="lab381"></a><h2 class="section">行为等价是一种等价性</h2>
 
 <div class="paragraph"> </div>
 
- First, we verify that the equivalences on <span class="inlinecode"><span class="id" type="var">aexps</span></span>, <span class="inlinecode"><span class="id" type="var">bexps</span></span>, and
-    <span class="inlinecode"><span class="id" type="var">com</span></span>s really are <i>equivalences</i> &mdash; i.e., that they are reflexive,
-    symmetric, and transitive.  The proofs are all easy. 
+ 首先, 我们验证 <span class="inlinecode"><span class="id" type="var">aexps</span></span>, <span class="inlinecode"><span class="id" type="var">bexps</span></span>, 和 <span class="inlinecode"><span class="id" type="var">com</span></span> 的确满足 <i>'等价性'</i> （ <i>equivalences</i> ）
+ 也就是说, 它们都满足 自反性（reflexive），对称性（symmetric）和 传递性（transitive）。
+    这些证明全都不难。 
 </div>
 <div class="code code-tight">
 
@@ -785,7 +708,7 @@ Of course, few programmers would be tempted to write a conditional
 <span class="id" type="keyword">Proof</span>.<br/>
 &nbsp;&nbsp;<span class="id" type="tactic">unfold</span> <span class="id" type="var">cequiv</span>. <span class="id" type="tactic">intros</span> <span class="id" type="var">c<sub>1</sub></span> <span class="id" type="var">c<sub>2</sub></span> <span class="id" type="var">H</span> <span class="id" type="var">st</span> <span class="id" type="var">st'</span>.<br/>
 &nbsp;&nbsp;<span class="id" type="tactic">assert</span> (<span class="id" type="var">c<sub>1</sub></span> / <span class="id" type="var">st</span> <span style="font-family: arial;">&dArr;</span> <span class="id" type="var">st'</span> <span style="font-family: arial;">&harr;</span> <span class="id" type="var">c<sub>2</sub></span> / <span class="id" type="var">st</span> <span style="font-family: arial;">&dArr;</span> <span class="id" type="var">st'</span>) <span class="id" type="keyword">as</span> <span class="id" type="var">H'</span>.<br/>
-&nbsp;&nbsp;{ <span class="comment">(*&nbsp;Proof&nbsp;of&nbsp;assertion&nbsp;*)</span> <span class="id" type="tactic">apply</span> <span class="id" type="var">H</span>. }<br/>
+&nbsp;&nbsp;{ <span class="comment">(*&nbsp;断言的证明&nbsp;*)</span> <span class="id" type="tactic">apply</span> <span class="id" type="var">H</span>. }<br/>
 &nbsp;&nbsp;<span class="id" type="tactic">apply</span> <span class="id" type="var">iff_sym</span>. <span class="id" type="tactic">assumption</span>.<br/>
 <span class="id" type="keyword">Qed</span>.<br/>
 </div>
@@ -817,13 +740,12 @@ Of course, few programmers would be tempted to write a conditional
 </div>
 
 <div class="doc">
-<a name="lab382"></a><h2 class="section">Behavioral Equivalence Is a Congruence</h2>
+<a name="lab382"></a><h2 class="section">行为等价是一种一致性</h2>
 
 <div class="paragraph"> </div>
 
- Less obviously, behavioral equivalence is also a <i>congruence</i>.
-    That is, the equivalence of two subprograms implies the
-    equivalence of the larger programs in which they are embedded:
+ 不太明显地, 行为等价也满足 <i>'一致性'</i> （ <i>congruence</i> ). 也就是说
+    两个子程序等价那么只有子程序有差异的两个大程序也等价:
 <center><table class="infrule">
 <tr class="infruleassumption">
   <td class="infrule">aequiv&nbsp;a<sub>1</sub>&nbsp;a<sub>1</sub>'</td>
@@ -854,23 +776,18 @@ Of course, few programmers would be tempted to write a conditional
   <td class="infrule">cequiv&nbsp;(c<sub>1</sub>;;c<sub>2</sub>)&nbsp;(c<sub>1</sub>';;c<sub>2</sub>')</td>
   <td></td>
 </td>
-</table></center>    ...and so on for the other forms of commands. 
+</table></center>    ...等等.  
 <div class="paragraph"> </div>
 
- (Note that we are using the inference rule notation here not
-    as part of a definition, but simply to write down some valid
-    implications in a readable format. We prove these implications
-    below.) 
+ (注意我们这里用的推理规则记号并不是定义的一部分, 只是将一些合法的蕴含式用易读的方式写下而已.
+    接下来我们将证明这些蕴含式.) 
 <div class="paragraph"> </div>
 
- We will see a concrete example of why these congruence
-    properties are important in the following section (in the proof of
-    <span class="inlinecode"><span class="id" type="var">fold_constants_com_sound</span></span>), but the main idea is that they allow
-    us to replace a small part of a large program with an equivalent
-    small part and know that the whole large programs are equivalent
-    <i>without</i> doing an explicit proof about the non-varying parts &mdash;
-    i.e., the "proof burden" of a small change to a large program is
-    proportional to the size of the change, not the program. 
+ 我们会在接下来的章节（在 <span class="inlinecode"><span class="id" type="var">fold_constants_com_sound</span></span> 的证明中）看到
+    一些例子能够说明为何这些一致性十分重要。但是它的主要意义在于这些一致性允许我们在用一小部
+    分程序替换一个大程序中等价的一部分并证明替换前和替换后程序的等价
+    性时 <i>'无需'</i> 进行与不变的部分相关的证明；也即是说，程序的改变所产生
+    的证明的工作量与改变的大小而不是与整个程序的大小成比例。 
 </div>
 <div class="code code-tight">
 
@@ -895,66 +812,41 @@ Of course, few programmers would be tempted to write a conditional
 </div>
 
 <div class="doc">
-The congruence property for loops is a little more interesting,
-    since it requires induction.
-
-<div class="paragraph"> </div>
-
-    <i>Theorem</i>: Equivalence is a congruence for <span class="inlinecode"><span class="id" type="var">WHILE</span></span> &mdash; that is, if
-    <span class="inlinecode"><span class="id" type="var">b<sub>1</sub></span></span> is equivalent to <span class="inlinecode"><span class="id" type="var">b<sub>1</sub>'</span></span> and <span class="inlinecode"><span class="id" type="var">c<sub>1</sub></span></span> is equivalent to <span class="inlinecode"><span class="id" type="var">c<sub>1</sub>'</span></span>, then
-    <span class="inlinecode"><span class="id" type="var">WHILE</span></span> <span class="inlinecode"><span class="id" type="var">b<sub>1</sub></span></span> <span class="inlinecode"><span class="id" type="var">DO</span></span> <span class="inlinecode"><span class="id" type="var">c<sub>1</sub></span></span> <span class="inlinecode"><span class="id" type="var">END</span></span> is equivalent to <span class="inlinecode"><span class="id" type="var">WHILE</span></span> <span class="inlinecode"><span class="id" type="var">b<sub>1</sub>'</span></span> <span class="inlinecode"><span class="id" type="var">DO</span></span> <span class="inlinecode"><span class="id" type="var">c<sub>1</sub>'</span></span> <span class="inlinecode"><span class="id" type="var">END</span></span>.
-
-<div class="paragraph"> </div>
-
-    <i>Proof</i>: Suppose <span class="inlinecode"><span class="id" type="var">b<sub>1</sub></span></span> is equivalent to <span class="inlinecode"><span class="id" type="var">b<sub>1</sub>'</span></span> and <span class="inlinecode"><span class="id" type="var">c<sub>1</sub></span></span> is
-    equivalent to <span class="inlinecode"><span class="id" type="var">c<sub>1</sub>'</span></span>.  We must show, for every <span class="inlinecode"><span class="id" type="var">st</span></span> and <span class="inlinecode"><span class="id" type="var">st'</span></span>, that
-    <span class="inlinecode"><span class="id" type="var">WHILE</span></span> <span class="inlinecode"><span class="id" type="var">b<sub>1</sub></span></span> <span class="inlinecode"><span class="id" type="var">DO</span></span> <span class="inlinecode"><span class="id" type="var">c<sub>1</sub></span></span> <span class="inlinecode"><span class="id" type="var">END</span></span> <span class="inlinecode">/</span> <span class="inlinecode"><span class="id" type="var">st</span></span> <span class="inlinecode"><span style="font-family: arial;">&dArr;</span></span> <span class="inlinecode"><span class="id" type="var">st'</span></span> iff <span class="inlinecode"><span class="id" type="var">WHILE</span></span> <span class="inlinecode"><span class="id" type="var">b<sub>1</sub>'</span></span> <span class="inlinecode"><span class="id" type="var">DO</span></span> <span class="inlinecode"><span class="id" type="var">c<sub>1</sub>'</span></span> <span class="inlinecode"><span class="id" type="var">END</span></span> <span class="inlinecode">/</span> <span class="inlinecode"><span class="id" type="var">st</span></span>
-    <span class="inlinecode"><span style="font-family: arial;">&dArr;</span></span> <span class="inlinecode"><span class="id" type="var">st'</span></span>.  We consider the two directions separately.
+循环的一致性更有趣, 因为他需要使用归纳法（induction）.
+    <i>Theorem</i>: 对于 <span class="inlinecode"><span class="id" type="var">WHILE</span></span> ，等价性是一种一致性 &mdash; 也就是说, 如果 <span class="inlinecode"><span class="id" type="var">b<sub>1</sub></span></span> 等价于 <span class="inlinecode"><span class="id" type="var">b<sub>1</sub>'</span></span>
+    同时 <span class="inlinecode"><span class="id" type="var">c<sub>1</sub></span></span> 等价于 <span class="inlinecode"><span class="id" type="var">c<sub>1</sub>'</span></span> ，那么 <span class="inlinecode"><span class="id" type="var">WHILE</span></span> <span class="inlinecode"><span class="id" type="var">b<sub>1</sub></span></span> <span class="inlinecode"><span class="id" type="var">DO</span></span> <span class="inlinecode"><span class="id" type="var">c<sub>1</sub></span></span> <span class="inlinecode"><span class="id" type="var">END</span></span> 等价于
+     <span class="inlinecode"><span class="id" type="var">WHILE</span></span> <span class="inlinecode"><span class="id" type="var">b<sub>1</sub>'</span></span> <span class="inlinecode"><span class="id" type="var">DO</span></span> <span class="inlinecode"><span class="id" type="var">c<sub>1</sub>'</span></span> <span class="inlinecode"><span class="id" type="var">END</span></span> 。
+    <i>Proof</i>: 假设 <span class="inlinecode"><span class="id" type="var">b<sub>1</sub></span></span> 等价于 <span class="inlinecode"><span class="id" type="var">b<sub>1</sub>'</span></span> 同时 <span class="inlinecode"><span class="id" type="var">c<sub>1</sub></span></span> 等价于 <span class="inlinecode"><span class="id" type="var">c<sub>1</sub>'</span></span> 。
+    我们要证明，对于所有 <span class="inlinecode"><span class="id" type="var">st</span></span> 和 <span class="inlinecode"><span class="id" type="var">st'</span></span> ， <span class="inlinecode"><span class="id" type="var">WHILE</span></span> <span class="inlinecode"><span class="id" type="var">b<sub>1</sub></span></span> <span class="inlinecode"><span class="id" type="var">DO</span></span> <span class="inlinecode"><span class="id" type="var">c<sub>1</sub></span></span> <span class="inlinecode"><span class="id" type="var">END</span></span> <span class="inlinecode">/</span> <span class="inlinecode"><span class="id" type="var">st</span></span> <span class="inlinecode">||</span> <span class="inlinecode"><span class="id" type="var">st'</span></span>
+    当且仅当 <span class="inlinecode"><span class="id" type="var">WHILE</span></span> <span class="inlinecode"><span class="id" type="var">b<sub>1</sub>'</span></span> <span class="inlinecode"><span class="id" type="var">DO</span></span> <span class="inlinecode"><span class="id" type="var">c<sub>1</sub>'</span></span> <span class="inlinecode"><span class="id" type="var">END</span></span> <span class="inlinecode">/</span> <span class="inlinecode"><span class="id" type="var">st</span></span> <span class="inlinecode">||</span> <span class="inlinecode"><span class="id" type="var">st'</span></span> 。我们把两个方向分开考虑。
 
 <div class="paragraph"> </div>
 
 <ul class="doclist">
-<li> (<span class="inlinecode"><span style="font-family: arial;">&rarr;</span></span>) We show that <span class="inlinecode"><span class="id" type="var">WHILE</span></span> <span class="inlinecode"><span class="id" type="var">b<sub>1</sub></span></span> <span class="inlinecode"><span class="id" type="var">DO</span></span> <span class="inlinecode"><span class="id" type="var">c<sub>1</sub></span></span> <span class="inlinecode"><span class="id" type="var">END</span></span> <span class="inlinecode">/</span> <span class="inlinecode"><span class="id" type="var">st</span></span> <span class="inlinecode"><span style="font-family: arial;">&dArr;</span></span> <span class="inlinecode"><span class="id" type="var">st'</span></span> implies
-        <span class="inlinecode"><span class="id" type="var">WHILE</span></span> <span class="inlinecode"><span class="id" type="var">b<sub>1</sub>'</span></span> <span class="inlinecode"><span class="id" type="var">DO</span></span> <span class="inlinecode"><span class="id" type="var">c<sub>1</sub>'</span></span> <span class="inlinecode"><span class="id" type="var">END</span></span> <span class="inlinecode">/</span> <span class="inlinecode"><span class="id" type="var">st</span></span> <span class="inlinecode"><span style="font-family: arial;">&dArr;</span></span> <span class="inlinecode"><span class="id" type="var">st'</span></span>, by induction on a
-        derivation of <span class="inlinecode"><span class="id" type="var">WHILE</span></span> <span class="inlinecode"><span class="id" type="var">b<sub>1</sub></span></span> <span class="inlinecode"><span class="id" type="var">DO</span></span> <span class="inlinecode"><span class="id" type="var">c<sub>1</sub></span></span> <span class="inlinecode"><span class="id" type="var">END</span></span> <span class="inlinecode">/</span> <span class="inlinecode"><span class="id" type="var">st</span></span> <span class="inlinecode"><span style="font-family: arial;">&dArr;</span></span> <span class="inlinecode"><span class="id" type="var">st'</span></span>.  The only
-        nontrivial cases are when the final rule in the derivation is
-        <span class="inlinecode"><span class="id" type="var">E_WhileEnd</span></span> or <span class="inlinecode"><span class="id" type="var">E_WhileLoop</span></span>.
-
-<div class="paragraph"> </div>
-
+<li> (<span class="inlinecode"><span style="font-family: arial;">&rarr;</span></span>) 我们证明 <span class="inlinecode"><span class="id" type="var">WHILE</span></span> <span class="inlinecode"><span class="id" type="var">b<sub>1</sub></span></span> <span class="inlinecode"><span class="id" type="var">DO</span></span> <span class="inlinecode"><span class="id" type="var">c<sub>1</sub></span></span> <span class="inlinecode"><span class="id" type="var">END</span></span> <span class="inlinecode">/</span> <span class="inlinecode"><span class="id" type="var">st</span></span> <span class="inlinecode">||</span> <span class="inlinecode"><span class="id" type="var">st'</span></span> 蕴涵
+        <span class="inlinecode"><span class="id" type="var">WHILE</span></span> <span class="inlinecode"><span class="id" type="var">b<sub>1</sub>'</span></span> <span class="inlinecode"><span class="id" type="var">DO</span></span> <span class="inlinecode"><span class="id" type="var">c<sub>1</sub>'</span></span> <span class="inlinecode"><span class="id" type="var">END</span></span> <span class="inlinecode">/</span> <span class="inlinecode"><span class="id" type="var">st</span></span> <span class="inlinecode">||</span> <span class="inlinecode"><span class="id" type="var">st'</span></span> ，对 <span class="inlinecode"><span class="id" type="var">WHILE</span></span> <span class="inlinecode"><span class="id" type="var">b<sub>1</sub></span></span> <span class="inlinecode"><span class="id" type="var">DO</span></span> <span class="inlinecode"><span class="id" type="var">c<sub>1</sub></span></span> <span class="inlinecode"><span class="id" type="var">END</span></span> <span class="inlinecode">/</span> <span class="inlinecode"><span class="id" type="var">st</span></span> <span class="inlinecode">||</span> <span class="inlinecode"><span class="id" type="var">st'</span></span>
+        使用归纳法。只有推导最后所使用的规则是 <span class="inlinecode"><span class="id" type="var">E_WhileEnd</span></span> 和 <span class="inlinecode"><span class="id" type="var">E_WhileLoop</span></span> 情况才需要
+	   特别进行讨论。
 <ul class="doclist">
-<li> <span class="inlinecode"><span class="id" type="var">E_WhileEnd</span></span>: In this case, the form of the rule gives us
-            <span class="inlinecode"><span class="id" type="var">beval</span></span> <span class="inlinecode"><span class="id" type="var">st</span></span> <span class="inlinecode"><span class="id" type="var">b<sub>1</sub></span></span> <span class="inlinecode">=</span> <span class="inlinecode"><span class="id" type="var">false</span></span> and <span class="inlinecode"><span class="id" type="var">st</span></span> <span class="inlinecode">=</span> <span class="inlinecode"><span class="id" type="var">st'</span></span>.  But then, since
-            <span class="inlinecode"><span class="id" type="var">b<sub>1</sub></span></span> and <span class="inlinecode"><span class="id" type="var">b<sub>1</sub>'</span></span> are equivalent, we have <span class="inlinecode"><span class="id" type="var">beval</span></span> <span class="inlinecode"><span class="id" type="var">st</span></span> <span class="inlinecode"><span class="id" type="var">b<sub>1</sub>'</span></span> <span class="inlinecode">=</span>
-            <span class="inlinecode"><span class="id" type="var">false</span></span>, and <span class="inlinecode"><span class="id" type="var">E</span>-<span class="id" type="var">WhileEnd</span></span> applies, giving us <span class="inlinecode"><span class="id" type="var">WHILE</span></span> <span class="inlinecode"><span class="id" type="var">b<sub>1</sub>'</span></span> <span class="inlinecode"><span class="id" type="var">DO</span></span>
-            <span class="inlinecode"><span class="id" type="var">c<sub>1</sub>'</span></span> <span class="inlinecode"><span class="id" type="var">END</span></span> <span class="inlinecode">/</span> <span class="inlinecode"><span class="id" type="var">st</span></span> <span class="inlinecode"><span style="font-family: arial;">&dArr;</span></span> <span class="inlinecode"><span class="id" type="var">st'</span></span>, as required.
-
-<div class="paragraph"> </div>
-
+<li> <span class="inlinecode"><span class="id" type="var">E_WhileEnd</span></span>: 在这种情况时, 我们拥有假设的必备条件 <span class="inlinecode"><span class="id" type="var">beval</span></span> <span class="inlinecode"><span class="id" type="var">st</span></span> <span class="inlinecode"><span class="id" type="var">b<sub>1</sub></span></span> <span class="inlinecode">=</span> <span class="inlinecode"><span class="id" type="var">false</span></span>
+            和 <span class="inlinecode"><span class="id" type="var">st</span></span> <span class="inlinecode">=</span> <span class="inlinecode"><span class="id" type="var">st'</span></span> 。但是，因为 <span class="inlinecode"><span class="id" type="var">b<sub>1</sub></span></span> 和 <span class="inlinecode"><span class="id" type="var">b<sub>1</sub>'</span></span> 是等价的，
+            我们有 <span class="inlinecode"><span class="id" type="var">beval</span></span> <span class="inlinecode"><span class="id" type="var">st</span></span> <span class="inlinecode"><span class="id" type="var">b<sub>1</sub>'</span></span> <span class="inlinecode">=</span> <span class="inlinecode"><span class="id" type="var">false</span></span>, 然后应用 <span class="inlinecode"><span class="id" type="var">E</span>-<span class="id" type="var">WhileEnd</span></span> ，
+            得出我们需要的 <span class="inlinecode"><span class="id" type="var">WHILE</span></span> <span class="inlinecode"><span class="id" type="var">b<sub>1</sub>'</span></span> <span class="inlinecode"><span class="id" type="var">DO</span></span> <span class="inlinecode"><span class="id" type="var">c<sub>1</sub>'</span></span> <span class="inlinecode"><span class="id" type="var">END</span></span> <span class="inlinecode">/</span> <span class="inlinecode"><span class="id" type="var">st</span></span> <span class="inlinecode">||</span> <span class="inlinecode"><span class="id" type="var">st'</span></span> 。
 
 </li>
-<li> <span class="inlinecode"><span class="id" type="var">E_WhileLoop</span></span>: The form of the rule now gives us <span class="inlinecode"><span class="id" type="var">beval</span></span> <span class="inlinecode"><span class="id" type="var">st</span></span>
-            <span class="inlinecode"><span class="id" type="var">b<sub>1</sub></span></span> <span class="inlinecode">=</span> <span class="inlinecode"><span class="id" type="var">true</span></span>, with <span class="inlinecode"><span class="id" type="var">c<sub>1</sub></span></span> <span class="inlinecode">/</span> <span class="inlinecode"><span class="id" type="var">st</span></span> <span class="inlinecode"><span style="font-family: arial;">&dArr;</span></span> <span class="inlinecode"><span class="id" type="var">st'0</span></span> and <span class="inlinecode"><span class="id" type="var">WHILE</span></span> <span class="inlinecode"><span class="id" type="var">b<sub>1</sub></span></span> <span class="inlinecode"><span class="id" type="var">DO</span></span> <span class="inlinecode"><span class="id" type="var">c<sub>1</sub></span></span>
-            <span class="inlinecode"><span class="id" type="var">END</span></span> <span class="inlinecode">/</span> <span class="inlinecode"><span class="id" type="var">st'0</span></span> <span class="inlinecode"><span style="font-family: arial;">&dArr;</span></span> <span class="inlinecode"><span class="id" type="var">st'</span></span> for some state <span class="inlinecode"><span class="id" type="var">st'0</span></span>, with the
-            induction hypothesis <span class="inlinecode"><span class="id" type="var">WHILE</span></span> <span class="inlinecode"><span class="id" type="var">b<sub>1</sub>'</span></span> <span class="inlinecode"><span class="id" type="var">DO</span></span> <span class="inlinecode"><span class="id" type="var">c<sub>1</sub>'</span></span> <span class="inlinecode"><span class="id" type="var">END</span></span> <span class="inlinecode">/</span> <span class="inlinecode"><span class="id" type="var">st'0</span></span> <span class="inlinecode"><span style="font-family: arial;">&dArr;</span></span>
-            <span class="inlinecode"><span class="id" type="var">st'</span></span>.
-
-<div class="paragraph"> </div>
-
-            Since <span class="inlinecode"><span class="id" type="var">c<sub>1</sub></span></span> and <span class="inlinecode"><span class="id" type="var">c<sub>1</sub>'</span></span> are equivalent, we know that <span class="inlinecode"><span class="id" type="var">c<sub>1</sub>'</span></span> <span class="inlinecode">/</span>
-            <span class="inlinecode"><span class="id" type="var">st</span></span> <span class="inlinecode"><span style="font-family: arial;">&dArr;</span></span> <span class="inlinecode"><span class="id" type="var">st'0</span></span>.  And since <span class="inlinecode"><span class="id" type="var">b<sub>1</sub></span></span> and <span class="inlinecode"><span class="id" type="var">b<sub>1</sub>'</span></span> are equivalent, we
-            have <span class="inlinecode"><span class="id" type="var">beval</span></span> <span class="inlinecode"><span class="id" type="var">st</span></span> <span class="inlinecode"><span class="id" type="var">b<sub>1</sub>'</span></span> <span class="inlinecode">=</span> <span class="inlinecode"><span class="id" type="var">true</span></span>.  Now <span class="inlinecode"><span class="id" type="var">E</span>-<span class="id" type="var">WhileLoop</span></span> applies,
-            giving us <span class="inlinecode"><span class="id" type="var">WHILE</span></span> <span class="inlinecode"><span class="id" type="var">b<sub>1</sub>'</span></span> <span class="inlinecode"><span class="id" type="var">DO</span></span> <span class="inlinecode"><span class="id" type="var">c<sub>1</sub>'</span></span> <span class="inlinecode"><span class="id" type="var">END</span></span> <span class="inlinecode">/</span> <span class="inlinecode"><span class="id" type="var">st</span></span> <span class="inlinecode"><span style="font-family: arial;">&dArr;</span></span> <span class="inlinecode"><span class="id" type="var">st'</span></span>, as
-            required.
-
-<div class="paragraph"> </div>
-
+<li> <span class="inlinecode"><span class="id" type="var">E_WhileLoop</span></span>: 在这种情况时, 我们拥有假设的必备条件 <span class="inlinecode"><span class="id" type="var">beval</span></span> <span class="inlinecode"><span class="id" type="var">st</span></span> <span class="inlinecode"><span class="id" type="var">b<sub>1</sub></span></span> <span class="inlinecode">=</span> <span class="inlinecode"><span class="id" type="var">true</span></span> ， 
+            <span class="inlinecode"><span class="id" type="var">c<sub>1</sub></span></span> <span class="inlinecode">/</span> <span class="inlinecode"><span class="id" type="var">st</span></span> <span class="inlinecode">||</span> <span class="inlinecode"><span class="id" type="var">st'0</span></span> 和 以及对某个状态 <span class="inlinecode"><span class="id" type="var">st'0</span></span> 而言，有假设 <span class="inlinecode"><span class="id" type="var">WHILE</span></span> <span class="inlinecode"><span class="id" type="var">b<sub>1</sub></span></span> <span class="inlinecode"><span class="id" type="var">DO</span></span> <span class="inlinecode"><span class="id" type="var">c<sub>1</sub></span></span> <span class="inlinecode"><span class="id" type="var">END</span></span> <span class="inlinecode">/</span> <span class="inlinecode"><span class="id" type="var">st'0</span></span> <span class="inlinecode">||</span> <span class="inlinecode"><span class="id" type="var">st'</span></span>
+            ，另外还有归纳假设 <span class="inlinecode"><span class="id" type="var">WHILE</span></span> <span class="inlinecode"><span class="id" type="var">b<sub>1</sub>'</span></span> <span class="inlinecode"><span class="id" type="var">DO</span></span> <span class="inlinecode"><span class="id" type="var">c<sub>1</sub>'</span></span> <span class="inlinecode"><span class="id" type="var">END</span></span> <span class="inlinecode">/</span> <span class="inlinecode"><span class="id" type="var">st'0</span></span> <span class="inlinecode">||</span> <span class="inlinecode"><span class="id" type="var">st'</span></span> 。
+            因为 <span class="inlinecode"><span class="id" type="var">c<sub>1</sub></span></span> 和 <span class="inlinecode"><span class="id" type="var">c<sub>1</sub>'</span></span> 等价，推导出 <span class="inlinecode"><span class="id" type="var">c<sub>1</sub>'</span></span> <span class="inlinecode">/</span> <span class="inlinecode"><span class="id" type="var">st</span></span> <span class="inlinecode">||</span> <span class="inlinecode"><span class="id" type="var">st'0</span></span> 。
+            然后因为 <span class="inlinecode"><span class="id" type="var">b<sub>1</sub></span></span> 和 <span class="inlinecode"><span class="id" type="var">b<sub>1</sub>'</span></span> 等价，推导出 <span class="inlinecode"><span class="id" type="var">beval</span></span> <span class="inlinecode"><span class="id" type="var">st</span></span> <span class="inlinecode"><span class="id" type="var">b<sub>1</sub>'</span></span> <span class="inlinecode">=</span> <span class="inlinecode"><span class="id" type="var">true</span></span> ，
+            最后应用 <span class="inlinecode"><span class="id" type="var">E</span>-<span class="id" type="var">WhileLoop</span></span> ，得出我们
+            需要的 <span class="inlinecode"><span class="id" type="var">WHILE</span></span> <span class="inlinecode"><span class="id" type="var">b<sub>1</sub>'</span></span> <span class="inlinecode"><span class="id" type="var">DO</span></span> <span class="inlinecode"><span class="id" type="var">c<sub>1</sub>'</span></span> <span class="inlinecode"><span class="id" type="var">END</span></span> <span class="inlinecode">/</span> <span class="inlinecode"><span class="id" type="var">st</span></span> <span class="inlinecode">||</span> <span class="inlinecode"><span class="id" type="var">st'</span></span> 。
 
 </li>
 </ul>
 
 </li>
-<li> (<span class="inlinecode"><span style="font-family: arial;">&larr;</span></span>) Similar. <span class="proofbox">&#9744;</span> 
+<li> (<span class="inlinecode"><span style="font-family: arial;">&larr;</span></span>) 反之亦然. <span class="proofbox">&#9744;</span> 
 </li>
 </ul>
 
@@ -1030,8 +922,7 @@ The congruence property for loops is a little more interesting,
 <div class="doc less-space">
 <div class="paragraph"> </div>
 
- For example, here are two equivalent programs and a proof of their
-    equivalence... 
+ 比如, 这里有两个等价的程序, 和他们的等价性证明... 
 </div>
 <div class="code code-tight">
 
@@ -1050,7 +941,7 @@ The congruence property for loops is a little more interesting,
 &nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" type="var">X</span> ::= <span class="id" type="var">ANum</span> 0;;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">IFB</span> (<span class="id" type="var">BEq</span> (<span class="id" type="var">AId</span> <span class="id" type="var">X</span>) (<span class="id" type="var">ANum</span> 0))<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">THEN</span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">Y</span> ::= <span class="id" type="var">AMinus</span> (<span class="id" type="var">AId</span> <span class="id" type="var">X</span>) (<span class="id" type="var">AId</span> <span class="id" type="var">X</span>)   <span class="comment">(*&nbsp;&lt;---&nbsp;changed&nbsp;here&nbsp;*)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">Y</span> ::= <span class="id" type="var">AMinus</span> (<span class="id" type="var">AId</span> <span class="id" type="var">X</span>) (<span class="id" type="var">AId</span> <span class="id" type="var">X</span>)   <span class="comment">(*&nbsp;&lt;---&nbsp;这里有改动&nbsp;*)</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">ELSE</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">Y</span> ::= <span class="id" type="var">ANum</span> 42<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">FI</span>).<br/>
@@ -1080,18 +971,21 @@ The congruence property for loops is a little more interesting,
 <span class="proofbox">&#9744;</span> 
 
 <div class="doc">
-<a name="lab386"></a><h1 class="section">Program Transformations</h1>
+<a name="lab386"></a><h1 class="section">程序变换</h1>
 
 <div class="paragraph"> </div>
 
- A <i>program transformation</i> is a function that takes a program as
-    input and produces some variant of the program as output.
-    Compiler optimizations such as constant folding are a canonical
-    example, but there are many others. 
+ <i>'程序变换'</i> （ <i>program transformation</i> ）是一种以任意程序
+    作为输入并且输出这个程序的某种变体的函数。比如编译中的常量折叠优化就是
+    一个典型的例子，但是程序变换不限于此。 
 <div class="paragraph"> </div>
 
- A program transformation is <i>sound</i> if it preserves the
-    behavior of the original program. 
+ 如果一个程序变换的输出持有与其输入程序相同的行为，那么这个程序变换
+    是 <i>'健全'</i> （ <i>sound</i> ）的. 
+
+<div class="paragraph"> </div>
+
+    我们可以定义出 <span class="inlinecode"><span class="id" type="var">aexp</span></span>, <span class="inlinecode"><span class="id" type="var">bexp</span></span>, 和 <span class="inlinecode"><span class="id" type="var">com</span></span> 的健全性的概念。 
 </div>
 <div class="code code-tight">
 
@@ -1108,17 +1002,15 @@ The congruence property for loops is a little more interesting,
 </div>
 
 <div class="doc">
-<a name="lab387"></a><h2 class="section">The Constant-Folding Transformation</h2>
+<a name="lab387"></a><h2 class="section">常量折叠变换</h2>
 
 <div class="paragraph"> </div>
 
- An expression is <i>constant</i> when it contains no variable
-    references.
+ 如果一个表达式不引用变量, 那么他就是 <i>'常量'</i> （ <i>constant</i> ）.
 
 <div class="paragraph"> </div>
 
-    Constant folding is an optimization that finds constant
-    expressions and replaces them by their values. 
+    常量折叠是这样一种优化方式：找到常量表达式然后用它们的值替换它们. 
 </div>
 <div class="code code-tight">
 
@@ -1159,11 +1051,9 @@ The congruence property for loops is a little more interesting,
 </div>
 
 <div class="doc">
-Note that this version of constant folding doesn't eliminate
-    trivial additions, etc. &mdash; we are focusing attention on a single
-    optimization for the sake of simplicity.  It is not hard to
-    incorporate other ways of simplifying expressions; the definitions
-    and proofs just get longer. 
+注意这个版本的常量折叠不包括优化显而易见的加法等. &mdash; 为了简单起见我们先
+    把注意力集中在一个优化上.  把其他简化表达式的优化合并进来也不难; 只是
+    定义和证明会更长. 
 </div>
 <div class="code code-tight">
 
@@ -1182,9 +1072,9 @@ Note that this version of constant folding doesn't eliminate
 </div>
 
 <div class="doc">
-Not only can we lift <span class="inlinecode"><span class="id" type="var">fold_constants_aexp</span></span> to <span class="inlinecode"><span class="id" type="var">bexp</span></span>s (in the
-    <span class="inlinecode"><span class="id" type="var">BEq</span></span> and <span class="inlinecode"><span class="id" type="var">BLe</span></span> cases); we can also look for constant <i>boolean</i>
-    expressions and evaluate them in-place. 
+我们不仅可以把 <span class="inlinecode"><span class="id" type="var">fold_constants_aexp</span></span> 优化到 <span class="inlinecode"><span class="id" type="var">bexp</span></span> (比如在某些 <span class="inlinecode"><span class="id" type="var">BEq</span></span>
+    和 <span class="inlinecode"><span class="id" type="var">BLe</span></span> 的时候), 我们也能找到一些 <i>'布尔'</i> （ <i>boolean</i> ）表达式的常量
+    在原地化简他们. 
 </div>
 <div class="code code-tight">
 
@@ -1247,8 +1137,7 @@ Not only can we lift <span class="inlinecode"><span class="id" type="var">fold_c
 </div>
 
 <div class="doc">
-To fold constants in a command, we apply the appropriate folding
-    functions on all embedded expressions. 
+为了化简程序中的常量, 我们需要在所有子表达式上使用适当的函数. 
 </div>
 <div class="code code-tight">
 
@@ -1277,7 +1166,7 @@ To fold constants in a command, we apply the appropriate folding
 &nbsp;&nbsp;<span class="id" type="keyword">end</span>.<br/>
 <span class="id" type="keyword">Example</span> <span class="id" type="var">fold_com_ex<sub>1</sub></span> :<br/>
 &nbsp;&nbsp;<span class="id" type="var">fold_constants_com</span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">(*&nbsp;Original&nbsp;program:&nbsp;*)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">(*&nbsp;原程序:&nbsp;*)</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" type="var">X</span> ::= <span class="id" type="var">APlus</span> (<span class="id" type="var">ANum</span> 4) (<span class="id" type="var">ANum</span> 5);;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">Y</span> ::= <span class="id" type="var">AMinus</span> (<span class="id" type="var">AId</span> <span class="id" type="var">X</span>) (<span class="id" type="var">ANum</span> 3);;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">IFB</span> <span class="id" type="var">BEq</span> (<span class="id" type="var">AMinus</span> (<span class="id" type="var">AId</span> <span class="id" type="var">X</span>) (<span class="id" type="var">AId</span> <span class="id" type="var">Y</span>))<br/>
@@ -1296,7 +1185,7 @@ To fold constants in a command, we apply the appropriate folding
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">WHILE</span> <span class="id" type="var">BEq</span> (<span class="id" type="var">AId</span> <span class="id" type="var">Y</span>) (<span class="id" type="var">ANum</span> 0) <span class="id" type="var">DO</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">X</span> ::= <span class="id" type="var">APlus</span> (<span class="id" type="var">AId</span> <span class="id" type="var">X</span>) (<span class="id" type="var">ANum</span> 1)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">END</span>)<br/>
-&nbsp;&nbsp;= <span class="comment">(*&nbsp;After&nbsp;constant&nbsp;folding:&nbsp;*)</span><br/>
+&nbsp;&nbsp;= <span class="comment">(*&nbsp;常量折叠后:&nbsp;*)</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" type="var">X</span> ::= <span class="id" type="var">ANum</span> 9;;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">Y</span> ::= <span class="id" type="var">AMinus</span> (<span class="id" type="var">AId</span> <span class="id" type="var">X</span>) (<span class="id" type="var">ANum</span> 3);;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">IFB</span> <span class="id" type="var">BEq</span> (<span class="id" type="var">AMinus</span> (<span class="id" type="var">AId</span> <span class="id" type="var">X</span>) (<span class="id" type="var">AId</span> <span class="id" type="var">Y</span>)) (<span class="id" type="var">ANum</span> 6) <span class="id" type="var">THEN</span><br/>
@@ -1317,14 +1206,14 @@ To fold constants in a command, we apply the appropriate folding
 </div>
 
 <div class="doc">
-<a name="lab388"></a><h2 class="section">Soundness of Constant Folding</h2>
+<a name="lab388"></a><h2 class="section">常量折叠的健全性</h2>
 
 <div class="paragraph"> </div>
 
- Now we need to show that what we've done is correct. 
+ 现在我们证明之前所做的事情的正确性. 
 <div class="paragraph"> </div>
 
- Here's the proof for arithmetic expressions: 
+ 这是对算数表达式的证明: 
 </div>
 <div class="code code-tight">
 
@@ -1336,14 +1225,13 @@ To fold constants in a command, we apply the appropriate folding
 <span class="id" type="keyword">Proof</span>.<br/>
 &nbsp;&nbsp;<span class="id" type="tactic">unfold</span> <span class="id" type="var">atrans_sound</span>. <span class="id" type="tactic">intros</span> <span class="id" type="var">a</span>. <span class="id" type="tactic">unfold</span> <span class="id" type="var">aequiv</span>. <span class="id" type="tactic">intros</span> <span class="id" type="var">st</span>.<br/>
 &nbsp;&nbsp;<span class="id" type="tactic">induction</span> <span class="id" type="var">a</span>; <span class="id" type="tactic">simpl</span>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">(*&nbsp;ANum&nbsp;and&nbsp;AId&nbsp;follow&nbsp;immediately&nbsp;*)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">(*&nbsp;ANum&nbsp;和&nbsp;AId&nbsp;很显然&nbsp;*)</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">try</span> <span class="id" type="tactic">reflexivity</span>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">(*&nbsp;APlus,&nbsp;AMinus,&nbsp;and&nbsp;AMult&nbsp;follow&nbsp;from&nbsp;the&nbsp;IH<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;and&nbsp;the&nbsp;observation&nbsp;that<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;aeval&nbsp;st&nbsp;(APlus&nbsp;a<sub>1</sub>&nbsp;a<sub>2</sub>)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;ANum&nbsp;((aeval&nbsp;st&nbsp;a<sub>1</sub>)&nbsp;+&nbsp;(aeval&nbsp;st&nbsp;a<sub>2</sub>))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">(*&nbsp;从IH和下面的观察出发很容易完成&nbsp;APlus&nbsp;,&nbsp;Aminus&nbsp;和&nbsp;AMult&nbsp;的情况的证明：<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;aeval&nbsp;st&nbsp;(APlus&nbsp;a<sub>1</sub>&nbsp;a<sub>2</sub>)&nbsp;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;ANum&nbsp;((aeval&nbsp;st&nbsp;a<sub>1</sub>)&nbsp;+&nbsp;(aeval&nbsp;st&nbsp;a<sub>2</sub>))&nbsp;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;aeval&nbsp;st&nbsp;(ANum&nbsp;((aeval&nbsp;st&nbsp;a<sub>1</sub>)&nbsp;+&nbsp;(aeval&nbsp;st&nbsp;a<sub>2</sub>)))<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(and&nbsp;similarly&nbsp;for&nbsp;AMinus/minus&nbsp;and&nbsp;AMult/mult)&nbsp;*)</span><br/>
+(之后的s&nbsp;AMinus/minus&nbsp;和&nbsp;AMult/mult&nbsp;同理)&nbsp;*)</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">try</span> (<span class="id" type="tactic">destruct</span> (<span class="id" type="var">fold_constants_aexp</span> <span class="id" type="var">a<sub>1</sub></span>);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">destruct</span> (<span class="id" type="var">fold_constants_aexp</span> <span class="id" type="var">a<sub>2</sub></span>);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">rewrite</span> <span class="id" type="var">IHa1</span>; <span class="id" type="tactic">rewrite</span> <span class="id" type="var">IHa2</span>; <span class="id" type="tactic">reflexivity</span>). <span class="id" type="keyword">Qed</span>.<br/>
@@ -1354,103 +1242,85 @@ To fold constants in a command, we apply the appropriate folding
 
 <div class="doc">
 <a name="lab389"></a><h4 class="section">Exercise: 3 stars, optional (fold_bexp_Eq_informal)</h4>
- Here is an informal proof of the <span class="inlinecode"><span class="id" type="var">BEq</span></span> case of the soundness
-    argument for boolean expression constant folding.  Read it
-    carefully and compare it to the formal proof that follows.  Then
-    fill in the <span class="inlinecode"><span class="id" type="var">BLe</span></span> case of the formal proof (without looking at the
-    <span class="inlinecode"><span class="id" type="var">BEq</span></span> case, if possible).
-
-<div class="paragraph"> </div>
-
-   <i>Theorem</i>: The constant folding function for booleans,
-   <span class="inlinecode"><span class="id" type="var">fold_constants_bexp</span></span>, is sound.
-
-<div class="paragraph"> </div>
-
-   <i>Proof</i>: We must show that <span class="inlinecode"><span class="id" type="var">b</span></span> is equivalent to <span class="inlinecode"><span class="id" type="var">fold_constants_bexp</span></span>,
-   for all boolean expressions <span class="inlinecode"><span class="id" type="var">b</span></span>.  Proceed by induction on <span class="inlinecode"><span class="id" type="var">b</span></span>.  We
-   show just the case where <span class="inlinecode"><span class="id" type="var">b</span></span> has the form <span class="inlinecode"><span class="id" type="var">BEq</span></span> <span class="inlinecode"><span class="id" type="var">a<sub>1</sub></span></span> <span class="inlinecode"><span class="id" type="var">a<sub>2</sub></span></span>.
-
-<div class="paragraph"> </div>
-
-   In this case, we must show
+ 这里有一个 “布尔表达式常量折叠中 <span class="inlinecode"><span class="id" type="var">BEq</span></span> 的健全性” 的非形式化证明。认真读完
+    再和下面的形式化证明做比较。然后补充完整下面 <span class="inlinecode"><span class="id" type="var">BLe</span></span> 的情况的形式化证明 （尽量
+    不看之前的 <span class="inlinecode"><span class="id" type="var">BEq</span></span> 的情况的证明 ）。
+   <i>Theorem</i>: 布尔表达式的常量折叠函数 <span class="inlinecode"><span class="id" type="var">fold_constants_bexp</span></span> ，有健全性。
+   <i>Proof</i>: 我们必须证明 对于所有 <span class="inlinecode"><span class="id" type="var">b</span></span> ， <span class="inlinecode"><span class="id" type="var">fold_constants_bexp</span></span> 有健全性。
+   我们在 <span class="inlinecode"><span class="id" type="var">b</span></span> 上使用归纳法. 这里只给出 <span class="inlinecode"><span class="id" type="var">b</span></span> 有 <span class="inlinecode"><span class="id" type="var">BEq</span></span> <span class="inlinecode"><span class="id" type="var">a<sub>1</sub></span></span> <span class="inlinecode"><span class="id" type="var">a<sub>2</sub></span></span> 的形式的证明。
+   在本例中, 我们需要证明 
 
 <div class="paragraph"> </div>
 
 <div class="code code-tight">
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">beval</span>&nbsp;<span class="id" type="var">st</span>&nbsp;(<span class="id" type="var">BEq</span>&nbsp;<span class="id" type="var">a<sub>1</sub></span>&nbsp;<span class="id" type="var">a<sub>2</sub></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">beval</span>&nbsp;<span class="id" type="var">st</span>&nbsp;(<span class="id" type="var">BEq</span>&nbsp;<span class="id" type="var">a<sub>1</sub></span>&nbsp;<span class="id" type="var">a<sub>2</sub></span>)&nbsp;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="id" type="var">beval</span>&nbsp;<span class="id" type="var">st</span>&nbsp;(<span class="id" type="var">fold_constants_bexp</span>&nbsp;(<span class="id" type="var">BEq</span>&nbsp;<span class="id" type="var">a<sub>1</sub></span>&nbsp;<span class="id" type="var">a<sub>2</sub></span>)).
 <div class="paragraph"> </div>
 
 </div>
-   There are two cases to consider:
+   有两种情况需要讨论：
 
 <div class="paragraph"> </div>
 
 <ul class="doclist">
-<li> First, suppose <span class="inlinecode"><span class="id" type="var">fold_constants_aexp</span></span> <span class="inlinecode"><span class="id" type="var">a<sub>1</sub></span></span> <span class="inlinecode">=</span> <span class="inlinecode"><span class="id" type="var">ANum</span></span> <span class="inlinecode"><span class="id" type="var">n<sub>1</sub></span></span> and
-       <span class="inlinecode"><span class="id" type="var">fold_constants_aexp</span></span> <span class="inlinecode"><span class="id" type="var">a<sub>2</sub></span></span> <span class="inlinecode">=</span> <span class="inlinecode"><span class="id" type="var">ANum</span></span> <span class="inlinecode"><span class="id" type="var">n<sub>2</sub></span></span> for some <span class="inlinecode"><span class="id" type="var">n<sub>1</sub></span></span> and <span class="inlinecode"><span class="id" type="var">n<sub>2</sub></span></span>.
-
-<div class="paragraph"> </div>
-
-       In this case, we have
+<li> 首先，假设对于某些 <span class="inlinecode"><span class="id" type="var">n<sub>1</sub></span></span> 和 <span class="inlinecode"><span class="id" type="var">n<sub>2</sub></span></span> 而言有 <span class="inlinecode"><span class="id" type="var">fold_constants_aexp</span></span> <span class="inlinecode"><span class="id" type="var">a<sub>1</sub></span></span> <span class="inlinecode">=</span> <span class="inlinecode"><span class="id" type="var">ANum</span></span> <span class="inlinecode"><span class="id" type="var">n<sub>1</sub></span></span> 和
+       <span class="inlinecode"><span class="id" type="var">fold_constants_aexp</span></span> <span class="inlinecode"><span class="id" type="var">a<sub>2</sub></span></span> <span class="inlinecode">=</span> <span class="inlinecode"><span class="id" type="var">ANum</span></span> <span class="inlinecode"><span class="id" type="var">n<sub>2</sub></span></span> 成立。
+       在这种���况下，我们有
 
 <div class="paragraph"> </div>
 
 <div class="code code-tight">
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">fold_constants_bexp</span>&nbsp;(<span class="id" type="var">BEq</span>&nbsp;<span class="id" type="var">a<sub>1</sub></span>&nbsp;<span class="id" type="var">a<sub>2</sub></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">fold_constants_bexp</span>&nbsp;(<span class="id" type="var">BEq</span>&nbsp;<span class="id" type="var">a<sub>1</sub></span>&nbsp;<span class="id" type="var">a<sub>2</sub></span>)&nbsp;<br/>
 &nbsp;&nbsp;=&nbsp;<span class="id" type="keyword">if</span>&nbsp;<span class="id" type="var">beq_nat</span>&nbsp;<span class="id" type="var">n<sub>1</sub></span>&nbsp;<span class="id" type="var">n<sub>2</sub></span>&nbsp;<span class="id" type="keyword">then</span>&nbsp;<span class="id" type="var">BTrue</span>&nbsp;<span class="id" type="keyword">else</span>&nbsp;<span class="id" type="var">BFalse</span>
 <div class="paragraph"> </div>
 
 </div>
-       and
+       和
 
 <div class="paragraph"> </div>
 
 <div class="code code-tight">
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">beval</span>&nbsp;<span class="id" type="var">st</span>&nbsp;(<span class="id" type="var">BEq</span>&nbsp;<span class="id" type="var">a<sub>1</sub></span>&nbsp;<span class="id" type="var">a<sub>2</sub></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">beval</span>&nbsp;<span class="id" type="var">st</span>&nbsp;(<span class="id" type="var">BEq</span>&nbsp;<span class="id" type="var">a<sub>1</sub></span>&nbsp;<span class="id" type="var">a<sub>2</sub></span>)&nbsp;<br/>
 &nbsp;&nbsp;=&nbsp;<span class="id" type="var">beq_nat</span>&nbsp;(<span class="id" type="var">aeval</span>&nbsp;<span class="id" type="var">st</span>&nbsp;<span class="id" type="var">a<sub>1</sub></span>)&nbsp;(<span class="id" type="var">aeval</span>&nbsp;<span class="id" type="var">st</span>&nbsp;<span class="id" type="var">a<sub>2</sub></span>).
 <div class="paragraph"> </div>
 
 </div>
-       By the soundness of constant folding for arithmetic
-       expressions (Lemma <span class="inlinecode"><span class="id" type="var">fold_constants_aexp_sound</span></span>), we know
+       由于算数表达式的健全性(定理 <span class="inlinecode"><span class="id" type="var">fold_constants_aexp_sound</span></span>)，可得
 
 <div class="paragraph"> </div>
 
 <div class="code code-tight">
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">aeval</span>&nbsp;<span class="id" type="var">st</span>&nbsp;<span class="id" type="var">a<sub>1</sub></span><br/>
-&nbsp;&nbsp;=&nbsp;<span class="id" type="var">aeval</span>&nbsp;<span class="id" type="var">st</span>&nbsp;(<span class="id" type="var">fold_constants_aexp</span>&nbsp;<span class="id" type="var">a<sub>1</sub></span>)<br/>
-&nbsp;&nbsp;=&nbsp;<span class="id" type="var">aeval</span>&nbsp;<span class="id" type="var">st</span>&nbsp;(<span class="id" type="var">ANum</span>&nbsp;<span class="id" type="var">n<sub>1</sub></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">aeval</span>&nbsp;<span class="id" type="var">st</span>&nbsp;<span class="id" type="var">a<sub>1</sub></span>&nbsp;<br/>
+&nbsp;&nbsp;=&nbsp;<span class="id" type="var">aeval</span>&nbsp;<span class="id" type="var">st</span>&nbsp;(<span class="id" type="var">fold_constants_aexp</span>&nbsp;<span class="id" type="var">a<sub>1</sub></span>)&nbsp;<br/>
+&nbsp;&nbsp;=&nbsp;<span class="id" type="var">aeval</span>&nbsp;<span class="id" type="var">st</span>&nbsp;(<span class="id" type="var">ANum</span>&nbsp;<span class="id" type="var">n<sub>1</sub></span>)&nbsp;<br/>
 &nbsp;&nbsp;=&nbsp;<span class="id" type="var">n<sub>1</sub></span>
 <div class="paragraph"> </div>
 
 </div>
-       and
+       和
 
 <div class="paragraph"> </div>
 
 <div class="code code-tight">
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">aeval</span>&nbsp;<span class="id" type="var">st</span>&nbsp;<span class="id" type="var">a<sub>2</sub></span><br/>
-&nbsp;&nbsp;=&nbsp;<span class="id" type="var">aeval</span>&nbsp;<span class="id" type="var">st</span>&nbsp;(<span class="id" type="var">fold_constants_aexp</span>&nbsp;<span class="id" type="var">a<sub>2</sub></span>)<br/>
-&nbsp;&nbsp;=&nbsp;<span class="id" type="var">aeval</span>&nbsp;<span class="id" type="var">st</span>&nbsp;(<span class="id" type="var">ANum</span>&nbsp;<span class="id" type="var">n<sub>2</sub></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">aeval</span>&nbsp;<span class="id" type="var">st</span>&nbsp;<span class="id" type="var">a<sub>2</sub></span>&nbsp;<br/>
+&nbsp;&nbsp;=&nbsp;<span class="id" type="var">aeval</span>&nbsp;<span class="id" type="var">st</span>&nbsp;(<span class="id" type="var">fold_constants_aexp</span>&nbsp;<span class="id" type="var">a<sub>2</sub></span>)&nbsp;<br/>
+&nbsp;&nbsp;=&nbsp;<span class="id" type="var">aeval</span>&nbsp;<span class="id" type="var">st</span>&nbsp;(<span class="id" type="var">ANum</span>&nbsp;<span class="id" type="var">n<sub>2</sub></span>)&nbsp;<br/>
 &nbsp;&nbsp;=&nbsp;<span class="id" type="var">n<sub>2</sub></span>,
 <div class="paragraph"> </div>
 
 </div>
-       so
+       所以
 
 <div class="paragraph"> </div>
 
 <div class="code code-tight">
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">beval</span>&nbsp;<span class="id" type="var">st</span>&nbsp;(<span class="id" type="var">BEq</span>&nbsp;<span class="id" type="var">a<sub>1</sub></span>&nbsp;<span class="id" type="var">a<sub>2</sub></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">beval</span>&nbsp;<span class="id" type="var">st</span>&nbsp;(<span class="id" type="var">BEq</span>&nbsp;<span class="id" type="var">a<sub>1</sub></span>&nbsp;<span class="id" type="var">a<sub>2</sub></span>)&nbsp;<br/>
 &nbsp;&nbsp;=&nbsp;<span class="id" type="var">beq_nat</span>&nbsp;(<span class="id" type="var">aeval</span>&nbsp;<span class="id" type="var">a<sub>1</sub></span>)&nbsp;(<span class="id" type="var">aeval</span>&nbsp;<span class="id" type="var">a<sub>2</sub></span>)<br/>
 &nbsp;&nbsp;=&nbsp;<span class="id" type="var">beq_nat</span>&nbsp;<span class="id" type="var">n<sub>1</sub></span>&nbsp;<span class="id" type="var">n<sub>2</sub></span>.
 <div class="paragraph"> </div>
 
 </div>
-       Also, it is easy to see (by considering the cases <span class="inlinecode"><span class="id" type="var">n<sub>1</sub></span></span> <span class="inlinecode">=</span> <span class="inlinecode"><span class="id" type="var">n<sub>2</sub></span></span> and
-       <span class="inlinecode"><span class="id" type="var">n<sub>1</sub></span></span> <span class="inlinecode">≠</span> <span class="inlinecode"><span class="id" type="var">n<sub>2</sub></span></span> separately) that
+       同时, 容易看出 （在分别考虑 <span class="inlinecode"><span class="id" type="var">n<sub>1</sub></span></span> <span class="inlinecode">=</span> <span class="inlinecode"><span class="id" type="var">n<sub>2</sub></span></span> 和 <span class="inlinecode"><span class="id" type="var">n<sub>1</sub></span></span> <span class="inlinecode">≠</span> <span class="inlinecode"><span class="id" type="var">n<sub>2</sub></span></span> 的情况之后）
 
 <div class="paragraph"> </div>
 
@@ -1462,49 +1332,44 @@ To fold constants in a command, we apply the appropriate folding
 <div class="paragraph"> </div>
 
 </div>
-       So
+       所以
 
 <div class="paragraph"> </div>
 
 <div class="code code-tight">
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">beval</span>&nbsp;<span class="id" type="var">st</span>&nbsp;(<span class="id" type="var">BEq</span>&nbsp;<span class="id" type="var">a<sub>1</sub></span>&nbsp;<span class="id" type="var">a<sub>2</sub></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">beval</span>&nbsp;<span class="id" type="var">st</span>&nbsp;(<span class="id" type="var">BEq</span>&nbsp;<span class="id" type="var">a<sub>1</sub></span>&nbsp;<span class="id" type="var">a<sub>2</sub></span>)&nbsp;<br/>
 &nbsp;&nbsp;=&nbsp;<span class="id" type="var">beq_nat</span>&nbsp;<span class="id" type="var">n<sub>1</sub></span>&nbsp;<span class="id" type="var">n<sub>2</sub></span>.<br/>
 &nbsp;&nbsp;=&nbsp;<span class="id" type="var">beval</span>&nbsp;<span class="id" type="var">st</span>&nbsp;(<span class="id" type="keyword">if</span>&nbsp;<span class="id" type="var">beq_nat</span>&nbsp;<span class="id" type="var">n<sub>1</sub></span>&nbsp;<span class="id" type="var">n<sub>2</sub></span>&nbsp;<span class="id" type="keyword">then</span>&nbsp;<span class="id" type="var">BTrue</span>&nbsp;<span class="id" type="keyword">else</span>&nbsp;<span class="id" type="var">BFalse</span>),
 <div class="paragraph"> </div>
 
 </div>
-       as required.
-
-<div class="paragraph"> </div>
-
+       正是所需的假设。
 
 </li>
-<li> Otherwise, one of <span class="inlinecode"><span class="id" type="var">fold_constants_aexp</span></span> <span class="inlinecode"><span class="id" type="var">a<sub>1</sub></span></span> and
-       <span class="inlinecode"><span class="id" type="var">fold_constants_aexp</span></span> <span class="inlinecode"><span class="id" type="var">a<sub>2</sub></span></span> is not a constant.  In this case, we
-       must show
+<li> 另一方面，假设 <span class="inlinecode"><span class="id" type="var">fold_constants_aexp</span></span> <span class="inlinecode"><span class="id" type="var">a<sub>1</sub></span></span> 和 <span class="inlinecode"><span class="id" type="var">fold_constants_aexp</span></span> <span class="inlinecode"><span class="id" type="var">a<sub>2</sub></span></span>
+       之中有一个不是常量。这种情况我们需要证明
 
 <div class="paragraph"> </div>
 
 <div class="code code-tight">
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">beval</span>&nbsp;<span class="id" type="var">st</span>&nbsp;(<span class="id" type="var">BEq</span>&nbsp;<span class="id" type="var">a<sub>1</sub></span>&nbsp;<span class="id" type="var">a<sub>2</sub></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">beval</span>&nbsp;<span class="id" type="var">st</span>&nbsp;(<span class="id" type="var">BEq</span>&nbsp;<span class="id" type="var">a<sub>1</sub></span>&nbsp;<span class="id" type="var">a<sub>2</sub></span>)&nbsp;<br/>
 &nbsp;&nbsp;=&nbsp;<span class="id" type="var">beval</span>&nbsp;<span class="id" type="var">st</span>&nbsp;(<span class="id" type="var">BEq</span>&nbsp;(<span class="id" type="var">fold_constants_aexp</span>&nbsp;<span class="id" type="var">a<sub>1</sub></span>)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" type="var">fold_constants_aexp</span>&nbsp;<span class="id" type="var">a<sub>2</sub></span>)),
 <div class="paragraph"> </div>
 
 </div>
-       which, by the definition of <span class="inlinecode"><span class="id" type="var">beval</span></span>, is the same as showing
+       根据 <span class="inlinecode"><span class="id" type="var">beval</span></span> 的定义，它等同于证明
 
 <div class="paragraph"> </div>
 
 <div class="code code-tight">
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">beq_nat</span>&nbsp;(<span class="id" type="var">aeval</span>&nbsp;<span class="id" type="var">st</span>&nbsp;<span class="id" type="var">a<sub>1</sub></span>)&nbsp;(<span class="id" type="var">aeval</span>&nbsp;<span class="id" type="var">st</span>&nbsp;<span class="id" type="var">a<sub>2</sub></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">beq_nat</span>&nbsp;(<span class="id" type="var">aeval</span>&nbsp;<span class="id" type="var">st</span>&nbsp;<span class="id" type="var">a<sub>1</sub></span>)&nbsp;(<span class="id" type="var">aeval</span>&nbsp;<span class="id" type="var">st</span>&nbsp;<span class="id" type="var">a<sub>2</sub></span>)&nbsp;<br/>
 &nbsp;&nbsp;=&nbsp;<span class="id" type="var">beq_nat</span>&nbsp;(<span class="id" type="var">aeval</span>&nbsp;<span class="id" type="var">st</span>&nbsp;(<span class="id" type="var">fold_constants_aexp</span>&nbsp;<span class="id" type="var">a<sub>1</sub></span>))<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" type="var">aeval</span>&nbsp;<span class="id" type="var">st</span>&nbsp;(<span class="id" type="var">fold_constants_aexp</span>&nbsp;<span class="id" type="var">a<sub>2</sub></span>)).
 <div class="paragraph"> </div>
 
 </div>
-       But the soundness of constant folding for arithmetic
-       expressions (<span class="inlinecode"><span class="id" type="var">fold_constants_aexp_sound</span></span>) gives us
+       但是，由于算数表达式的健全性（定理 <span class="inlinecode"><span class="id" type="var">fold_constants_aexp_sound</span></span>），可得出
 
 <div class="paragraph"> </div>
 
@@ -1514,7 +1379,7 @@ To fold constants in a command, we apply the appropriate folding
 <div class="paragraph"> </div>
 
 </div>
-       completing the case.  <span class="proofbox">&#9744;</span>
+       本例证毕。 <span class="proofbox">&#9744;</span>
 
 </li>
 </ul>
@@ -1528,22 +1393,14 @@ To fold constants in a command, we apply the appropriate folding
 <span class="id" type="keyword">Proof</span>.<br/>
 &nbsp;&nbsp;<span class="id" type="tactic">unfold</span> <span class="id" type="var">btrans_sound</span>. <span class="id" type="tactic">intros</span> <span class="id" type="var">b</span>. <span class="id" type="tactic">unfold</span> <span class="id" type="var">bequiv</span>. <span class="id" type="tactic">intros</span> <span class="id" type="var">st</span>.<br/>
 &nbsp;&nbsp;<span class="id" type="tactic">induction</span> <span class="id" type="var">b</span>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">(*&nbsp;BTrue&nbsp;and&nbsp;BFalse&nbsp;are&nbsp;immediate&nbsp;*)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">(*&nbsp;BTrue&nbsp;和&nbsp;BFalse&nbsp;是显然的&nbsp;*)</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">try</span> <span class="id" type="tactic">reflexivity</span>.<br/>
 &nbsp;&nbsp;- <span class="comment">(*&nbsp;BEq&nbsp;*)</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">rename</span> <span class="id" type="var">a</span> <span class="id" type="var">into</span> <span class="id" type="var">a<sub>1</sub></span>. <span class="id" type="tactic">rename</span> <span class="id" type="var">a<sub>0</sub></span> <span class="id" type="var">into</span> <span class="id" type="var">a<sub>2</sub></span>. <span class="id" type="tactic">simpl</span>.<br/>
-</div>
-
-<div class="doc">
-(Doing induction when there are a lot of constructors makes
-    specifying variable names a chore, but Coq doesn't always
-    choose nice variable names.  We can rename entries in the
-    context with the <span class="inlinecode"><span class="id" type="tactic">rename</span></span> tactic: <span class="inlinecode"><span class="id" type="tactic">rename</span></span> <span class="inlinecode"><span class="id" type="var">a</span></span> <span class="inlinecode"><span class="id" type="var">into</span></span> <span class="inlinecode"><span class="id" type="var">a<sub>1</sub></span></span> will
-    change <span class="inlinecode"><span class="id" type="var">a</span></span> to <span class="inlinecode"><span class="id" type="var">a<sub>1</sub></span></span> in the current goal and context.) 
-</div>
-<div class="code code-tight">
-
-<br/>
+<span class="comment">(*&nbsp;当存在许多构造子时使用归纳法会使得认为指定变量名成为<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;一件琐事，然而Coq并不总是能够选择足够漂亮的变量名。<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我们可以使用&nbsp;重命名（<span class="inlinecode"><span class="id" type="tactic">rename</span></span>）策略:&nbsp;<span class="inlinecode"><span class="id" type="tactic">rename</span></span> <span class="inlinecode"><span class="id" type="var">a</span></span> <span class="inlinecode"><span class="id" type="var">into</span></span> <span class="inlinecode"><span class="id" type="var">a<sub>1</sub></span></span>&nbsp;<br/>
+会把当前目标和上下文中的&nbsp;<span class="inlinecode"><span class="id" type="var">a</span></span>&nbsp;替换成&nbsp;<span class="inlinecode"><span class="id" type="var">a<sub>1</sub></span></span>.&nbsp;*)</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">remember</span> (<span class="id" type="var">fold_constants_aexp</span> <span class="id" type="var">a<sub>1</sub></span>) <span class="id" type="keyword">as</span> <span class="id" type="var">a<sub>1</sub>'</span> <span class="id" type="var">eqn</span>:<span class="id" type="var">Heqa1'</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">remember</span> (<span class="id" type="var">fold_constants_aexp</span> <span class="id" type="var">a<sub>2</sub></span>) <span class="id" type="keyword">as</span> <span class="id" type="var">a<sub>2</sub>'</span> <span class="id" type="var">eqn</span>:<span class="id" type="var">Heqa2'</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">replace</span> (<span class="id" type="var">aeval</span> <span class="id" type="var">st</span> <span class="id" type="var">a<sub>1</sub></span>) <span class="id" type="keyword">with</span> (<span class="id" type="var">aeval</span> <span class="id" type="var">st</span> <span class="id" type="var">a<sub>1</sub>'</span>) <span class="id" type="tactic">by</span><br/>
@@ -1551,8 +1408,7 @@ To fold constants in a command, we apply the appropriate folding
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">replace</span> (<span class="id" type="var">aeval</span> <span class="id" type="var">st</span> <span class="id" type="var">a<sub>2</sub></span>) <span class="id" type="keyword">with</span> (<span class="id" type="var">aeval</span> <span class="id" type="var">st</span> <span class="id" type="var">a<sub>2</sub>'</span>) <span class="id" type="tactic">by</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" type="tactic">subst</span> <span class="id" type="var">a<sub>2</sub>'</span>; <span class="id" type="tactic">rewrite</span> <span style="font-family: arial;">&larr;</span> <span class="id" type="var">fold_constants_aexp_sound</span>; <span class="id" type="tactic">reflexivity</span>).<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">destruct</span> <span class="id" type="var">a<sub>1</sub>'</span>; <span class="id" type="tactic">destruct</span> <span class="id" type="var">a<sub>2</sub>'</span>; <span class="id" type="tactic">try</span> <span class="id" type="tactic">reflexivity</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">(*&nbsp;The&nbsp;only&nbsp;interesting&nbsp;case&nbsp;is&nbsp;when&nbsp;both&nbsp;a<sub>1</sub>&nbsp;and&nbsp;a<sub>2</sub><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;become&nbsp;constants&nbsp;after&nbsp;folding&nbsp;*)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">(*&nbsp;唯一有趣的情况是&nbsp;a<sub>1</sub>&nbsp;和&nbsp;a<sub>2</sub>&nbsp;在折叠后同时变为常量&nbsp;*)</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">simpl</span>. <span class="id" type="tactic">destruct</span> (<span class="id" type="var">beq_nat</span> <span class="id" type="var">n</span> <span class="id" type="var">n<sub>0</sub></span>); <span class="id" type="tactic">reflexivity</span>.<br/>
 &nbsp;&nbsp;- <span class="comment">(*&nbsp;BLe&nbsp;*)</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">(*&nbsp;FILL&nbsp;IN&nbsp;HERE&nbsp;*)</span> <span class="id" type="var">admit</span>.<br/>
@@ -1574,7 +1430,7 @@ To fold constants in a command, we apply the appropriate folding
 <div class="paragraph"> </div>
 
 <a name="lab390"></a><h4 class="section">Exercise: 3 stars (fold_constants_com_sound)</h4>
- Complete the <span class="inlinecode"><span class="id" type="var">WHILE</span></span> case of the following proof. 
+ 补充以下证明的有关 <span class="inlinecode"><span class="id" type="var">WHILE</span></span> 的部分. 
 </div>
 <div class="code code-tight">
 
@@ -1593,13 +1449,11 @@ To fold constants in a command, we apply the appropriate folding
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">apply</span> <span class="id" type="var">fold_constants_bexp_sound</span>. }<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">destruct</span> (<span class="id" type="var">fold_constants_bexp</span> <span class="id" type="var">b</span>) <span class="id" type="var">eqn</span>:<span class="id" type="var">Heqb</span>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">try</span> (<span class="id" type="tactic">apply</span> <span class="id" type="var">CIf_congruence</span>; <span class="id" type="tactic">assumption</span>).<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">(*&nbsp;(If&nbsp;the&nbsp;optimization&nbsp;doesn't&nbsp;eliminate&nbsp;the&nbsp;if,&nbsp;then&nbsp;the<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;result&nbsp;is&nbsp;easy&nbsp;to&nbsp;prove&nbsp;from&nbsp;the&nbsp;IH&nbsp;and<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="inlinecode"><span class="id" type="var">fold_constants_bexp_sound</span></span>.)&nbsp;*)</span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="comment">(*&nbsp;b&nbsp;always&nbsp;true&nbsp;*)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">(*&nbsp;如果if没有被优化掉,&nbsp;那么我们很容易使用&nbsp;IH&nbsp;和&nbsp;fold_constants_bexp_sound&nbsp;来得出证明*)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="comment">(*&nbsp;b&nbsp;总为真&nbsp;*)</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">apply</span> <span class="id" type="var">trans_cequiv</span> <span class="id" type="keyword">with</span> <span class="id" type="var">c<sub>1</sub></span>; <span class="id" type="tactic">try</span> <span class="id" type="tactic">assumption</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">apply</span> <span class="id" type="var">IFB_true</span>; <span class="id" type="tactic">assumption</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="comment">(*&nbsp;b&nbsp;always&nbsp;false&nbsp;*)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="comment">(*&nbsp;b&nbsp;总为假&nbsp;*)</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">apply</span> <span class="id" type="var">trans_cequiv</span> <span class="id" type="keyword">with</span> <span class="id" type="var">c<sub>2</sub></span>; <span class="id" type="tactic">try</span> <span class="id" type="tactic">assumption</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">apply</span> <span class="id" type="var">IFB_false</span>; <span class="id" type="tactic">assumption</span>.<br/>
 &nbsp;&nbsp;- <span class="comment">(*&nbsp;WHILE&nbsp;*)</span><br/>
@@ -1609,39 +1463,34 @@ To fold constants in a command, we apply the appropriate folding
 <span class="proofbox">&#9744;</span> 
 
 <div class="doc">
-<a name="lab391"></a><h3 class="section">Soundness of (0 + n) Elimination, Redux</h3>
+<a name="lab391"></a><h3 class="section">(0 + n) 优化的健全性, 最终版</h3>
 
 <div class="paragraph"> </div>
 
 <a name="lab392"></a><h4 class="section">Exercise: 4 stars, advanced, optional (optimize_0plus)</h4>
- Recall the definition <span class="inlinecode"><span class="id" type="var">optimize_0plus</span></span> from the <a href="Imp.html"><span class="inlineref">Imp</span></a> chapter:
+ 回顾 <a href="Imp.html"><span class="inlineref">Imp</span></a> 中 <span class="inlinecode"><span class="id" type="var">optimize_0plus</span></span> 的定义:
 
 <div class="paragraph"> </div>
 
 <div class="code code-tight">
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="keyword">Fixpoint</span>&nbsp;<span class="id" type="var">optimize_0plus</span>&nbsp;(<span class="id" type="var">e</span>:<span class="id" type="var">aexp</span>)&nbsp;:&nbsp;<span class="id" type="var">aexp</span>&nbsp;:=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="keyword">Fixpoint</span>&nbsp;<span class="id" type="var">optimize_0plus</span>&nbsp;(<span class="id" type="var">e</span>:<span class="id" type="var">aexp</span>)&nbsp;:&nbsp;<span class="id" type="var">aexp</span>&nbsp;:=&nbsp;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="keyword">match</span>&nbsp;<span class="id" type="var">e</span>&nbsp;<span class="id" type="keyword">with</span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;<span class="id" type="var">ANum</span>&nbsp;<span class="id" type="var">n</span>&nbsp;⇒<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;<span class="id" type="var">ANum</span>&nbsp;<span class="id" type="var">n</span>&nbsp;⇒&nbsp;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">ANum</span>&nbsp;<span class="id" type="var">n</span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;<span class="id" type="var">APlus</span>&nbsp;(<span class="id" type="var">ANum</span>&nbsp;0)&nbsp;<span class="id" type="var">e<sub>2</sub></span>&nbsp;⇒<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;<span class="id" type="var">APlus</span>&nbsp;(<span class="id" type="var">ANum</span>&nbsp;0)&nbsp;<span class="id" type="var">e<sub>2</sub></span>&nbsp;⇒&nbsp;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">optimize_0plus</span>&nbsp;<span class="id" type="var">e<sub>2</sub></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;<span class="id" type="var">APlus</span>&nbsp;<span class="id" type="var">e<sub>1</sub></span>&nbsp;<span class="id" type="var">e<sub>2</sub></span>&nbsp;⇒<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;<span class="id" type="var">APlus</span>&nbsp;<span class="id" type="var">e<sub>1</sub></span>&nbsp;<span class="id" type="var">e<sub>2</sub></span>&nbsp;⇒&nbsp;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">APlus</span>&nbsp;(<span class="id" type="var">optimize_0plus</span>&nbsp;<span class="id" type="var">e<sub>1</sub></span>)&nbsp;(<span class="id" type="var">optimize_0plus</span>&nbsp;<span class="id" type="var">e<sub>2</sub></span>)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;<span class="id" type="var">AMinus</span>&nbsp;<span class="id" type="var">e<sub>1</sub></span>&nbsp;<span class="id" type="var">e<sub>2</sub></span>&nbsp;⇒<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;<span class="id" type="var">AMinus</span>&nbsp;<span class="id" type="var">e<sub>1</sub></span>&nbsp;<span class="id" type="var">e<sub>2</sub></span>&nbsp;⇒&nbsp;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">AMinus</span>&nbsp;(<span class="id" type="var">optimize_0plus</span>&nbsp;<span class="id" type="var">e<sub>1</sub></span>)&nbsp;(<span class="id" type="var">optimize_0plus</span>&nbsp;<span class="id" type="var">e<sub>2</sub></span>)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;<span class="id" type="var">AMult</span>&nbsp;<span class="id" type="var">e<sub>1</sub></span>&nbsp;<span class="id" type="var">e<sub>2</sub></span>&nbsp;⇒<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;<span class="id" type="var">AMult</span>&nbsp;<span class="id" type="var">e<sub>1</sub></span>&nbsp;<span class="id" type="var">e<sub>2</sub></span>&nbsp;⇒&nbsp;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">AMult</span>&nbsp;(<span class="id" type="var">optimize_0plus</span>&nbsp;<span class="id" type="var">e<sub>1</sub></span>)&nbsp;(<span class="id" type="var">optimize_0plus</span>&nbsp;<span class="id" type="var">e<sub>2</sub></span>)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="keyword">end</span>.
 <div class="paragraph"> </div>
 
 </div>
-   Note that this function is defined over the old <span class="inlinecode"><span class="id" type="var">aexp</span></span>s,
-   without states.
-
-<div class="paragraph"> </div>
-
-   Write a new version of this function that accounts for variables,
-   plus analogous ones for <span class="inlinecode"><span class="id" type="var">bexp</span></span>s and commands:
+   注意这个函数是针对没有状态的旧 <span class="inlinecode"><span class="id" type="var">aexp</span></span> 写的.
+   给 <span class="inlinecode"><span class="id" type="var">aexp</span></span> <span class="inlinecode"><span class="id" type="var">bexp</span></span> 和 <span class="inlinecode"><span class="id" type="var">com</span></span> 都写一个带状态的新版本:
 
 <div class="paragraph"> </div>
 
@@ -1652,27 +1501,18 @@ To fold constants in a command, we apply the appropriate folding
 <div class="paragraph"> </div>
 
 </div>
-   Prove that these three functions are sound, as we did for
-   <span class="inlinecode"><span class="id" type="var">fold_constants_</span>*</span>.  Make sure you use the congruence lemmas in
-   the proof of <span class="inlinecode"><span class="id" type="var">optimize_0plus_com</span></span> &mdash; otherwise it will be <i>long</i>!
-
-<div class="paragraph"> </div>
-
-   Then define an optimizer on commands that first folds
-   constants (using <span class="inlinecode"><span class="id" type="var">fold_constants_com</span></span>) and then eliminates <span class="inlinecode">0</span> <span class="inlinecode">+</span> <span class="inlinecode"><span class="id" type="var">n</span></span>
-   terms (using <span class="inlinecode"><span class="id" type="var">optimize_0plus_com</span></span>).
+   明这三个函数都具有健全性，就像之前证明 <span class="inlinecode"><span class="id" type="var">fold_constants_</span>*</span> 那样。
+   （在 <span class="inlinecode"><span class="id" type="var">optimize_0plus_com</span></span> 的证明中你需要一致性引理 &mdash; 否则证明过程会 <i>'很长'</i> ！）
+   然后再在命令上定义一个新优化器，它首先使用常量折叠 （ <span class="inlinecode"><span class="id" type="var">fold_constants_com</span></span> ）
+   然后使用 <span class="inlinecode">0</span> <span class="inlinecode">+</span> <span class="inlinecode"><span class="id" type="var">n</span></span> 优化（ <span class="inlinecode"><span class="id" type="var">optimize_0plus_com</span></span> ）。
 
 <div class="paragraph"> </div>
 
 <ul class="doclist">
-<li> Give a meaningful example of this optimizer's output.
-
-<div class="paragraph"> </div>
-
+<li> 给这个优化器给出一个有意义的测试用例。
 
 </li>
-<li> Prove that the optimizer is sound.  (This part should be <i>very</i>
-     easy.)  
+<li> 证明这个优化程序有健全性。（这部分应该会 <i>'很简单'</i> 。） 
 </li>
 </ul>
 
@@ -1686,7 +1526,7 @@ To fold constants in a command, we apply the appropriate folding
 <span class="proofbox">&#9744;</span> 
 
 <div class="doc">
-<a name="lab393"></a><h1 class="section">Proving That Programs Are <i>Not</i> Equivalent</h1>
+<a name="lab393"></a><h1 class="section">证明程序不等价</h1>
 
 <div class="paragraph"> </div>
 
@@ -1709,14 +1549,10 @@ To fold constants in a command, we apply the appropriate folding
     true in general? 
 <div class="paragraph"> </div>
 
- We will see in a moment that it is not, but it is worthwhile
-    to pause, now, and see if you can find a counter-example on your
-    own. 
+ 我们马上就能看到这是不行的, 但是且慢, 现在, 看你自己能否找一个反例出来. 
 <div class="paragraph"> </div>
 
- More formally, here is the function that substitutes an arithmetic
-    expression for each occurrence of a given variable in another
-    expression: 
+ 下面形式化的定义描述了在算数表达式里如何把某个变量的所有引用替换为另一个表达式: 
 </div>
 <div class="code code-tight">
 
@@ -1747,9 +1583,7 @@ To fold constants in a command, we apply the appropriate folding
 </div>
 
 <div class="doc">
-And here is the property we are interested in, expressing the
-    claim that commands <span class="inlinecode"><span class="id" type="var">c<sub>1</sub></span></span> and <span class="inlinecode"><span class="id" type="var">c<sub>2</sub></span></span> as described above are
-    always equivalent.  
+而这里是一个我们感兴趣的性质：它说明了类似上述形式的 <span class="inlinecode"><span class="id" type="var">c<sub>1</sub></span></span> 和 <span class="inlinecode"><span class="id" type="var">c<sub>2</sub></span></span> 总是等价.  
 </div>
 <div class="code code-tight">
 
@@ -1760,85 +1594,79 @@ And here is the property we are interested in, expressing the
 </div>
 
 <div class="doc">
-Sadly, the property does <i>not</i> always hold &mdash; i.e., it is not the
-    case that, for all <span class="inlinecode"><span class="id" type="var">i<sub>1</sub></span></span>, <span class="inlinecode"><span class="id" type="var">i<sub>2</sub></span></span>, <span class="inlinecode"><span class="id" type="var">a<sub>1</sub></span></span>, and <span class="inlinecode"><span class="id" type="var">a<sub>2</sub></span></span>,
+遗憾的是, 这个性质 <i>'不'</i> 总是成立. 
+    <i>Theorem</i>: 对于所有 <span class="inlinecode"><span class="id" type="var">i<sub>1</sub></span></span>, <span class="inlinecode"><span class="id" type="var">i<sub>2</sub></span></span>, <span class="inlinecode"><span class="id" type="var">a<sub>1</sub></span></span>, 和 <span class="inlinecode"><span class="id" type="var">a<sub>2</sub></span></span> 以下命题并不总是成立,
 
 <div class="paragraph"> </div>
 
 <div class="code code-tight">
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">cequiv</span>&nbsp;(<span class="id" type="var">i<sub>1</sub></span>&nbsp;::=&nbsp;<span class="id" type="var">a<sub>1</sub></span>;;&nbsp;<span class="id" type="var">i<sub>2</sub></span>&nbsp;::=&nbsp;<span class="id" type="var">a<sub>2</sub></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">cequiv</span>&nbsp;(<span class="id" type="var">i<sub>1</sub></span>&nbsp;::=&nbsp;<span class="id" type="var">a<sub>1</sub></span>;;&nbsp;<span class="id" type="var">i<sub>2</sub></span>&nbsp;::=&nbsp;<span class="id" type="var">a<sub>2</sub></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" type="var">i<sub>1</sub></span>&nbsp;::=&nbsp;<span class="id" type="var">a<sub>1</sub></span>;;&nbsp;<span class="id" type="var">i<sub>2</sub></span>&nbsp;::=&nbsp;<span class="id" type="var">subst_aexp</span>&nbsp;<span class="id" type="var">i<sub>1</sub></span>&nbsp;<span class="id" type="var">a<sub>1</sub></span>&nbsp;<span class="id" type="var">a<sub>2</sub></span>).
+<div class="paragraph"> </div>
+
+</div>
+    <i>Proof</i>: 我们使用反证法，假设对于所有 <span class="inlinecode"><span class="id" type="var">i<sub>1</sub></span></span>, <span class="inlinecode"><span class="id" type="var">i<sub>2</sub></span></span>, <span class="inlinecode"><span class="id" type="var">a<sub>1</sub></span></span>, 和 <span class="inlinecode"><span class="id" type="var">a<sub>2</sub></span></span>, 下面的假设成立
+
+<div class="paragraph"> </div>
+
+<div class="code code-tight">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">cequiv</span>&nbsp;(<span class="id" type="var">i<sub>1</sub></span>&nbsp;::=&nbsp;<span class="id" type="var">a<sub>1</sub></span>;;&nbsp;<span class="id" type="var">i<sub>2</sub></span>&nbsp;::=&nbsp;<span class="id" type="var">a<sub>2</sub></span>)&nbsp;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" type="var">i<sub>1</sub></span>&nbsp;::=&nbsp;<span class="id" type="var">a<sub>1</sub></span>;;&nbsp;<span class="id" type="var">i<sub>2</sub></span>&nbsp;::=&nbsp;<span class="id" type="var">subst_aexp</span>&nbsp;<span class="id" type="var">i<sub>1</sub></span>&nbsp;<span class="id" type="var">a<sub>1</sub></span>&nbsp;<span class="id" type="var">a<sub>2</sub></span>).
 <div class="paragraph"> </div>
 
 </div>
-    To see this, suppose (for a contradiction) that for all <span class="inlinecode"><span class="id" type="var">i<sub>1</sub></span></span>, <span class="inlinecode"><span class="id" type="var">i<sub>2</sub></span></span>,
-    <span class="inlinecode"><span class="id" type="var">a<sub>1</sub></span></span>, and <span class="inlinecode"><span class="id" type="var">a<sub>2</sub></span></span>, we have
+    那么考虑下面的程序:
 
 <div class="paragraph"> </div>
 
 <div class="code code-tight">
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">cequiv</span>&nbsp;(<span class="id" type="var">i<sub>1</sub></span>&nbsp;::=&nbsp;<span class="id" type="var">a<sub>1</sub></span>;;&nbsp;<span class="id" type="var">i<sub>2</sub></span>&nbsp;::=&nbsp;<span class="id" type="var">a<sub>2</sub></span>)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" type="var">i<sub>1</sub></span>&nbsp;::=&nbsp;<span class="id" type="var">a<sub>1</sub></span>;;&nbsp;<span class="id" type="var">i<sub>2</sub></span>&nbsp;::=&nbsp;<span class="id" type="var">subst_aexp</span>&nbsp;<span class="id" type="var">i<sub>1</sub></span>&nbsp;<span class="id" type="var">a<sub>1</sub></span>&nbsp;<span class="id" type="var">a<sub>2</sub></span>).
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">X</span>&nbsp;::=&nbsp;<span class="id" type="var">APlus</span>&nbsp;(<span class="id" type="var">AId</span>&nbsp;<span class="id" type="var">X</span>)&nbsp;(<span class="id" type="var">ANum</span>&nbsp;1);;&nbsp;<span class="id" type="var">Y</span>&nbsp;::=&nbsp;<span class="id" type="var">AId</span>&nbsp;<span class="id" type="var">X</span>
 <div class="paragraph"> </div>
 
 </div>
-    Consider the following program:
+    注意下面的假设
 
 <div class="paragraph"> </div>
 
 <div class="code code-tight">
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">X</span>&nbsp;::=&nbsp;<span class="id" type="var">APlus</span>&nbsp;(<span class="id" type="var">AId</span>&nbsp;<span class="id" type="var">X</span>)&nbsp;(<span class="id" type="var">ANum</span>&nbsp;1);;&nbsp;<span class="id" type="var">Y</span>&nbsp;::=&nbsp;<span class="id" type="var">AId</span>&nbsp;<span class="id" type="var">X</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" type="var">X</span>&nbsp;::=&nbsp;<span class="id" type="var">APlus</span>&nbsp;(<span class="id" type="var">AId</span>&nbsp;<span class="id" type="var">X</span>)&nbsp;(<span class="id" type="var">ANum</span>&nbsp;1);;&nbsp;<span class="id" type="var">Y</span>&nbsp;::=&nbsp;<span class="id" type="var">AId</span>&nbsp;<span class="id" type="var">X</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;<span class="id" type="var">empty_state</span>&nbsp;||&nbsp;<span class="id" type="var">st<sub>1</sub></span>,
 <div class="paragraph"> </div>
 
 </div>
-    Note that
+    在 <span class="inlinecode"><span class="id" type="var">st<sub>1</sub></span></span> <span class="inlinecode">=</span> <span class="inlinecode">{</span> <span class="inlinecode"><span class="id" type="var">X</span></span> <span class="inlinecode"><span style="font-family: arial;">&#8614;</span></span> <span class="inlinecode">1,</span> <span class="inlinecode"><span class="id" type="var">Y</span></span> <span class="inlinecode"><span style="font-family: arial;">&#8614;</span></span> <span class="inlinecode">1</span> <span class="inlinecode">}</span> 时成立.
+    根据假设
 
 <div class="paragraph"> </div>
 
 <div class="code code-tight">
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" type="var">X</span>&nbsp;::=&nbsp;<span class="id" type="var">APlus</span>&nbsp;(<span class="id" type="var">AId</span>&nbsp;<span class="id" type="var">X</span>)&nbsp;(<span class="id" type="var">ANum</span>&nbsp;1);;&nbsp;<span class="id" type="var">Y</span>&nbsp;::=&nbsp;<span class="id" type="var">AId</span>&nbsp;<span class="id" type="var">X</span>)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;<span class="id" type="var">empty_state</span>&nbsp;<span style="font-family: arial;">&dArr;</span>&nbsp;<span class="id" type="var">st<sub>1</sub></span>,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">cequiv</span>&nbsp;(<span class="id" type="var">X</span>&nbsp;::=&nbsp;<span class="id" type="var">APlus</span>&nbsp;(<span class="id" type="var">AId</span>&nbsp;<span class="id" type="var">X</span>)&nbsp;(<span class="id" type="var">ANum</span>&nbsp;1);;&nbsp;<span class="id" type="var">Y</span>&nbsp;::=&nbsp;<span class="id" type="var">AId</span>&nbsp;<span class="id" type="var">X</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" type="var">X</span>&nbsp;::=&nbsp;<span class="id" type="var">APlus</span>&nbsp;(<span class="id" type="var">AId</span>&nbsp;<span class="id" type="var">X</span>)&nbsp;(<span class="id" type="var">ANum</span>&nbsp;1);;&nbsp;<span class="id" type="var">Y</span>&nbsp;::=&nbsp;<span class="id" type="var">APlus</span>&nbsp;(<span class="id" type="var">AId</span>&nbsp;<span class="id" type="var">X</span>)&nbsp;(<span class="id" type="var">ANum</span>&nbsp;1))
 <div class="paragraph"> </div>
 
 </div>
-    where <span class="inlinecode"><span class="id" type="var">st<sub>1</sub></span></span> <span class="inlinecode">=</span> <span class="inlinecode">{</span> <span class="inlinecode"><span class="id" type="var">X</span></span> <span class="inlinecode"><span style="font-family: arial;">&#8614;</span></span> <span class="inlinecode">1,</span> <span class="inlinecode"><span class="id" type="var">Y</span></span> <span class="inlinecode"><span style="font-family: arial;">&#8614;</span></span> <span class="inlinecode">1</span> <span class="inlinecode">}</span>.
-
-<div class="paragraph"> </div>
-
-    By assumption, we know that
+    同时根据 <span class="inlinecode"><span class="id" type="var">cequiv</span></span> 的定义, 我们有
 
 <div class="paragraph"> </div>
 
 <div class="code code-tight">
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">cequiv</span>&nbsp;(<span class="id" type="var">X</span>&nbsp;::=&nbsp;<span class="id" type="var">APlus</span>&nbsp;(<span class="id" type="var">AId</span>&nbsp;<span class="id" type="var">X</span>)&nbsp;(<span class="id" type="var">ANum</span>&nbsp;1);;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">Y</span>&nbsp;::=&nbsp;<span class="id" type="var">AId</span>&nbsp;<span class="id" type="var">X</span>)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" type="var">X</span>&nbsp;::=&nbsp;<span class="id" type="var">APlus</span>&nbsp;(<span class="id" type="var">AId</span>&nbsp;<span class="id" type="var">X</span>)&nbsp;(<span class="id" type="var">ANum</span>&nbsp;1);;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">Y</span>&nbsp;::=&nbsp;<span class="id" type="var">APlus</span>&nbsp;(<span class="id" type="var">AId</span>&nbsp;<span class="id" type="var">X</span>)&nbsp;(<span class="id" type="var">ANum</span>&nbsp;1))
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" type="var">X</span>&nbsp;::=&nbsp;<span class="id" type="var">APlus</span>&nbsp;(<span class="id" type="var">AId</span>&nbsp;<span class="id" type="var">X</span>)&nbsp;(<span class="id" type="var">ANum</span>&nbsp;1);;&nbsp;<span class="id" type="var">Y</span>&nbsp;::=&nbsp;<span class="id" type="var">APlus</span>&nbsp;(<span class="id" type="var">AId</span>&nbsp;<span class="id" type="var">X</span>)&nbsp;(<span class="id" type="var">ANum</span>&nbsp;1))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;<span class="id" type="var">empty_state</span>&nbsp;||&nbsp;<span class="id" type="var">st<sub>1</sub></span>.
 <div class="paragraph"> </div>
 
 </div>
-    so, by the definition of <span class="inlinecode"><span class="id" type="var">cequiv</span></span>, we have
+    同时我们也能证明出
 
 <div class="paragraph"> </div>
 
 <div class="code code-tight">
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" type="var">X</span>&nbsp;::=&nbsp;<span class="id" type="var">APlus</span>&nbsp;(<span class="id" type="var">AId</span>&nbsp;<span class="id" type="var">X</span>)&nbsp;(<span class="id" type="var">ANum</span>&nbsp;1);;&nbsp;<span class="id" type="var">Y</span>&nbsp;::=&nbsp;<span class="id" type="var">APlus</span>&nbsp;(<span class="id" type="var">AId</span>&nbsp;<span class="id" type="var">X</span>)&nbsp;(<span class="id" type="var">ANum</span>&nbsp;1))<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;<span class="id" type="var">empty_state</span>&nbsp;<span style="font-family: arial;">&dArr;</span>&nbsp;<span class="id" type="var">st<sub>1</sub></span>.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" type="var">X</span>&nbsp;::=&nbsp;<span class="id" type="var">APlus</span>&nbsp;(<span class="id" type="var">AId</span>&nbsp;<span class="id" type="var">X</span>)&nbsp;(<span class="id" type="var">ANum</span>&nbsp;1);;&nbsp;<span class="id" type="var">Y</span>&nbsp;::=&nbsp;<span class="id" type="var">APlus</span>&nbsp;(<span class="id" type="var">AId</span>&nbsp;<span class="id" type="var">X</span>)&nbsp;(<span class="id" type="var">ANum</span>&nbsp;1))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;<span class="id" type="var">empty_state</span>&nbsp;||&nbsp;<span class="id" type="var">st<sub>2</sub></span>,
 <div class="paragraph"> </div>
 
 </div>
-    But we can also derive
-
-<div class="paragraph"> </div>
-
-<div class="code code-tight">
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" type="var">X</span>&nbsp;::=&nbsp;<span class="id" type="var">APlus</span>&nbsp;(<span class="id" type="var">AId</span>&nbsp;<span class="id" type="var">X</span>)&nbsp;(<span class="id" type="var">ANum</span>&nbsp;1);;&nbsp;<span class="id" type="var">Y</span>&nbsp;::=&nbsp;<span class="id" type="var">APlus</span>&nbsp;(<span class="id" type="var">AId</span>&nbsp;<span class="id" type="var">X</span>)&nbsp;(<span class="id" type="var">ANum</span>&nbsp;1))<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;<span class="id" type="var">empty_state</span>&nbsp;<span style="font-family: arial;">&dArr;</span>&nbsp;<span class="id" type="var">st<sub>2</sub></span>,
-<div class="paragraph"> </div>
-
-</div>
-    where <span class="inlinecode"><span class="id" type="var">st<sub>2</sub></span></span> <span class="inlinecode">=</span> <span class="inlinecode">{</span> <span class="inlinecode"><span class="id" type="var">X</span></span> <span class="inlinecode"><span style="font-family: arial;">&#8614;</span></span> <span class="inlinecode">1,</span> <span class="inlinecode"><span class="id" type="var">Y</span></span> <span class="inlinecode"><span style="font-family: arial;">&#8614;</span></span> <span class="inlinecode">2</span> <span class="inlinecode">}</span>.  But <span class="inlinecode"><span class="id" type="var">st<sub>1</sub></span></span> <span class="inlinecode">≠</span> <span class="inlinecode"><span class="id" type="var">st<sub>2</sub></span></span>, which is a
-    contradiction, since <span class="inlinecode"><span class="id" type="var">ceval</span></span> is deterministic!  <span class="proofbox">&#9744;</span> 
+    在 <span class="inlinecode"><span class="id" type="var">st<sub>2</sub></span></span> <span class="inlinecode">=</span> <span class="inlinecode">{</span> <span class="inlinecode"><span class="id" type="var">X</span></span> <span class="inlinecode"><span style="font-family: arial;">&#8614;</span></span> <span class="inlinecode">1,</span> <span class="inlinecode"><span class="id" type="var">Y</span></span> <span class="inlinecode"><span style="font-family: arial;">&#8614;</span></span> <span class="inlinecode">2</span> <span class="inlinecode">}</span> 时成立。这里注意, 因为 <span class="inlinecode"><span class="id" type="var">ceval</span></span> 是确定性的
+    但是已知 <span class="inlinecode"><span class="id" type="var">st<sub>1</sub></span></span> <span class="inlinecode">≠</span> <span class="inlinecode"><span class="id" type="var">st<sub>2</sub></span></span> 这就造成矛盾!  <span class="proofbox">&#9744;</span> 
 </div>
 <div class="code code-tight">
 
@@ -1850,9 +1678,7 @@ Sadly, the property does <i>not</i> always hold &mdash; i.e., it is not the
 <span class="id" type="keyword">Proof</span>.<br/>
 &nbsp;&nbsp;<span class="id" type="tactic">unfold</span> <span class="id" type="var">subst_equiv_property</span>.<br/>
 &nbsp;&nbsp;<span class="id" type="tactic">intros</span> <span class="id" type="var">Contra</span>.<br/>
-&nbsp;&nbsp;<span class="comment">(*&nbsp;Here&nbsp;is&nbsp;the&nbsp;counterexample:&nbsp;assuming&nbsp;that&nbsp;<span class="inlinecode"><span class="id" type="var">subst_equiv_property</span></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;holds&nbsp;allows&nbsp;us&nbsp;to&nbsp;prove&nbsp;that&nbsp;these&nbsp;two&nbsp;programs&nbsp;are<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;equivalent...&nbsp;*)</span><br/>
+&nbsp;&nbsp;<span class="comment">(*&nbsp;这里有个反例:&nbsp;假设&nbsp;<span class="inlinecode"><span class="id" type="var">subst_equiv_property</span></span>&nbsp;让我们证明以下两个程序等价...&nbsp;*)</span><br/>
 &nbsp;&nbsp;<span class="id" type="var">remember</span> (<span class="id" type="var">X</span> ::= <span class="id" type="var">APlus</span> (<span class="id" type="var">AId</span> <span class="id" type="var">X</span>) (<span class="id" type="var">ANum</span> 1);;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">Y</span> ::= <span class="id" type="var">AId</span> <span class="id" type="var">X</span>)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="keyword">as</span> <span class="id" type="var">c<sub>1</sub></span>.<br/>
@@ -1860,9 +1686,8 @@ Sadly, the property does <i>not</i> always hold &mdash; i.e., it is not the
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">Y</span> ::= <span class="id" type="var">APlus</span> (<span class="id" type="var">AId</span> <span class="id" type="var">X</span>) (<span class="id" type="var">ANum</span> 1))<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="keyword">as</span> <span class="id" type="var">c<sub>2</sub></span>.<br/>
 &nbsp;&nbsp;<span class="id" type="tactic">assert</span> (<span class="id" type="var">cequiv</span> <span class="id" type="var">c<sub>1</sub></span> <span class="id" type="var">c<sub>2</sub></span>) <span class="id" type="tactic">by</span> (<span class="id" type="tactic">subst</span>; <span class="id" type="tactic">apply</span> <span class="id" type="var">Contra</span>).<br/>
-&nbsp;&nbsp;<span class="comment">(*&nbsp;...&nbsp;allows&nbsp;us&nbsp;to&nbsp;show&nbsp;that&nbsp;the&nbsp;command&nbsp;<span class="inlinecode"><span class="id" type="var">c<sub>2</sub></span></span>&nbsp;can&nbsp;terminate<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;in&nbsp;two&nbsp;different&nbsp;final&nbsp;states:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;st<sub>1</sub>&nbsp;=&nbsp;{X&nbsp;|-&gt;&nbsp;1,&nbsp;Y&nbsp;|-&gt;&nbsp;1}<br/>
+&nbsp;&nbsp;<span class="comment">(*&nbsp;...&nbsp;让我们证明&nbsp;<span class="inlinecode"><span class="id" type="var">c<sub>2</sub></span></span>&nbsp;能终止于两个不同的状态:&nbsp;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;st<sub>1</sub>&nbsp;=&nbsp;{X&nbsp;|-&gt;&nbsp;1,&nbsp;Y&nbsp;|-&gt;&nbsp;1}&nbsp;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;st<sub>2</sub>&nbsp;=&nbsp;{X&nbsp;|-&gt;&nbsp;1,&nbsp;Y&nbsp;|-&gt;&nbsp;2}.&nbsp;*)</span><br/>
 &nbsp;&nbsp;<span class="id" type="var">remember</span> (<span class="id" type="var">t_update</span> (<span class="id" type="var">t_update</span> <span class="id" type="var">empty_state</span> <span class="id" type="var">X</span> 1) <span class="id" type="var">Y</span> 1) <span class="id" type="keyword">as</span> <span class="id" type="var">st<sub>1</sub></span>.<br/>
 &nbsp;&nbsp;<span class="id" type="var">remember</span> (<span class="id" type="var">t_update</span> (<span class="id" type="var">t_update</span> <span class="id" type="var">empty_state</span> <span class="id" type="var">X</span> 1) <span class="id" type="var">Y</span> 2) <span class="id" type="keyword">as</span> <span class="id" type="var">st<sub>2</sub></span>.<br/>
@@ -1872,8 +1697,7 @@ Sadly, the property does <i>not</i> always hold &mdash; i.e., it is not the
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">apply</span> <span class="id" type="var">E_Seq</span> <span class="id" type="keyword">with</span> (<span class="id" type="var">st'</span> := (<span class="id" type="var">t_update</span> <span class="id" type="var">empty_state</span> <span class="id" type="var">X</span> 1));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">apply</span> <span class="id" type="var">E_Ass</span>; <span class="id" type="tactic">reflexivity</span>).<br/>
 &nbsp;&nbsp;<span class="id" type="tactic">apply</span> <span class="id" type="var">H</span> <span class="id" type="keyword">in</span> <span class="id" type="var">H<sub>1</sub></span>.<br/>
-&nbsp;&nbsp;<span class="comment">(*&nbsp;Finally,&nbsp;we&nbsp;use&nbsp;the&nbsp;fact&nbsp;that&nbsp;evaluation&nbsp;is&nbsp;deterministic<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;to&nbsp;obtain&nbsp;a&nbsp;contradiction.&nbsp;*)</span><br/>
+&nbsp;&nbsp;<span class="comment">(*&nbsp;最后,&nbsp;因为程序求值的确定性而产生矛盾.&nbsp;*)</span><br/>
 &nbsp;&nbsp;<span class="id" type="tactic">assert</span> (<span class="id" type="var">Hcontra</span>: <span class="id" type="var">st<sub>1</sub></span> = <span class="id" type="var">st<sub>2</sub></span>)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">by</span> (<span class="id" type="tactic">apply</span> (<span class="id" type="var">ceval_deterministic</span> <span class="id" type="var">c<sub>2</sub></span> <span class="id" type="var">empty_state</span>); <span class="id" type="tactic">assumption</span>).<br/>
 &nbsp;&nbsp;<span class="id" type="tactic">assert</span> (<span class="id" type="var">Hcontra'</span>: <span class="id" type="var">st<sub>1</sub></span> <span class="id" type="var">Y</span> = <span class="id" type="var">st<sub>2</sub></span> <span class="id" type="var">Y</span>)<br/>
@@ -1886,10 +1710,8 @@ Sadly, the property does <i>not</i> always hold &mdash; i.e., it is not the
 
 <div class="doc">
 <a name="lab394"></a><h4 class="section">Exercise: 4 stars, optional (better_subst_equiv)</h4>
- The equivalence we had in mind above was not complete nonsense &mdash;
-    it was actually almost right.  To make it correct, we just need to
-    exclude the case where the variable <span class="inlinecode"><span class="id" type="var">X</span></span> occurs in the
-    right-hand-side of the first assignment statement. 
+ 之前我们想的等价性也不是完全胡说八道 &mdash; 差一点就正确了. 只要增加一个
+    条件就是正确的, 只要保证 <span class="inlinecode"><span class="id" type="var">X</span></span> 不在第一个等式的右边出现. 
 </div>
 <div class="code code-tight">
 
@@ -1917,8 +1739,7 @@ Sadly, the property does <i>not</i> always hold &mdash; i.e., it is not the
 </div>
 
 <div class="doc">
-Using <span class="inlinecode"><span class="id" type="var">var_not_used_in_aexp</span></span>, formalize and prove a correct verson
-    of <span class="inlinecode"><span class="id" type="var">subst_equiv_property</span></span>. 
+使用 <span class="inlinecode"><span class="id" type="var">var_not_used_in_aexp</span></span> 形式化证明这个正确版的 <span class="inlinecode"><span class="id" type="var">subst_equiv_property</span></span>. 
 </div>
 <div class="code code-tight">
 
@@ -1931,7 +1752,7 @@ Using <span class="inlinecode"><span class="id" type="var">var_not_used_in_aexp<
 <div class="paragraph"> </div>
 
 <a name="lab395"></a><h4 class="section">Exercise: 3 stars (inequiv_exercise)</h4>
- Prove that an infinite loop is not equivalent to <span class="inlinecode"><span class="id" type="var">SKIP</span></span> 
+ 证明死循环不等价于 <span class="inlinecode"><span class="id" type="var">SKIP</span></span> 
 </div>
 <div class="code code-tight">
 
@@ -1945,17 +1766,13 @@ Using <span class="inlinecode"><span class="id" type="var">var_not_used_in_aexp<
 <span class="proofbox">&#9744;</span> 
 
 <div class="doc">
-<a name="lab396"></a><h1 class="section">Extended Exercise: Nondeterministic Imp</h1>
+<a name="lab396"></a><h1 class="section">扩展练习: 非确定性 Imp</h1>
 
 <div class="paragraph"> </div>
 
- As we have seen (in theorem <span class="inlinecode"><span class="id" type="var">ceval_deterministic</span></span> in the <span class="inlinecode"><span class="id" type="var">Imp</span></span>
-    chapter), Imp's evaluation relation is deterministic.  However,
-    <i>non</i>-determinism is an important part of the definition of many
-    real programming languages. For example, in many imperative
-    languages (such as C and its relatives), the order in which
-    function arguments are evaluated is unspecified.  The program
-    fragment
+ 就像之前看到的 (在 Imp那章里的 <span class="inlinecode"><span class="id" type="var">ceval_deterministic</span></span>), Imp 的关联的求值
+    是确定性的.  但是, <i>'不确定性'</i> 是很多程序语言定义中重要的一部分. 比如, 在很多
+    命令式语言中 (比如C和类C的语言), 函数参数的求值顺序是未定义的. 程序片段
 
 <div class="paragraph"> </div>
 
@@ -1965,19 +1782,12 @@ Using <span class="inlinecode"><span class="id" type="var">var_not_used_in_aexp<
 <div class="paragraph"> </div>
 
 </div>
-    might call <span class="inlinecode"><span class="id" type="var">f</span></span> with arguments <span class="inlinecode">(1,</span> <span class="inlinecode">0)</span> or <span class="inlinecode">(1,</span> <span class="inlinecode">1)</span>, depending how
-    the compiler chooses to order things.  This can be a little
-    confusing for programmers, but it gives the compiler writer useful
-    freedom.
-
-<div class="paragraph"> </div>
-
-    In this exercise, we will extend Imp with a simple
-    nondeterministic command and study how this change affects
-    program equivalence.  The new command has the syntax <span class="inlinecode"><span class="id" type="var">HAVOC</span></span> <span class="inlinecode"><span class="id" type="var">X</span></span>,
-    where <span class="inlinecode"><span class="id" type="var">X</span></span> is an identifier. The effect of executing <span class="inlinecode"><span class="id" type="var">HAVOC</span></span> <span class="inlinecode"><span class="id" type="var">X</span></span> is
-    to assign an <i>arbitrary</i> number to the variable <span class="inlinecode"><span class="id" type="var">X</span></span>,
-    nondeterministically. For example, after executing the program:
+    调用 <span class="inlinecode"><span class="id" type="var">f</span></span> 的参数也许是 <span class="inlinecode">(1,</span> <span class="inlinecode">0)</span> 又也许是 <span class="inlinecode">(1,</span> <span class="inlinecode">1)</span>, 取决于编译器的选择. 
+    这可能让程序员有些困惑, 但是给了编译器作者选择实现的自由.
+    在这个练习里, 我们要用一个简单的非确定性命令扩展 Imp 来学习这个扩展对响程
+    序等价性有什么影响.  这个新命令写作 <span class="inlinecode"><span class="id" type="var">HAVOC</span></span> <span class="inlinecode"><span class="id" type="var">X</span></span>, <span class="inlinecode"><span class="id" type="var">X</span></span> 是一个标识符.
+    执行 <span class="inlinecode"><span class="id" type="var">HAVOC</span></span> <span class="inlinecode"><span class="id" type="var">X</span></span> 的作用是给 <span class="inlinecode"><span class="id" type="var">X</span></span> 分配一个不确定的 <i>'任意'</i> 数字. 比如,
+    计算这个程序之后:
 
 <div class="paragraph"> </div>
 
@@ -1987,25 +1797,13 @@ Using <span class="inlinecode"><span class="id" type="var">var_not_used_in_aexp<
 <div class="paragraph"> </div>
 
 </div>
-    the value of <span class="inlinecode"><span class="id" type="var">Y</span></span> can be any number, while the value of <span class="inlinecode"><span class="id" type="var">Z</span></span> is
-    twice that of <span class="inlinecode"><span class="id" type="var">Y</span></span> (so <span class="inlinecode"><span class="id" type="var">Z</span></span> is always even). Note that we are not
-    saying anything about the <i>probabilities</i> of the outcomes &mdash; just
-    that there are (infinitely) many different outcomes that can
-    possibly happen after executing this nondeterministic code.
-
-<div class="paragraph"> </div>
-
-    In a sense, a variable on which we do <span class="inlinecode"><span class="id" type="var">HAVOC</span></span> roughly corresponds
-    to an unitialized variable in a low-level language like C.  After
-    the <span class="inlinecode"><span class="id" type="var">HAVOC</span></span>, the variable holds a fixed but arbitrary number.  Most
-    sources of nondeterminism in language definitions are there
-    precisely because programmers don't care which choice is made (and
-    so it is good to leave it open to the compiler to choose whichever
-    will run faster).
-
-<div class="paragraph"> </div>
-
-    We call this new language <i>Himp</i> (``Imp extended with <span class="inlinecode"><span class="id" type="var">HAVOC</span></span>''). 
+    <span class="inlinecode"><span class="id" type="var">Y</span></span> 的值可以是任意变量, 且 <span class="inlinecode"><span class="id" type="var">Z</span></span> 的值是 <span class="inlinecode"><span class="id" type="var">Y</span></span> 的两倍 (所以 <span class="inlinecode"><span class="id" type="var">Z</span></span> 总是偶数).
+    注意, 我们并没有讨论输出值的 <i>'概率'</i> &mdash; 只是这里在执行非确定性代码后有
+    非常多（无穷）的可能的不同的输出.
+    某种意义上来说 <span class="inlinecode"><span class="id" type="var">HAVOC</span></span> 大致相当与C语言中的未初始化变量. 经过了 <span class="inlinecode"><span class="id" type="var">HAVOC</span></span>
+    变量获得一个任意的但是不会改变的数字.  语言定义中非确定性大部分来源于程序员
+    对程序到底作出了什么选择并不那么关心 (好处是能让编译器有自由选择运行速度更快的方法).
+    我们称这个新语言为 <i>Himp</i> (``在 Imp 上扩展了 <span class="inlinecode"><span class="id" type="var">HAVOC</span></span>''). 
 </div>
 <div class="code code-tight">
 
@@ -2014,8 +1812,7 @@ Using <span class="inlinecode"><span class="id" type="var">var_not_used_in_aexp<
 </div>
 
 <div class="doc">
-To formalize Himp, we first add a clause to the definition of
-    commands. 
+为了形式化这个语言, 我们先在命令定义里增加一条. 
 </div>
 <div class="code code-tight">
 
@@ -2026,7 +1823,7 @@ To formalize Himp, we first add a clause to the definition of
 &nbsp;&nbsp;| <span class="id" type="var">CSeq</span> : <span class="id" type="var">com</span> <span style="font-family: arial;">&rarr;</span> <span class="id" type="var">com</span> <span style="font-family: arial;">&rarr;</span> <span class="id" type="var">com</span><br/>
 &nbsp;&nbsp;| <span class="id" type="var">CIf</span> : <span class="id" type="var">bexp</span> <span style="font-family: arial;">&rarr;</span> <span class="id" type="var">com</span> <span style="font-family: arial;">&rarr;</span> <span class="id" type="var">com</span> <span style="font-family: arial;">&rarr;</span> <span class="id" type="var">com</span><br/>
 &nbsp;&nbsp;| <span class="id" type="var">CWhile</span> : <span class="id" type="var">bexp</span> <span style="font-family: arial;">&rarr;</span> <span class="id" type="var">com</span> <span style="font-family: arial;">&rarr;</span> <span class="id" type="var">com</span><br/>
-&nbsp;&nbsp;| <span class="id" type="var">CHavoc</span> : <span class="id" type="var">id</span> <span style="font-family: arial;">&rarr;</span> <span class="id" type="var">com</span>. <span class="comment">(*&nbsp;&lt;----&nbsp;new&nbsp;*)</span><br/>
+&nbsp;&nbsp;| <span class="id" type="var">CHavoc</span> : <span class="id" type="var">id</span> <span style="font-family: arial;">&rarr;</span> <span class="id" type="var">com</span>. <span class="comment">(*&nbsp;&lt;----&nbsp;新的&nbsp;*)</span><br/>
 <span class="id" type="keyword">Notation</span> "'SKIP'" :=<br/>
 &nbsp;&nbsp;<span class="id" type="var">CSkip</span>.<br/>
 <span class="id" type="keyword">Notation</span> "X '::=' a" :=<br/>
@@ -2042,10 +1839,8 @@ To formalize Himp, we first add a clause to the definition of
 
 <div class="doc">
 <a name="lab397"></a><h4 class="section">Exercise: 2 stars (himp_ceval)</h4>
- Now, we must extend the operational semantics. We have provided
-   a template for the <span class="inlinecode"><span class="id" type="var">ceval</span></span> relation below, specifying the big-step
-   semantics. What rule(s) must be added to the definition of <span class="inlinecode"><span class="id" type="var">ceval</span></span>
-   to formalize the behavior of the <span class="inlinecode"><span class="id" type="var">HAVOC</span></span> command? 
+ 现在, 我们必须扩展操作语义. 这里提供了一个 <span class="inlinecode"><span class="id" type="var">ceval</span></span> 关系的模板, 规定了
+    其大步语义. 现在为了形式化 <span class="inlinecode"><span class="id" type="var">HAVOC</span></span> 规则还需要怎样的扩充？ 
 </div>
 <div class="code code-tight">
 
@@ -2083,8 +1878,7 @@ To formalize Himp, we first add a clause to the definition of
 </div>
 
 <div class="doc">
-As a sanity check, the following claims should be provable for
-    your definition: 
+作为合理的检查, 下面的命题使用你的定义应该是可证的: 
 </div>
 <div class="code code-tight">
 
@@ -2102,7 +1896,7 @@ As a sanity check, the following claims should be provable for
 <div class="doc less-space">
 <div class="paragraph"> </div>
 
- Finally, we repeat the definition of command equivalence from above: 
+ 最后, 我们重新定义和之前相同的等价性定理: 
 </div>
 <div class="code code-tight">
 
@@ -2112,12 +1906,12 @@ As a sanity check, the following claims should be provable for
 </div>
 
 <div class="doc">
-Let's apply this definition to prove some nondeterministic
-    programs equivalent / inequivalent. 
+这个定义对于可终止的程序仍然是合理的, 然后我们来用它证明非确定性程序的等价
+    或者非等价. 
 <div class="paragraph"> </div>
 
 <a name="lab398"></a><h4 class="section">Exercise: 3 stars (havoc_swap)</h4>
- Are the following two programs equivalent? 
+ 下面的两个程序等价吗? 
 </div>
 <div class="code code-tight">
 
@@ -2129,8 +1923,7 @@ Let's apply this definition to prove some nondeterministic
 </div>
 
 <div class="doc">
-If you think they are equivalent, prove it. If you think they are
-    not, prove that. 
+如果你认为他是等价的, 证明它是等价的, 如果认为它是不等价的, 也给出证明. 
 </div>
 <div class="code code-tight">
 
@@ -2145,7 +1938,7 @@ If you think they are equivalent, prove it. If you think they are
 <div class="paragraph"> </div>
 
 <a name="lab399"></a><h4 class="section">Exercise: 4 stars, optional (havoc_copy)</h4>
- Are the following two programs equivalent? 
+ 下面的两个程序等价吗? 
 </div>
 <div class="code code-tight">
 
@@ -2157,9 +1950,8 @@ If you think they are equivalent, prove it. If you think they are
 </div>
 
 <div class="doc">
-If you think they are equivalent, then prove it. If you think they
-    are not, then prove that.  (Hint: You may find the <span class="inlinecode"><span class="id" type="tactic">assert</span></span> tactic
-    useful.) 
+如果你认为他是等价的, 证明它是等价的, 如果认为它是不等价的, 也给出证明.
+    (Hint: 你也许会发现 <span class="inlinecode"><span class="id" type="tactic">assert</span></span> 策略很有用.) 
 </div>
 <div class="code code-tight">
 
@@ -2173,20 +1965,15 @@ If you think they are equivalent, then prove it. If you think they
 <div class="doc less-space">
 <div class="paragraph"> </div>
 
- The definition of program equivalence we are using here has some
-    subtle consequences on programs that may loop forever.  What
-    <span class="inlinecode"><span class="id" type="var">cequiv</span></span> says is that the set of possible <i>terminating</i> outcomes
-    of two equivalent programs is the same. However, in a language
-    with nondeterminism, like Himp, some programs always terminate,
-    some programs always diverge, and some programs can
-    nondeterministically terminate in some runs and diverge in
-    others. The final part of the following exercise illustrates this
-    phenomenon.
+ 我们使用的程序等价的定义在无限循环的程序上的结果有点复杂. 因为 <span class="inlinecode"><span class="id" type="var">cequiv</span></span> 
+    描述的是 <i>'程序能够终止时'</i> 两个程序的输出等价. 但是, 在有类似 Himp 的
+    非确定性的语言里，有些程序总是停机，有些程序总是死循环，还有一些程序会
+    非确定性地在某些时候停机或者在另外一些时候不断循环。下面习题的最后一部分展示了这个现象.
 
 <div class="paragraph"> </div>
 
 <a name="lab400"></a><h4 class="section">Exercise: 4 stars, advanced (p1_p2_term)</h4>
- Consider the following commands: 
+ 考虑下面两个命令: 
 </div>
 <div class="code code-tight">
 
@@ -2203,10 +1990,8 @@ If you think they are equivalent, then prove it. If you think they
 </div>
 
 <div class="doc">
-Intuitively, <span class="inlinecode"><span class="id" type="var">p<sub>1</sub></span></span> and <span class="inlinecode"><span class="id" type="var">p<sub>2</sub></span></span> have the same termination behavior:
-    either they loop forever, or they terminate in the same state they
-    started in.  We can capture the termination behavior of <span class="inlinecode"><span class="id" type="var">p<sub>1</sub></span></span> and
-    <span class="inlinecode"><span class="id" type="var">p<sub>2</sub></span></span> individually with these lemmas: 
+直觉上, 这两个程序有相同的终止行为: 要么都死循环, 要么终止在同一个状态.
+    我们用下面的引理可以分别捕获 <span class="inlinecode"><span class="id" type="var">p<sub>1</sub></span></span> 和 <span class="inlinecode"><span class="id" type="var">p<sub>2</sub></span></span> 的终止行为: 
 </div>
 <div class="code code-tight">
 
@@ -2225,8 +2010,7 @@ Intuitively, <span class="inlinecode"><span class="id" type="var">p<sub>1</sub><
 <div class="paragraph"> </div>
 
 <a name="lab401"></a><h4 class="section">Exercise: 4 stars, advanced (p1_p2_equiv)</h4>
- Use these two lemmas to prove that <span class="inlinecode"><span class="id" type="var">p<sub>1</sub></span></span> and <span class="inlinecode"><span class="id" type="var">p<sub>2</sub></span></span> are actually
-    equivalent. 
+ 你应该用这些引理证明 p<sub>1</sub> 和 p<sub>2</sub> 确实等价. 
 </div>
 <div class="code code-tight">
 
@@ -2240,7 +2024,7 @@ Intuitively, <span class="inlinecode"><span class="id" type="var">p<sub>1</sub><
 <div class="paragraph"> </div>
 
 <a name="lab402"></a><h4 class="section">Exercise: 4 stars, advancedM (p3_p4_inequiv)</h4>
- Prove that the following programs are <i>not</i> equivalent.  (Hint:
+ 证明下面的程序 <i>'不等价'</i> . (Hint:
     What should the value of <span class="inlinecode"><span class="id" type="var">Z</span></span> be when <span class="inlinecode"><span class="id" type="var">p<sub>3</sub></span></span> terminates?  What about
     <span class="inlinecode"><span class="id" type="var">p<sub>4</sub></span></span>?) 
 </div>
@@ -2294,14 +2078,13 @@ Intuitively, <span class="inlinecode"><span class="id" type="var">p<sub>1</sub><
 </div>
 
 <div class="doc">
-<a name="lab404"></a><h1 class="section">Additional Exercises</h1>
+<a name="lab404"></a><h1 class="section">附加题</h1>
 
 <div class="paragraph"> </div>
 
 <a name="lab405"></a><h4 class="section">Exercise: 4 stars, optional (for_while_equiv)</h4>
- This exercise extends the optional <span class="inlinecode"><span class="id" type="var">add_for_loop</span></span> exercise from
-    the <a href="Imp.html"><span class="inlineref">Imp</span></a> chapter, where you were asked to extend the language
-    of commands with C-style <span class="inlinecode"><span class="id" type="keyword">for</span></span> loops.  Prove that the command:
+ 这个练习是 Imp.v 中 可选练习<span class="inlinecode"><span class="id" type="var">add_for_loop</span></span> 的扩展,
+    就是那个让你扩展出类似C风格的for循环命令的练习.  证明命令:
 
 <div class="paragraph"> </div>
 
@@ -2312,12 +2095,12 @@ Intuitively, <span class="inlinecode"><span class="id" type="var">p<sub>1</sub><
 <div class="paragraph"> </div>
 
 </div>
-    is equivalent to:
+    等价于:
 
 <div class="paragraph"> </div>
 
 <div class="code code-tight">
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">c<sub>1</sub></span>&nbsp;;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">c<sub>1</sub></span>&nbsp;;&nbsp;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">WHILE</span>&nbsp;<span class="id" type="var">b</span>&nbsp;<span class="id" type="var">DO</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">c<sub>3</sub></span>&nbsp;;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">c<sub>2</sub></span><br/>
@@ -2336,7 +2119,7 @@ Intuitively, <span class="inlinecode"><span class="id" type="var">p<sub>1</sub><
 <div class="paragraph"> </div>
 
 <a name="lab406"></a><h4 class="section">Exercise: 3 stars, optional (swap_noninterfering_assignments)</h4>
- (Hint: You'll need <span class="inlinecode"><span class="id" type="var">functional_extensionality</span></span> for this one.) 
+ (Hint: 你也许需要 <span class="inlinecode"><span class="id" type="var">functional_extensionality</span></span> 来完成此题.) 
 </div>
 <div class="code code-tight">
 
@@ -2357,12 +2140,10 @@ Intuitively, <span class="inlinecode"><span class="id" type="var">p<sub>1</sub><
 <div class="paragraph"> </div>
 
 <a name="lab407"></a><h4 class="section">Exercise: 4 stars, advanced, optional (capprox)</h4>
- In this exercise we define an asymmetric variant of program
-    equivalence we call <i>program approximation</i>. We say that a
-    program <span class="inlinecode"><span class="id" type="var">c<sub>1</sub></span></span> <i>approximates</i> a program <span class="inlinecode"><span class="id" type="var">c<sub>2</sub></span></span> when, for each of
-    the initial states for which <span class="inlinecode"><span class="id" type="var">c<sub>1</sub></span></span> terminates, <span class="inlinecode"><span class="id" type="var">c<sub>2</sub></span></span> also terminates
-    and produces the same final state. Formally, program approximation
-    is defined as follows: 
+ 这个练习里我们定义一个非对称的程序等价变形, 叫做
+    <i>'程序近似'</i> （ <i>program approximation</i> ）。 当每个能让 <span class="inlinecode"><span class="id" type="var">c<sub>1</sub></span></span> 终止的初始状态
+    也能让 <span class="inlinecode"><span class="id" type="var">c<sub>2</sub></span></span> 终止到相同的状态，我们就说程序 <span class="inlinecode"><span class="id" type="var">c<sub>1</sub></span></span> <i>'近似'</i> 程序 <span class="inlinecode"><span class="id" type="var">c<sub>2</sub></span></span> 。
+    下面形式化定义程序近似: 
 </div>
 <div class="code code-tight">
 
@@ -2372,15 +2153,13 @@ Intuitively, <span class="inlinecode"><span class="id" type="var">p<sub>1</sub><
 </div>
 
 <div class="doc">
-For example, the program <span class="inlinecode"><span class="id" type="var">c<sub>1</sub></span></span> <span class="inlinecode">=</span> <span class="inlinecode"><span class="id" type="var">WHILE</span></span> <span class="inlinecode"><span class="id" type="var">X</span></span> <span class="inlinecode">≠</span> <span class="inlinecode">1</span> <span class="inlinecode"><span class="id" type="var">DO</span></span> <span class="inlinecode"><span class="id" type="var">X</span></span> <span class="inlinecode">::=</span> <span class="inlinecode"><span class="id" type="var">X</span></span> <span class="inlinecode">-</span> <span class="inlinecode">1</span> <span class="inlinecode"><span class="id" type="var">END</span></span>
-    approximates <span class="inlinecode"><span class="id" type="var">c<sub>2</sub></span></span> <span class="inlinecode">=</span> <span class="inlinecode"><span class="id" type="var">X</span></span> <span class="inlinecode">::=</span> <span class="inlinecode">1</span>, but <span class="inlinecode"><span class="id" type="var">c<sub>2</sub></span></span> does not approximate <span class="inlinecode"><span class="id" type="var">c<sub>1</sub></span></span>
-    since <span class="inlinecode"><span class="id" type="var">c<sub>1</sub></span></span> does not terminate when <span class="inlinecode"><span class="id" type="var">X</span></span> <span class="inlinecode">=</span> <span class="inlinecode">0</span> but <span class="inlinecode"><span class="id" type="var">c<sub>2</sub></span></span> does.  If two
-    programs approximate each other in both directions, then they are
-    equivalent. 
+例如, 程序 <span class="inlinecode"><span class="id" type="var">c<sub>1</sub></span></span> <span class="inlinecode">=</span> <span class="inlinecode"><span class="id" type="var">WHILE</span></span> <span class="inlinecode"><span class="id" type="var">X</span></span> <span class="inlinecode">≠</span> <span class="inlinecode">1</span> <span class="inlinecode"><span class="id" type="var">DO</span></span> <span class="inlinecode"><span class="id" type="var">X</span></span> <span class="inlinecode">::=</span> <span class="inlinecode"><span class="id" type="var">X</span></span> <span class="inlinecode">-</span> <span class="inlinecode">1</span> <span class="inlinecode"><span class="id" type="var">END</span></span>
+    近似 <span class="inlinecode"><span class="id" type="var">c<sub>2</sub></span></span> <span class="inlinecode">=</span> <span class="inlinecode"><span class="id" type="var">X</span></span> <span class="inlinecode">::=</span> <span class="inlinecode">1</span>, 但是 <span class="inlinecode"><span class="id" type="var">c<sub>2</sub></span></span> 不近似 <span class="inlinecode"><span class="id" type="var">c<sub>1</sub></span></span>
+    因为 <span class="inlinecode"><span class="id" type="var">c<sub>1</sub></span></span> 在 <span class="inlinecode"><span class="id" type="var">X</span></span> <span class="inlinecode">=</span> <span class="inlinecode">0</span> 时死循环, 但是 <span class="inlinecode"><span class="id" type="var">c<sub>2</sub></span></span> 不会. 如果两个程序互相近似,
+    那么他们等价. 
 <div class="paragraph"> </div>
 
- Find two programs <span class="inlinecode"><span class="id" type="var">c<sub>3</sub></span></span> and <span class="inlinecode"><span class="id" type="var">c<sub>4</sub></span></span> such that neither approximates
-    the other. 
+ 请找出互不近似的两个程序 <span class="inlinecode"><span class="id" type="var">c<sub>3</sub></span></span> 和 <span class="inlinecode"><span class="id" type="var">c<sub>4</sub></span></span>. 证明他们互不近似. 
 </div>
 <div class="code code-tight">
 
@@ -2392,7 +2171,8 @@ For example, the program <span class="inlinecode"><span class="id" type="var">c<
 </div>
 
 <div class="doc">
-Find a program <span class="inlinecode"><span class="id" type="var">cmin</span></span> that approximates every other program. 
+找到一个程序 <span class="inlinecode"><span class="id" type="var">cmin</span></span> 近似所有别的程序。
+    给出形式化的 <span class="inlinecode"><span class="id" type="var">cmin_minimal</span></span> 证明。 
 </div>
 <div class="code code-tight">
 
@@ -2404,8 +2184,8 @@ Find a program <span class="inlinecode"><span class="id" type="var">cmin</span><
 </div>
 
 <div class="doc">
-Finally, find a non-trivial property which is preserved by
-    program approximation (when going from left to right). 
+最后，再找出程序近似的一个不太直观的属性 （当从左到右时）。
+    给出形式化的 <span class="inlinecode"><span class="id" type="var">zprop_preserving</span></span> 证明。 
 </div>
 <div class="code code-tight">
 

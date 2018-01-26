@@ -1,4 +1,4 @@
-DIGEST 327eed360e45224149d23badf59d6f5c
+DIGEST 8d82c83fd07350760aef77a4de4c2811
 FTop.References
 R1730:1744 Coq.Arith.Arith <> <> lib
 R1762:1776 Coq.omega.Omega <> <> lib
@@ -2011,5 +2011,5 @@ R71031:71039 Top.References STLCRef.RefsAndNontermination factorial prfax
 R71046:71051 Top.References STLCRef TArrow constr
 R71058:71061 Top.References STLCRef TNat constr
 R71053:71056 Top.References STLCRef TNat constr
-R71801:71821 Top.References STLCRef.RefsAndNontermination <> mod
-R71828:71834 Top.References STLCRef <> mod
+R71790:71810 Top.References STLCRef.RefsAndNontermination <> mod
+R71817:71823 Top.References STLCRef <> mod

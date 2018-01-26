@@ -609,7 +609,7 @@ Proof.
 (** [] *)
 
 (* ################################################################# *)
-(** * Additional Exercises *)
+(** * 附加题 *)
 
 (** **** Exercise: 1 starM (progress_preservation_statement)  *)
 (** Without peeking at their statements above, write down the progress

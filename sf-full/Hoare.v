@@ -991,12 +991,12 @@ Theorem hoare_if : forall P Q b c1 c2,
 Proof.
   intros P Q b c1 c2 HTrue HFalse st st' HE HP.
   inversion HE; subst.
-  - (* b is true *)
+  - (* b 是 true *)
     apply (HTrue st st').
       assumption.
       split. assumption.
              apply bexp_eval_true. assumption.
-  - (* b is false *)
+  - (* b 是 false *)
     apply (HFalse st st').
       assumption.
       split. assumption.
@@ -1468,7 +1468,7 @@ End RepeatExercise.
     that programs satisfy specifications of their behavior. *)
 
 (* ################################################################# *)
-(** * Additional Exercises *)
+(** * 附加题 *)
 
 
 (** **** Exercise: 3 stars (himp_hoare)  *)

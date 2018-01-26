@@ -1872,7 +1872,7 @@ Qed.
 (** [] *)
 
 (* ################################################################# *)
-(** * Additional Exercises *)
+(** * 附加题 *)
 
 (** **** Exercise: 5 stars, optional (garabage_collector)  *)
 (** Challenge problem: modify our formalization to include an account

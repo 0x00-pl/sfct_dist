@@ -1,4 +1,4 @@
-(** * Auto: More Automation *)
+(** * Auto: 更多自动化 *)
 
 Require Import Coq.omega.Omega.
 Require Import Maps.
@@ -39,30 +39,30 @@ Proof.
   - (* E_Ass *) reflexivity.
   - (* E_Seq *)
     assert (st' = st'0) as EQ1.
-    { (* Proof of assertion *) apply IHE1_1; assumption. }
+    { (* 断言的证明 *) apply IHE1_1; assumption. }
     subst st'0.
     apply IHE1_2. assumption.
   (* E_IfTrue *)
-  - (* b evaluates to true *)
+  - (* b 求值得出 true *)
     apply IHE1. assumption.
-  - (* b evaluates to false (contradiction) *)
+  - (* b 求值得出 false (矛盾) *)
     rewrite H in H5. inversion H5.
   (* E_IfFalse *)
-  - (* b evaluates to true (contradiction) *)
+  - (* b 求值得出 true (矛盾) *)
     rewrite H in H5. inversion H5.
-  - (* b evaluates to false *)
+  - (* b 求值得出 false *)
     apply IHE1. assumption.
   (* E_WhileEnd *)
-  - (* b evaluates to false *)
+  - (* b 求值得出 false *)
     reflexivity.
-  - (* b evaluates to true (contradiction) *)
+  - (* b 求值得出 true (矛盾) *)
     rewrite H in H2. inversion H2.
   (* E_WhileLoop *)
-  - (* b evaluates to false (contradiction) *)
+  - (* b 求值得出 false (矛盾) *)
     rewrite H in H4. inversion H4.
-  - (* b evaluates to true *)
+  - (* b 求值得出 true *)
     assert (st' = st'0) as EQ1.
-    { (* Proof of assertion *) apply IHE1_1; assumption. }
+    { (* 断言的证明 *) apply IHE1_1; assumption. }
     subst st'0.
     apply IHE1_2. assumption.  Qed.
 
@@ -79,7 +79,7 @@ Proof.
   apply H2. apply H1. assumption.
 Qed.
 
-(** The [auto] tactic frees us from this drudgery by _searching_ for a
+(** The [auto] tactic frees us from this drudgery by _'搜索'_ for a
     sequence of applications that will prove the goal *)
 
 Example auto_example_1' : forall (P Q R: Prop),
@@ -131,7 +131,7 @@ Qed.
 
 (** When searching for potential proofs of the current goal,
     [auto] considers the hypotheses in the current context together
-    with a _hint database_ of other lemmas and constructors.  Some
+    with a _'线索数据库'_ of other lemmas and constructors.  Some
     common lemmas about equality and logical operators are installed
     in this hint database by default. *)
 
@@ -220,18 +220,18 @@ Proof.
     subst st'0.
     auto.
   - (* E_IfTrue *)
-    + (* b evaluates to false (contradiction) *)
+    + (* b 求值得出 false (矛盾) *)
       rewrite H in H5. inversion H5.
   - (* E_IfFalse *)
-    + (* b evaluates to true (contradiction) *)
+    + (* b 求值得出 true (矛盾) *)
       rewrite H in H5. inversion H5.
   - (* E_WhileEnd *)
-    + (* b evaluates to true (contradiction) *)
+    + (* b 求值得出 true (矛盾) *)
       rewrite H in H2. inversion H2.
   (* E_WhileLoop *)
-  - (* b evaluates to false (contradiction) *)
+  - (* b 求值得出 false (矛盾) *)
     rewrite H in H4. inversion H4.
-  - (* b evaluates to true *)
+  - (* b 求值得出 true *)
     assert (st' = st'0) as EQ1 by auto.
     subst st'0.
     auto.
@@ -257,18 +257,18 @@ Proof with auto.
     assert (st' = st'0) as EQ1...
     subst st'0...
   - (* E_IfTrue *)
-    + (* b evaluates to false (contradiction) *)
+    + (* b 求值得出 false (矛盾) *)
       rewrite H in H5. inversion H5.
   - (* E_IfFalse *)
-    + (* b evaluates to true (contradiction) *)
+    + (* b 求值得出 true (矛盾) *)
       rewrite H in H5. inversion H5.
   - (* E_WhileEnd *)
-    + (* b evaluates to true (contradiction) *)
+    + (* b 求值得出 true (矛盾) *)
       rewrite H in H2. inversion H2.
   (* E_WhileLoop *)
-  - (* b evaluates to false (contradiction) *)
+  - (* b 求值得出 false (矛盾) *)
     rewrite H in H4. inversion H4.
-  - (* b evaluates to true *)
+  - (* b 求值得出 true *)
     assert (st' = st'0) as EQ1...
     subst st'0...
 Qed.
@@ -316,18 +316,18 @@ Proof.
     subst st'0.
     auto.
   - (* E_IfTrue *)
-    + (* b evaluates to false (contradiction) *)
+    + (* b 求值得出 false (矛盾) *)
       rwinv H H5.
   - (* E_IfFalse *)
-    + (* b evaluates to true (contradiction) *)
+    + (* b 求值得出 true (矛盾) *)
       rwinv H H5.
   - (* E_WhileEnd *)
-    + (* b evaluates to true (contradiction) *)
+    + (* b 求值得出 true (矛盾) *)
       rwinv H H2.
   (* E_WhileLoop *)
-  - (* b evaluates to false (contradiction) *)
+  - (* b 求值得出 false (矛盾) *)
     rwinv H H4.
-  - (* b evaluates to true *)
+  - (* b 求值得出 true *)
     assert (st' = st'0) as EQ1 by auto.
     subst st'0.
     auto. Qed.
@@ -365,7 +365,7 @@ Proof.
     subst st'0.
     auto.
   - (* E_WhileLoop *)
-    + (* b evaluates to true *)
+    + (* b 求值得出 true *)
       assert (st' = st'0) as EQ1 by auto.
       subst st'0.
       auto. Qed.
@@ -388,7 +388,7 @@ Proof.
   - (* E_Seq *)
     rewrite (IHE1_1 st'0 H1) in *. auto.
   - (* E_WhileLoop *)
-    + (* b evaluates to true *)
+    + (* b 求值得出 true *)
       rewrite (IHE1_1 st'0 H3) in *. auto. Qed.
 
 (** Now we can automate the task of finding the relevant hypotheses to
@@ -520,12 +520,12 @@ Proof.
   induction E1;
     intros st2 E2; inv E2; try find_rwinv; repeat find_eqn; auto.
   - (* E_RepeatEnd *)
-    + (* b evaluates to false (contradiction) *)
+    + (* b 求值得出 false (矛盾) *)
        find_rwinv.
        (* oops: why didn't [find_rwinv] solve this for us already?
           answer: we did things in the wrong order. *)
   - (* E_RepeatLoop *)
-     + (* b evaluates to true (contradiction) *)
+     + (* b 求值得出 true (矛盾) *)
         find_rwinv.
 Qed.
 

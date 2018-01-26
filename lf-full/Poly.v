@@ -911,7 +911,7 @@ Example test_plus3'' :  doit3times (plus 3) 0 = 9.
 Proof. reflexivity.  Qed.
 
 (* ################################################################# *)
-(** * Additional Exercises *)
+(** * 附加题 *)
 
 Module Exercises.
 

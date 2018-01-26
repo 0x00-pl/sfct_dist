@@ -4,7 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <link href="common/css/sf.css" rel="stylesheet" type="text/css"/>
-<title>Auto: More Automation</title>
+<title>Auto: 更多自动化</title>
 <link href="common/jquery-ui/jquery-ui.css" rel="stylesheet">
 <link href="common/css/logical_foundations.css" rel="stylesheet" type="text/css"/>
 <script src="common/jquery-ui/external/jquery/jquery.js"></script>
@@ -27,7 +27,7 @@
 
 <div id="main">
 
-<h1 class="libtitle">Auto<span class="subtitle">More Automation</span></h1>
+<h1 class="libtitle">Auto<span class="subtitle">更多自动化</span></h1>
 
 
 <div class="code code-tight">
@@ -80,30 +80,30 @@ Up to now, we've used the more manual part of Coq's tactic
 &nbsp;&nbsp;- <span class="comment">(*&nbsp;E_Ass&nbsp;*)</span> <span class="id" type="tactic">reflexivity</span>.<br/>
 &nbsp;&nbsp;- <span class="comment">(*&nbsp;E_Seq&nbsp;*)</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">assert</span> (<span class="id" type="var">st'</span> = <span class="id" type="var">st'0</span>) <span class="id" type="keyword">as</span> <span class="id" type="var">EQ<sub>1</sub></span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;{ <span class="comment">(*&nbsp;Proof&nbsp;of&nbsp;assertion&nbsp;*)</span> <span class="id" type="tactic">apply</span> <span class="id" type="var">IHE1_1</span>; <span class="id" type="tactic">assumption</span>. }<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{ <span class="comment">(*&nbsp;断言的证明&nbsp;*)</span> <span class="id" type="tactic">apply</span> <span class="id" type="var">IHE1_1</span>; <span class="id" type="tactic">assumption</span>. }<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">subst</span> <span class="id" type="var">st'0</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">apply</span> <span class="id" type="var">IHE1_2</span>. <span class="id" type="tactic">assumption</span>.<br/>
 &nbsp;&nbsp;<span class="comment">(*&nbsp;E_IfTrue&nbsp;*)</span><br/>
-&nbsp;&nbsp;- <span class="comment">(*&nbsp;b&nbsp;evaluates&nbsp;to&nbsp;true&nbsp;*)</span><br/>
+&nbsp;&nbsp;- <span class="comment">(*&nbsp;b&nbsp;求值得出&nbsp;true&nbsp;*)</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">apply</span> <span class="id" type="var">IHE1</span>. <span class="id" type="tactic">assumption</span>.<br/>
-&nbsp;&nbsp;- <span class="comment">(*&nbsp;b&nbsp;evaluates&nbsp;to&nbsp;false&nbsp;(contradiction)&nbsp;*)</span><br/>
+&nbsp;&nbsp;- <span class="comment">(*&nbsp;b&nbsp;求值得出&nbsp;false&nbsp;(矛盾)&nbsp;*)</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">rewrite</span> <span class="id" type="var">H</span> <span class="id" type="keyword">in</span> <span class="id" type="var">H<sub>5</sub></span>. <span class="id" type="tactic">inversion</span> <span class="id" type="var">H<sub>5</sub></span>.<br/>
 &nbsp;&nbsp;<span class="comment">(*&nbsp;E_IfFalse&nbsp;*)</span><br/>
-&nbsp;&nbsp;- <span class="comment">(*&nbsp;b&nbsp;evaluates&nbsp;to&nbsp;true&nbsp;(contradiction)&nbsp;*)</span><br/>
+&nbsp;&nbsp;- <span class="comment">(*&nbsp;b&nbsp;求值得出&nbsp;true&nbsp;(矛盾)&nbsp;*)</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">rewrite</span> <span class="id" type="var">H</span> <span class="id" type="keyword">in</span> <span class="id" type="var">H<sub>5</sub></span>. <span class="id" type="tactic">inversion</span> <span class="id" type="var">H<sub>5</sub></span>.<br/>
-&nbsp;&nbsp;- <span class="comment">(*&nbsp;b&nbsp;evaluates&nbsp;to&nbsp;false&nbsp;*)</span><br/>
+&nbsp;&nbsp;- <span class="comment">(*&nbsp;b&nbsp;求值得出&nbsp;false&nbsp;*)</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">apply</span> <span class="id" type="var">IHE1</span>. <span class="id" type="tactic">assumption</span>.<br/>
 &nbsp;&nbsp;<span class="comment">(*&nbsp;E_WhileEnd&nbsp;*)</span><br/>
-&nbsp;&nbsp;- <span class="comment">(*&nbsp;b&nbsp;evaluates&nbsp;to&nbsp;false&nbsp;*)</span><br/>
+&nbsp;&nbsp;- <span class="comment">(*&nbsp;b&nbsp;求值得出&nbsp;false&nbsp;*)</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">reflexivity</span>.<br/>
-&nbsp;&nbsp;- <span class="comment">(*&nbsp;b&nbsp;evaluates&nbsp;to&nbsp;true&nbsp;(contradiction)&nbsp;*)</span><br/>
+&nbsp;&nbsp;- <span class="comment">(*&nbsp;b&nbsp;求值得出&nbsp;true&nbsp;(矛盾)&nbsp;*)</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">rewrite</span> <span class="id" type="var">H</span> <span class="id" type="keyword">in</span> <span class="id" type="var">H<sub>2</sub></span>. <span class="id" type="tactic">inversion</span> <span class="id" type="var">H<sub>2</sub></span>.<br/>
 &nbsp;&nbsp;<span class="comment">(*&nbsp;E_WhileLoop&nbsp;*)</span><br/>
-&nbsp;&nbsp;- <span class="comment">(*&nbsp;b&nbsp;evaluates&nbsp;to&nbsp;false&nbsp;(contradiction)&nbsp;*)</span><br/>
+&nbsp;&nbsp;- <span class="comment">(*&nbsp;b&nbsp;求值得出&nbsp;false&nbsp;(矛盾)&nbsp;*)</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">rewrite</span> <span class="id" type="var">H</span> <span class="id" type="keyword">in</span> <span class="id" type="var">H<sub>4</sub></span>. <span class="id" type="tactic">inversion</span> <span class="id" type="var">H<sub>4</sub></span>.<br/>
-&nbsp;&nbsp;- <span class="comment">(*&nbsp;b&nbsp;evaluates&nbsp;to&nbsp;true&nbsp;*)</span><br/>
+&nbsp;&nbsp;- <span class="comment">(*&nbsp;b&nbsp;求值得出&nbsp;true&nbsp;*)</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">assert</span> (<span class="id" type="var">st'</span> = <span class="id" type="var">st'0</span>) <span class="id" type="keyword">as</span> <span class="id" type="var">EQ<sub>1</sub></span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;{ <span class="comment">(*&nbsp;Proof&nbsp;of&nbsp;assertion&nbsp;*)</span> <span class="id" type="tactic">apply</span> <span class="id" type="var">IHE1_1</span>; <span class="id" type="tactic">assumption</span>. }<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{ <span class="comment">(*&nbsp;断言的证明&nbsp;*)</span> <span class="id" type="tactic">apply</span> <span class="id" type="var">IHE1_1</span>; <span class="id" type="tactic">assumption</span>. }<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">subst</span> <span class="id" type="var">st'0</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">apply</span> <span class="id" type="var">IHE1_2</span>. <span class="id" type="tactic">assumption</span>. <span class="id" type="keyword">Qed</span>.<br/>
 </div>
@@ -128,7 +128,7 @@ Up to now, we've used the more manual part of Coq's tactic
 </div>
 
 <div class="doc">
-The <span class="inlinecode"><span class="id" type="tactic">auto</span></span> tactic frees us from this drudgery by <i>searching</i> for a
+The <span class="inlinecode"><span class="id" type="tactic">auto</span></span> tactic frees us from this drudgery by <i>'搜索'</i> for a
     sequence of applications that will prove the goal 
 </div>
 <div class="code code-tight">
@@ -205,7 +205,7 @@ Proof search could, in principle, take an arbitrarily long time,
 <div class="doc">
 When searching for potential proofs of the current goal,
     <span class="inlinecode"><span class="id" type="tactic">auto</span></span> considers the hypotheses in the current context together
-    with a <i>hint database</i> of other lemmas and constructors.  Some
+    with a <i>'线索数据库'</i> of other lemmas and constructors.  Some
     common lemmas about equality and logical operators are installed
     in this hint database by default. 
 </div>
@@ -323,18 +323,18 @@ Now let's take a first pass over <span class="inlinecode"><span class="id" type=
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">subst</span> <span class="id" type="var">st'0</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">auto</span>.<br/>
 &nbsp;&nbsp;- <span class="comment">(*&nbsp;E_IfTrue&nbsp;*)</span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="comment">(*&nbsp;b&nbsp;evaluates&nbsp;to&nbsp;false&nbsp;(contradiction)&nbsp;*)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="comment">(*&nbsp;b&nbsp;求值得出&nbsp;false&nbsp;(矛盾)&nbsp;*)</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">rewrite</span> <span class="id" type="var">H</span> <span class="id" type="keyword">in</span> <span class="id" type="var">H<sub>5</sub></span>. <span class="id" type="tactic">inversion</span> <span class="id" type="var">H<sub>5</sub></span>.<br/>
 &nbsp;&nbsp;- <span class="comment">(*&nbsp;E_IfFalse&nbsp;*)</span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="comment">(*&nbsp;b&nbsp;evaluates&nbsp;to&nbsp;true&nbsp;(contradiction)&nbsp;*)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="comment">(*&nbsp;b&nbsp;求值得出&nbsp;true&nbsp;(矛盾)&nbsp;*)</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">rewrite</span> <span class="id" type="var">H</span> <span class="id" type="keyword">in</span> <span class="id" type="var">H<sub>5</sub></span>. <span class="id" type="tactic">inversion</span> <span class="id" type="var">H<sub>5</sub></span>.<br/>
 &nbsp;&nbsp;- <span class="comment">(*&nbsp;E_WhileEnd&nbsp;*)</span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="comment">(*&nbsp;b&nbsp;evaluates&nbsp;to&nbsp;true&nbsp;(contradiction)&nbsp;*)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="comment">(*&nbsp;b&nbsp;求值得出&nbsp;true&nbsp;(矛盾)&nbsp;*)</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">rewrite</span> <span class="id" type="var">H</span> <span class="id" type="keyword">in</span> <span class="id" type="var">H<sub>2</sub></span>. <span class="id" type="tactic">inversion</span> <span class="id" type="var">H<sub>2</sub></span>.<br/>
 &nbsp;&nbsp;<span class="comment">(*&nbsp;E_WhileLoop&nbsp;*)</span><br/>
-&nbsp;&nbsp;- <span class="comment">(*&nbsp;b&nbsp;evaluates&nbsp;to&nbsp;false&nbsp;(contradiction)&nbsp;*)</span><br/>
+&nbsp;&nbsp;- <span class="comment">(*&nbsp;b&nbsp;求值得出&nbsp;false&nbsp;(矛盾)&nbsp;*)</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">rewrite</span> <span class="id" type="var">H</span> <span class="id" type="keyword">in</span> <span class="id" type="var">H<sub>4</sub></span>. <span class="id" type="tactic">inversion</span> <span class="id" type="var">H<sub>4</sub></span>.<br/>
-&nbsp;&nbsp;- <span class="comment">(*&nbsp;b&nbsp;evaluates&nbsp;to&nbsp;true&nbsp;*)</span><br/>
+&nbsp;&nbsp;- <span class="comment">(*&nbsp;b&nbsp;求值得出&nbsp;true&nbsp;*)</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">assert</span> (<span class="id" type="var">st'</span> = <span class="id" type="var">st'0</span>) <span class="id" type="keyword">as</span> <span class="id" type="var">EQ<sub>1</sub></span> <span class="id" type="tactic">by</span> <span class="id" type="tactic">auto</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">subst</span> <span class="id" type="var">st'0</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">auto</span>.<br/>
@@ -367,18 +367,18 @@ When we are using a particular tactic many times in a proof, we
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">assert</span> (<span class="id" type="var">st'</span> = <span class="id" type="var">st'0</span>) <span class="id" type="keyword">as</span> <span class="id" type="var">EQ<sub>1</sub></span>...<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">subst</span> <span class="id" type="var">st'0</span>...<br/>
 &nbsp;&nbsp;- <span class="comment">(*&nbsp;E_IfTrue&nbsp;*)</span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="comment">(*&nbsp;b&nbsp;evaluates&nbsp;to&nbsp;false&nbsp;(contradiction)&nbsp;*)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="comment">(*&nbsp;b&nbsp;求值得出&nbsp;false&nbsp;(矛盾)&nbsp;*)</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">rewrite</span> <span class="id" type="var">H</span> <span class="id" type="keyword">in</span> <span class="id" type="var">H<sub>5</sub></span>. <span class="id" type="tactic">inversion</span> <span class="id" type="var">H<sub>5</sub></span>.<br/>
 &nbsp;&nbsp;- <span class="comment">(*&nbsp;E_IfFalse&nbsp;*)</span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="comment">(*&nbsp;b&nbsp;evaluates&nbsp;to&nbsp;true&nbsp;(contradiction)&nbsp;*)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="comment">(*&nbsp;b&nbsp;求值得出&nbsp;true&nbsp;(矛盾)&nbsp;*)</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">rewrite</span> <span class="id" type="var">H</span> <span class="id" type="keyword">in</span> <span class="id" type="var">H<sub>5</sub></span>. <span class="id" type="tactic">inversion</span> <span class="id" type="var">H<sub>5</sub></span>.<br/>
 &nbsp;&nbsp;- <span class="comment">(*&nbsp;E_WhileEnd&nbsp;*)</span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="comment">(*&nbsp;b&nbsp;evaluates&nbsp;to&nbsp;true&nbsp;(contradiction)&nbsp;*)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="comment">(*&nbsp;b&nbsp;求值得出&nbsp;true&nbsp;(矛盾)&nbsp;*)</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">rewrite</span> <span class="id" type="var">H</span> <span class="id" type="keyword">in</span> <span class="id" type="var">H<sub>2</sub></span>. <span class="id" type="tactic">inversion</span> <span class="id" type="var">H<sub>2</sub></span>.<br/>
 &nbsp;&nbsp;<span class="comment">(*&nbsp;E_WhileLoop&nbsp;*)</span><br/>
-&nbsp;&nbsp;- <span class="comment">(*&nbsp;b&nbsp;evaluates&nbsp;to&nbsp;false&nbsp;(contradiction)&nbsp;*)</span><br/>
+&nbsp;&nbsp;- <span class="comment">(*&nbsp;b&nbsp;求值得出&nbsp;false&nbsp;(矛盾)&nbsp;*)</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">rewrite</span> <span class="id" type="var">H</span> <span class="id" type="keyword">in</span> <span class="id" type="var">H<sub>4</sub></span>. <span class="id" type="tactic">inversion</span> <span class="id" type="var">H<sub>4</sub></span>.<br/>
-&nbsp;&nbsp;- <span class="comment">(*&nbsp;b&nbsp;evaluates&nbsp;to&nbsp;true&nbsp;*)</span><br/>
+&nbsp;&nbsp;- <span class="comment">(*&nbsp;b&nbsp;求值得出&nbsp;true&nbsp;*)</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">assert</span> (<span class="id" type="var">st'</span> = <span class="id" type="var">st'0</span>) <span class="id" type="keyword">as</span> <span class="id" type="var">EQ<sub>1</sub></span>...<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">subst</span> <span class="id" type="var">st'0</span>...<br/>
 <span class="id" type="keyword">Qed</span>.<br/>
@@ -447,18 +447,18 @@ When we are using a particular tactic many times in a proof, we
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">subst</span> <span class="id" type="var">st'0</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">auto</span>.<br/>
 &nbsp;&nbsp;- <span class="comment">(*&nbsp;E_IfTrue&nbsp;*)</span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="comment">(*&nbsp;b&nbsp;evaluates&nbsp;to&nbsp;false&nbsp;(contradiction)&nbsp;*)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="comment">(*&nbsp;b&nbsp;求值得出&nbsp;false&nbsp;(矛盾)&nbsp;*)</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">rwinv</span> <span class="id" type="var">H</span> <span class="id" type="var">H<sub>5</sub></span>.<br/>
 &nbsp;&nbsp;- <span class="comment">(*&nbsp;E_IfFalse&nbsp;*)</span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="comment">(*&nbsp;b&nbsp;evaluates&nbsp;to&nbsp;true&nbsp;(contradiction)&nbsp;*)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="comment">(*&nbsp;b&nbsp;求值得出&nbsp;true&nbsp;(矛盾)&nbsp;*)</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">rwinv</span> <span class="id" type="var">H</span> <span class="id" type="var">H<sub>5</sub></span>.<br/>
 &nbsp;&nbsp;- <span class="comment">(*&nbsp;E_WhileEnd&nbsp;*)</span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="comment">(*&nbsp;b&nbsp;evaluates&nbsp;to&nbsp;true&nbsp;(contradiction)&nbsp;*)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="comment">(*&nbsp;b&nbsp;求值得出&nbsp;true&nbsp;(矛盾)&nbsp;*)</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">rwinv</span> <span class="id" type="var">H</span> <span class="id" type="var">H<sub>2</sub></span>.<br/>
 &nbsp;&nbsp;<span class="comment">(*&nbsp;E_WhileLoop&nbsp;*)</span><br/>
-&nbsp;&nbsp;- <span class="comment">(*&nbsp;b&nbsp;evaluates&nbsp;to&nbsp;false&nbsp;(contradiction)&nbsp;*)</span><br/>
+&nbsp;&nbsp;- <span class="comment">(*&nbsp;b&nbsp;求值得出&nbsp;false&nbsp;(矛盾)&nbsp;*)</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">rwinv</span> <span class="id" type="var">H</span> <span class="id" type="var">H<sub>4</sub></span>.<br/>
-&nbsp;&nbsp;- <span class="comment">(*&nbsp;b&nbsp;evaluates&nbsp;to&nbsp;true&nbsp;*)</span><br/>
+&nbsp;&nbsp;- <span class="comment">(*&nbsp;b&nbsp;求值得出&nbsp;true&nbsp;*)</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">assert</span> (<span class="id" type="var">st'</span> = <span class="id" type="var">st'0</span>) <span class="id" type="keyword">as</span> <span class="id" type="var">EQ<sub>1</sub></span> <span class="id" type="tactic">by</span> <span class="id" type="tactic">auto</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">subst</span> <span class="id" type="var">st'0</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">auto</span>. <span class="id" type="keyword">Qed</span>.<br/>
@@ -508,7 +508,7 @@ The <span class="inlinecode"><span class="id" type="keyword">match</span></span>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">subst</span> <span class="id" type="var">st'0</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">auto</span>.<br/>
 &nbsp;&nbsp;- <span class="comment">(*&nbsp;E_WhileLoop&nbsp;*)</span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="comment">(*&nbsp;b&nbsp;evaluates&nbsp;to&nbsp;true&nbsp;*)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="comment">(*&nbsp;b&nbsp;求值得出&nbsp;true&nbsp;*)</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">assert</span> (<span class="id" type="var">st'</span> = <span class="id" type="var">st'0</span>) <span class="id" type="keyword">as</span> <span class="id" type="var">EQ<sub>1</sub></span> <span class="id" type="tactic">by</span> <span class="id" type="tactic">auto</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">subst</span> <span class="id" type="var">st'0</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">auto</span>. <span class="id" type="keyword">Qed</span>.<br/>
@@ -536,7 +536,7 @@ Let's see about the remaining cases. Each of them involves
 &nbsp;&nbsp;- <span class="comment">(*&nbsp;E_Seq&nbsp;*)</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">rewrite</span> (<span class="id" type="var">IHE1_1</span> <span class="id" type="var">st'0</span> <span class="id" type="var">H<sub>1</sub></span>) <span class="id" type="keyword">in</span> *. <span class="id" type="tactic">auto</span>.<br/>
 &nbsp;&nbsp;- <span class="comment">(*&nbsp;E_WhileLoop&nbsp;*)</span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="comment">(*&nbsp;b&nbsp;evaluates&nbsp;to&nbsp;true&nbsp;*)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="comment">(*&nbsp;b&nbsp;求值得出&nbsp;true&nbsp;*)</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">rewrite</span> (<span class="id" type="var">IHE1_1</span> <span class="id" type="var">st'0</span> <span class="id" type="var">H<sub>3</sub></span>) <span class="id" type="keyword">in</span> *. <span class="id" type="tactic">auto</span>. <span class="id" type="keyword">Qed</span>.<br/>
 </div>
 
@@ -702,12 +702,12 @@ Our first attempt at the proof is disappointing: the <span class="inlinecode"><s
 &nbsp;&nbsp;<span class="id" type="tactic">induction</span> <span class="id" type="var">E<sub>1</sub></span>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">intros</span> <span class="id" type="var">st<sub>2</sub></span> <span class="id" type="var">E<sub>2</sub></span>; <span class="id" type="var">inv</span> <span class="id" type="var">E<sub>2</sub></span>; <span class="id" type="tactic">try</span> <span class="id" type="var">find_rwinv</span>; <span class="id" type="tactic">repeat</span> <span class="id" type="var">find_eqn</span>; <span class="id" type="tactic">auto</span>.<br/>
 &nbsp;&nbsp;- <span class="comment">(*&nbsp;E_RepeatEnd&nbsp;*)</span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="comment">(*&nbsp;b&nbsp;evaluates&nbsp;to&nbsp;false&nbsp;(contradiction)&nbsp;*)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="comment">(*&nbsp;b&nbsp;求值得出&nbsp;false&nbsp;(矛盾)&nbsp;*)</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">find_rwinv</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">(*&nbsp;oops:&nbsp;why&nbsp;didn't&nbsp;<span class="inlinecode"><span class="id" type="var">find_rwinv</span></span>&nbsp;solve&nbsp;this&nbsp;for&nbsp;us&nbsp;already?<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;answer:&nbsp;we&nbsp;did&nbsp;things&nbsp;in&nbsp;the&nbsp;wrong&nbsp;order.&nbsp;*)</span><br/>
 &nbsp;&nbsp;- <span class="comment">(*&nbsp;E_RepeatLoop&nbsp;*)</span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="comment">(*&nbsp;b&nbsp;evaluates&nbsp;to&nbsp;true&nbsp;(contradiction)&nbsp;*)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="comment">(*&nbsp;b&nbsp;求值得出&nbsp;true&nbsp;(矛盾)&nbsp;*)</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">find_rwinv</span>.<br/>
 <span class="id" type="keyword">Qed</span>.<br/>
 </div>
