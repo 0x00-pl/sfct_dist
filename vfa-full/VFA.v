@@ -9,7 +9,7 @@
    without permission from Andrew Appel. *)
 
 (* ################################################################# *)
-(** * Welcome *)
+(** * 简介 *)
 
 (** This electronic book is Volume 3 of the _Software Foundations_
     series, which presents the mathematical underpinnings of reliable software.
@@ -35,10 +35,10 @@
     worked using Coq. *)
 
 (* ################################################################# *)
-(** * Practicalities *)
+(** * 实用指南 *)
 
 (* ================================================================= *)
-(** ** Chapter Dependencies *)
+(** ** 章节依赖 *)
 
 (** Before using _Verified Functional Algorithms_, read
     (and do the exercises in) these chapters of
@@ -63,7 +63,7 @@
 *)
 
 (* ================================================================= *)
-(** ** System Requirements *)
+(** ** 系统需求 *)
 
 (** Coq runs on Windows, Linux, and OS X.  The Preface of
     Volume 1 describes the Coq installation you will need.
@@ -74,7 +74,7 @@
   helpful, but not essential. *)
 
 (* ================================================================= *)
-(** ** Exercises *)
+(** ** 练习 *)
 
 (** Each chapter includes numerous exercises.  Each is marked with a
     "star rating," which can be interpreted as follows:
@@ -109,7 +109,7 @@
 *)
 
 (* ================================================================= *)
-(** ** Downloading the Coq Files *)
+(** ** 下载 Coq 文件 *)
 
 (** A tar file containing the full sources for the "release version"
     of these notes (as a collection of Coq scripts and HTML files) is

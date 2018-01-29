@@ -4,7 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <link href="common/css/sf.css" rel="stylesheet" type="text/css"/>
-<title>Logic: Logic in Coq</title>
+<title>Logic: Coq中的逻辑系统</title>
 <link href="common/jquery-ui/jquery-ui.css" rel="stylesheet">
 <link href="common/css/logical_foundations.css" rel="stylesheet" type="text/css"/>
 <script src="common/jquery-ui/external/jquery/jquery.js"></script>
@@ -27,7 +27,7 @@
 
 <div id="main">
 
-<h1 class="libtitle">Logic<span class="subtitle">Logic in Coq</span></h1>
+<h1 class="libtitle">Logic<span class="subtitle">Coq中的逻辑系统</span></h1>
 
 
 <div class="code code-tight">
@@ -37,23 +37,14 @@
 </div>
 
 <div class="doc">
-In previous chapters, we have seen many examples of factual
-    claims (<i>propositions</i>) and ways of presenting evidence of their
-    truth (<i>proofs</i>).  In particular, we have worked extensively with
-    <i>equality propositions</i> of the form <span class="inlinecode"><span class="id" type="var">e<sub>1</sub></span></span> <span class="inlinecode">=</span> <span class="inlinecode"><span class="id" type="var">e<sub>2</sub></span></span>, with
-    implications (<span class="inlinecode"><span class="id" type="var">P</span></span> <span class="inlinecode"><span style="font-family: arial;">&rarr;</span></span> <span class="inlinecode"><span class="id" type="var">Q</span></span>), and with quantified propositions (<span class="inlinecode"><span style="font-family: arial;">&forall;</span></span>
-    <span class="inlinecode"><span class="id" type="var">x</span>,</span> <span class="inlinecode"><span class="id" type="var">P</span></span>).  In this chapter, we will see how Coq can be used to carry
-    out other familiar forms of logical reasoning.
-
-<div class="paragraph"> </div>
-
-    Before diving into details, let's talk a bit about the status of
-    mathematical statements in Coq.  Recall that Coq is a <i>typed</i>
-    language, which means that every sensible expression in its world
-    has an associated type.  Logical claims are no exception: any
-    statement we might try to prove in Coq has a type, namely <span class="inlinecode"><span class="id" type="keyword">Prop</span></span>,
-    the type of <i>propositions</i>.  We can see this with the <span class="inlinecode"><span class="id" type="keyword">Check</span></span>
-    command: 
+    在之前的章节中我们已经看到了很多有关事实性的声明（命题）和表达证实这些
+    声明的正确性的证据（即证明）的方法的许多例子。比如说，至今为止我们已经
+    做了许多<span class="inlinecode"><span class="id" type="var">e<sub>1</sub></span></span> <span class="inlinecode">=</span> <span class="inlinecode"><span class="id" type="var">e<sub>2</sub></span></span>这样的 <i>'相等性命题'</i> ，形如<span class="inlinecode"><span class="id" type="var">P</span></span> <span class="inlinecode"><span style="font-family: arial;">&rarr;</span></span> <span class="inlinecode"><span class="id" type="var">Q</span></span>这样的主体为蕴含式
+    的命题，以及形如<span class="inlinecode"><span style="font-family: arial;">&forall;</span></span> <span class="inlinecode"><span class="id" type="var">x</span>,</span> <span class="inlinecode"><span class="id" type="var">P</span></span> <span class="inlinecode"><span class="id" type="var">x</span></span>的量化命题的证明。
+    在接触更多相关的细节之前，让我们先探讨一下在Coq中数学表达式的地位。回忆
+    一下，Coq是一门 <i>'有类型的'</i> 语言；在Coq的世界中，一切有意义的表达式都有其
+    类型。这类逻辑性的断言也是如此。所有我们试着去证明的命题在Coq中都有着<span class="inlinecode"><span class="id" type="keyword">Prop</span></span>
+    这一 <i>'专门为命题设立的'</i> 类型。我们可以用Check去查看这类命题的类型：  
 </div>
 <div class="code code-tight">
 
@@ -65,13 +56,9 @@ In previous chapters, we have seen many examples of factual
 </div>
 
 <div class="doc">
-Note that <i>all</i> syntactically well-formed propositions have type
-    <span class="inlinecode"><span class="id" type="keyword">Prop</span></span> in Coq, regardless of whether they are true or not.
-
-<div class="paragraph"> </div>
-
-    Simply <i>being</i> a proposition is one thing; being <i>provable</i> is
-    something else! 
+注意： <i>'所有语法上合法的命题的类型都为<span class="inlinecode"><span class="id" type="keyword">Prop</span></span>'</i> 。它们的类型与它们
+    是否为真命题无关： <i>'本身成为'</i> 一个命题与 <i>'能得到这个命题的证明'</i> 
+    是不同的两回事。 
 </div>
 <div class="code code-tight">
 
@@ -83,11 +70,9 @@ Note that <i>all</i> syntactically well-formed propositions have type
 </div>
 
 <div class="doc">
-Indeed, propositions don't just have types: they are <i>first-class
-    objects</i> that can be manipulated in the same ways as the other
-    entities in Coq's world.  So far, we've seen one primary place
-    that propositions can appear: in <span class="inlinecode"><span class="id" type="keyword">Theorem</span></span> (and <span class="inlinecode"><span class="id" type="keyword">Lemma</span></span> and
-    <span class="inlinecode"><span class="id" type="keyword">Example</span></span>) declarations. 
+    除了类型之外，命题也是所谓的 <i>'一等对象'</i> ，即在Coq的世界中，我们可以像对
+    其他值进行操作一样对命题进行操作。到现在为止，我们已经知道命题可以在
+    <span class="inlinecode"><span class="id" type="keyword">Theorem</span></span>（还有<span class="inlinecode"><span class="id" type="keyword">Lemma</span></span>和<span class="inlinecode"><span class="id" type="keyword">Example</span></span>）的定义中出现： 
 </div>
 <div class="code code-tight">
 
@@ -98,9 +83,9 @@ Indeed, propositions don't just have types: they are <i>first-class
 </div>
 
 <div class="doc">
-But propositions can be used in many other ways.  For example, we
-    can give a name to a proposition using a <span class="inlinecode"><span class="id" type="keyword">Definition</span></span>, just as we
-    have given names to expressions of other sorts. 
+    但是它们同时也可以用于其他地方。比如说，就像我们用<span class="inlinecode"><span class="id" type="keyword">Definition</span></span>给某些
+    函数或者其他类型的值取一个名字一样，我们可以用同样的方法为某些命题取
+    一个名字： 
 </div>
 <div class="code code-tight">
 
@@ -111,8 +96,8 @@ But propositions can be used in many other ways.  For example, we
 </div>
 
 <div class="doc">
-We can later use this name in any situation where a proposition is
-    expected &mdash; for example, as the claim in a <span class="inlinecode"><span class="id" type="keyword">Theorem</span></span> declaration. 
+    在这之后我们可以在任何需要填入一个命题的地方使用这个名字，例如在一个
+    Theorem声明中： 
 </div>
 <div class="code code-tight">
 
@@ -123,14 +108,14 @@ We can later use this name in any situation where a proposition is
 </div>
 
 <div class="doc">
-We can also write <i>parameterized</i> propositions &mdash; that is,
-    functions that take arguments of some type and return a
-    proposition. 
+我们也可以写出所谓 <i>'参数化'</i> 的命题；它们实际上是一类函数：它们取某些
+    类型的值作为参数，并最终得到一个命题。 
 <div class="paragraph"> </div>
 
- For instance, the following function takes a number
-    and returns a proposition asserting that this number is equal to
-    three: 
+
+<div class="paragraph"> </div>
+
+    例如下面的这个函数；它取一个数字，并返回一个断言了这个数字等于3的命题。 
 </div>
 <div class="code code-tight">
 
@@ -142,13 +127,8 @@ We can also write <i>parameterized</i> propositions &mdash; that is,
 </div>
 
 <div class="doc">
-In Coq, functions that return propositions are said to define
-    <i>properties</i> of their arguments.
-
-<div class="paragraph"> </div>
-
-    For instance, here's a (polymorphic) property defining the
-    familiar notion of an <i>injective function</i>. 
+在Coq中，我们说那些返回一个命题的函数 <i>'定义了它们所取的参数的性质'</i> 。
+    以下面这个多态函数为例子；它描述了 <i>'单射函数'</i> 这个十分常见的概念。 
 </div>
 <div class="code code-tight">
 
@@ -162,14 +142,9 @@ In Coq, functions that return propositions are said to define
 </div>
 
 <div class="doc">
-The equality operator <span class="inlinecode">=</span> is also a function that returns a
-    <span class="inlinecode"><span class="id" type="keyword">Prop</span></span>.
-
-<div class="paragraph"> </div>
-
-    The expression <span class="inlinecode"><span class="id" type="var">n</span></span> <span class="inlinecode">=</span> <span class="inlinecode"><span class="id" type="var">m</span></span> is syntactic sugar for <span class="inlinecode"><span class="id" type="var">eq</span></span> <span class="inlinecode"><span class="id" type="var">n</span></span> <span class="inlinecode"><span class="id" type="var">m</span></span>, defined
-    using Coq's <span class="inlinecode"><span class="id" type="keyword">Notation</span></span> mechanism. Because <span class="inlinecode"><span class="id" type="var">eq</span></span> can be used with
-    elements of any type, it is also polymorphic: 
+相等性操作符 <span class="inlinecode">=</span> 也是一个返回命题的函数：<span class="inlinecode"><span class="id" type="var">n</span></span> <span class="inlinecode">=</span> <span class="inlinecode"><span class="id" type="var">m</span></span>是使用了Coq
+    的<span class="inlinecode"><span class="id" type="keyword">Notation</span></span>机制定义的<span class="inlinecode"><span class="id" type="var">eq</span></span> <span class="inlinecode"><span class="id" type="var">n</span></span> <span class="inlinecode"><span class="id" type="var">m</span></span>的语法糖。因为<span class="inlinecode"><span class="id" type="var">eq</span></span>可以用在任意类型的
+    值上，所以它也是多态的：
 </div>
 <div class="code code-tight">
 
@@ -179,23 +154,22 @@ The equality operator <span class="inlinecode">=</span> is also a function that 
 </div>
 
 <div class="doc">
-(Notice that we wrote <span class="inlinecode">@<span class="id" type="var">eq</span></span> instead of <span class="inlinecode"><span class="id" type="var">eq</span></span>: The type
-    argument <span class="inlinecode"><span class="id" type="var">A</span></span> to <span class="inlinecode"><span class="id" type="var">eq</span></span> is declared as implicit, so we need to turn
-    off implicit arguments to see the full type of <span class="inlinecode"><span class="id" type="var">eq</span></span>.) 
+    （注意在上面我们写的是<span class="inlinecode">@<span class="id" type="var">eq</span></span>而不是<span class="inlinecode"><span class="id" type="var">eq</span></span>；<span class="inlinecode"><span class="id" type="var">eq</span></span>的类型参数<span class="inlinecode"><span class="id" type="var">A</span></span>被定义成了
+    隐式参数，所以为了看到<span class="inlinecode"><span class="id" type="var">eq</span></span>的完整的类型，我们需要通过<span class="inlinecode">@</span>暂时取消对隐
+    式参数的处理。 
 </div>
 
 <div class="doc">
-<a name="lab158"></a><h1 class="section">Logical Connectives</h1>
+<a name="lab158"></a><h1 class="section">逻辑连接符</h1>
 
 <div class="paragraph"> </div>
 
-<a name="lab159"></a><h2 class="section">Conjunction</h2>
+<a name="lab159"></a><h2 class="section">合取（逻辑"与"）</h2>
 
 <div class="paragraph"> </div>
 
- The <i>conjunction</i> (or <i>logical and</i>) of propositions <span class="inlinecode"><span class="id" type="var">A</span></span> and <span class="inlinecode"><span class="id" type="var">B</span></span>
-    is written <span class="inlinecode"><span class="id" type="var">A</span></span> <span class="inlinecode"><span style="font-family: arial;">&and;</span></span> <span class="inlinecode"><span class="id" type="var">B</span></span>, representing the claim that both <span class="inlinecode"><span class="id" type="var">A</span></span> and <span class="inlinecode"><span class="id" type="var">B</span></span>
-    are true. 
+ 命题<span class="inlinecode"><span class="id" type="var">A</span></span>与<span class="inlinecode"><span class="id" type="var">B</span></span>的 <i>'合取'</i> 或 <i>'逻辑与'</i> 写作<span class="inlinecode"><span class="id" type="var">A</span></span> <span class="inlinecode"><span style="font-family: arial;">&and;</span></span> <span class="inlinecode"><span class="id" type="var">B</span></span>，表示一个宣称<span class="inlinecode"><span class="id" type="var">A</span></span>和<span class="inlinecode"><span class="id" type="var">B</span></span>都
+    为真的命题。 
 </div>
 <div class="code code-tight">
 
@@ -204,8 +178,8 @@ The equality operator <span class="inlinecode">=</span> is also a function that 
 </div>
 
 <div class="doc">
-To prove a conjunction, use the <span class="inlinecode"><span class="id" type="tactic">split</span></span> tactic.  It will generate
-    two subgoals, one for each part of the statement: 
+证明合取命题一般用<span class="inlinecode"><span class="id" type="tactic">split</span></span>这一证明策略；它会分别为组成合取的两个部分生成
+    子目标。 
 </div>
 <div class="code code-tight">
 
@@ -219,9 +193,8 @@ To prove a conjunction, use the <span class="inlinecode"><span class="id" type="
 </div>
 
 <div class="doc">
-For any propositions <span class="inlinecode"><span class="id" type="var">A</span></span> and <span class="inlinecode"><span class="id" type="var">B</span></span>, if we assume that <span class="inlinecode"><span class="id" type="var">A</span></span> is true
-    and we assume that <span class="inlinecode"><span class="id" type="var">B</span></span> is true, we can conclude that <span class="inlinecode"><span class="id" type="var">A</span></span> <span class="inlinecode"><span style="font-family: arial;">&and;</span></span> <span class="inlinecode"><span class="id" type="var">B</span></span> is
-    also true. 
+对于任意的命题<span class="inlinecode"><span class="id" type="var">A</span></span>和<span class="inlinecode"><span class="id" type="var">B</span></span>，如果我们假设<span class="inlinecode"><span class="id" type="var">A</span></span>为真而且我们也假设<span class="inlinecode"><span class="id" type="var">B</span></span>为真，那么我
+    们能够得出<span class="inlinecode"><span class="id" type="var">A</span></span> <span class="inlinecode"><span style="font-family: arial;">&and;</span></span> <span class="inlinecode"><span class="id" type="var">B</span></span>也为真的结论。
 </div>
 <div class="code code-tight">
 
@@ -235,10 +208,8 @@ For any propositions <span class="inlinecode"><span class="id" type="var">A</spa
 </div>
 
 <div class="doc">
-Since applying a theorem with hypotheses to some goal has the
-    effect of generating as many subgoals as there are hypotheses for
-    that theorem, we can apply <span class="inlinecode"><span class="id" type="var">and_intro</span></span> to achieve the same effect
-    as <span class="inlinecode"><span class="id" type="tactic">split</span></span>. 
+因为定理的应用会产生与假设的个数相等的子目标，我们能够通过应用<span class="inlinecode"><span class="id" type="var">and_intro</span></span>
+    来得到与使用<span class="inlinecode"><span class="id" type="tactic">split</span></span>一样的结果。
 </div>
 <div class="code code-tight">
 
@@ -266,16 +237,11 @@ Since applying a theorem with hypotheses to some goal has the
 <div class="doc less-space">
 <div class="paragraph"> </div>
 
- So much for proving conjunctive statements.  To go in the other
-    direction &mdash; i.e., to <i>use</i> a conjunctive hypothesis to help prove
-    something else &mdash; we employ the <span class="inlinecode"><span class="id" type="tactic">destruct</span></span> tactic.
-
-<div class="paragraph"> </div>
-
-    If the proof context contains a hypothesis <span class="inlinecode"><span class="id" type="var">H</span></span> of the form
-    <span class="inlinecode"><span class="id" type="var">A</span></span> <span class="inlinecode"><span style="font-family: arial;">&and;</span></span> <span class="inlinecode"><span class="id" type="var">B</span></span>, writing <span class="inlinecode"><span class="id" type="tactic">destruct</span></span> <span class="inlinecode"><span class="id" type="var">H</span></span> <span class="inlinecode"><span class="id" type="keyword">as</span></span> <span class="inlinecode">[<span class="id" type="var">HA</span></span> <span class="inlinecode"><span class="id" type="var">HB</span>]</span> will remove <span class="inlinecode"><span class="id" type="var">H</span></span> from the
-    context and add two new hypotheses: <span class="inlinecode"><span class="id" type="var">HA</span></span>, stating that <span class="inlinecode"><span class="id" type="var">A</span></span> is
-    true, and <span class="inlinecode"><span class="id" type="var">HB</span></span>, stating that <span class="inlinecode"><span class="id" type="var">B</span></span> is true.  
+ 以上就是与证明合取有关的内容。在进行相反方向的操作，即在证明过程中需要 <i>'使用'</i> 
+    某个合取假设的时候，一般使用<span class="inlinecode"><span class="id" type="tactic">destruct</span></span>。
+    如果当前证明上下文中存在形如<span class="inlinecode"><span class="id" type="var">A</span></span> <span class="inlinecode"><span style="font-family: arial;">&and;</span></span> <span class="inlinecode"><span class="id" type="var">B</span></span>的假设<span class="inlinecode"><span class="id" type="var">H</span></span>，<span class="inlinecode"><span class="id" type="tactic">destruct</span></span> <span class="inlinecode"><span class="id" type="var">H</span></span> <span class="inlinecode"><span class="id" type="keyword">as</span></span> <span class="inlinecode">[<span class="id" type="var">HA</span></span> <span class="inlinecode"><span class="id" type="var">HB</span>]</span>将会从上
+    下文中去掉<span class="inlinecode"><span class="id" type="var">H</span></span>并增加<span class="inlinecode"><span class="id" type="var">HA</span></span>和<span class="inlinecode"><span class="id" type="var">HB</span></span>这两个新的假设，其中前者宣称<span class="inlinecode"><span class="id" type="var">A</span></span>为真，而后者宣称<span class="inlinecode"><span class="id" type="var">B</span></span>
+    为真。 
 </div>
 <div class="code code-tight">
 
@@ -292,8 +258,7 @@ Since applying a theorem with hypotheses to some goal has the
 </div>
 
 <div class="doc">
-As usual, we can also destruct <span class="inlinecode"><span class="id" type="var">H</span></span> right when we introduce it,
-    instead of introducing and then destructing it: 
+我们也能够在将<span class="inlinecode"><span class="id" type="var">H</span></span>引入当前上下文的同时对其进行解构： 
 </div>
 <div class="code code-tight">
 
@@ -308,9 +273,8 @@ As usual, we can also destruct <span class="inlinecode"><span class="id" type="v
 </div>
 
 <div class="doc">
-You may wonder why we bothered packing the two hypotheses <span class="inlinecode"><span class="id" type="var">n</span></span> <span class="inlinecode">=</span> <span class="inlinecode">0</span>
-    and <span class="inlinecode"><span class="id" type="var">m</span></span> <span class="inlinecode">=</span> <span class="inlinecode">0</span> into a single conjunction, since we could have also
-    stated the theorem with two separate premises: 
+也许你会想，我们完全可以将<span class="inlinecode"><span class="id" type="var">n</span></span> <span class="inlinecode">=</span> <span class="inlinecode">0</span>和<span class="inlinecode"><span class="id" type="var">m</span></span> <span class="inlinecode">=</span> <span class="inlinecode">0</span>写成分开的两个假设，为什么
+    我们仍然要不厌其烦地将这两个假设包在一个单独的合取之中呢？
 </div>
 <div class="code code-tight">
 
@@ -325,10 +289,9 @@ You may wonder why we bothered packing the two hypotheses <span class="inlinecod
 </div>
 
 <div class="doc">
-For this theorem, both formulations are fine.  But it's important
-    to understand how to work with conjunctive hypotheses because
-    conjunctions often arise from intermediate steps in proofs,
-    especially in bigger developments.  Here's a simple example: 
+单纯地就这个定理而言两种都可以，但是我们需要理解如何对合取假设进行操作，
+    因为这样的假设经常在证明的中途出现，特别是在进行较为大型的开发的时候。
+    这里就有这样的一个比较简单的例子： 
 </div>
 <div class="code code-tight">
 
@@ -345,9 +308,8 @@ For this theorem, both formulations are fine.  But it's important
 </div>
 
 <div class="doc">
-Another common situation with conjunctions is that we know
-    <span class="inlinecode"><span class="id" type="var">A</span></span> <span class="inlinecode"><span style="font-family: arial;">&and;</span></span> <span class="inlinecode"><span class="id" type="var">B</span></span> but in some context we need just <span class="inlinecode"><span class="id" type="var">A</span></span> (or just <span class="inlinecode"><span class="id" type="var">B</span></span>).
-    The following lemmas are useful in such cases: 
+另外一个经常碰见的场合，就是我们已经知道了<span class="inlinecode"><span class="id" type="var">A</span></span> <span class="inlinecode"><span style="font-family: arial;">&and;</span></span> <span class="inlinecode"><span class="id" type="var">B</span></span>，但是我们只需要<span class="inlinecode"><span class="id" type="var">A</span></span>或
+    者<span class="inlinecode"><span class="id" type="var">B</span></span>的时候。以下的引理对于应付这样的状况而言会很有用： 
 </div>
 <div class="code code-tight">
 
@@ -374,10 +336,8 @@ Another common situation with conjunctions is that we know
 <div class="doc less-space">
 <div class="paragraph"> </div>
 
- Finally, we sometimes need to rearrange the order of conjunctions
-    and/or the grouping of multi-way conjunctions.  The following
-    commutativity and associativity theorems are handy in such
-    cases. 
+ 最后，我们有时也需要改变由多个命题组成的合取中某些部分所在的位置。以下的
+    引理对于应付这样的状况而言会很有用： 
 </div>
 <div class="code code-tight">
 
@@ -394,10 +354,9 @@ Another common situation with conjunctions is that we know
 
 <div class="doc">
 <a name="lab162"></a><h4 class="section">Exercise: 2 stars (and_assoc)</h4>
- (In the following proof of associativity, notice how the <i>nested</i>
-    intro pattern breaks the hypothesis <span class="inlinecode"><span class="id" type="var">H</span></span> <span class="inlinecode">:</span> <span class="inlinecode"><span class="id" type="var">P</span></span> <span class="inlinecode"><span style="font-family: arial;">&and;</span></span> <span class="inlinecode">(<span class="id" type="var">Q</span></span> <span class="inlinecode"><span style="font-family: arial;">&and;</span></span> <span class="inlinecode"><span class="id" type="var">R</span>)</span> down into
-    <span class="inlinecode"><span class="id" type="var">HP</span></span> <span class="inlinecode">:</span> <span class="inlinecode"><span class="id" type="var">P</span></span>, <span class="inlinecode"><span class="id" type="var">HQ</span></span> <span class="inlinecode">:</span> <span class="inlinecode"><span class="id" type="var">Q</span></span>, and <span class="inlinecode"><span class="id" type="var">HR</span></span> <span class="inlinecode">:</span> <span class="inlinecode"><span class="id" type="var">R</span></span>.  Finish the proof from
-    there.) 
+ （留意一下<span class="inlinecode"><span class="id" type="tactic">intros</span></span>后面所使用的 <i>'嵌套'</i> 的模式是如何将假设<span class="inlinecode"><span class="id" type="var">H</span></span> <span class="inlinecode">:</span> <span class="inlinecode"><span class="id" type="var">P</span></span> <span class="inlinecode"><span style="font-family: arial;">&and;</span></span> <span class="inlinecode">(<span class="id" type="var">Q</span></span> <span class="inlinecode"><span style="font-family: arial;">&and;</span></span> <span class="inlinecode"><span class="id" type="var">R</span>)</span>
+    分解为<span class="inlinecode"><span class="id" type="var">HP</span></span> <span class="inlinecode">:</span> <span class="inlinecode"><span class="id" type="var">P</span></span>，<span class="inlinecode"><span class="id" type="var">HQ</span></span> <span class="inlinecode">:</span> <span class="inlinecode"><span class="id" type="var">Q</span></span>和<span class="inlinecode"><span class="id" type="var">HR</span></span> <span class="inlinecode">:</span> <span class="inlinecode"><span class="id" type="var">R</span></span>这三个互相独立的假设的。从那个地方开始完
+    成这个证明。） 
 </div>
 <div class="code code-tight">
 
@@ -413,9 +372,8 @@ Another common situation with conjunctions is that we know
 <div class="doc less-space">
 <div class="paragraph"> </div>
 
- By the way, the infix notation <span class="inlinecode"><span style="font-family: arial;">&and;</span></span> is actually just syntactic
-    sugar for <span class="inlinecode"><span class="id" type="var">and</span></span> <span class="inlinecode"><span class="id" type="var">A</span></span> <span class="inlinecode"><span class="id" type="var">B</span></span>.  That is, <span class="inlinecode"><span class="id" type="var">and</span></span> is a Coq operator that takes
-    two propositions as arguments and yields a proposition. 
+ 顺带一提，<span class="inlinecode"><span style="font-family: arial;">&and;</span></span>这一中缀记号只是<span class="inlinecode"><span class="id" type="var">and</span></span> <span class="inlinecode"><span class="id" type="var">A</span></span> <span class="inlinecode"><span class="id" type="var">B</span></span>的语法糖而已；<span class="inlinecode"><span class="id" type="var">and</span></span>才是Coq里将两个命题
+    合并得到合取命题的操作符。 
 </div>
 <div class="code code-tight">
 
@@ -425,20 +383,16 @@ Another common situation with conjunctions is that we know
 </div>
 
 <div class="doc">
-<a name="lab163"></a><h2 class="section">Disjunction</h2>
+<a name="lab163"></a><h2 class="section">析取</h2>
 
 <div class="paragraph"> </div>
 
- Another important connective is the <i>disjunction</i>, or <i>logical or</i>
-    of two propositions: <span class="inlinecode"><span class="id" type="var">A</span></span> <span class="inlinecode"><span style="font-family: arial;">&or;</span></span> <span class="inlinecode"><span class="id" type="var">B</span></span> is true when either <span class="inlinecode"><span class="id" type="var">A</span></span> or <span class="inlinecode"><span class="id" type="var">B</span></span>
-    is.  (Alternatively, we can write <span class="inlinecode"><span class="id" type="var">or</span></span> <span class="inlinecode"><span class="id" type="var">A</span></span> <span class="inlinecode"><span class="id" type="var">B</span></span>, where <span class="inlinecode"><span class="id" type="var">or</span></span> <span class="inlinecode">:</span> <span class="inlinecode"><span class="id" type="keyword">Prop</span></span> <span class="inlinecode"><span style="font-family: arial;">&rarr;</span></span>
-    <span class="inlinecode"><span class="id" type="keyword">Prop</span></span> <span class="inlinecode"><span style="font-family: arial;">&rarr;</span></span> <span class="inlinecode"><span class="id" type="keyword">Prop</span></span>.)
-
-<div class="paragraph"> </div>
-
-    To use a disjunctive hypothesis in a proof, we proceed by case
-    analysis, which, as for <span class="inlinecode"><span class="id" type="var">nat</span></span> or other data types, can be done
-    with <span class="inlinecode"><span class="id" type="tactic">destruct</span></span> or <span class="inlinecode"><span class="id" type="tactic">intros</span></span>.  Here is an example: 
+ 另外一个重要的连接符是所谓的 <i>'析取'</i> ，或者 <i>'逻辑与'</i> 连接符。对于任意两个命题<span class="inlinecode"><span class="id" type="var">A</span></span>
+    和<span class="inlinecode"><span class="id" type="var">B</span></span>，其析取<span class="inlinecode"><span class="id" type="var">A</span></span> <span class="inlinecode"><span style="font-family: arial;">&or;</span></span> <span class="inlinecode"><span class="id" type="var">B</span></span>在<span class="inlinecode"><span class="id" type="var">A</span></span>与<span class="inlinecode"><span class="id" type="var">B</span></span>之中的任意一个命题为真时为真。（或者，我们可以写
+    <span class="inlinecode"><span class="id" type="var">or</span></span> <span class="inlinecode"><span class="id" type="var">A</span></span> <span class="inlinecode"><span class="id" type="var">B</span></span>，其中<span class="inlinecode"><span class="id" type="var">or</span></span> <span class="inlinecode">:</span> <span class="inlinecode"><span class="id" type="keyword">Prop</span></span> <span class="inlinecode"><span style="font-family: arial;">&rarr;</span></span> <span class="inlinecode"><span class="id" type="keyword">Prop</span></span> <span class="inlinecode"><span style="font-family: arial;">&rarr;</span></span> <span class="inlinecode"><span class="id" type="keyword">Prop</span></span>。）
+    使用某个析取假设的时候，我们使用分类讨论；就像对<span class="inlinecode"><span class="id" type="var">nat</span></span>以及其他的数据类型进行分类
+    讨论一样，对析取假设进行分类讨论时我们也可以使用像<span class="inlinecode"><span class="id" type="tactic">destruct</span></span>或者<span class="inlinecode"><span class="id" type="tactic">intros</span></span>这样的
+    证明策略。以下是一个对析取假设进行分类讨论的例子： 
 </div>
 <div class="code code-tight">
 
@@ -446,23 +400,21 @@ Another common situation with conjunctions is that we know
 <span class="id" type="keyword">Lemma</span> <span class="id" type="var">or_example</span> :<br/>
 &nbsp;&nbsp;<span style="font-family: arial;">&forall;</span><span class="id" type="var">n</span> <span class="id" type="var">m</span> : <span class="id" type="var">nat</span>, <span class="id" type="var">n</span> = 0 <span style="font-family: arial;">&or;</span> <span class="id" type="var">m</span> = 0 <span style="font-family: arial;">&rarr;</span> <span class="id" type="var">n</span> * <span class="id" type="var">m</span> = 0.<br/>
 <span class="id" type="keyword">Proof</span>.<br/>
-&nbsp;&nbsp;<span class="comment">(*&nbsp;This&nbsp;pattern&nbsp;implicitly&nbsp;does&nbsp;case&nbsp;analysis&nbsp;on<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="inlinecode"><span class="id" type="var">n</span></span> <span class="inlinecode">=</span> <span class="inlinecode">0</span> <span class="inlinecode"><span style="font-family: arial;">&or;</span></span> <span class="inlinecode"><span class="id" type="var">m</span></span> <span class="inlinecode">=</span> <span class="inlinecode">0</span>&nbsp;*)</span><br/>
+&nbsp;&nbsp;<span class="comment">(*&nbsp;这个模式会自动对<span class="inlinecode"><span class="id" type="var">n</span></span> <span class="inlinecode">=</span> <span class="inlinecode">0</span> <span class="inlinecode"><span style="font-family: arial;">&or;</span></span> <span class="inlinecode"><span class="id" type="var">m</span></span> <span class="inlinecode">=</span> <span class="inlinecode">0</span>作出分类讨论。&nbsp;*)</span><br/>
 &nbsp;&nbsp;<span class="id" type="tactic">intros</span> <span class="id" type="var">n</span> <span class="id" type="var">m</span> [<span class="id" type="var">Hn</span> | <span class="id" type="var">Hm</span>].<br/>
-&nbsp;&nbsp;- <span class="comment">(*&nbsp;Here,&nbsp;<span class="inlinecode"><span class="id" type="var">n</span></span> <span class="inlinecode">=</span> <span class="inlinecode">0</span>&nbsp;*)</span><br/>
+&nbsp;&nbsp;- <span class="comment">(*&nbsp;在这里存在<span class="inlinecode"><span class="id" type="var">n</span></span> <span class="inlinecode">=</span> <span class="inlinecode">0</span>&nbsp;*)</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">rewrite</span> <span class="id" type="var">Hn</span>. <span class="id" type="tactic">reflexivity</span>.<br/>
-&nbsp;&nbsp;- <span class="comment">(*&nbsp;Here,&nbsp;<span class="inlinecode"><span class="id" type="var">m</span></span> <span class="inlinecode">=</span> <span class="inlinecode">0</span>&nbsp;*)</span><br/>
+&nbsp;&nbsp;- <span class="comment">(*&nbsp;在这里存在<span class="inlinecode"><span class="id" type="var">m</span></span> <span class="inlinecode">=</span> <span class="inlinecode">0</span>&nbsp;*)</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">rewrite</span> <span class="id" type="var">Hm</span>. <span class="id" type="tactic">rewrite</span> <span style="font-family: arial;">&larr;</span> <span class="id" type="var">mult_n_O</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">reflexivity</span>.<br/>
 <span class="id" type="keyword">Qed</span>.<br/>
 </div>
 
 <div class="doc">
-Conversely, to show that a disjunction holds, we need to show that
-    one of its sides does. This is done via two tactics, <span class="inlinecode"><span class="id" type="var">left</span></span> and
-    <span class="inlinecode"><span class="id" type="var">right</span></span>.  As their names imply, the first one requires
-    proving the left side of the disjunction, while the second
-    requires proving its right side.  Here is a trivial use... 
+相对应地，要证明某个析取命题为真，我们需要证明它任意一边的命题为真。我们用<span class="inlinecode"><span class="id" type="var">left</span></span>
+    和<span class="inlinecode"><span class="id" type="var">right</span></span>这两种证明策略来作出这种选择。就像它们的名字所说的那样，<span class="inlinecode"><span class="id" type="var">left</span></span>将会选择
+    待证的析取命题的左边，而<span class="inlinecode"><span class="id" type="var">right</span></span>将会选择右边。
+    下面是一个很简单的例子：
 </div>
 <div class="code code-tight">
 
@@ -476,8 +428,7 @@ Conversely, to show that a disjunction holds, we need to show that
 </div>
 
 <div class="doc">
-... and a slightly more interesting example requiring both <span class="inlinecode"><span class="id" type="var">left</span></span>
-    and <span class="inlinecode"><span class="id" type="var">right</span></span>: 
+这个更为有趣的例子则需要在同一个证明中使用<span class="inlinecode"><span class="id" type="var">left</span></span>和<span class="inlinecode"><span class="id" type="var">right</span></span>： 
 </div>
 <div class="code code-tight">
 
@@ -520,27 +471,19 @@ Conversely, to show that a disjunction holds, we need to show that
 <div class="doc less-space">
 <div class="paragraph"> </div>
 
-<a name="lab166"></a><h2 class="section">Falsehood and Negation</h2>
+<a name="lab166"></a><h2 class="section">假命题与否定</h2>
 
 <div class="paragraph"> </div>
 
- So far, we have mostly been concerned with proving that certain
-    things are <i>true</i> &mdash; addition is commutative, appending lists is
-    associative, etc.  Of course, we may also be interested in
-    <i>negative</i> results, showing that certain propositions are <i>not</i>
-    true. In Coq, such negative statements are expressed with the
-    negation operator <span class="inlinecode">¬</span>.
-
-<div class="paragraph"> </div>
-
-    To see how negation works, recall the discussion of the <i>principle
-    of explosion</i> from the <a href="Tactics.html"><span class="inlineref">Tactics</span></a> chapter; it asserts that, if we
-    assume a contradiction, then any other proposition can be derived.
-    Following this intuition, we could define <span class="inlinecode">¬</span> <span class="inlinecode"><span class="id" type="var">P</span></span> ("not <span class="inlinecode"><span class="id" type="var">P</span></span>") as
-    <span class="inlinecode"><span style="font-family: arial;">&forall;</span></span> <span class="inlinecode"><span class="id" type="var">Q</span>,</span> <span class="inlinecode"><span class="id" type="var">P</span></span> <span class="inlinecode"><span style="font-family: arial;">&rarr;</span></span> <span class="inlinecode"><span class="id" type="var">Q</span></span>.  Coq actually makes a slightly different
-    choice, defining <span class="inlinecode">¬</span> <span class="inlinecode"><span class="id" type="var">P</span></span> as <span class="inlinecode"><span class="id" type="var">P</span></span> <span class="inlinecode"><span style="font-family: arial;">&rarr;</span></span> <span class="inlinecode"><span class="id" type="var">False</span></span>, where <span class="inlinecode"><span class="id" type="var">False</span></span> is a
-    <i>particular</i> contradictory proposition defined in the standard
-    library. 
+ 到现在为止我们主要都在证明某些东西 <i>'是真的'</i> ，比如说加法真的符合交换律，
+    列表之间的连接真的符合结合律等等；我们当然也有可能对一些 <i>'否定'</i> 的，证明
+    了某些命题 <i>'并非为真'</i> 的事物产生兴趣。在Coq中，我们使用否定操作符<span class="inlinecode">¬</span>否定
+    某个命题。
+    为了理解否定背后的原理，回想一下在<a href="Tactics.html"><span class="inlineref">Tactics</span></a>一章中有关 <i>'爆炸原理'</i> 的
+    相关讨论；爆炸原理断言，当我们假设了矛盾的存在时，我们可以证明任意命题。
+    遵循着这一直觉，我们可以将<span class="inlinecode">¬</span> <span class="inlinecode"><span class="id" type="var">P</span></span>（即“非<span class="inlinecode"><span class="id" type="var">P</span></span>”）定义为<span class="inlinecode"><span style="font-family: arial;">&forall;</span></span> <span class="inlinecode"><span class="id" type="var">Q</span>,</span> <span class="inlinecode"><span class="id" type="var">P</span></span> <span class="inlinecode"><span style="font-family: arial;">&rarr;</span></span> <span class="inlinecode"><span class="id" type="var">Q</span></span>；
+    但Coq选择了另外一种稍微有些不同的做法：它将<span class="inlinecode">¬</span> <span class="inlinecode"><span class="id" type="var">P</span></span>定义为<span class="inlinecode"><span class="id" type="var">P</span></span> <span class="inlinecode"><span style="font-family: arial;">&rarr;</span></span> <span class="inlinecode"><span class="id" type="var">False</span></span>，而
+    <span class="inlinecode"><span class="id" type="var">False</span></span>是在标准库中 <i>'被特别地定义了的'</i> 矛盾性的命题。 
 </div>
 <div class="code code-tight">
 
@@ -554,9 +497,8 @@ Conversely, to show that a disjunction holds, we need to show that
 </div>
 
 <div class="doc">
-Since <span class="inlinecode"><span class="id" type="var">False</span></span> is a contradictory proposition, the principle of
-    explosion also applies to it. If we get <span class="inlinecode"><span class="id" type="var">False</span></span> into the proof
-    context, we can <span class="inlinecode"><span class="id" type="tactic">destruct</span></span> it to complete any goal: 
+因为<span class="inlinecode"><span class="id" type="var">False</span></span>是矛盾性的命题，我们也可以对其应用爆炸原理：如果我们在证明上下文
+    中得到了一个<span class="inlinecode"><span class="id" type="var">False</span></span>，我们可以<span class="inlinecode"><span class="id" type="tactic">destruct</span></span>它，并证明任何当前待证明的目标。 
 </div>
 <div class="code code-tight">
 
@@ -570,14 +512,12 @@ Since <span class="inlinecode"><span class="id" type="var">False</span></span> i
 </div>
 
 <div class="doc">
-The Latin <i>ex falso quodlibet</i> means, literally, "from falsehood
-    follows whatever you like"; this is another common name for the
-    principle of explosion. 
+    <i>Ex falso quodlibet</i> 是拉丁文，意思是“从谬误出发你能够证明任何你想要的”；
+    这是爆炸原理的另一个为人熟知的名字。 
 <div class="paragraph"> </div>
 
 <a name="lab167"></a><h4 class="section">Exercise: 2 stars, optional (not_implies_our_not)</h4>
- Show that Coq's definition of negation implies the intuitive one
-    mentioned above: 
+ 证明对于任意命题<span class="inlinecode"><span class="id" type="var">P</span></span>，从Coq对于<span class="inlinecode">¬</span> <span class="inlinecode"><span class="id" type="var">P</span></span>的定义能够推出上面提到的对于否定的定义。 
 </div>
 <div class="code code-tight">
 
@@ -592,8 +532,7 @@ The Latin <i>ex falso quodlibet</i> means, literally, "from falsehood
 <div class="doc less-space">
 <div class="paragraph"> </div>
 
- This is how we use <span class="inlinecode"><span class="id" type="var">not</span></span> to state that <span class="inlinecode">0</span> and <span class="inlinecode">1</span> are different
-    elements of <span class="inlinecode"><span class="id" type="var">nat</span></span>: 
+ 以下是我们用<span class="inlinecode"><span class="id" type="var">not</span></span>宣称并证明“<span class="inlinecode">0</span>和<span class="inlinecode">1</span>是不同的<span class="inlinecode"><span class="id" type="var">nat</span></span>”这一命题的做法： 
 </div>
 <div class="code code-tight">
 
@@ -605,8 +544,8 @@ The Latin <i>ex falso quodlibet</i> means, literally, "from falsehood
 </div>
 
 <div class="doc">
-Such inequality statements are frequent enough to warrant a
-    special notation, <span class="inlinecode"><span class="id" type="var">x</span></span> <span class="inlinecode">≠</span> <span class="inlinecode"><span class="id" type="var">y</span></span>: 
+这样的有关不相等的命题出现得十分频繁，足以让我们为其定义一个独立的表示法：
+    <span class="inlinecode"><span class="id" type="var">x</span></span> <span class="inlinecode">≠</span> <span class="inlinecode"><span class="id" type="var">y</span></span>。 
 </div>
 <div class="code code-tight">
 
@@ -620,12 +559,9 @@ Such inequality statements are frequent enough to warrant a
 </div>
 
 <div class="doc">
-It takes a little practice to get used to working with negation in
-    Coq.  Even though you can see perfectly well why a statement
-    involving negation is true, it can be a little tricky at first to
-    get things into the right configuration so that Coq can understand
-    it!  Here are proofs of a few familiar facts to get you warmed
-    up. 
+在能够熟练地在Coq中对否定命题进行操作之前确实需要一点练习：即使有时你已经很
+    清楚为什么某个否定命题为真，刚开始试图通过适当的设置让Coq接受这一点可能也会
+    稍微有些困难。以下是一些作为热身的有关一些常见的事实的证明：
 </div>
 <div class="code code-tight">
 
@@ -649,11 +585,8 @@ It takes a little practice to get used to working with negation in
 
 <div class="doc">
 <a name="lab168"></a><h4 class="section">Exercise: 2 stars, advanced, recommendedM (double_neg_inf)</h4>
- Write an informal proof of <span class="inlinecode"><span class="id" type="var">double_neg</span></span>:
-
-<div class="paragraph"> </div>
-
-   <i>Theorem</i>: <span class="inlinecode"><span class="id" type="var">P</span></span> implies <span class="inlinecode">~~<span class="id" type="var">P</span></span>, for any proposition <span class="inlinecode"><span class="id" type="var">P</span></span>. 
+ 写出<span class="inlinecode"><span class="id" type="var">double_neg</span></span>，即下述命题的一个非形式化的证明：
+    命题：对任意命题<span class="inlinecode"><span class="id" type="var">P</span></span>而言，<span class="inlinecode"><span class="id" type="var">P</span></span>蕴含<span class="inlinecode">~~<span class="id" type="var">P</span></span>。 
 </div>
 <div class="code code-tight">
 
@@ -694,8 +627,8 @@ It takes a little practice to get used to working with negation in
 <div class="paragraph"> </div>
 
 <a name="lab171"></a><h4 class="section">Exercise: 1 star, advancedM (informal_not_PNP)</h4>
- Write an informal proof (in English) of the proposition <span class="inlinecode"><span style="font-family: arial;">&forall;</span></span> <span class="inlinecode"><span class="id" type="var">P</span></span>
-    <span class="inlinecode">:</span> <span class="inlinecode"><span class="id" type="keyword">Prop</span>,</span> <span class="inlinecode">~(<span class="id" type="var">P</span></span> <span class="inlinecode"><span style="font-family: arial;">&and;</span></span> <span class="inlinecode">¬<span class="id" type="var">P</span>)</span>. 
+ 写出<span class="inlinecode"><span style="font-family: arial;">&forall;</span></span> <span class="inlinecode"><span class="id" type="var">P</span></span> <span class="inlinecode">:</span> <span class="inlinecode"><span class="id" type="keyword">Prop</span>,</span> <span class="inlinecode">¬</span> <span class="inlinecode">(<span class="id" type="var">P</span></span> <span class="inlinecode"><span style="font-family: arial;">&and;</span></span> <span class="inlinecode">¬<span class="id" type="var">P</span>)</span>这一命题的非形式化的证明。你可以使用
+    任何你想用的自然语言。 
 </div>
 <div class="code code-tight">
 
@@ -707,14 +640,11 @@ It takes a little practice to get used to working with negation in
 <div class="doc less-space">
 <div class="paragraph"> </div>
 
- Similarly, since inequality involves a negation, it requires a
-    little practice to be able to work with it fluently.  Here is one
-    useful trick.  If you are trying to prove a goal that is
-    nonsensical (e.g., the goal state is <span class="inlinecode"><span class="id" type="var">false</span></span> <span class="inlinecode">=</span> <span class="inlinecode"><span class="id" type="var">true</span></span>), apply
-    <span class="inlinecode"><span class="id" type="var">ex_falso_quodlibet</span></span> to change the goal to <span class="inlinecode"><span class="id" type="var">False</span></span>.  This makes it
-    easier to use assumptions of the form <span class="inlinecode">¬<span class="id" type="var">P</span></span> that may be available
-    in the context &mdash; in particular, assumptions of the form
-    <span class="inlinecode"><span class="id" type="var">x</span>≠<span class="id" type="var">y</span></span>. 
+ 类似地，因为不等式包含了一个否定，在能够熟练地使用它之前也需要一定的练习。
+    这里是一个比较有用的小技巧：如果你需要证明某个不可能的目标（例如当前的子目
+    标是<span class="inlinecode"><span class="id" type="var">false</span></span> <span class="inlinecode">=</span> <span class="inlinecode"><span class="id" type="var">true</span></span>）时，用<span class="inlinecode"><span class="id" type="var">ex_falso_quodlibet</span></span>将这个目标转换成<span class="inlinecode"><span class="id" type="var">False</span></span>；
+    如果当前的证明上下文中存在形如<span class="inlinecode">¬<span class="id" type="var">P</span></span>的假设（例如形如<span class="inlinecode"><span class="id" type="var">x</span>≠<span class="id" type="var">y</span></span>的假设），那么这会
+    让这些假设的使用变得更容易些。
 </div>
 <div class="code code-tight">
 
@@ -733,8 +663,8 @@ It takes a little practice to get used to working with negation in
 </div>
 
 <div class="doc">
-Since reasoning with <span class="inlinecode"><span class="id" type="var">ex_falso_quodlibet</span></span> is quite common, Coq
-    provides a built-in tactic, <span class="inlinecode"><span class="id" type="var">exfalso</span></span>, for applying it. 
+因为我们经常会用到<span class="inlinecode"><span class="id" type="var">ex_falso_quodlibet</span></span>，所以Coq提供了一个内置的证明策略：
+    <span class="inlinecode"><span class="id" type="var">exfalso</span></span>；这个策略在被使用时相当于应用了<span class="inlinecode"><span class="id" type="var">ex_falso_quodlibet</span></span>。
 </div>
 <div class="code code-tight">
 
@@ -752,13 +682,12 @@ Since reasoning with <span class="inlinecode"><span class="id" type="var">ex_fal
 </div>
 
 <div class="doc">
-<a name="lab172"></a><h2 class="section">Truth</h2>
+<a name="lab172"></a><h2 class="section">真值</h2>
 
 <div class="paragraph"> </div>
 
- Besides <span class="inlinecode"><span class="id" type="var">False</span></span>, Coq's standard library also defines <span class="inlinecode"><span class="id" type="var">True</span></span>, a
-    proposition that is trivially true. To prove it, we use the
-    predefined constant <span class="inlinecode"><span class="id" type="var">I</span></span> <span class="inlinecode">:</span> <span class="inlinecode"><span class="id" type="var">True</span></span>: 
+ 除了<span class="inlinecode"><span class="id" type="var">False</span></span>以外，Coq的标准库中也定义了<span class="inlinecode"><span class="id" type="var">True</span></span>这一十分容易就能证明的命题。
+    我们用<span class="inlinecode"><span class="id" type="var">I</span></span> <span class="inlinecode">:</span> <span class="inlinecode"><span class="id" type="var">True</span></span>这一事先定义了的常数来证明<span class="inlinecode"><span class="id" type="var">True</span></span>： 
 </div>
 <div class="code code-tight">
 
@@ -768,22 +697,19 @@ Since reasoning with <span class="inlinecode"><span class="id" type="var">ex_fal
 </div>
 
 <div class="doc">
-Unlike <span class="inlinecode"><span class="id" type="var">False</span></span>, which is used extensively, <span class="inlinecode"><span class="id" type="var">True</span></span> is used quite
-    rarely, since it is trivial (and therefore uninteresting) to prove
-    as a goal, and it carries no useful information as a hypothesis.
-    But it can be quite useful when defining complex <span class="inlinecode"><span class="id" type="keyword">Prop</span></span>s using
-    conditionals or as a parameter to higher-order <span class="inlinecode"><span class="id" type="keyword">Prop</span></span>s.  We will
-    see examples of such uses of <span class="inlinecode"><span class="id" type="var">True</span></span> later on.
+与经常被使用的<span class="inlinecode"><span class="id" type="var">False</span></span>不同，因为证明过于简单（所以也就没什么足以引起兴趣的
+    东西）而且并不携带任何有用的信息，<span class="inlinecode"><span class="id" type="var">True</span></span>很少被使用。
+    然而在使用条件从句构建更加复杂的<span class="inlinecode"><span class="id" type="keyword">Prop</span></span>或者作为高阶<span class="inlinecode"><span class="id" type="keyword">Prop</span></span>的一个参数的时候它
+    也可以变得十分有用。以后我们将会看到<span class="inlinecode"><span class="id" type="var">True</span></span>的这类用法。
 
 <div class="paragraph"> </div>
 
-<a name="lab173"></a><h2 class="section">Logical Equivalence</h2>
+<a name="lab173"></a><h2 class="section">逻辑上的相等性 Logical Equivalence</h2>
 
 <div class="paragraph"> </div>
 
- The handy "if and only if" connective, which asserts that two
-    propositions have the same truth value, is just the conjunction of
-    two implications. 
+ “当且仅当”这一逻辑连接符用起来十分顺手；它是两个蕴含式的合取，声明两个命题
+    在任何情况下都有着相同的真值。 
 </div>
 <div class="code code-tight">
 
@@ -815,8 +741,8 @@ Unlike <span class="inlinecode"><span class="id" type="var">False</span></span>,
 
 <div class="doc">
 <a name="lab174"></a><h4 class="section">Exercise: 1 star, optional (iff_properties)</h4>
- Using the above proof that <span class="inlinecode"><span style="font-family: arial;">&harr;</span></span> is symmetric (<span class="inlinecode"><span class="id" type="var">iff_sym</span></span>) as
-    a guide, prove that it is also reflexive and transitive. 
+ 以上面的<span class="inlinecode"><span style="font-family: arial;">&harr;</span></span>的对称性（<span class="inlinecode"><span class="id" type="var">iff_sym</span></span>）的证明作为参照，证明<span class="inlinecode"><span style="font-family: arial;">&harr;</span></span>同时也
+    有自反性和传递性。 
 </div>
 <div class="code code-tight">
 
@@ -849,12 +775,10 @@ Unlike <span class="inlinecode"><span class="id" type="var">False</span></span>,
 <div class="doc less-space">
 <div class="paragraph"> </div>
 
- Some of Coq's tactics treat <span class="inlinecode"><span class="id" type="var">iff</span></span> statements specially, avoiding
-    the need for some low-level proof-state manipulation.  In
-    particular, <span class="inlinecode"><span class="id" type="tactic">rewrite</span></span> and <span class="inlinecode"><span class="id" type="tactic">reflexivity</span></span> can be used with <span class="inlinecode"><span class="id" type="var">iff</span></span>
-    statements, not just equalities.  To enable this behavior, we need
-    to import a special Coq library that allows rewriting with other
-    formulas besides equality: 
+ Coq的某些证明策略会以特别的方式处理<span class="inlinecode"><span class="id" type="var">iff</span></span>，并以此避免了某些底层的对证明
+    状态的操作。比如说，<span class="inlinecode"><span class="id" type="tactic">rewrite</span></span>和<span class="inlinecode"><span class="id" type="tactic">reflexivity</span></span>除了可以对等式使用以外同样
+    也可以对<span class="inlinecode"><span class="id" type="var">iff</span></span>使用。你需要加载一个特别的Coq库来让Coq允许你使用等式以外的
+    式子进行重写。 
 </div>
 <div class="code code-tight">
 
@@ -863,8 +787,8 @@ Unlike <span class="inlinecode"><span class="id" type="var">False</span></span>,
 </div>
 
 <div class="doc">
-Here is a simple example demonstrating how these tactics work with
-    <span class="inlinecode"><span class="id" type="var">iff</span></span>.  First, let's prove a couple of basic iff equivalences... 
+以下是一个简单的例子；它展示了这些证明策略会如何使用<span class="inlinecode"><span class="id" type="var">iff</span></span>。
+    首先，先让我们证明一些比较基本的<span class="inlinecode"><span class="id" type="var">iff</span></span>等价命题…… 
 </div>
 <div class="code code-tight">
 
@@ -891,9 +815,8 @@ Here is a simple example demonstrating how these tactics work with
 </div>
 
 <div class="doc">
-We can now use these facts with <span class="inlinecode"><span class="id" type="tactic">rewrite</span></span> and <span class="inlinecode"><span class="id" type="tactic">reflexivity</span></span> to
-    give smooth proofs of statements involving equivalences.  Here is
-    a ternary version of the previous <span class="inlinecode"><span class="id" type="var">mult_0</span></span> result: 
+现在我们能够在某些与等价性相关的命题的证明中使用<span class="inlinecode"><span class="id" type="tactic">rewrite</span></span>和<span class="inlinecode"><span class="id" type="tactic">reflexivity</span></span>
+    的时候使用这些事实。这里是上述的<span class="inlinecode"><span class="id" type="var">mult_0</span></span>的、包含了三个变量的版本： 
 </div>
 <div class="code code-tight">
 
@@ -908,9 +831,8 @@ We can now use these facts with <span class="inlinecode"><span class="id" type="
 </div>
 
 <div class="doc">
-The <span class="inlinecode"><span class="id" type="tactic">apply</span></span> tactic can also be used with <span class="inlinecode"><span style="font-family: arial;">&harr;</span></span>. When given an
-    equivalence as its argument, <span class="inlinecode"><span class="id" type="tactic">apply</span></span> tries to guess which side of
-    the equivalence to use. 
+<span class="inlinecode"><span class="id" type="tactic">apply</span></span>也可以与<span class="inlinecode"><span style="font-family: arial;">&harr;</span></span>一同使用。当<span class="inlinecode"><span class="id" type="tactic">apply</span></span>的参数是一个等价性命题的证明，它将
+    试图猜出使用该命题所包含的哪一个方向的蕴含式。 
 </div>
 <div class="code code-tight">
 
@@ -923,24 +845,23 @@ The <span class="inlinecode"><span class="id" type="tactic">apply</span></span> 
 </div>
 
 <div class="doc">
-<a name="lab176"></a><h2 class="section">Existential Quantification</h2>
+<a name="lab176"></a><h2 class="section">存在量化</h2>
 
 <div class="paragraph"> </div>
 
- Another important logical connective is <i>existential
-    quantification</i>.  To say that there is some <span class="inlinecode"><span class="id" type="var">x</span></span> of type <span class="inlinecode"><span class="id" type="var">T</span></span> such
-    that some property <span class="inlinecode"><span class="id" type="var">P</span></span> holds of <span class="inlinecode"><span class="id" type="var">x</span></span>, we write <span class="inlinecode"><span style="font-family: arial;">&exist;</span></span> <span class="inlinecode"><span class="id" type="var">x</span></span> <span class="inlinecode">:</span> <span class="inlinecode"><span class="id" type="var">T</span>,</span>
-    <span class="inlinecode"><span class="id" type="var">P</span></span>. As with <span class="inlinecode"><span style="font-family: arial;">&forall;</span></span>, the type annotation <span class="inlinecode">:</span> <span class="inlinecode"><span class="id" type="var">T</span></span> can be omitted if
-    Coq is able to infer from the context what the type of <span class="inlinecode"><span class="id" type="var">x</span></span> should
-    be. 
+
 <div class="paragraph"> </div>
 
- To prove a statement of the form <span class="inlinecode"><span style="font-family: arial;">&exist;</span></span> <span class="inlinecode"><span class="id" type="var">x</span>,</span> <span class="inlinecode"><span class="id" type="var">P</span></span>, we must show that
-    <span class="inlinecode"><span class="id" type="var">P</span></span> holds for some specific choice of value for <span class="inlinecode"><span class="id" type="var">x</span></span>, known as the
-    <i>witness</i> of the existential.  This is done in two steps: First,
-    we explicitly tell Coq which witness <span class="inlinecode"><span class="id" type="var">t</span></span> we have in mind by
-    invoking the tactic <span class="inlinecode"><span style="font-family: arial;">&exist;</span></span> <span class="inlinecode"><span class="id" type="var">t</span></span>.  Then we prove that <span class="inlinecode"><span class="id" type="var">P</span></span> holds after
-    all occurrences of <span class="inlinecode"><span class="id" type="var">x</span></span> are replaced by <span class="inlinecode"><span class="id" type="var">t</span></span>. 
+    <i>'存在量化'</i> 也是十分重要的逻辑连接符。我们用<span class="inlinecode"><span style="font-family: arial;">&exist;</span></span> <span class="inlinecode"><span class="id" type="var">x</span></span> <span class="inlinecode">:</span> <span class="inlinecode"><span class="id" type="var">T</span>,</span> <span class="inlinecode"><span class="id" type="var">P</span></span>表示存在一些
+    类型为<span class="inlinecode"><span class="id" type="var">T</span></span>的<span class="inlinecode"><span class="id" type="var">x</span></span>使得一些性质<span class="inlinecode"><span class="id" type="var">P</span></span>对于<span class="inlinecode"><span class="id" type="var">x</span></span>成立。如果Coq能够从上下文中推断出<span class="inlinecode"><span class="id" type="var">x</span></span>的
+    类型应该为<span class="inlinecode"><span class="id" type="var">T</span></span>，那么就像<span class="inlinecode"><span style="font-family: arial;">&forall;</span></span>中我们可以省略<span class="inlinecode"><span class="id" type="var">x</span></span>的类型标注一样，在<span class="inlinecode"><span style="font-family: arial;">&exist;</span></span>中
+    我们也可以省略<span class="inlinecode">:</span> <span class="inlinecode"><span class="id" type="var">T</span></span>这一类型标注。 
+<div class="paragraph"> </div>
+
+ 证明形如<span class="inlinecode"><span style="font-family: arial;">&exist;</span></span> <span class="inlinecode"><span class="id" type="var">x</span>,</span> <span class="inlinecode"><span class="id" type="var">P</span></span>的命题时我们需要证明<span class="inlinecode"><span class="id" type="var">P</span></span>对于一些特定的<span class="inlinecode"><span class="id" type="var">x</span></span>是成立的；这些
+    <span class="inlinecode"><span class="id" type="var">x</span></span>被称作证实了这一命题的 <i>'实例'</i> 。证明分为两个步骤：首先用<span class="inlinecode"><span style="font-family: arial;">&exist;</span></span> <span class="inlinecode"><span class="id" type="var">t</span></span>指出
+    我们已经知道的可以使<span class="inlinecode"><span class="id" type="var">P</span></span>成立的实例<span class="inlinecode"><span class="id" type="var">t</span></span>，然后我们证明所有<span class="inlinecode"><span class="id" type="var">x</span></span>都被替换成<span class="inlinecode"><span class="id" type="var">t</span></span>的命题
+    <span class="inlinecode"><span class="id" type="var">P</span></span>。 
 </div>
 <div class="code code-tight">
 
@@ -952,9 +873,8 @@ The <span class="inlinecode"><span class="id" type="tactic">apply</span></span> 
 </div>
 
 <div class="doc">
-Conversely, if we have an existential hypothesis <span class="inlinecode"><span style="font-family: arial;">&exist;</span></span> <span class="inlinecode"><span class="id" type="var">x</span>,</span> <span class="inlinecode"><span class="id" type="var">P</span></span> in
-    the context, we can destruct it to obtain a witness <span class="inlinecode"><span class="id" type="var">x</span></span> and a
-    hypothesis stating that <span class="inlinecode"><span class="id" type="var">P</span></span> holds of <span class="inlinecode"><span class="id" type="var">x</span></span>. 
+相反地，如果我们在上下文中有形如<span class="inlinecode"><span style="font-family: arial;">&exist;</span></span> <span class="inlinecode"><span class="id" type="var">x</span>,</span> <span class="inlinecode"><span class="id" type="var">P</span></span>的存在假设，我们可以将其解构得到
+    某个实例<span class="inlinecode"><span class="id" type="var">x</span></span>以及证实<span class="inlinecode"><span class="id" type="var">P</span></span>对<span class="inlinecode"><span class="id" type="var">x</span></span>成立的证据。 
 </div>
 <div class="code code-tight">
 
@@ -971,8 +891,7 @@ Conversely, if we have an existential hypothesis <span class="inlinecode"><span 
 
 <div class="doc">
 <a name="lab177"></a><h4 class="section">Exercise: 1 star (dist_not_exists)</h4>
- Prove that "<span class="inlinecode"><span class="id" type="var">P</span></span> holds for all <span class="inlinecode"><span class="id" type="var">x</span></span>" implies "there is no <span class="inlinecode"><span class="id" type="var">x</span></span> for
-    which <span class="inlinecode"><span class="id" type="var">P</span></span> does not hold." 
+ 证明这一命题：如果<span class="inlinecode"><span class="id" type="var">P</span></span>对所有<span class="inlinecode"><span class="id" type="var">x</span></span>成立，那么没有使得<span class="inlinecode"><span class="id" type="var">P</span></span>不成立的<span class="inlinecode"><span class="id" type="var">x</span></span>。 
 </div>
 <div class="code code-tight">
 
@@ -988,8 +907,7 @@ Conversely, if we have an existential hypothesis <span class="inlinecode"><span 
 <div class="paragraph"> </div>
 
 <a name="lab178"></a><h4 class="section">Exercise: 2 stars (dist_exists_or)</h4>
- Prove that existential quantification distributes over
-    disjunction. 
+ 证明存在量化对析取符合分配律。 
 </div>
 <div class="code code-tight">
 
@@ -1003,39 +921,34 @@ Conversely, if we have an existential hypothesis <span class="inlinecode"><span 
 <span class="proofbox">&#9744;</span> 
 
 <div class="doc">
-<a name="lab179"></a><h1 class="section">Programming with Propositions</h1>
+<a name="lab179"></a><h1 class="section">在编程中使用命题</h1>
 
-<div class="paragraph"> </div>
-
- The logical connectives that we have seen provide a rich
-    vocabulary for defining complex propositions from simpler ones.
-    To illustrate, let's look at how to express the claim that an
-    element <span class="inlinecode"><span class="id" type="var">x</span></span> occurs in a list <span class="inlinecode"><span class="id" type="var">l</span></span>.  Notice that this property has a
-    simple recursive structure: 
 <div class="paragraph"> </div>
 
 
 <div class="paragraph"> </div>
 
-<ul class="doclist">
-<li> If <span class="inlinecode"><span class="id" type="var">l</span></span> is the empty list, then <span class="inlinecode"><span class="id" type="var">x</span></span> cannot occur on it, so the
-      property "<span class="inlinecode"><span class="id" type="var">x</span></span> appears in <span class="inlinecode"><span class="id" type="var">l</span></span>" is simply false.
+    我们所了解的逻辑连接符大幅提升了我们以简单的命题为基础构建更为复杂的命题的能力。
+    作为例子，让我们来思考如何表示“某个元素<span class="inlinecode"><span class="id" type="var">x</span></span>出现在某个列表<span class="inlinecode"><span class="id" type="var">l</span></span>之中”这一命题。注意到
+    这一性质有着很简单的递归结构：
+<div class="paragraph"> </div>
+
 
 <div class="paragraph"> </div>
 
 <ul class="doclist">
-<li> Otherwise, <span class="inlinecode"><span class="id" type="var">l</span></span> has the form <span class="inlinecode"><span class="id" type="var">x'</span></span> <span class="inlinecode">::</span> <span class="inlinecode"><span class="id" type="var">l'</span></span>.  In this case, <span class="inlinecode"><span class="id" type="var">x</span></span>
-      occurs in <span class="inlinecode"><span class="id" type="var">l</span></span> if either it is equal to <span class="inlinecode"><span class="id" type="var">x'</span></span> or it occurs in
-      <span class="inlinecode"><span class="id" type="var">l'</span></span>.
+<li> 如果<span class="inlinecode"><span class="id" type="var">l</span></span>是空列表，那么<span class="inlinecode"><span class="id" type="var">x</span></span>不可能在<span class="inlinecode"><span class="id" type="var">l</span></span>中出现；所以“<span class="inlinecode"><span class="id" type="var">x</span></span>在<span class="inlinecode"><span class="id" type="var">l</span></span>中出现”应该为假命题。
+<ul class="doclist">
+<li> 如果<span class="inlinecode"><span class="id" type="var">l</span></span>为形如<span class="inlinecode"><span class="id" type="var">x'</span></span> <span class="inlinecode">::</span> <span class="inlinecode"><span class="id" type="var">l'</span></span>的列表，那么“<span class="inlinecode"><span class="id" type="var">x</span></span>在<span class="inlinecode"><span class="id" type="var">l</span></span>中出现”的正确性取决于<span class="inlinecode"><span class="id" type="var">x</span></span>是否与<span class="inlinecode"><span class="id" type="var">x'</span></span>
+      相等或者<span class="inlinecode"><span class="id" type="var">x</span></span>是否在<span class="inlinecode"><span class="id" type="var">l'</span></span>出现。
 
 <div class="paragraph"> </div>
 
 
 </li>
 </ul>
-    We can translate this directly into a straightforward recursive
-    function from taking an element and a list and returning a
-    proposition: 
+    我们能够将这一定义直接翻译成一个递归函数；这个函数将取一个元素和一个列表作为参数
+    并返回一个命题：
 </li>
 </ul>
 
@@ -1051,8 +964,8 @@ Conversely, if we have an existential hypothesis <span class="inlinecode"><span 
 </div>
 
 <div class="doc">
-When <span class="inlinecode"><span class="id" type="var">In</span></span> is applied to a concrete list, it expands into a
-    concrete sequence of nested disjunctions. 
+当<span class="inlinecode"><span class="id" type="var">In</span></span>被应用于某个具体的列表时，它将被展开为一串由具体的命题组成的
+    析取式。
 </div>
 <div class="code code-tight">
 
@@ -1075,16 +988,12 @@ When <span class="inlinecode"><span class="id" type="var">In</span></span> is ap
 </div>
 
 <div class="doc">
-(Notice the use of the empty pattern to discharge the last case
-    <i>en passant</i>.) 
+（注意，在上面的例子中我们使用了空模式来 <i>'无视'</i> 最后一种情况。） 
 <div class="paragraph"> </div>
 
- We can also prove more generic, higher-level lemmas about <span class="inlinecode"><span class="id" type="var">In</span></span>.
-
-<div class="paragraph"> </div>
-
-    Note, in the next, how <span class="inlinecode"><span class="id" type="var">In</span></span> starts out applied to a variable and
-    only gets expanded when we do case analysis on this variable: 
+ 我们也可以证明关于<span class="inlinecode"><span class="id" type="var">In</span></span>的一些更为一般的，或者更为高阶的引理。
+    注意在下面<span class="inlinecode"><span class="id" type="var">In</span></span>被应用到一个变量上；只有我们对其进行分类讨论的时候，它才会
+    被展开。 
 </div>
 <div class="code code-tight">
 
@@ -1096,7 +1005,7 @@ When <span class="inlinecode"><span class="id" type="var">In</span></span> is ap
 <span class="id" type="keyword">Proof</span>.<br/>
 &nbsp;&nbsp;<span class="id" type="tactic">intros</span> <span class="id" type="var">A</span> <span class="id" type="var">B</span> <span class="id" type="var">f</span> <span class="id" type="var">l</span> <span class="id" type="var">x</span>.<br/>
 &nbsp;&nbsp;<span class="id" type="tactic">induction</span> <span class="id" type="var">l</span> <span class="id" type="keyword">as</span> [|<span class="id" type="var">x'</span> <span class="id" type="var">l'</span> <span class="id" type="var">IHl'</span>].<br/>
-&nbsp;&nbsp;- <span class="comment">(*&nbsp;l&nbsp;=&nbsp;nil,&nbsp;contradiction&nbsp;*)</span><br/>
+&nbsp;&nbsp;- <span class="comment">(*&nbsp;l&nbsp;=&nbsp;nil，矛盾&nbsp;*)</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">simpl</span>. <span class="id" type="tactic">intros</span> [].<br/>
 &nbsp;&nbsp;- <span class="comment">(*&nbsp;l&nbsp;=&nbsp;x'&nbsp;::&nbsp;l'&nbsp;*)</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">simpl</span>. <span class="id" type="tactic">intros</span> [<span class="id" type="var">H</span> | <span class="id" type="var">H</span>].<br/>
@@ -1106,13 +1015,10 @@ When <span class="inlinecode"><span class="id" type="var">In</span></span> is ap
 </div>
 
 <div class="doc">
-This way of defining propositions recursively, though convenient
-    in some cases, also has some drawbacks.  In particular, it is
-    subject to Coq's usual restrictions regarding the definition of
-    recursive functions, e.g., the requirement that they be "obviously
-    terminating."  In the next chapter, we will see how to define
-    propositions <i>inductively</i>, a different technique with its own set
-    of strengths and limitations. 
+虽然递归地定义命题在某些情况下会十分方便，但是这种方法也有其劣势。比如说，
+    作为一种递归函数，这类命题也会受Coq对递归函数的要求的限制：在Coq中递归函数
+    必须是“明显可停机”的。在下一章我们将会了解如何 <i>'归纳地'</i> 定义一个命题；这是
+    一种与之不同的技巧，有着其独特的优势和劣势。
 <div class="paragraph"> </div>
 
 <a name="lab180"></a><h4 class="section">Exercise: 2 stars (In_map_iff)</h4>
@@ -1146,17 +1052,13 @@ This way of defining propositions recursively, though convenient
 <div class="paragraph"> </div>
 
 <a name="lab182"></a><h4 class="section">Exercise: 3 stars (All)</h4>
- Recall that functions returning propositions can be seen as
-    <i>properties</i> of their arguments. For instance, if <span class="inlinecode"><span class="id" type="var">P</span></span> has type
-    <span class="inlinecode"><span class="id" type="var">nat</span></span> <span class="inlinecode"><span style="font-family: arial;">&rarr;</span></span> <span class="inlinecode"><span class="id" type="keyword">Prop</span></span>, then <span class="inlinecode"><span class="id" type="var">P</span></span> <span class="inlinecode"><span class="id" type="var">n</span></span> states that property <span class="inlinecode"><span class="id" type="var">P</span></span> holds of <span class="inlinecode"><span class="id" type="var">n</span></span>.
-
-<div class="paragraph"> </div>
-
-    Drawing inspiration from <span class="inlinecode"><span class="id" type="var">In</span></span>, write a recursive function <span class="inlinecode"><span class="id" type="var">All</span></span>
-    stating that some property <span class="inlinecode"><span class="id" type="var">P</span></span> holds of all elements of a list
-    <span class="inlinecode"><span class="id" type="var">l</span></span>. To make sure your definition is correct, prove the <span class="inlinecode"><span class="id" type="var">All_In</span></span>
-    lemma below.  (Of course, your definition should <i>not</i> just
-    restate the left-hand side of <span class="inlinecode"><span class="id" type="var">All_In</span></span>.) 
+ 回忆一下，返回命题的函数能够被视为对其参数的某种 <i>'性质'</i> 的定义。比如说，
+    假设<span class="inlinecode"><span class="id" type="var">P</span></span>的类型为<span class="inlinecode"><span class="id" type="var">nat</span></span> <span class="inlinecode"><span style="font-family: arial;">&rarr;</span></span> <span class="inlinecode"><span class="id" type="keyword">Prop</span></span>，那么<span class="inlinecode"><span class="id" type="var">P</span></span> <span class="inlinecode"><span class="id" type="var">n</span></span>就是声明<span class="inlinecode"><span class="id" type="var">n</span></span>拥有性质<span class="inlinecode"><span class="id" type="var">P</span></span>的命题。
+    以<span class="inlinecode"><span class="id" type="var">In</span></span>作为参考，完成<span class="inlinecode"><span class="id" type="var">All</span></span>这一递归函数的定义；它以某个列表<span class="inlinecode"><span class="id" type="var">l</span></span>以及针对其元素
+    的性质<span class="inlinecode"><span class="id" type="var">P</span></span>为参数，返回一个声明“<span class="inlinecode"><span class="id" type="var">l</span></span>中全部元素都具有性质<span class="inlinecode"><span class="id" type="var">P</span></span>”的命题。证明<span class="inlinecode"><span class="id" type="var">All_In</span></span>
+    这一引理以对你的定义进行测试。当然了，为了通过测试而直接将<span class="inlinecode"><span class="id" type="var">All_In</span></span>的左半部分
+    写入<span class="inlinecode"><span class="id" type="var">All</span></span>的定义是 <i>'不被接受的'</i> 。
+  
 </div>
 <div class="code code-tight">
 
@@ -1176,11 +1078,9 @@ This way of defining propositions recursively, though convenient
 <div class="paragraph"> </div>
 
 <a name="lab183"></a><h4 class="section">Exercise: 3 stars (combine_odd_even)</h4>
- Complete the definition of the <span class="inlinecode"><span class="id" type="var">combine_odd_even</span></span> function below.
-    It takes as arguments two properties of numbers, <span class="inlinecode"><span class="id" type="var">Podd</span></span> and
-    <span class="inlinecode"><span class="id" type="var">Peven</span></span>, and it should return a property <span class="inlinecode"><span class="id" type="var">P</span></span> such that <span class="inlinecode"><span class="id" type="var">P</span></span> <span class="inlinecode"><span class="id" type="var">n</span></span> is
-    equivalent to <span class="inlinecode"><span class="id" type="var">Podd</span></span> <span class="inlinecode"><span class="id" type="var">n</span></span> when <span class="inlinecode"><span class="id" type="var">n</span></span> is odd and equivalent to <span class="inlinecode"><span class="id" type="var">Peven</span></span> <span class="inlinecode"><span class="id" type="var">n</span></span>
-    otherwise. 
+ 完成<span class="inlinecode"><span class="id" type="var">combine_odd_even</span></span>的定义；它取两个针对数字的性质作为它的两个参数
+    <span class="inlinecode"><span class="id" type="var">Podd</span></span>和<span class="inlinecode"><span class="id" type="var">Peven</span></span>，并返回这样的性质<span class="inlinecode"><span class="id" type="var">P</span></span>：<span class="inlinecode"><span class="id" type="var">P</span></span> <span class="inlinecode"><span class="id" type="var">n</span></span>在<span class="inlinecode"><span class="id" type="var">n</span></span>为奇数的时候等价于<span class="inlinecode"><span class="id" type="var">Podd</span></span> <span class="inlinecode"><span class="id" type="var">n</span></span>，
+    在<span class="inlinecode"><span class="id" type="var">n</span></span>为偶数的时候等价于<span class="inlinecode"><span class="id" type="var">Peven</span></span> <span class="inlinecode"><span class="id" type="var">n</span></span>。 
 </div>
 <div class="code code-tight">
 
@@ -1190,7 +1090,7 @@ This way of defining propositions recursively, though convenient
 </div>
 
 <div class="doc">
-To test your definition, prove the following facts: 
+证明下述的事实以测试你的定义是否正确。 
 </div>
 <div class="code code-tight">
 
@@ -1225,21 +1125,17 @@ To test your definition, prove the following facts:
 
 <div class="paragraph"> </div>
 
- One feature of Coq that distinguishes it from many other proof
-    assistants is that it treats <i>proofs</i> as first-class objects.
 
 <div class="paragraph"> </div>
 
-    There is a great deal to be said about this, but it is not
-    necessary to understand it in detail in order to use Coq.  This
-    section gives just a taste, while a deeper exploration can be
-    found in the optional chapters <span class="inlinecode"><span class="id" type="var">ProofObjects</span></span> and
-    <span class="inlinecode"><span class="id" type="var">IndPrinciples</span></span>. 
+    Coq拥有一个将它从其他证明助理区分开来的特性：它将 <i>'证明本身'</i> 也作为
+    第一等的值。在这一点的背后有许多更深入的细节，但是对于使用Coq而言这
+    些细节并不是必须要了解的事实。这一节只是对相关内容进行一点简单的说明；
+    更多的细节可以在<span class="inlinecode"><span class="id" type="var">ProofObjects</span></span>和<span class="inlinecode"><span class="id" type="var">IndPrinciples</span></span>这两个可选的章节中得知。 
 <div class="paragraph"> </div>
 
- We have seen that we can use the <span class="inlinecode"><span class="id" type="keyword">Check</span></span> command to ask Coq to
-    print the type of an expression.  We can also use <span class="inlinecode"><span class="id" type="keyword">Check</span></span> to ask
-    what theorem a particular identifier refers to. 
+ 我们已经知道<span class="inlinecode"><span class="id" type="keyword">Check</span></span>可以显示一个表达式的类型；我们也可以用<span class="inlinecode"><span class="id" type="keyword">Check</span></span>查找某个
+    名字所指的定理：
 </div>
 <div class="code code-tight">
 
@@ -1249,33 +1145,29 @@ To test your definition, prove the following facts:
 </div>
 
 <div class="doc">
-Coq prints the <i>statement</i> of the <span class="inlinecode"><span class="id" type="var">plus_comm</span></span> theorem in the same
-    way that it prints the <i>type</i> of any term that we ask it to
-    <span class="inlinecode"><span class="id" type="keyword">Check</span></span>.  Why?
+在显示<span class="inlinecode"><span class="id" type="var">plus_comm</span></span>这一定理所声明的 <i>'命题'</i> 时，Coq使用了与显示某个值的 <i>'类
+    型'</i> 一样的方式。为什么会这样呢？
+    实际上<span class="inlinecode"><span class="id" type="var">plus_comm</span></span>所指向的是一个被称作 <i>'证明对象'</i> 的结构，它表示了证实
+    <span class="inlinecode"><span style="font-family: arial;">&forall;</span></span> <span class="inlinecode"><span class="id" type="var">n</span></span> <span class="inlinecode"><span class="id" type="var">m</span></span> <span class="inlinecode">:</span> <span class="inlinecode"><span class="id" type="var">nat</span>,</span> <span class="inlinecode"><span class="id" type="var">n</span></span> <span class="inlinecode">+</span> <span class="inlinecode"><span class="id" type="var">m</span></span> <span class="inlinecode">=</span> <span class="inlinecode"><span class="id" type="var">m</span></span> <span class="inlinecode">+</span> <span class="inlinecode"><span class="id" type="var">n</span></span>这一命题的逻辑上的演化过程。这一对象的
+    类型 <i>'就是'</i> 它所证明的命题。 
+<div class="paragraph"> </div>
+
 
 <div class="paragraph"> </div>
 
-    The reason is that the identifier <span class="inlinecode"><span class="id" type="var">plus_comm</span></span> actually refers to a
-    <i>proof object</i> &mdash; a data structure that represents a logical
-    derivation establishing of the truth of the statement <span class="inlinecode"><span style="font-family: arial;">&forall;</span></span> <span class="inlinecode"><span class="id" type="var">n</span></span> <span class="inlinecode"><span class="id" type="var">m</span></span>
-    <span class="inlinecode">:</span> <span class="inlinecode"><span class="id" type="var">nat</span>,</span> <span class="inlinecode"><span class="id" type="var">n</span></span> <span class="inlinecode">+</span> <span class="inlinecode"><span class="id" type="var">m</span></span> <span class="inlinecode">=</span> <span class="inlinecode"><span class="id" type="var">m</span></span> <span class="inlinecode">+</span> <span class="inlinecode"><span class="id" type="var">n</span></span>.  The type of this object <i>is</i> the statement
-    of the theorem that it is a proof of. 
+    就直觉上而言这是十分自然的：定理的声明部分说明了这一定理能被用于什么场合，
+    就像某个计算对象的类型说明了这一对象能被如何使用一样。例如，如果某个项的类
+    型为<span class="inlinecode"><span class="id" type="var">nat</span></span> <span class="inlinecode"><span style="font-family: arial;">&rarr;</span></span> <span class="inlinecode"><span class="id" type="var">nat</span></span> <span class="inlinecode"><span style="font-family: arial;">&rarr;</span></span> <span class="inlinecode"><span class="id" type="var">nat</span></span>；这说明我们可以将其用在两个<span class="inlinecode"><span class="id" type="var">nat</span></span>上，然后得到一个<span class="inlinecode"><span class="id" type="var">nat</span></span>。
+    类似地，如果我们有类型为<span class="inlinecode"><span class="id" type="var">n</span></span> <span class="inlinecode">=</span> <span class="inlinecode"><span class="id" type="var">m</span></span> <span class="inlinecode"><span style="font-family: arial;">&rarr;</span></span> <span class="inlinecode"><span class="id" type="var">n</span></span> <span class="inlinecode">+</span> <span class="inlinecode"><span class="id" type="var">n</span></span> <span class="inlinecode">=</span> <span class="inlinecode"><span class="id" type="var">m</span></span> <span class="inlinecode">+</span> <span class="inlinecode"><span class="id" type="var">m</span></span>的对象，当我们给出类型为<span class="inlinecode"><span class="id" type="var">n</span></span> <span class="inlinecode">=</span> <span class="inlinecode"><span class="id" type="var">m</span></span>
+    的“证据”时，我们就能运用这一定理并得到<span class="inlinecode"><span class="id" type="var">n</span></span> <span class="inlinecode">+</span> <span class="inlinecode"><span class="id" type="var">n</span></span> <span class="inlinecode">=</span> <span class="inlinecode"><span class="id" type="var">m</span></span> <span class="inlinecode">+</span> <span class="inlinecode"><span class="id" type="var">m</span></span>。 
 <div class="paragraph"> </div>
 
- Intuitively, this makes sense because the statement of a theorem
-    tells us what we can use that theorem for, just as the type of a
-    computational object tells us what we can do with that object &mdash;
-    e.g., if we have a term of type <span class="inlinecode"><span class="id" type="var">nat</span></span> <span class="inlinecode"><span style="font-family: arial;">&rarr;</span></span> <span class="inlinecode"><span class="id" type="var">nat</span></span> <span class="inlinecode"><span style="font-family: arial;">&rarr;</span></span> <span class="inlinecode"><span class="id" type="var">nat</span></span>, we can give
-    it two <span class="inlinecode"><span class="id" type="var">nat</span></span>s as arguments and get a <span class="inlinecode"><span class="id" type="var">nat</span></span> back.  Similarly, if we
-    have an object of type <span class="inlinecode"><span class="id" type="var">n</span></span> <span class="inlinecode">=</span> <span class="inlinecode"><span class="id" type="var">m</span></span> <span class="inlinecode"><span style="font-family: arial;">&rarr;</span></span> <span class="inlinecode"><span class="id" type="var">n</span></span> <span class="inlinecode">+</span> <span class="inlinecode"><span class="id" type="var">n</span></span> <span class="inlinecode">=</span> <span class="inlinecode"><span class="id" type="var">m</span></span> <span class="inlinecode">+</span> <span class="inlinecode"><span class="id" type="var">m</span></span> and we provide it
-    an "argument" of type <span class="inlinecode"><span class="id" type="var">n</span></span> <span class="inlinecode">=</span> <span class="inlinecode"><span class="id" type="var">m</span></span>, we can derive <span class="inlinecode"><span class="id" type="var">n</span></span> <span class="inlinecode">+</span> <span class="inlinecode"><span class="id" type="var">n</span></span> <span class="inlinecode">=</span> <span class="inlinecode"><span class="id" type="var">m</span></span> <span class="inlinecode">+</span> <span class="inlinecode"><span class="id" type="var">m</span></span>. 
+
 <div class="paragraph"> </div>
 
- Operationally, this analogy goes even further: by applying a
-    theorem, as if it were a function, to hypotheses with matching
-    types, we can specialize its result without having to resort to
-    intermediate assertions.  For example, suppose we wanted to prove
-    the following result: 
+    就操作本身而言，我们能够将这种类比向前更推进一步：定理能被当作函数应用在有着正确类型的
+    假设上；这样我们在将其结论特殊化的时候就不需要向证明中插入断言。比如说，假设现在我们
+    想要证明如下的结果：
 </div>
 <div class="code code-tight">
 
@@ -1285,10 +1177,8 @@ Coq prints the <i>statement</i> of the <span class="inlinecode"><span class="id"
 </div>
 
 <div class="doc">
-It appears at first sight that we ought to be able to prove this
-    by rewriting with <span class="inlinecode"><span class="id" type="var">plus_comm</span></span> twice to make the two sides match.
-    The problem, however, is that the second <span class="inlinecode"><span class="id" type="tactic">rewrite</span></span> will undo the
-    effect of the first. 
+这个定理的证明初看上去十分简单，我们只要用<span class="inlinecode"><span class="id" type="var">plus_comm</span></span>做两次重写就行了；然而问题是，
+    第二次重写的效果会与第一次重写互相抵消：
 </div>
 <div class="code code-tight">
 
@@ -1302,10 +1192,8 @@ It appears at first sight that we ought to be able to prove this
 </div>
 
 <div class="doc">
-One simple way of fixing this problem, using only tools that we
-    already know, is to use <span class="inlinecode"><span class="id" type="tactic">assert</span></span> to derive a specialized version
-    of <span class="inlinecode"><span class="id" type="var">plus_comm</span></span> that can be used to rewrite exactly where we
-    want. 
+我们可以使用我们已经知道的工具通过这个简单的方法来解决这个问题：用<span class="inlinecode"><span class="id" type="tactic">assert</span></span>在中间插入被
+    实例化了的<span class="inlinecode"><span class="id" type="var">plus_comm</span></span>；这样我们就能够按照我们想要的方式进行重写： 
 </div>
 <div class="code code-tight">
 
@@ -1323,9 +1211,8 @@ One simple way of fixing this problem, using only tools that we
 </div>
 
 <div class="doc">
-A more elegant alternative is to apply <span class="inlinecode"><span class="id" type="var">plus_comm</span></span> directly to the
-    arguments we want to instantiate it with, in much the same way as
-    we apply a polymorphic function to a type argument. 
+    另外一个更为简洁优雅的方法是将<span class="inlinecode"><span class="id" type="var">plus_comm</span></span>直接应用在我们想要以之实例化的参数上，
+    就像我们将一个多态函数应用到某个类型时所做的那样： 
 </div>
 <div class="code code-tight">
 
@@ -1341,13 +1228,11 @@ A more elegant alternative is to apply <span class="inlinecode"><span class="id"
 </div>
 
 <div class="doc">
-You can "use theorems as functions" in this way with almost all
-    tactics that take a theorem name as an argument.  Note also that
-    theorem application uses the same inference mechanisms as function
-    application; thus, it is possible, for example, to supply
-    wildcards as arguments to be inferred, or to declare some
-    hypotheses to a theorem as implicit by default.  These features
-    are illustrated in the proof below. 
+对于几乎所有以定理作为其参数的证明策略，你都可以这么将一个定理作为函数应用到
+    某些参数上，并将得到的实例化的定理传给这些证明策略；注意，定理应用所使用的类
+    型推导机制跟函数应用的是同一种，所以就像对某个函数所做的那样，你可以将通配符
+    作为定理的参数，也可以将某些作为参数的前提定义为隐式参数。这些用法在以下的证
+    明中都能够看到：
 </div>
 <div class="code code-tight">
 
@@ -1365,49 +1250,40 @@ You can "use theorems as functions" in this way with almost all
 </div>
 
 <div class="doc">
-We will see many more examples of the idioms from this section in
-    later chapters. 
+在以后的章节中我们将会看到更多这方面的例子。
 </div>
 
 <div class="doc">
-<a name="lab185"></a><h1 class="section">Coq vs. Set Theory</h1>
+<a name="lab185"></a><h1 class="section">Coq vs. 集合论</h1>
 
 <div class="paragraph"> </div>
 
- Coq's logical core, the <i>Calculus of Inductive Constructions</i>,
-    differs in some important ways from other formal systems that are
-    used by mathematicians for writing down precise and rigorous
-    proofs.  For example, in the most popular foundation for
-    mainstream paper-and-pencil mathematics, Zermelo-Fraenkel Set
-    Theory (ZFC), a mathematical object can potentially be a member of
-    many different sets; a term in Coq's logic, on the other hand, is
-    a member of at most one type.  This difference often leads to
-    slightly different ways of capturing informal mathematical
-    concepts, but these are, by and large, quite natural and easy to
-    work with.  For example, instead of saying that a natural number
-    <span class="inlinecode"><span class="id" type="var">n</span></span> belongs to the set of even numbers, we would say in Coq that
-    <span class="inlinecode"><span class="id" type="var">ev</span></span> <span class="inlinecode"><span class="id" type="var">n</span></span> holds, where <span class="inlinecode"><span class="id" type="var">ev</span></span> <span class="inlinecode">:</span> <span class="inlinecode"><span class="id" type="var">nat</span></span> <span class="inlinecode"><span style="font-family: arial;">&rarr;</span></span> <span class="inlinecode"><span class="id" type="keyword">Prop</span></span> is a property describing
-    even numbers.
 
 <div class="paragraph"> </div>
 
-    However, there are some cases where translating standard
-    mathematical reasoning into Coq can be either cumbersome or
-    sometimes even impossible, unless we enrich the core logic with
-    additional axioms.  We conclude this chapter with a brief
-    discussion of some of the most significant differences between the
-    two worlds. 
+    Coq的核心，即被称作 <i>Calculus of Inductive Constructions</i> 的系统，在一些很重要的方面
+    与其他被数学家们用于写下精确而严谨的证明的形式系统不一样。例如在主流数学中使用最普遍
+    的策梅洛-弗兰克尔（Zermelo-Fraenkel）集合论：在这一形式系统中一个数学对象可以同时是许
+    多不同的集合的成员；而在Coq的逻辑中，一个项有且仅有一个类型。这些区别的存在使得人们
+    需要用稍微有些不同的方式去描述同一种非形式化的数学概念，但是这些都是十分自然且易于理
+    解使用的。比如说，在Coq中我们一般不会说某个自然数<span class="inlinecode"><span class="id" type="var">n</span></span>属于某个包含了全体偶数的集合；而
+    作为替代地, 我们会有（或定义）<span class="inlinecode"><span class="id" type="var">ev</span></span> <span class="inlinecode">:</span> <span class="inlinecode"><span class="id" type="var">nat</span></span> <span class="inlinecode"><span style="font-family: arial;">&rarr;</span></span> <span class="inlinecode"><span class="id" type="keyword">Prop</span></span>这种描述了全体偶数的性质，然后说<span class="inlinecode"><span class="id" type="var">ev</span></span> <span class="inlinecode"><span class="id" type="var">n</span></span>
+    这一命题为真。
+    然而也存在着对于某些数学概念/论证而言不为核心的逻辑系统引入新的公理就难以进行
+    描述甚至是无法描述的的情况。我们将以对两个世界之间的一些最显著的差别的讨论作为
+    这一章节的结束。 
 <div class="paragraph"> </div>
 
-<a name="lab186"></a><h2 class="section">Functional Extensionality</h2>
+<a name="lab186"></a><h2 class="section">函数外延性</h2>
 
 <div class="paragraph"> </div>
 
- The equality assertions that we have seen so far mostly have
-    concerned elements of inductive types (<span class="inlinecode"><span class="id" type="var">nat</span></span>, <span class="inlinecode"><span class="id" type="var">bool</span></span>, etc.).  But
-    since Coq's equality operator is polymorphic, these are not the
-    only possibilities &mdash; in particular, we can write propositions
-    claiming that two <i>functions</i> are equal to each other: 
+
+<div class="paragraph"> </div>
+
+    目前为止我们所看见的有关相等性的断言基本上都只是有关归纳类型（例如<span class="inlinecode"><span class="id" type="var">nat</span></span>和
+    <span class="inlinecode"><span class="id" type="var">bool</span></span>，诸如此类），但是由于Coq的相等操作符是多态的，这些并不是唯一能够有
+    相等性命题的类型——举例而言，我们能够写出声明了 <i>'两个函数相等'</i> 的命题：
 </div>
 <div class="code code-tight">
 
@@ -1422,8 +1298,8 @@ We will see many more examples of the idioms from this section in
 </div>
 
 <div class="doc">
-In common mathematical practice, two functions <span class="inlinecode"><span class="id" type="var">f</span></span> and <span class="inlinecode"><span class="id" type="var">g</span></span> are
-    considered equal if they produce the same outputs:
+在一般的数学研究中，对于任意的两个函数<span class="inlinecode"><span class="id" type="var">f</span></span>和<span class="inlinecode"><span class="id" type="var">g</span></span>，只要它们所产生的结果相等，
+    那么它们就会被认为相等：
 
 <div class="paragraph"> </div>
 
@@ -1432,20 +1308,11 @@ In common mathematical practice, two functions <span class="inlinecode"><span cl
 <div class="paragraph"> </div>
 
 </div>
-    This is known as the principle of <i>functional extensionality</i>.
-
-<div class="paragraph"> </div>
-
-    Informally speaking, an "extensional property" is one that
-    pertains to an object's observable behavior.  Thus, functional
-    extensionality simply means that a function's identity is
-    completely determined by what we can observe from it &mdash; i.e., in
-    Coq terms, the results we obtain after applying it.
-
-<div class="paragraph"> </div>
-
-    Functional extensionality is not part of Coq's basic axioms.  This
-    means that some "reasonable" propositions are not provable. 
+    这被称作 <i>'函数外延性'</i> 原理。
+    不甚严谨地说，所谓“外延性”指的是某个对象的可观察的行为；因此函数外延性指
+    的就是某个函数的身份完全由其行为，（用Coq的术语来说）也就是由我们将其应用于
+    参数上之后所能得到的结果确定。
+    函数外延性并不在Coq的基本公理之内；因此某些“应该为真”的命题是不能被证明的：
 </div>
 <div class="code code-tight">
 
@@ -1453,13 +1320,12 @@ In common mathematical practice, two functions <span class="inlinecode"><span cl
 <span class="id" type="keyword">Example</span> <span class="id" type="var">function_equality_ex<sub>2</sub></span> :<br/>
 &nbsp;&nbsp;(<span class="id" type="keyword">fun</span> <span class="id" type="var">x</span> ⇒ <span class="id" type="var">plus</span> <span class="id" type="var">x</span> 1) = (<span class="id" type="keyword">fun</span> <span class="id" type="var">x</span> ⇒ <span class="id" type="var">plus</span> 1 <span class="id" type="var">x</span>).<br/>
 <span class="id" type="keyword">Proof</span>.<br/>
-&nbsp;&nbsp;&nbsp;<span class="comment">(*&nbsp;Stuck&nbsp;*)</span><br/>
+&nbsp;&nbsp;&nbsp;<span class="comment">(*&nbsp;卡住了&nbsp;*)</span><br/>
 <span class="id" type="keyword">Abort</span>.<br/>
 </div>
 
 <div class="doc">
-However, we can add functional extensionality to Coq's core logic
-    using the <span class="inlinecode"><span class="id" type="keyword">Axiom</span></span> command. 
+但是我们能用<span class="inlinecode"><span class="id" type="keyword">Axiom</span></span>这一命令将函数外延性添加到Coq的核心逻辑系统之中： 
 </div>
 <div class="code code-tight">
 
@@ -1470,14 +1336,9 @@ However, we can add functional extensionality to Coq's core logic
 </div>
 
 <div class="doc">
-Using <span class="inlinecode"><span class="id" type="keyword">Axiom</span></span> has the same effect as stating a theorem and
-    skipping its proof using <span class="inlinecode"><span class="id" type="var">Admitted</span></span>, but it alerts the reader that
-    this isn't just something we're going to come back and fill in
-    later!
-
-<div class="paragraph"> </div>
-
-    We can now invoke functional extensionality in proofs: 
+<span class="inlinecode"><span class="id" type="keyword">Axiom</span></span>的效果与定义一个定理然后用<span class="inlinecode"><span class="id" type="var">Admitted</span></span>跳过证明部分相同，但是它会提示我们
+    这是一个公理：我们不需要为其加上证明。
+    现在我们能够在证明中使用函数外延性了： 
 </div>
 <div class="code code-tight">
 
@@ -1491,25 +1352,12 @@ Using <span class="inlinecode"><span class="id" type="keyword">Axiom</span></spa
 </div>
 
 <div class="doc">
-Naturally, we must be careful when adding new axioms into Coq's
-    logic, as they may render it <i>inconsistent</i> &mdash; that is, they may
-    make it possible to prove every proposition, including <span class="inlinecode"><span class="id" type="var">False</span></span>!
-
-<div class="paragraph"> </div>
-
-    Unfortunately, there is no simple way of telling whether an axiom
-    is safe to add: hard work is generally required to establish the
-    consistency of any particular combination of axioms.
-
-<div class="paragraph"> </div>
-
-    However, it is known that adding functional extensionality, in
-    particular, <i>is</i> consistent.
-
-<div class="paragraph"> </div>
-
-    To check whether a particular proof relies on any additional
-    axioms, use the <span class="inlinecode"><span class="id" type="keyword">Print</span></span> <span class="inlinecode"><span class="id" type="var">Assumptions</span></span> command.  
+当然，在为Coq增添新的公理的时候我们必须十分小心，因为新增添的公理可能会与
+    现有的公理导致整体的 <i>'不一致'</i> ；而当系统不一致的时候，任何命题都能够被证明为真，
+    包括<span class="inlinecode"><span class="id" type="var">False</span></span>。但不幸的是，并没有什么简单的能够判断某条公理会不会与现有的公理
+    产生不一致的方法：一般而言，确认某一组公理的一致性都需要付出艰辛的努力；然
+    而我们已经知道，添加函数外延性并不会导致这种不一致。
+    我们可以用<span class="inlinecode"><span class="id" type="keyword">Print</span></span> <span class="inlinecode"><span class="id" type="var">Assumptions</span></span>查看某个证明所依赖的所有附加公理。 
 </div>
 <div class="code code-tight">
 
@@ -1524,11 +1372,9 @@ Naturally, we must be careful when adding new axioms into Coq's
 
 <div class="doc">
 <a name="lab187"></a><h4 class="section">Exercise: 4 stars (tr_rev)</h4>
- One problem with the definition of the list-reversing function
-    <span class="inlinecode"><span class="id" type="var">rev</span></span> that we have is that it performs a call to <span class="inlinecode"><span class="id" type="var">app</span></span> on each
-    step; running <span class="inlinecode"><span class="id" type="var">app</span></span> takes time asymptotically linear in the size
-    of the list, which means that <span class="inlinecode"><span class="id" type="var">rev</span></span> has quadratic running time.
-    We can improve this with the following definition: 
+ 对于<span class="inlinecode"><span class="id" type="var">rev</span></span>的定义我们有一个问题：在<span class="inlinecode"><span class="id" type="var">rev</span></span>的每一步都会执行一次对<span class="inlinecode"><span class="id" type="var">app</span></span>的调用，
+    而一次<span class="inlinecode"><span class="id" type="var">app</span></span>调用所需要的时间大致上与列表的长度成正比。也就是说，<span class="inlinecode"><span class="id" type="var">rev</span></span>有着
+    与列表长度成平方关系的时间复杂度。我们能够用下面的定义来对这个问题作出改进： 
 </div>
 <div class="code code-tight">
 
@@ -1543,11 +1389,9 @@ Naturally, we must be careful when adding new axioms into Coq's
 </div>
 
 <div class="doc">
-This version is said to be <i>tail-recursive</i>, because the recursive
-    call to the function is the last operation that needs to be
-    performed (i.e., we don't have to execute <span class="inlinecode">++</span> after the recursive
-    call); a decent compiler will generate very efficient code in this
-    case.  Prove that the two definitions are indeed equivalent. 
+这个定义被称作是 <i>'尾递归的'</i> ，因为对函数自身的递归调用是所需进行的操作中的
+    最后一个（也就是说在递归调用之后我们并不进行<span class="inlinecode">++</span>）。一个足够好的编译器会针对
+    这样的源码生成非常高效的目标代码。证明这两个定义等价。 
 </div>
 <div class="code code-tight">
 
@@ -1560,36 +1404,25 @@ This version is said to be <i>tail-recursive</i>, because the recursive
 <div class="doc less-space">
 <div class="paragraph"> </div>
 
-<a name="lab188"></a><h2 class="section">Propositions and Booleans</h2>
+<a name="lab188"></a><h2 class="section">命题与布尔代数</h2>
 
 <div class="paragraph"> </div>
 
- We've seen two different ways of encoding logical facts in Coq:
-    with <i>booleans</i> (of type <span class="inlinecode"><span class="id" type="var">bool</span></span>), and with <i>propositions</i> (of type
-    <span class="inlinecode"><span class="id" type="keyword">Prop</span></span>).
-
-<div class="paragraph"> </div>
-
-    For instance, to claim that a number <span class="inlinecode"><span class="id" type="var">n</span></span> is even, we can say
-    either
+ 我们已经知道在Coq中有两种不同的描述逻辑事实的方式：布尔表达式（类型为<span class="inlinecode"><span class="id" type="var">bool</span></span>的值）
+    和命题（类型为<span class="inlinecode"><span class="id" type="keyword">Prop</span></span>的值）。举例而言，我们能够通过以下两种方式声明某个数字<span class="inlinecode"><span class="id" type="var">n</span></span>为偶数：
 
 <div class="paragraph"> </div>
 
 <ul class="doclist">
-<li> (1) that <span class="inlinecode"><span class="id" type="var">evenb</span></span> <span class="inlinecode"><span class="id" type="var">n</span></span> returns <span class="inlinecode"><span class="id" type="var">true</span></span>, or
+<li> (1) <span class="inlinecode"><span class="id" type="var">evenb</span></span> <span class="inlinecode"><span class="id" type="var">n</span></span>返回<span class="inlinecode"><span class="id" type="var">true</span></span>；
 
 </li>
-<li> (2) that there exists some <span class="inlinecode"><span class="id" type="var">k</span></span> such that <span class="inlinecode"><span class="id" type="var">n</span></span> <span class="inlinecode">=</span> <span class="inlinecode"><span class="id" type="var">double</span></span> <span class="inlinecode"><span class="id" type="var">k</span></span>.
-             Indeed, these two notions of evenness are equivalent, as
-             can easily be shown with a couple of auxiliary lemmas.
+<li> (2) 或者存在某些使得<span class="inlinecode"><span class="id" type="var">n</span></span> <span class="inlinecode">=</span> <span class="inlinecode"><span class="id" type="var">double</span></span> <span class="inlinecode"><span class="id" type="var">k</span></span>的数字<span class="inlinecode"><span class="id" type="var">k</span></span>。
 
 </li>
 </ul>
-
-<div class="paragraph"> </div>
-
-    We often say that the boolean <span class="inlinecode"><span class="id" type="var">evenb</span></span> <span class="inlinecode"><span class="id" type="var">n</span></span> <i>reflects</i> the proposition
-    <span class="inlinecode"><span style="font-family: arial;">&exist;</span></span> <span class="inlinecode"><span class="id" type="var">k</span>,</span> <span class="inlinecode"><span class="id" type="var">n</span></span> <span class="inlinecode">=</span> <span class="inlinecode"><span class="id" type="var">double</span></span> <span class="inlinecode"><span class="id" type="var">k</span></span>.  
+      这两个对“偶数性”的定义确实是等价的；我们能够证明一些辅助用的引理来证明这一点。
+    我们一般说<span class="inlinecode"><span class="id" type="var">evenb</span></span> <span class="inlinecode"><span class="id" type="var">n</span></span>这一布尔值 <i>'反映'</i> 了命题<span class="inlinecode"><span style="font-family: arial;">&exist;</span></span> <span class="inlinecode"><span class="id" type="var">k</span>,</span> <span class="inlinecode"><span class="id" type="var">n</span></span> <span class="inlinecode">=</span> <span class="inlinecode"><span class="id" type="var">double</span></span> <span class="inlinecode"><span class="id" type="var">k</span></span>。 
 </div>
 <div class="code code-tight">
 
@@ -1630,9 +1463,8 @@ This version is said to be <i>tail-recursive</i>, because the recursive
 </div>
 
 <div class="doc">
-Similarly, to state that two numbers <span class="inlinecode"><span class="id" type="var">n</span></span> and <span class="inlinecode"><span class="id" type="var">m</span></span> are equal, we can
-    say either (1) that <span class="inlinecode"><span class="id" type="var">beq_nat</span></span> <span class="inlinecode"><span class="id" type="var">n</span></span> <span class="inlinecode"><span class="id" type="var">m</span></span> returns <span class="inlinecode"><span class="id" type="var">true</span></span> or (2) that <span class="inlinecode"><span class="id" type="var">n</span></span> <span class="inlinecode">=</span>
-    <span class="inlinecode"><span class="id" type="var">m</span></span>.  These two notions are equivalent. 
+类似地，我们可以用类似的两种方式声明任意的两个数字<span class="inlinecode"><span class="id" type="var">n</span></span>和<span class="inlinecode"><span class="id" type="var">m</span></span>的相等性：(1)
+    <span class="inlinecode"><span class="id" type="var">beq_nat</span></span> <span class="inlinecode"><span class="id" type="var">n</span></span> <span class="inlinecode"><span class="id" type="var">m</span></span>返回<span class="inlinecode"><span class="id" type="var">true</span></span>，以及(2)<span class="inlinecode"><span class="id" type="var">n</span></span> <span class="inlinecode">=</span> <span class="inlinecode"><span class="id" type="var">m</span></span>。这两种方式也是等价的。 
 </div>
 <div class="code code-tight">
 
@@ -1647,31 +1479,17 @@ Similarly, to state that two numbers <span class="inlinecode"><span class="id" t
 </div>
 
 <div class="doc">
-However, while the boolean and propositional formulations of a
-    claim are equivalent from a purely logical perspective, they need
-    not be equivalent <i>operationally</i>.  Equality provides an extreme
-    example: knowing that <span class="inlinecode"><span class="id" type="var">beq_nat</span></span> <span class="inlinecode"><span class="id" type="var">n</span></span> <span class="inlinecode"><span class="id" type="var">m</span></span> <span class="inlinecode">=</span> <span class="inlinecode"><span class="id" type="var">true</span></span> is generally of little
-    direct help in the middle of a proof involving <span class="inlinecode"><span class="id" type="var">n</span></span> and <span class="inlinecode"><span class="id" type="var">m</span></span>;
-    however, if we convert the statement to the equivalent form <span class="inlinecode"><span class="id" type="var">n</span></span> <span class="inlinecode">=</span>
-    <span class="inlinecode"><span class="id" type="var">m</span></span>, we can rewrite with it.
-
-<div class="paragraph"> </div>
-
-    The case of even numbers is also interesting.  Recall that,
-    when proving the backwards direction of <span class="inlinecode"><span class="id" type="var">even_bool_prop</span></span> (i.e.,
-    <span class="inlinecode"><span class="id" type="var">evenb_double</span></span>, going from the propositional to the boolean
-    claim), we used a simple induction on <span class="inlinecode"><span class="id" type="var">k</span></span>.  On the other hand, the
-    converse (the <span class="inlinecode"><span class="id" type="var">evenb_double_conv</span></span> exercise) required a clever
-    generalization, since we can't directly prove <span class="inlinecode">(<span style="font-family: arial;">&exist;</span></span> <span class="inlinecode"><span class="id" type="var">k</span>,</span> <span class="inlinecode"><span class="id" type="var">n</span></span> <span class="inlinecode">=</span>
-    <span class="inlinecode"><span class="id" type="var">double</span></span> <span class="inlinecode"><span class="id" type="var">k</span>)</span> <span class="inlinecode"><span style="font-family: arial;">&rarr;</span></span> <span class="inlinecode"><span class="id" type="var">evenb</span></span> <span class="inlinecode"><span class="id" type="var">n</span></span> <span class="inlinecode">=</span> <span class="inlinecode"><span class="id" type="var">true</span></span>.
-
-<div class="paragraph"> </div>
-
-    For these examples, the propositional claims are more useful than
-    their boolean counterparts, but this is not always the case.  For
-    instance, we cannot test whether a general proposition is true or
-    not in a function definition; as a consequence, the following code
-    fragment is rejected: 
+然而，即使就逻辑上而言这两种表达方式是等价的，在进行具体的操作时它们也是不一样的。
+    相等性就是这种例子之中较为极端的一个：<span class="inlinecode"><span class="id" type="var">beq_nat</span></span> <span class="inlinecode"><span class="id" type="var">n</span></span> <span class="inlinecode"><span class="id" type="var">m</span></span> <span class="inlinecode">=</span> <span class="inlinecode"><span class="id" type="var">true</span></span>这一假设对于有关<span class="inlinecode"><span class="id" type="var">n</span></span>和<span class="inlinecode"><span class="id" type="var">m</span></span>的
+    命题的证明而言几乎没有帮助，但是如果我们将这一假设变换为<span class="inlinecode"><span class="id" type="var">n</span></span> <span class="inlinecode">=</span> <span class="inlinecode"><span class="id" type="var">m</span></span>这一等价的形式，我们就
+    能够将其用于重写。
+    偶数性也是一个比较有意思的例子。回想一下，在我们证明<span class="inlinecode"><span class="id" type="var">even_bool_prop</span></span>的反方向部分
+    （即<span class="inlinecode"><span class="id" type="var">evenb_double</span></span>，从命题到布尔表达式的方向）的时候，我们只是简单地对<span class="inlinecode"><span class="id" type="var">k</span></span>使用了
+    归纳法；而证明另一个方向（即<span class="inlinecode"><span class="id" type="var">evenb_double_conv</span></span>这一练习）的命题则需要某种十分聪明
+    的对命题进行一般化的手段，因为我们不能直接证明<span class="inlinecode">(<span style="font-family: arial;">&exist;</span></span> <span class="inlinecode"><span class="id" type="var">k</span>,</span> <span class="inlinecode"><span class="id" type="var">n</span></span> <span class="inlinecode">=</span> <span class="inlinecode"><span class="id" type="var">double</span></span> <span class="inlinecode"><span class="id" type="var">k</span>)</span> <span class="inlinecode"><span style="font-family: arial;">&rarr;</span></span> <span class="inlinecode"><span class="id" type="var">evenb</span></span> <span class="inlinecode">=</span> <span class="inlinecode"><span class="id" type="var">true</span></span>。
+    对这些例子而言，命题性的声明比起它们所对应的布尔表达式而言要更为有用；但并不是
+    在任何情况下都是如此。比如说，在函数的定义里我们不能检查某个任意的命题是否为真；
+    因此这段代码是不被接受的： 
 </div>
 <div class="code code-tight">
 
@@ -1682,36 +1500,21 @@ However, while the boolean and propositional formulations of a
 </div>
 
 <div class="doc">
-Coq complains that <span class="inlinecode"><span class="id" type="var">n</span></span> <span class="inlinecode">=</span> <span class="inlinecode">2</span> has type <span class="inlinecode"><span class="id" type="keyword">Prop</span></span>, while it expects an
-    elements of <span class="inlinecode"><span class="id" type="var">bool</span></span> (or some other inductive type with two
-    elements).  The reason for this error message has to do with the
-    <i>computational</i> nature of Coq's core language, which is designed
-    so that every function that it can express is computable and
-    total.  One reason for this is to allow the extraction of
-    executable programs from Coq developments.  As a consequence,
-    <span class="inlinecode"><span class="id" type="keyword">Prop</span></span> in Coq does <i>not</i> have a universal case analysis operation
-    telling whether any given proposition is true or false, since such
-    an operation would allow us to write non-computable functions.
+    Coq会拒绝接受这段代码并给出「<span class="inlinecode"><span class="id" type="var">n</span></span> <span class="inlinecode">=</span> <span class="inlinecode">2</span>的类型为<span class="inlinecode"><span class="id" type="keyword">Prop</span></span>」这样的错误信息，因为它想要的
+    是一个<span class="inlinecode"><span class="id" type="var">bool</span></span>（或其他的有两个元素的归纳类型）。出现这条错误信息的原因跟Coq的核心语言
+    有关：其 <i>'计算性'</i> 的特性使得它只能表达可计算的全函数。这么做的原因之一是为了能够
+    从使用Coq开发的代码中抽取可以执行的程序。因此在Coq中 <i>'并没有'</i> 某种通用的判断任意
+    <span class="inlinecode"><span class="id" type="keyword">Prop</span></span>是否为真的按类分析操作：一旦存在这种操作，我们就能够用它来写出不可计算的函数。
 
 <div class="paragraph"> </div>
 
-    Although general non-computable properties cannot be phrased as
-    boolean computations, it is worth noting that even many
-    <i>computable</i> properties are easier to express using <span class="inlinecode"><span class="id" type="keyword">Prop</span></span> than
-    <span class="inlinecode"><span class="id" type="var">bool</span></span>, since recursive function definitions are subject to
-    significant restrictions in Coq.  For instance, the next chapter
-    shows how to define the property that a regular expression matches
-    a given string using <span class="inlinecode"><span class="id" type="keyword">Prop</span></span>.  Doing the same with <span class="inlinecode"><span class="id" type="var">bool</span></span> would
-    amount to writing a regular expression matcher, which would be
-    more complicated, harder to understand, and harder to reason
-    about.
-
-<div class="paragraph"> </div>
-
-    Conversely, an important side benefit of stating facts using
-    booleans is enabling some proof automation through computation
-    with Coq terms, a technique known as <i>proof by
-    reflection</i>.  Consider the following statement: 
+    即使一般的不可计算的函数不能被表示为布尔代数中的运算，我们也应该知道即使是对于 <i>'可计算的'</i> 
+    性质而言也存在着使用<span class="inlinecode"><span class="id" type="keyword">Prop</span></span>会比<span class="inlinecode"><span class="id" type="var">bool</span></span>方便的场合，因为递归函数定义受限于Coq对于相关内容的限制。
+    比如说，下一章将会讲述如何使用<span class="inlinecode"><span class="id" type="keyword">Prop</span></span>定义「某个正则表达式可以匹配某个给出的字符串」这一性质；
+    如果使用<span class="inlinecode"><span class="id" type="var">bool</span></span>，那么就会需要真的写一个正则表达式的匹配器：这么做会更加复杂，更加难以理解，同时
+    也更加难以对相关的内容进行推理和证明。
+    相反的，使用布尔值会带来一个重要的好处：通过对Coq中的项进行计算能够实现一些证明的自动化。这一
+    技巧被称作<i>proof by reflection_。考虑下面的例子： 
 </div>
 <div class="code code-tight">
 
@@ -1720,8 +1523,7 @@ Coq complains that <span class="inlinecode"><span class="id" type="var">n</span>
 </div>
 
 <div class="doc">
-The most direct proof of this fact is to give the value of <span class="inlinecode"><span class="id" type="var">k</span></span>
-    explicitly. 
+对于这个命题而言，最为直接的证明方式是直接给出<span class="inlinecode"><span class="id" type="var">k</span></span>的值。 
 </div>
 <div class="code code-tight">
 
@@ -1730,8 +1532,7 @@ The most direct proof of this fact is to give the value of <span class="inlineco
 </div>
 
 <div class="doc">
-On the other hand, the proof of the corresponding boolean
-    statement is even simpler: 
+而与它对应的使用了布尔值的声明的证明则要更加简单些： 
 </div>
 <div class="code code-tight">
 
@@ -1741,9 +1542,8 @@ On the other hand, the proof of the corresponding boolean
 </div>
 
 <div class="doc">
-What is interesting is that, since the two notions are equivalent,
-    we can use the boolean formulation to prove the other one without
-    mentioning the value 500 explicitly: 
+有趣的是，因为这两种定义是等价的，我们能够不显式地指出500这个值而用相对应的布尔值
+    方程式去完成它的对应物的证明： 
 </div>
 <div class="code code-tight">
 
@@ -1753,19 +1553,15 @@ What is interesting is that, since the two notions are equivalent,
 </div>
 
 <div class="doc">
-Although we haven't gained much in terms of proof size in this
-    case, larger proofs can often be made considerably simpler by the
-    use of reflection.  As an extreme example, the Coq proof of the
-    famous <i>4-color theorem</i> uses reflection to reduce the analysis of
-    hundreds of different cases to a boolean computation.  We won't
-    cover reflection in great detail, but it serves as a good example
-    showing the complementary strengths of booleans and general
-    propositions. 
+    虽然在这个例子中证明的长度并没有因此而缩减多少，但是对于更加大型的证明我们一般都
+    可以用反射技巧让它们变得更小。一个比较极端的例子是，在用Coq证明著名的 <i>'四色定理'</i> 
+    时人们使用了反射技巧将对几百种不同的情况的分析工作缩减成一个对布尔值的计算。我们
+    不会详细地讲解反射技巧，但是对于展示布尔值计算和一般命题的互补的优势而言，它是个
+    很好的例子。 
 <div class="paragraph"> </div>
 
 <a name="lab190"></a><h4 class="section">Exercise: 2 stars (logical_connectives)</h4>
- The following lemmas relate the propositional connectives studied
-    in this chapter to the corresponding boolean operations. 
+ 下述引理将在这一章中进行了讨论的命题性的连接符跟相对应的布尔运算操作联系了起来。
 </div>
 <div class="code code-tight">
 
@@ -1785,9 +1581,8 @@ Although we haven't gained much in terms of proof size in this
 <div class="paragraph"> </div>
 
 <a name="lab191"></a><h4 class="section">Exercise: 1 star (beq_nat_false_iff)</h4>
- The following theorem is an alternate "negative" formulation of
-    <span class="inlinecode"><span class="id" type="var">beq_nat_true_iff</span></span> that is more convenient in certain
-    situations (we'll see examples in later chapters). 
+ 下述引理是命题<span class="inlinecode"><span class="id" type="var">beq_nat_true_iff</span></span>的“非”版本；在某些情况下这一引理会使事情变得
+    更为方便些。（在以后的章节中我们将会看到更多这方面的例子） 
 </div>
 <div class="code code-tight">
 
@@ -1803,11 +1598,9 @@ Although we haven't gained much in terms of proof size in this
 <div class="paragraph"> </div>
 
 <a name="lab192"></a><h4 class="section">Exercise: 3 stars (beq_list)</h4>
- Given a boolean operator <span class="inlinecode"><span class="id" type="var">beq</span></span> for testing equality of elements of
-    some type <span class="inlinecode"><span class="id" type="var">A</span></span>, we can define a function <span class="inlinecode"><span class="id" type="var">beq_list</span></span> <span class="inlinecode"><span class="id" type="var">beq</span></span> for testing
-    equality of lists with elements in <span class="inlinecode"><span class="id" type="var">A</span></span>.  Complete the definition
-    of the <span class="inlinecode"><span class="id" type="var">beq_list</span></span> function below.  To make sure that your
-    definition is correct, prove the lemma <span class="inlinecode"><span class="id" type="var">beq_list_true_iff</span></span>. 
+ 给定一个用于确定类型为<span class="inlinecode"><span class="id" type="var">A</span></span>的值之间的相等性的布尔操作符<span class="inlinecode"><span class="id" type="var">beq</span></span>，我们能够定义
+    可以检测两个包含类型为<span class="inlinecode"><span class="id" type="var">A</span></span>的值的列表是否相等的函数<span class="inlinecode"><span class="id" type="var">beq_list</span></span> <span class="inlinecode"><span class="id" type="var">beq</span></span>。完成下面
+    <span class="inlinecode"><span class="id" type="var">beq_list</span></span>的定义。证明<span class="inlinecode"><span class="id" type="var">beq_list_true_iff</span></span>这一引理以确认你的定义是正确的。 
 </div>
 <div class="code code-tight">
 
@@ -1828,8 +1621,7 @@ Although we haven't gained much in terms of proof size in this
 <div class="paragraph"> </div>
 
 <a name="lab193"></a><h4 class="section">Exercise: 2 stars, recommended (All_forallb)</h4>
- Recall the function <span class="inlinecode"><span class="id" type="var">forallb</span></span>, from the exercise
-    <span class="inlinecode"><span class="id" type="var">forall_exists_challenge</span></span> in chapter <a href="Tactics.html"><span class="inlineref">Tactics</span></a>: 
+ 回忆一下在<a href="Tactics.html"><span class="inlineref">Tactics</span></a>一章中来自练习<span class="inlinecode"><span class="id" type="var">forall_exists_challenge</span></span>的函数<span class="inlinecode"><span class="id" type="var">forallb</span></span>： 
 </div>
 <div class="code code-tight">
 
@@ -1842,8 +1634,7 @@ Although we haven't gained much in terms of proof size in this
 </div>
 
 <div class="doc">
-Prove the theorem below, which relates <span class="inlinecode"><span class="id" type="var">forallb</span></span> to the <span class="inlinecode"><span class="id" type="var">All</span></span>
-    property of the above exercise. 
+证明下述将<span class="inlinecode"><span class="id" type="var">forallb</span></span>跟<span class="inlinecode"><span class="id" type="var">All</span></span>这一性质联系起来的定理。
 </div>
 <div class="code code-tight">
 
@@ -1855,8 +1646,7 @@ Prove the theorem below, which relates <span class="inlinecode"><span class="id"
 </div>
 
 <div class="doc">
-Are there any important properties of the function <span class="inlinecode"><span class="id" type="var">forallb</span></span> which
-    are not captured by this specification? 
+是否存在没有被这个规范描述包括的关于函数<span class="inlinecode"><span class="id" type="var">forallb</span></span>的性质？
 </div>
 <div class="code code-tight">
 
@@ -1868,15 +1658,16 @@ Are there any important properties of the function <span class="inlinecode"><spa
 <div class="doc less-space">
 <div class="paragraph"> </div>
 
-<a name="lab194"></a><h2 class="section">Classical vs. Constructive Logic</h2>
+<a name="lab194"></a><h2 class="section">经典逻辑 vs. 构造逻辑</h2>
 
 <div class="paragraph"> </div>
 
- We have seen that it is not possible to test whether or not a
-    proposition <span class="inlinecode"><span class="id" type="var">P</span></span> holds while defining a Coq function.  You may be
-    surprised to learn that a similar restriction applies to <i>proofs</i>!
-    In other words, the following intuitive reasoning principle is not
-    derivable in Coq: 
+
+<div class="paragraph"> </div>
+
+    我们已经知道，在定义一个Coq函数时我们没有办法判断某个命题<span class="inlinecode"><span class="id" type="var">P</span></span>是否为真；你或许会
+    对为此感到惊讶：对于 <i>'证明'</i> 而言也存在类似的限制！换句话说，下面的推理原则即使
+    符合直觉，但是在Coq中它是不可被证明的：
 </div>
 <div class="code code-tight">
 
@@ -1886,20 +1677,15 @@ Are there any important properties of the function <span class="inlinecode"><spa
 </div>
 
 <div class="doc">
-To understand operationally why this is the case, recall
-    that, to prove a statement of the form <span class="inlinecode"><span class="id" type="var">P</span></span> <span class="inlinecode"><span style="font-family: arial;">&or;</span></span> <span class="inlinecode"><span class="id" type="var">Q</span></span>, we use the <span class="inlinecode"><span class="id" type="var">left</span></span>
-    and <span class="inlinecode"><span class="id" type="var">right</span></span> tactics, which effectively require knowing which side
-    of the disjunction holds.  But the universally quantified <span class="inlinecode"><span class="id" type="var">P</span></span> in
-    <span class="inlinecode"><span class="id" type="var">excluded_middle</span></span> is an <i>arbitrary</i> proposition, which we know
-    nothing about.  We don't have enough information to choose which
-    of <span class="inlinecode"><span class="id" type="var">left</span></span> or <span class="inlinecode"><span class="id" type="var">right</span></span> to apply, just as Coq doesn't have enough
-    information to mechanically decide whether <span class="inlinecode"><span class="id" type="var">P</span></span> holds or not inside
-    a function. 
+    回想一下，在证明形如<span class="inlinecode"><span class="id" type="var">P</span></span> <span class="inlinecode"><span style="font-family: arial;">&or;</span></span> <span class="inlinecode"><span class="id" type="var">Q</span></span>的命题时，我们使用<span class="inlinecode"><span class="id" type="var">left</span></span>和<span class="inlinecode"><span class="id" type="var">right</span></span>这两个策略；为了使用
+    这两个策略证明这些命题，我们需要知道哪一边能够被证明为真。但是在<span class="inlinecode"><span class="id" type="var">excluded_middle</span></span>中，
+    <span class="inlinecode"><span class="id" type="var">P</span></span>是被全程量化的，它可以指代任意命题；因此我们对<span class="inlinecode"><span class="id" type="var">P</span></span>本身一无所知，所以我们也不能得到
+    足够让我们确定用<span class="inlinecode"><span class="id" type="var">left</span></span>还是<span class="inlinecode"><span class="id" type="var">right</span></span>的信息，就像Coq因为缺乏信息而不能在函数内部机械地确定
+    <span class="inlinecode"><span class="id" type="var">P</span></span>是否为真一样。 
 <div class="paragraph"> </div>
 
- However, if we happen to know that <span class="inlinecode"><span class="id" type="var">P</span></span> is reflected in some
-    boolean term <span class="inlinecode"><span class="id" type="var">b</span></span>, then knowing whether it holds or not is trivial:
-    we just have to check the value of <span class="inlinecode"><span class="id" type="var">b</span></span>. 
+ 然而，如果我们恰好知道<span class="inlinecode"><span class="id" type="var">P</span></span>被某个布尔项<span class="inlinecode"><span class="id" type="var">b</span></span>反射，那么我们就能很轻易地知道它究竟是否为真：
+    我们只要检测<span class="inlinecode"><span class="id" type="var">b</span></span>的值就可以了。 
 </div>
 <div class="code code-tight">
 
@@ -1914,8 +1700,7 @@ To understand operationally why this is the case, recall
 </div>
 
 <div class="doc">
-In particular, the excluded middle is valid for equations <span class="inlinecode"><span class="id" type="var">n</span></span> <span class="inlinecode">=</span> <span class="inlinecode"><span class="id" type="var">m</span></span>,
-    between natural numbers <span class="inlinecode"><span class="id" type="var">n</span></span> and <span class="inlinecode"><span class="id" type="var">m</span></span>. 
+特别地，对于关于自然数<span class="inlinecode"><span class="id" type="var">n</span></span>和<span class="inlinecode"><span class="id" type="var">m</span></span>的等式<span class="inlinecode"><span class="id" type="var">n</span></span> <span class="inlinecode">=</span> <span class="inlinecode"><span class="id" type="var">m</span></span>而言，排中律是成立的。
 </div>
 <div class="code code-tight">
 
@@ -1931,98 +1716,45 @@ In particular, the excluded middle is valid for equations <span class="inlinecod
 </div>
 
 <div class="doc">
-It may seem strange that the general excluded middle is not
-    available by default in Coq; after all, any given claim must be
-    either true or false.  Nonetheless, there is an advantage in not
-    assuming the excluded middle: statements in Coq can make stronger
-    claims than the analogous statements in standard mathematics.
-    Notably, if there is a Coq proof of <span class="inlinecode"><span style="font-family: arial;">&exist;</span></span> <span class="inlinecode"><span class="id" type="var">x</span>,</span> <span class="inlinecode"><span class="id" type="var">P</span></span> <span class="inlinecode"><span class="id" type="var">x</span></span>, it is
-    possible to explicitly exhibit a value of <span class="inlinecode"><span class="id" type="var">x</span></span> for which we can
-    prove <span class="inlinecode"><span class="id" type="var">P</span></span> <span class="inlinecode"><span class="id" type="var">x</span></span> &mdash; in other words, every proof of existence is
-    necessarily <i>constructive</i>. 
+    通用的排中律在Coq中并不是默认可以使用的；这一点看上去或许很奇怪，毕竟任何声明
+    肯定都是非真即假的。然而不假设排中律存在也有它的优势：Coq中的声明可以比在标准数学
+    中同样的声明更强。比如说，如果存在<span class="inlinecode"><span style="font-family: arial;">&exist;</span></span> <span class="inlinecode"><span class="id" type="var">x</span>,</span> <span class="inlinecode"><span class="id" type="var">P</span></span> <span class="inlinecode"><span class="id" type="var">x</span></span>的Coq证明，那么我们就能够直接
+    展示出能够让我们证明<span class="inlinecode"><span class="id" type="var">P</span></span> <span class="inlinecode"><span class="id" type="var">x</span></span>的<span class="inlinecode"><span class="id" type="var">x</span></span>的值；也就是说，任何关于存在性的证明一定都是 <i>'构造性'</i> 的。 
 <div class="paragraph"> </div>
 
- Logics like Coq's, which do not assume the excluded middle, are
-    referred to as <i>constructive logics</i>.
-
+ 像Coq一样不假设排中律的正确性的逻辑系统被称作 <i>'构造逻辑'</i> ；而更加常规的、排中律
+    对于任意命题都成立的逻辑系统（例如ZFC集合论）则被称作 <i>'经典逻辑'</i> 。 
 <div class="paragraph"> </div>
 
-    More conventional logical systems such as ZFC, in which the
-    excluded middle does hold for arbitrary propositions, are referred
-    to as <i>classical</i>. 
-<div class="paragraph"> </div>
-
- The following example illustrates why assuming the excluded middle
-    may lead to non-constructive proofs:
-
-<div class="paragraph"> </div>
-
-    <i>Claim</i>: There exist irrational numbers <span class="inlinecode"><span class="id" type="var">a</span></span> and <span class="inlinecode"><span class="id" type="var">b</span></span> such that <span class="inlinecode"><span class="id" type="var">a</span></span> <span class="inlinecode">^</span>
-    <span class="inlinecode"><span class="id" type="var">b</span></span> is rational.
-
-<div class="paragraph"> </div>
-
-    <i>Proof</i>: It is not difficult to show that <span class="inlinecode"><span class="id" type="var">sqrt</span></span> <span class="inlinecode">2</span> is irrational.
-    If <span class="inlinecode"><span class="id" type="var">sqrt</span></span> <span class="inlinecode">2</span> <span class="inlinecode">^</span> <span class="inlinecode"><span class="id" type="var">sqrt</span></span> <span class="inlinecode">2</span> is rational, it suffices to take <span class="inlinecode"><span class="id" type="var">a</span></span> <span class="inlinecode">=</span> <span class="inlinecode"><span class="id" type="var">b</span></span> <span class="inlinecode">=</span>
-    <span class="inlinecode"><span class="id" type="var">sqrt</span></span> <span class="inlinecode">2</span> and we are done.  Otherwise, <span class="inlinecode"><span class="id" type="var">sqrt</span></span> <span class="inlinecode">2</span> <span class="inlinecode">^</span> <span class="inlinecode"><span class="id" type="var">sqrt</span></span> <span class="inlinecode">2</span> is
-    irrational.  In this case, we can take <span class="inlinecode"><span class="id" type="var">a</span></span> <span class="inlinecode">=</span> <span class="inlinecode"><span class="id" type="var">sqrt</span></span> <span class="inlinecode">2</span> <span class="inlinecode">^</span> <span class="inlinecode"><span class="id" type="var">sqrt</span></span> <span class="inlinecode">2</span> and
-    <span class="inlinecode"><span class="id" type="var">b</span></span> <span class="inlinecode">=</span> <span class="inlinecode"><span class="id" type="var">sqrt</span></span> <span class="inlinecode">2</span>, since <span class="inlinecode"><span class="id" type="var">a</span></span> <span class="inlinecode">^</span> <span class="inlinecode"><span class="id" type="var">b</span></span> <span class="inlinecode">=</span> <span class="inlinecode"><span class="id" type="var">sqrt</span></span> <span class="inlinecode">2</span> <span class="inlinecode">^</span> <span class="inlinecode">(<span class="id" type="var">sqrt</span></span> <span class="inlinecode">2</span> <span class="inlinecode">*</span> <span class="inlinecode"><span class="id" type="var">sqrt</span></span> <span class="inlinecode">2)</span> <span class="inlinecode">=</span> <span class="inlinecode"><span class="id" type="var">sqrt</span></span> <span class="inlinecode">2</span> <span class="inlinecode">^</span>
-    <span class="inlinecode">2</span> <span class="inlinecode">=</span> <span class="inlinecode">2</span>.  <span class="proofbox">&#9744;</span>
-
-<div class="paragraph"> </div>
-
-    Do you see what happened here?  We used the excluded middle to
-    consider separately the cases where <span class="inlinecode"><span class="id" type="var">sqrt</span></span> <span class="inlinecode">2</span> <span class="inlinecode">^</span> <span class="inlinecode"><span class="id" type="var">sqrt</span></span> <span class="inlinecode">2</span> is rational
-    and where it is not, without knowing which one actually holds!
-    Because of that, we wind up knowing that such <span class="inlinecode"><span class="id" type="var">a</span></span> and <span class="inlinecode"><span class="id" type="var">b</span></span> exist
-    but we cannot determine what their actual values are (at least,
-    using this line of argument).
-
-<div class="paragraph"> </div>
-
-    As useful as constructive logic is, it does have its limitations:
-    There are many statements that can easily be proven in classical
-    logic but that have much more complicated constructive proofs, and
-    there are some that are known to have no constructive proof at
-    all!  Fortunately, like functional extensionality, the excluded
-    middle is known to be compatible with Coq's logic, allowing us to
-    add it safely as an axiom.  However, we will not need to do so in
-    this book: the results that we cover can be developed entirely
-    within constructive logic at negligible extra cost.
-
-<div class="paragraph"> </div>
-
-    It takes some practice to understand which proof techniques must
-    be avoided in constructive reasoning, but arguments by
-    contradiction, in particular, are infamous for leading to
-    non-constructive proofs.  Here's a typical example: suppose that
-    we want to show that there exists <span class="inlinecode"><span class="id" type="var">x</span></span> with some property <span class="inlinecode"><span class="id" type="var">P</span></span>,
-    i.e., such that <span class="inlinecode"><span class="id" type="var">P</span></span> <span class="inlinecode"><span class="id" type="var">x</span></span>.  We start by assuming that our conclusion
-    is false; that is, <span class="inlinecode">¬</span> <span class="inlinecode"><span style="font-family: arial;">&exist;</span></span> <span class="inlinecode"><span class="id" type="var">x</span>,</span> <span class="inlinecode"><span class="id" type="var">P</span></span> <span class="inlinecode"><span class="id" type="var">x</span></span>. From this premise, it is not
-    hard to derive <span class="inlinecode"><span style="font-family: arial;">&forall;</span></span> <span class="inlinecode"><span class="id" type="var">x</span>,</span> <span class="inlinecode">¬</span> <span class="inlinecode"><span class="id" type="var">P</span></span> <span class="inlinecode"><span class="id" type="var">x</span></span>.  If we manage to show that this
-    intermediate fact results in a contradiction, we arrive at an
-    existence proof without ever exhibiting a value of <span class="inlinecode"><span class="id" type="var">x</span></span> for which
-    <span class="inlinecode"><span class="id" type="var">P</span></span> <span class="inlinecode"><span class="id" type="var">x</span></span> holds!
-
-<div class="paragraph"> </div>
-
-    The technical flaw here, from a constructive standpoint, is that
-    we claimed to prove <span class="inlinecode"><span style="font-family: arial;">&exist;</span></span> <span class="inlinecode"><span class="id" type="var">x</span>,</span> <span class="inlinecode"><span class="id" type="var">P</span></span> <span class="inlinecode"><span class="id" type="var">x</span></span> using a proof of
-    <span class="inlinecode">¬</span> <span class="inlinecode">¬</span> <span class="inlinecode">(<span style="font-family: arial;">&exist;</span></span> <span class="inlinecode"><span class="id" type="var">x</span>,</span> <span class="inlinecode"><span class="id" type="var">P</span></span> <span class="inlinecode"><span class="id" type="var">x</span>)</span>.  Allowing ourselves to remove double
-    negations from arbitrary statements is equivalent to assuming the
-    excluded middle, as shown in one of the exercises below.  Thus,
-    this line of reasoning cannot be encoded in Coq without assuming
-    additional axioms. 
+ 下述例子展示了为什么假设排中律成立会导致非构造性的证明：
+    <i>'声明'</i> ：存在无理数<span class="inlinecode"><span class="id" type="var">a</span></span>和<span class="inlinecode"><span class="id" type="var">b</span></span>使得<span class="inlinecode"><span class="id" type="var">a</span></span> <span class="inlinecode">^</span> <span class="inlinecode"><span class="id" type="var">b</span></span>为有理数。
+    <i>'证明'</i> ：易知<span class="inlinecode"><span class="id" type="var">sqrt</span></span> <span class="inlinecode">2</span>为无理数。如果<span class="inlinecode"><span class="id" type="var">sqrt</span></span> <span class="inlinecode">2</span> <span class="inlinecode">^</span> <span class="inlinecode"><span class="id" type="var">sqrt</span></span> <span class="inlinecode">2</span>为有理数，那么可以取
+    <span class="inlinecode"><span class="id" type="var">a</span></span> <span class="inlinecode">=</span> <span class="inlinecode"><span class="id" type="var">b</span></span> <span class="inlinecode">=</span> <span class="inlinecode"><span class="id" type="var">sqrt</span></span> <span class="inlinecode">2</span>；如果<span class="inlinecode"><span class="id" type="var">sqrt</span></span> <span class="inlinecode">2</span> <span class="inlinecode">^</span> <span class="inlinecode"><span class="id" type="var">sqrt</span></span> <span class="inlinecode">2</span>为无理数，那么可以取<span class="inlinecode"><span class="id" type="var">a</span></span> <span class="inlinecode">=</span> <span class="inlinecode"><span class="id" type="var">sqrt</span></span> <span class="inlinecode">2</span> <span class="inlinecode">^</span> <span class="inlinecode"><span class="id" type="var">sqrt</span></span> <span class="inlinecode">2</span>和
+    <span class="inlinecode"><span class="id" type="var">b</span></span> <span class="inlinecode">=</span> <span class="inlinecode"><span class="id" type="var">sqrt</span></span> <span class="inlinecode">2</span>，因为<span class="inlinecode"><span class="id" type="var">a</span></span> <span class="inlinecode">^</span> <span class="inlinecode"><span class="id" type="var">b</span></span> <span class="inlinecode">=</span> <span class="inlinecode"><span class="id" type="var">sqrt</span></span> <span class="inlinecode">2</span> <span class="inlinecode">^</span> <span class="inlinecode">(<span class="id" type="var">sqrt</span></span> <span class="inlinecode">2</span> <span class="inlinecode">*</span> <span class="inlinecode"><span class="id" type="var">sqrt</span></span> <span class="inlinecode">2)</span> <span class="inlinecode">=</span> <span class="inlinecode"><span class="id" type="var">sqrt</span></span> <span class="inlinecode">2</span> <span class="inlinecode">^</span> <span class="inlinecode">2</span> <span class="inlinecode">=</span> <span class="inlinecode">2</span>。<span class="proofbox">&#9744;</span>
+    看得到在这个证明中发生了什么吗？我们在不知道<span class="inlinecode"><span class="id" type="var">sqrt</span></span> <span class="inlinecode">2</span> <span class="inlinecode">^</span> <span class="inlinecode"><span class="id" type="var">sqrt</span></span> <span class="inlinecode">2</span>是否为有理数的
+    情况下就使用了排中律将它分为两种不同的情况；因此在最后，我们知道这样的<span class="inlinecode"><span class="id" type="var">a</span></span>和<span class="inlinecode"><span class="id" type="var">b</span></span>
+    是存在的，但是我们并不能确定它们的值。
+    即使构造逻辑很有用，它也有它的限制：有很多在经典逻辑中能够轻易被证明的声明会有
+    更加复杂的构造性证明，而对于某些声明而言这样的证明甚至不存在。幸运的是，排中律
+    就像函数外延性一样与Coq的逻辑系统相兼容；我们可以安全地将其作为公理添加到Coq中。
+    但是在这本书中我们不需要这样做：这本书所覆盖的内容都可以使用构造逻辑得到，而且
+    因此所产生的额外的耗费都微不足道。
+    一般而言在意识到有哪些证明技巧不应该在进行构建性证明时使用之前都要经过一定的实践和
+    练习，但是在这些证明技巧之中反证法尤为臭名昭著，因为它的使用将会导向一个非构造性的
+    证明。这里是一个典型的例子：假设我们希望证明存在有着性质<span class="inlinecode"><span class="id" type="var">P</span></span>的某个<span class="inlinecode"><span class="id" type="var">x</span></span>，也就是说，
+    我们希望证明存在某个<span class="inlinecode"><span class="id" type="var">x</span></span>使得<span class="inlinecode"><span class="id" type="var">P</span></span> <span class="inlinecode"><span class="id" type="var">x</span></span>。我们先假设这个命题为假，即假设<span class="inlinecode">¬</span> <span class="inlinecode"><span style="font-family: arial;">&exist;</span></span> <span class="inlinecode"><span class="id" type="var">x</span>,</span> <span class="inlinecode"><span class="id" type="var">P</span></span> <span class="inlinecode"><span class="id" type="var">x</span></span>。
+    从这个假设中我们不用特别费劲就能得到<span class="inlinecode"><span style="font-family: arial;">&forall;</span></span> <span class="inlinecode"><span class="id" type="var">x</span>,</span> <span class="inlinecode">¬</span> <span class="inlinecode"><span class="id" type="var">P</span></span> <span class="inlinecode"><span class="id" type="var">x</span></span>。如果我们能够通过这个命题得到
+    矛盾，我们就能够得到一个对于存在性的证明，即使我们完全没有指出能够使<span class="inlinecode"><span class="id" type="var">P</span></span> <span class="inlinecode"><span class="id" type="var">x</span></span>成立的<span class="inlinecode"><span class="id" type="var">x</span></span>的值。
+    从构造性的角度来看，在这里存在着的技术上的瑕疵，是我们试图用<span class="inlinecode">¬</span> <span class="inlinecode">¬</span> <span class="inlinecode">(<span style="font-family: arial;">&exist;</span></span> <span class="inlinecode"><span class="id" type="var">x</span>,</span> <span class="inlinecode"><span class="id" type="var">P</span></span> <span class="inlinecode"><span class="id" type="var">x</span>)</span>的证明
+    去证明<span class="inlinecode"><span style="font-family: arial;">&exist;</span></span> <span class="inlinecode"><span class="id" type="var">x</span>,</span> <span class="inlinecode"><span class="id" type="var">P</span></span> <span class="inlinecode"><span class="id" type="var">x</span></span>。从下面的练习我们可以看到，允许自己从任意声明中去掉双重否定等价于
+    引入排中律。因此只要不引入这一额外的公理，我们就不能在Coq中写出这行证明。 
 <div class="paragraph"> </div>
 
 <a name="lab195"></a><h4 class="section">Exercise: 3 stars (excluded_middle_irrefutable)</h4>
- The consistency of Coq with the general excluded middle axiom
-    requires complicated reasoning that cannot be carried out within
-    Coq itself.  However, the following theorem implies that it is
-    always safe to assume a decidability axiom (i.e., an instance of
-    excluded middle) for any <i>particular</i> Prop <span class="inlinecode"><span class="id" type="var">P</span></span>.  Why? Because we
-    cannot prove the negation of such an axiom; if we could, we would
-    have both <span class="inlinecode">¬</span> <span class="inlinecode">(<span class="id" type="var">P</span></span> <span class="inlinecode"><span style="font-family: arial;">&or;</span></span> <span class="inlinecode">¬<span class="id" type="var">P</span>)</span> and <span class="inlinecode">¬</span> <span class="inlinecode">¬</span> <span class="inlinecode">(<span class="id" type="var">P</span></span> <span class="inlinecode"><span style="font-family: arial;">&or;</span></span> <span class="inlinecode">¬<span class="id" type="var">P</span>)</span>, a contradiction. 
+ 通用的排中律跟Coq之间的一致性的证明十分复杂而且并不能在Coq系统自身进行。然而，下述定理
+    说明了对于 <i>'任意指定的某个'</i> Prop <span class="inlinecode"><span class="id" type="var">P</span></span>而言，加入一个可判定公理（也就是一个排中律的特例）
+    都是安全的。之所以这样是因为我们不能证明这样的公理的否定命题；如果我们能够证明这样的命题，
+    那么我们就会同时有<span class="inlinecode">¬</span> <span class="inlinecode">(<span class="id" type="var">P</span></span> <span class="inlinecode"><span style="font-family: arial;">&or;</span></span> <span class="inlinecode">¬<span class="id" type="var">P</span>)</span>和<span class="inlinecode">¬</span> <span class="inlinecode">¬</span> <span class="inlinecode">(<span class="id" type="var">P</span></span> <span class="inlinecode"><span style="font-family: arial;">&or;</span></span> <span class="inlinecode">¬<span class="id" type="var">P</span>)</span>，而这将产生矛盾。
 </div>
 <div class="code code-tight">
 
@@ -2038,8 +1770,7 @@ It may seem strange that the general excluded middle is not
 <div class="paragraph"> </div>
 
 <a name="lab196"></a><h4 class="section">Exercise: 3 stars, advanced (not_exists_dist)</h4>
- It is a theorem of classical logic that the following two
-    assertions are equivalent:
+ 在经典逻辑中有这么一条定理；它声明下述两条假设是等价的：
 
 <div class="paragraph"> </div>
 
@@ -2049,10 +1780,8 @@ It may seem strange that the general excluded middle is not
 <div class="paragraph"> </div>
 
 </div>
-    The <span class="inlinecode"><span class="id" type="var">dist_not_exists</span></span> theorem above proves one side of this
-    equivalence. Interestingly, the other direction cannot be proved
-    in constructive logic. Your job is to show that it is implied by
-    the excluded middle. 
+    <span class="inlinecode"><span class="id" type="var">dist_not_exists</span></span>证明了这一等价性的其中一个方向。有趣的事是，在构造逻辑中我们
+    不能证明另外一个方向。你的任务就是证明这个方向的证明能够使用排中律得到。
 </div>
 <div class="code code-tight">
 
@@ -2070,17 +1799,11 @@ It may seem strange that the general excluded middle is not
 <div class="paragraph"> </div>
 
 <a name="lab197"></a><h4 class="section">Exercise: 5 stars, optional (classical_axioms)</h4>
- For those who like a challenge, here is an exercise taken from the
-    Coq'Art book by Bertot and Casteran (p. 123).  Each of the
-    following four statements, together with <span class="inlinecode"><span class="id" type="var">excluded_middle</span></span>, can be
-    considered as characterizing classical logic.  We can't prove any
-    of them in Coq, but we can consistently add any one of them as an
-    axiom if we wish to work in classical logic.
-
-<div class="paragraph"> </div>
-
-    Prove that all five propositions (these four plus
-    <span class="inlinecode"><span class="id" type="var">excluded_middle</span></span>) are equivalent. 
+ 对于那些喜欢挑战的人，这里是摘自Bertor和Casteran所著的Coq'Art这本书（第123页）的练习。
+    下述的四个句子，包括上面提到的<span class="inlinecode"><span class="id" type="var">excluded_middle</span></span>，都被认为描述了经典逻辑。在Coq中我们不能
+    证明它们，但是假如我们希望在经典逻辑下工作的话，我们可以安全地将其中任意一条作为公理添加
+    到Coq中。
+    证明这五个命题（以下四个以及<span class="inlinecode"><span class="id" type="var">excluded_middle</span></span>）互相等价。 
 </div>
 <div class="code code-tight">
 

@@ -4,7 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <link href="common/css/sf.css" rel="stylesheet" type="text/css"/>
-<title>ImpParser: Lexing and Parsing in Coq</title>
+<title>ImpParser: 用Coq做词法分析和语法分析</title>
 <link href="common/jquery-ui/jquery-ui.css" rel="stylesheet">
 <link href="common/css/logical_foundations.css" rel="stylesheet" type="text/css"/>
 <script src="common/jquery-ui/external/jquery/jquery.js"></script>
@@ -27,31 +27,26 @@
 
 <div id="main">
 
-<h1 class="libtitle">ImpParser<span class="subtitle">Lexing and Parsing in Coq</span></h1>
+<h1 class="libtitle">ImpParser<span class="subtitle">用Coq做词法分析和语法分析</span></h1>
 
 
 <div class="doc">
 
 <div class="paragraph"> </div>
 
- The development of the Imp language in <span class="inlinecode"><span class="id" type="var">Imp.v</span></span> completely ignores
-    issues of concrete syntax &mdash; how an ascii string that a programmer
-    might write gets translated into abstract syntax trees defined by
-    the datatypes <span class="inlinecode"><span class="id" type="var">aexp</span></span>, <span class="inlinecode"><span class="id" type="var">bexp</span></span>, and <span class="inlinecode"><span class="id" type="var">com</span></span>.  In this chapter, we
-    illustrate how the rest of the story can be filled in by building
-    a simple lexical analyzer and parser using Coq's functional
-    programming facilities.
+ 在Imp.v中设计<span class="inlinecode"><span class="id" type="var">Imp</span></span>语言时完全忽略了具体语法的问题 —— 如何把
+    程序员可能写下的ascii字符串翻译成一棵由<span class="inlinecode"><span class="id" type="var">aexp</span></span>，<span class="inlinecode"><span class="id" type="var">bexp</span></span>，
+    <span class="inlinecode"><span class="id" type="var">com</span></span>所定义的抽象语法树。在这个文件能我们将通过用Coq的
+    函数式语言特性来构建一个简单的词法分析器和语法解析器，并回答
+    之前的遗留问题。
 
 <div class="paragraph"> </div>
 
-    It is not important to understand all the details here (and
-    accordingly, the explanations are fairly terse and there are no
-    exercises).  The main point is simply to demonstrate that it can
-    be done.  You are invited to look through the code &mdash; most of it
-    is not very complicated, though the parser relies on some
-    "monadic" programming idioms that may require a little work to
-    make out &mdash; but most readers will probably want to just skim down
-    to the Examples section at the very end to get the punchline. 
+    这一章读者可以不求甚解：本章解释都相当的简短并且也没什么
+    练习题。主要的意义是为了演示我们能做什么。非常欢迎你通读
+    这段代码 —— 大部分不那么复杂，尽管解析器依赖于某种"monadic"
+    的编程风格，这可能需要你花点时间来理解 —— 大部分读者可以直接
+    跳到末尾的例子部分弄懂这章做了什么。 
 </div>
 <div class="code code-tight">
 
@@ -60,7 +55,7 @@
 </div>
 
 <div class="doc">
-<a name="lab348"></a><h1 class="section">Internals</h1>
+<a name="lab348"></a><h1 class="section">内部结构</h1>
 
 </div>
 <div class="code code-space">
@@ -77,7 +72,7 @@
 </div>
 
 <div class="doc">
-<a name="lab349"></a><h2 class="section">Lexical Analysis</h2>
+<a name="lab349"></a><h2 class="section">词法分析</h2>
 
 </div>
 <div class="code code-space">
@@ -158,33 +153,23 @@
 </div>
 
 <div class="doc">
-<a name="lab350"></a><h2 class="section">Parsing</h2>
+<a name="lab350"></a><h2 class="section">解析</h2>
 
 <div class="paragraph"> </div>
 
-<a name="lab351"></a><h3 class="section">Options With Errors</h3>
+<a name="lab351"></a><h3 class="section">出错后的备选</h3>
 
-<div class="paragraph"> </div>
-
- An <span class="inlinecode"><span class="id" type="var">option</span></span> type with error messages: 
 </div>
-<div class="code code-tight">
+<div class="code code-space">
 
 <br/>
+<span class="comment">(*&nbsp;带出错信息的option&nbsp;*)</span><br/>
 <span class="id" type="keyword">Inductive</span> <span class="id" type="var">optionE</span> (<span class="id" type="var">X</span>:<span class="id" type="keyword">Type</span>) : <span class="id" type="keyword">Type</span> :=<br/>
 &nbsp;&nbsp;| <span class="id" type="var">SomeE</span> : <span class="id" type="var">X</span> <span style="font-family: arial;">&rarr;</span> <span class="id" type="var">optionE</span> <span class="id" type="var">X</span><br/>
 &nbsp;&nbsp;| <span class="id" type="var">NoneE</span> : <span class="id" type="var">string</span> <span style="font-family: arial;">&rarr;</span> <span class="id" type="var">optionE</span> <span class="id" type="var">X</span>.<br/>
 <span class="id" type="keyword">Implicit Arguments</span> <span class="id" type="var">SomeE</span> [[<span class="id" type="var">X</span>]].<br/>
 <span class="id" type="keyword">Implicit Arguments</span> <span class="id" type="var">NoneE</span> [[<span class="id" type="var">X</span>]].<br/>
-</div>
-
-<div class="doc">
-Some syntactic sugar to make writing nested match-expressions on
-    optionE more convenient. 
-</div>
-<div class="code code-tight">
-
-<br/>
+<span class="comment">(*&nbsp;加点语法糖来使得书写嵌套的匹配optionE的表达式更加方便。&nbsp;*)</span><br/>
 <span class="id" type="keyword">Notation</span> "'DO' ( x , y ) &lt;== e<sub>1</sub> ; e<sub>2</sub>"<br/>
 &nbsp;&nbsp;&nbsp;:= (<span class="id" type="keyword">match</span> <span class="id" type="var">e<sub>1</sub></span> <span class="id" type="keyword">with</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id" type="var">SomeE</span> (<span class="id" type="var">x</span>,<span class="id" type="var">y</span>) ⇒ <span class="id" type="var">e<sub>2</sub></span><br/>
@@ -200,7 +185,7 @@ Some syntactic sugar to make writing nested match-expressions on
 </div>
 
 <div class="doc">
-<a name="lab352"></a><h3 class="section">Generic Combinators for Building Parsers</h3>
+<a name="lab352"></a><h3 class="section">构造解析器的通用组合子</h3>
 
 </div>
 <div class="code code-space">
@@ -218,24 +203,10 @@ Some syntactic sugar to make writing nested match-expressions on
 &nbsp;&nbsp;| <span class="id" type="var">S</span> <span class="id" type="var">steps'</span>, <span class="id" type="var">SomeE</span> (<span class="id" type="var">t</span>, <span class="id" type="var">xs'</span>) ⇒<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">many_helper</span> <span class="id" type="var">p</span> (<span class="id" type="var">t</span>::<span class="id" type="var">acc</span>) <span class="id" type="var">steps'</span> <span class="id" type="var">xs'</span><br/>
 &nbsp;&nbsp;<span class="id" type="keyword">end</span>.<br/>
-</div>
-
-<div class="doc">
-A (step-indexed) parser that expects zero or more <span class="inlinecode"><span class="id" type="var">p</span></span>s: 
-</div>
-<div class="code code-tight">
-
-<br/>
+<span class="comment">(*&nbsp;一个接受零个或多个<span class="inlinecode"><span class="id" type="var">p</span></span>的解析器&nbsp;*)</span><br/>
 <span class="id" type="keyword">Fixpoint</span> <span class="id" type="var">many</span> {<span class="id" type="var">T</span>} (<span class="id" type="var">p</span> : <span class="id" type="var">parser</span> <span class="id" type="var">T</span>) (<span class="id" type="var">steps</span> : <span class="id" type="var">nat</span>) : <span class="id" type="var">parser</span> (<span class="id" type="var">list</span> <span class="id" type="var">T</span>) :=<br/>
 &nbsp;&nbsp;<span class="id" type="var">many_helper</span> <span class="id" type="var">p</span> [] <span class="id" type="var">steps</span>.<br/>
-</div>
-
-<div class="doc">
-A parser that expects a given token, followed by <span class="inlinecode"><span class="id" type="var">p</span></span>: 
-</div>
-<div class="code code-tight">
-
-<br/>
+<span class="comment">(*&nbsp;一个接受紧跟在<span class="inlinecode"><span class="id" type="var">p</span></span>后给定的符号的解析器&nbsp;*)</span><br/>
 <span class="id" type="keyword">Definition</span> <span class="id" type="var">firstExpect</span> {<span class="id" type="var">T</span>} (<span class="id" type="var">t</span> : <span class="id" type="var">token</span>) (<span class="id" type="var">p</span> : <span class="id" type="var">parser</span> <span class="id" type="var">T</span>)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <span class="id" type="var">parser</span> <span class="id" type="var">T</span> :=<br/>
 &nbsp;&nbsp;<span class="id" type="keyword">fun</span> <span class="id" type="var">xs</span> ⇒ <span class="id" type="keyword">match</span> <span class="id" type="var">xs</span> <span class="id" type="keyword">with</span><br/>
@@ -246,28 +217,19 @@ A parser that expects a given token, followed by <span class="inlinecode"><span 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| [] ⇒<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">NoneE</span> ("expected '" ++ <span class="id" type="var">t</span> ++ "'.")<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="keyword">end</span>.<br/>
-</div>
-
-<div class="doc">
-A parser that expects a particular token: 
-</div>
-<div class="code code-tight">
-
-<br/>
+<span class="comment">(*&nbsp;一个接受某个特定符号的解析器&nbsp;*)</span><br/>
 <span class="id" type="keyword">Definition</span> <span class="id" type="var">expect</span> (<span class="id" type="var">t</span> : <span class="id" type="var">token</span>) : <span class="id" type="var">parser</span> <span class="id" type="var">unit</span> :=<br/>
 &nbsp;&nbsp;<span class="id" type="var">firstExpect</span> <span class="id" type="var">t</span> (<span class="id" type="keyword">fun</span> <span class="id" type="var">xs</span> ⇒ <span class="id" type="var">SomeE</span>(<span class="id" type="var">tt</span>, <span class="id" type="var">xs</span>)).<br/>
 </div>
 
 <div class="doc">
-<a name="lab353"></a><h3 class="section">A Recursive-Descent Parser for Imp</h3>
+<a name="lab353"></a><h3 class="section">Imp的一个递归下降的解析器</h3>
 
-<div class="paragraph"> </div>
-
- Identifiers: 
 </div>
-<div class="code code-tight">
+<div class="code code-space">
 
 <br/>
+<span class="comment">(*&nbsp;标识符&nbsp;*)</span><br/>
 <span class="id" type="keyword">Definition</span> <span class="id" type="var">parseIdentifier</span> (<span class="id" type="var">xs</span> : <span class="id" type="var">list</span> <span class="id" type="var">token</span>)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <span class="id" type="var">optionE</span> (<span class="id" type="var">id</span> * <span class="id" type="var">list</span> <span class="id" type="var">token</span>) :=<br/>
 <span class="id" type="keyword">match</span> <span class="id" type="var">xs</span> <span class="id" type="keyword">with</span><br/>
@@ -278,14 +240,7 @@ A parser that expects a particular token:
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="keyword">else</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">NoneE</span> ("Illegal identifier:'" ++ <span class="id" type="var">x</span> ++ "'")<br/>
 <span class="id" type="keyword">end</span>.<br/>
-</div>
-
-<div class="doc">
-Numbers: 
-</div>
-<div class="code code-tight">
-
-<br/>
+<span class="comment">(*&nbsp;数字&nbsp;*)</span><br/>
 <span class="id" type="keyword">Definition</span> <span class="id" type="var">parseNumber</span> (<span class="id" type="var">xs</span> : <span class="id" type="var">list</span> <span class="id" type="var">token</span>)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <span class="id" type="var">optionE</span> (<span class="id" type="var">nat</span> * <span class="id" type="var">list</span> <span class="id" type="var">token</span>) :=<br/>
 <span class="id" type="keyword">match</span> <span class="id" type="var">xs</span> <span class="id" type="keyword">with</span><br/>
@@ -302,14 +257,7 @@ Numbers:
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="keyword">else</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">NoneE</span> "Expected number"<br/>
 <span class="id" type="keyword">end</span>.<br/>
-</div>
-
-<div class="doc">
-Parse arithmetic expressions 
-</div>
-<div class="code code-tight">
-
-<br/>
+<span class="comment">(*&nbsp;解析算数表达式&nbsp;*)</span><br/>
 <span class="id" type="keyword">Fixpoint</span> <span class="id" type="var">parsePrimaryExp</span> (<span class="id" type="var">steps</span>:<span class="id" type="var">nat</span>) <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" type="var">xs</span> : <span class="id" type="var">list</span> <span class="id" type="var">token</span>)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <span class="id" type="var">optionE</span> (<span class="id" type="var">aexp</span> * <span class="id" type="var">list</span> <span class="id" type="var">token</span>) :=<br/>
@@ -365,14 +313,7 @@ Parse arithmetic expressions
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">rest'</span>)<br/>
 &nbsp;&nbsp;<span class="id" type="keyword">end</span>.<br/>
 <span class="id" type="keyword">Definition</span> <span class="id" type="var">parseAExp</span> := <span class="id" type="var">parseSumExp</span>.<br/>
-</div>
-
-<div class="doc">
-Parsing boolean expressions: 
-</div>
-<div class="code code-tight">
-
-<br/>
+<span class="comment">(*&nbsp;解析布尔表达式&nbsp;*)</span><br/>
 <span class="id" type="keyword">Fixpoint</span> <span class="id" type="var">parseAtomicExp</span> (<span class="id" type="var">steps</span>:<span class="id" type="var">nat</span>)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" type="var">xs</span> : <span class="id" type="var">list</span> <span class="id" type="var">token</span>)  :=<br/>
 <span class="id" type="keyword">match</span> <span class="id" type="var">steps</span> <span class="id" type="keyword">with</span><br/>
@@ -435,14 +376,7 @@ Eval&nbsp;compute&nbsp;in&nbsp;<br/>
 Eval&nbsp;compute&nbsp;in&nbsp;<br/>
 &nbsp;&nbsp;testParsing&nbsp;parseConjunctionExp&nbsp;"not((x==x||x*x&lt;=(x*x)*x)&amp;&amp;x==x".&nbsp;<br/>
 *)</span><br/>
-</div>
-
-<div class="doc">
-Parsing commands: 
-</div>
-<div class="code code-tight">
-
-<br/>
+<span class="comment">(*&nbsp;解析命令&nbsp;*)</span><br/>
 <span class="id" type="keyword">Fixpoint</span> <span class="id" type="var">parseSimpleCommand</span> (<span class="id" type="var">steps</span>:<span class="id" type="var">nat</span>) <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" type="var">xs</span> : <span class="id" type="var">list</span> <span class="id" type="var">token</span>) :=<br/>
 &nbsp;&nbsp;<span class="id" type="keyword">match</span> <span class="id" type="var">steps</span> <span class="id" type="keyword">with</span><br/>
@@ -498,7 +432,7 @@ Parsing commands:
 </div>
 
 <div class="doc">
-<a name="lab354"></a><h1 class="section">Examples</h1>
+<a name="lab354"></a><h1 class="section">例子</h1>
 
 </div>
 <div class="code code-space">

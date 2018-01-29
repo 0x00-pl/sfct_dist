@@ -1,7 +1,7 @@
 (** * Preface *)
 
 (* ################################################################# *)
-(** * Welcome *)
+(** * 简介 *)
 
 (** This electronic book is a course on _Software Foundations_, the
     mathematical underpinnings of reliable software.  Topics include
@@ -28,7 +28,7 @@
 
 
 (* ################################################################# *)
-(** * Overview *)
+(** * 导论 *)
 
 (** Building reliable software is hard.  The scale and complexity of
     modern systems, the number of people involved in building them,
@@ -104,277 +104,162 @@
     deeply than you have probably done so far. *)
 
 (* ================================================================= *)
-(** ** Proof Assistants *)
+(** ** 证明助理 *)
 
-(** The flow of ideas between logic and computer science has not been
-    unidirectional: CS has also made important contributions to logic.
-    One of these has been the development of software tools for
-    helping construct proofs of logical propositions.  These tools
-    fall into two broad categories:
-
-       - _Automated theorem provers_ provide "push-button" operation:
-         you give them a proposition and they return either _true_ or
-         _false_ (or, sometimes, _don't know: ran out of time_).
-         Although their capabilities are still limited to specific
-         domains, they have matured tremendously in recent years and
-         are used now in a multitude of settings.  Examples of such
-         tools include SAT solvers, SMT solvers, and model checkers.
-
-       - _Proof assistants_ are hybrid tools that automate the more
-         routine aspects of building proofs while depending on human
-         guidance for more difficult aspects.  Widely used proof
-         assistants include Isabelle, Agda, Twelf, ACL2, PVS, and Coq,
-         among many others.
-
-    This course is based around Coq, a proof assistant that has been
-    under development since 1983 and that in recent years has
-    attracted a large community of users in both research and
-    industry.  Coq provides a rich environment for interactive
-    development of machine-checked formal reasoning.  The kernel of
-    the Coq system is a simple proof-checker, which guarantees that
-    only correct deduction steps are ever performed.  On top of this
-    kernel, the Coq environment provides high-level facilities for
-    proof development, including a large library of common definitions
-    and lemmas, powerful tactics for constructing complex proofs
-    semi-automatically, and a special-purpose programming language for
-    defining new proof-automation tactics for specific situations.
-
-    Coq has been a critical enabler for a huge variety of work across
-    computer science and mathematics:
-
-    - As a _platform for modeling programming languages_, it has
-      become a standard tool for researchers who need to describe and
-      reason about complex language definitions.  It has been used,
-      for example, to check the security of the JavaCard platform,
-      obtaining the highest level of common criteria certification,
-      and for formal specifications of the x86 and LLVM instruction
-      sets and programming languages such as C.
-
-    - As an _environment for developing formally certified software
-      and hardware_, Coq has been used, for example, to build
-      CompCert, a fully-verified optimizing compiler for C, and
-      CertiKos, a fully verified hypervisor, for proving the
-      correctness of subtle algorithms involving floating point
-      numbers, and as the basis for CertiCrypt, an environment for
-      reasoning about the security of cryptographic algorithms.  It is
-      also being used to build verified implementations of the
-      open-source RISC-V processor.
-
-    - As a _realistic environment for functional programming with
-      dependent types_, it has inspired numerous innovations.  For
-      example, the Ynot system embeds "relational Hoare reasoning" (an
-      extension of the _Hoare Logic_ we will see later in this course)
-      in Coq.
-
-    - As a _proof assistant for higher-order logic_, it has been used
-      to validate a number of important results in mathematics.  For
-      example, its ability to include complex computations inside
-      proofs made it possible to develop the first formally verified
-      proof of the 4-color theorem.  This proof had previously been
-      controversial among mathematicians because part of it included
-      checking a large number of configurations using a program. In
-      the Coq formalization, everything is checked, including the
-      correctness of the computational part.  More recently, an even
-      more massive effort led to a Coq formalization of the
-      Feit-Thompson Theorem -- the first major step in the
-      classification of finite simple groups.
-
-   By the way, in case you're wondering about the name, here's what
-   the official Coq web site at INRIA (the French national research
-   lab where Coq has mostly been developed) says about it: "Some
-   French computer scientists have a tradition of naming their
-   software as animal species: Caml, Elan, Foc or Phox are examples of
-   this tacit convention. In French, 'coq' means rooster, and it
-   sounds like the initials of the Calculus of Constructions (CoC) on
-   which it is based."  The rooster is also the national symbol of
-   France, and C-o-q are the first three letters of the name of
-   Thierry Coquand, one of Coq's early developers. *)
+(** 逻辑学与计算机科学之间的思想交流并不是单方面的：
+    计算机科学也对逻辑学做出了重要的贡献，
+    其中之一就是发展了可帮助构造命题/证明的软件工具。
+    这些工具分为两类：
+       - _'自动化定理证明器'_ 提供了一键式操作：它们接受一个命题，
+         然后返回 _'真'_ 或 _'假'_ (或有时为 _'未知：超时'_ )。
+         尽管它们的能力仅限于特定种类的推理中，但在近几年却大幅成熟并应用于多种场合，
+         自动化定理证明器的例子包括 SAT 求解器，SMT 求解器以及模型检查器（Model Checker）。
+       - _'证明助理'_  是一种混合式工具，它能将构建证明中比较常规的部分自动化，
+         而更困难的部分则依赖于人类解决。常用的证明助理包括
+         Isabelle、Agda、Twelf、ACL2、PVS 以及 Coq，还有很多其它的。
+    本课程围绕 Coq 展开。它是一个自 1983 年以来主要在法国开发的证明助理，
+    近年来吸引了大量来自研究机构和业界的社区用户。
+    Coq 为机器验证的形式化论证的交互式开发提供了丰富的环境。Coq 系统的内核是一个简单的证明验证器，
+    它保证只会进行正确的推论步骤。在此内核之上，Coq 环境提供了高级的证明开发设施，
+    包括一个包含各种定义和引理的庞大的库，用于半自动化构造证明的强大策略，
+    以及一个专门为特殊情况定义新的自动证明策略的专用编程语言。
+    Coq 已成为各种跨计算机科学和数学研究的关键推动者：
+    - 作为一个 _'编程语言的建模平台'_ ，
+      Coq 成为了研究员对复杂语言定义进行描述和论证的一个标准工具。
+      例如，它被用来检查 JavaCard 平台的安全性，得到了最高等级的通用准则验证，
+      它还被用在 x86 和 LLVM 指令集以及 C 之类的编程语言的形式化规范中。
+    - 作为一个 _'形式化验证软件的开发环境'_ ，Coq 被用来构建：
+      CompCert，一个完全验证过的 C 优化编译器；
+      CertiKos，一个完全验证过的，用于证明浮点数相关精妙算法的正确性；
+      Coq 也是 CertiCrypt，一个用于论证密码学算法安全性的环境的基础。
+      它也被用来构建开源 RISC-V 处理器的已验证实现。
+    - 作为一个 _'带依赖类型的函数式编程的现实环境'_ ，Coq 激发了大量的创新。
+      例如 Ynot 系统嵌入了「关系式霍尔推理」（一个 _'霍尔逻辑'_ 的扩展，我们会在后面看到它）。
+    - 作为一个 _'高阶逻辑的证明助理'_ ，Coq 被用于证实数学中一些重要的结果。
+      例如 Coq 可在证明中包含复杂计算的能力，使其开发出第一个形式化验证的四色定理证明。
+      此前数学家们对该证明颇有争议，因为其中一部分用程序对大量组态进行了检查。
+      在 Coq 的形式化中，所有东西都被检查了，自然包括计算方面的正确性。
+      近年来，Feit-Thompson 定理在更大的努力下用 Coq 形式化了，
+      这是对有限单群进行分类的第一大步。
+   顺便一提，如果你对 Coq 这个名字感到好奇，INRIA (法国国家研究实验室，Coq
+   主要在这里开发）上的 Coq 官方网站给出了解释：
+   「一些法国计算机科学家有用动物命名软件的传统：像 Caml、Elan、Foc、Phox
+   都心照不宣地遵循这种默契。在法国，「Coq」是雄鸡，发音也像
+   Calculus of Constructions 的首字母缩写（CoC），后者是 Coq 的基础。」
+   高卢雄鸡是法国的象征。C-o-q 还是 Thierry Coquand 名字的前三个字母，
+   他是 Coq 的早期开发者之一。 *)
 
 (* ================================================================= *)
-(** ** Functional Programming *)
+(** ** 函数式编程 *)
 
-(** The term _functional programming_ refers both to a collection of
-    programming idioms that can be used in almost any programming
-    language and to a family of programming languages designed to
-    emphasize these idioms, including Haskell, OCaml, Standard ML,
-    F##, Scala, Scheme, Racket, Common Lisp, Clojure, Erlang, and Coq.
-
-    Functional programming has been developed over many decades --
-    indeed, its roots go back to Church's lambda-calculus, which was
-    invented in the 1930s, well before the first computers (at least
-    the first electronic ones)!  But since the early '90s it has
-    enjoyed a surge of interest among industrial engineers and
-    language designers, playing a key role in high-value systems at
-    companies like Jane St. Capital, Microsoft, Facebook, and
-    Ericsson.
-
-    The most basic tenet of functional programming is that, as much as
-    possible, computation should be _pure_, in the sense that the only
-    effect of execution should be to produce a result: it should be
-    free from _side effects_ such as I/O, assignments to mutable
-    variables, redirecting pointers, etc.  For example, whereas an
-    _imperative_ sorting function might take a list of numbers and
-    rearrange its pointers to put the list in order, a pure sorting
-    function would take the original list and return a _new_ list
-    containing the same numbers in sorted order.
-
-    A significant benefit of this style of programming is that it
-    makes programs easier to understand and reason about.  If every
-    operation on a data structure yields a new data structure, leaving
-    the old one intact, then there is no need to worry about how that
-    structure is being shared and whether a change by one part of the
-    program might break an invariant that another part of the program
-    relies on.  These considerations are particularly critical in
-    concurrent systems, where every piece of mutable state that is
-    shared between threads is a potential source of pernicious bugs.
-    Indeed, a large part of the recent interest in functional
-    programming in industry is due to its simpler behavior in the
-    presence of concurrency.
-
-    Another reason for the current excitement about functional
-    programming is related to the first: functional programs are often
-    much easier to parallelize than their imperative counterparts.  If
-    running a computation has no effect other than producing a result,
-    then it does not matter _where_ it is run.  Similarly, if a data
-    structure is never modified destructively, then it can be copied
-    freely, across cores or across the network.  Indeed, the
-    "Map-Reduce" idiom, which lies at the heart of massively
-    distributed query processors like Hadoop and is used by Google to
-    index the entire web is a classic example of functional
-    programming.
-
-    For purposes of this course, functional programming has yet
-    another significant attraction: it serves as a bridge between
-    logic and computer science.  Indeed, Coq itself can be viewed as a
-    combination of a small but extremely expressive functional
-    programming language plus a set of tools for stating and proving
-    logical assertions.  Moreover, when we come to look more closely,
-    we find that these two sides of Coq are actually aspects of the
-    very same underlying machinery -- i.e., _proofs are programs_.  *)
+(** _'函数式编程'_ 既代表几乎可以在任何编程语言中使用的一系列惯用法，也代表着一族
+    以这些习惯用法为侧重点设计的编程语言，包括 Haskell、OCaml、Standard ML、F##、
+    Scala、Scheme、Racket、Common Lisp、Erlang 还有 Coq。
+    函数式编程已经有数十年历史了--实际上，它甚至可以追溯到 1930
+    年代 Church 发明的 λ-演算，那时候还没有计算机呢！自 90 年代初以来，
+    函数式编程激起了业内软件工程师和语言设计者浓厚的兴趣，它还在
+    Jane St. Capital、Microsoft、Facebook 和 Ericsson
+    等公司的高价值系统中发挥着关键的作用。
+    函数式编程最根本的原则是，计算应当尽可能地 _'纯粹'_ ，也就是说，
+    执行代码的唯一效果应当是只产生一个结果：计算应当没有 _'副作用'_ ，
+    即与输入/输出、可变量的赋值、指针重定向等等脱离。
+    例如，一个命令式的排序函数会接受一个数字列表，通过重组指针使列表得以排序；
+    而一个纯粹的排序函数则会取一个列表，返回一个含有同样数字，但是已排序的新列表。
+    这种编程风格最明显的好处之一，就是它能让程序变得更容易理解和论证。
+    如果对某个数据结构的所有操作都会返回新的数据结构，而旧有的结构没有变动，
+    那么我们便无需担心它的共享方式，因为程序中一部分的改变并不会破坏另一部分的属性。
+    在并发程序中，线程间共享的每一个可变状态都是致命 Bug 的潜在来源，
+    因此这方面的考虑尤为关键。事实上，业界最近对函数式编程的兴趣大部分来源于此，
+    即它在并发中表现出的简单行为。
+    人们对函数式编程感到兴奋的另一原因与前文所述的原因相关：
+    函数式程序通常比命令式程序更容易并行化。
+    如果一个计算除了产生结果之外没有其它的作用，那么它在 _'何时'_ 执行便不再重要。
+    同样，如果一个数据结构不会被破坏性地修改，那么它可以跨核心或网络地被随意复制。
+    其实，「映射-归纳」（Map-Reduce）的惯用法就是函数式编程的经典例子，
+    它在大规模分布式查询处理器（如 Hadoop）中处于核心地位，并被 Google
+    用来索引整个互联网。
+    对于本课程而言，函数式编程还有另一个重要的吸引力：
+    它在逻辑与计算机科学之间架起了一座桥梁。事实上，Coq
+    本身即可视作一个小巧却有着极强表达能力的函数式编程语言，
+    以及一组用于陈述和证明逻辑断言的工具的结合体。进而言之，
+    当我们更加深入地审视它时，会发现 Coq 的这两方面其实基于几乎相同的底层机制
+    -- _'命题即类型，程序即证明'_ ，可谓殊途同归。 *)
 
 (* ================================================================= *)
-(** ** Program Verification *)
+(** ** 程序验证 *)
 
-(** Approximately the first third of _Software Foundations_ is devoted
-    to developing the conceptual framework of logic and functional
-    programming and gaining enough fluency with Coq to use it for
-    modeling and reasoning about nontrivial artifacts.  In the middle
-    third, we turn our attention to two broad topics of critical
-    importance in building reliable software (and hardware):
-    techniques for proving specific properties of particular
-    _programs_ and for proving general properties of whole programming
-    _languages_.
-
-    For both of these, the first thing we need is a way of
-    representing programs as mathematical objects, so we can talk
-    about them precisely, plus ways of describing their behavior in
-    terms of mathematical functions or relations.  Our main tools for
-    these tasks are _abstract syntax_ and _operational semantics_, a
-    method of specifying programming languages by writing abstract
-    interpreters.  At the beginning, we work with operational
-    semantics in the so-called "big-step" style, which leads to simple
-    and readable definitions when it is applicable.  Later on, we
-    switch to a lower-level "small-step" style, which helps make some
-    useful distinctions (e.g., between different sorts of
-    nonterminating program behaviors) and which is applicable to a
-    broader range of language features, including concurrency.
-
-    The first programming language we consider in detail is _Imp_, a
-    tiny toy language capturing the core features of conventional
-    imperative programming: variables, assignment, conditionals, and
-    loops.
-
-    We study two different ways of reasoning about the properties of
-    Imp programs.  First, we consider what it means to say that two
-    Imp programs are _equivalent_ in the intuitive sense that they
-    exhibit the same behavior when started in any initial memory
-    state.  This notion of equivalence then becomes a criterion for
-    judging the correctness of _metaprograms_ -- programs that
-    manipulate other programs, such as compilers and optimizers.  We
-    build a simple optimizer for Imp and prove that it is correct.
-
-    Second, we develop a methodology for proving that a given Imp
-    program satisfies some formal specifications of its behavior.  We
-    introduce the notion of _Hoare triples_ -- Imp programs annotated
-    with pre- and post-conditions describing what they expect to be
-    true about the memory in which they are started and what they
-    promise to make true about the memory in which they terminate --
-    and the reasoning principles of _Hoare Logic_, a domain-specific
-    logic specialized for convenient compositional reasoning about
-    imperative programs, with concepts like "loop invariant" built in.
-
-    This part of the course is intended to give readers a taste of the
-    key ideas and mathematical tools used in a wide variety of
-    real-world software and hardware verification tasks. *)
+(** 本书的前三分之一用于发展逻辑学以及函数式编程的概念框架，提升用
+    Coq 对非平凡构造进行建模和论证的熟练度。此后，我们会逐渐将重点转移到
+    对构建可靠软件（和硬件）的事业而言至关重要的两个主题上：
+    用于证明特定 _'程序'_ 具体属性的技巧，以及用于证明整个编程 _'语言'_ 共通属性的技术。
+    对于这两个主题来说，我们首先要找出一种用将程序表示为数学对象的方法，
+    以此来对二者进行精确的描述，以及用函数或关系表示它们的行为。
+    对此而言，我们的工具是抽象语法（Abstract Syntax）和操作语义（Operational
+    Semantics），一种通过编写抽象解释器来指定程序行为的方法。
+    首先，我们尽量用「大跨步」的方式来产生更加简单可读的操作语义；
+    之后，我们会转换到更加详细的「小碎步」风格，这样能有效地区分不同种类的「非最终」
+    程序的行为，这种方式适用于更加广泛的语言特性，包括并发。
+    我们要仔细考虑的第一个编程语言是 _Imp_ ，一个小巧的玩具编程语言，
+    它包含了传统命令式编程的核心特性：变量、赋值、条件和循环。
+    我们会学习两种不同的方法来对 Imp 程序的属性进行论证。
+    首先，若两个 Imp 程序在任何初始内存状态下启动都有相同的行为，
+    那么我们便认为二者是 _'等价的'_ 。这种等价的概念便成为了判定元程序
+    （操控其它程序的程序，比如编译器和优化器）正确性的标准。
+    我们会为 Imp 构建一个简单的优化器并证明其正确性。
+    之后，我们会发展出一套方法论，用于证明特定 Imp 程序的行为是否满足其形式化规范。
+    我们会介绍 _'霍尔三元组'_ （Hoare triples）的概念：带有前置和后置条件的 Imp
+    程序描述了在它启动时，内存中的什么应该为真；在它终止后，它保证内存中的什么为真。
+    也会介绍 _'霍尔逻辑'_ （Hoare Logic）的推理原则：一种内建了循环不变式（loop-invariant）
+    等概念的「领域专用逻辑」，以便对命令式程序进行组合推理。
+    本课程的这一部分意在让读者尝试各种现实中软件和硬件的证明工作，
+    以此来获得所需要的关键思想和数学工具。*)
 
 (* ================================================================= *)
-(** ** Type Systems *)
+(** ** 类型系统 *)
 
-(** Our final major topic, covering approximately the last third of
-    the course, is _type systems_, which are powerful tools for
-    establishing properties of _all_ programs in a given language.
-
-    Type systems are the best established and most popular example of
-    a highly successful class of formal verification techniques known
-    as _lightweight formal methods_.  These are reasoning techniques
-    of modest power -- modest enough that automatic checkers can be
-    built into compilers, linkers, or program analyzers and thus be
-    applied even by programmers unfamiliar with the underlying
-    theories.  Other examples of lightweight formal methods include
-    hardware and software model checkers, contract checkers, and
-    run-time monitoring techniques.
-
-    This also completes a full circle with the beginning of the book:
-    the language whose properties we study in this part, the _simply
-    typed lambda-calculus_, is essentially a simplified model of the
-    core of Coq itself!
+(** 我们的最后一个主题为 _'类型系统'_ ，它覆盖了课程最后的三分之一。
+    它是一组强大的工具，用于构建给定语言中 _'所有'_ 程序的属性。
+    类型系统是最久经考验、最流行也是最成功的一类形式化验证技术的例子，
+    它被称作 _'轻量级形式化方法'_ （lightweight formal methods）。
+    它们是低调而强大的论证技术，以至于自动检查器可以内建在在编译器、
+    连接器或程序分析器中，而程序员无需熟悉底层理论便可应用。
+    其它轻量级形式化方法的例子包括硬件和软件的模型检查器、契约检查器，
+    以及运行时属性监视技术，它用来检测一个系统中某些组件的行为是否遵循规范）。
+    该主题使得本课程终归圆满：我们在这一部分研究的语言，即 _'简单类型化 λ-演算'_ ，
+    它本质上就是 Coq 核心自身的一个简化模型！
 *)
 
 (* ================================================================= *)
-(** ** Further Reading *)
+(** ** 扩展阅读 *)
 
-(** This text is intended to be self contained, but readers looking
-    for a deeper treatment of particular topics will find some
-    suggestions for further reading in the [Postscript]
-    chapter. *)
+(** 此书旨在自成一体，不过想要对特定主题进行深入研究的读者，可以在 [Postscript]
+    一章中找到建议的扩展阅读。 *)
 
 (* ################################################################# *)
-(** * Practicalities *)
+(** * 实用指南 *)
 
 (* ================================================================= *)
-(** ** Chapter Dependencies *)
+(** ** 章节依赖 *)
 
-(** A diagram of the dependencies between chapters and some 
-    paths through the material can be found in the file [deps.html]. *)
-
-(* ================================================================= *)
-(** ** System Requirements *)
-
-(** Coq runs on Windows, Linux, and OS X.  You will need:
-
-       - A current installation of Coq, available from the Coq home
-         page.  Everything should work with version 8.4 (or 8.5).
-
-       - An IDE for interacting with Coq.  Currently, there are two
-         choices:
-
-           - Proof General is an Emacs-based IDE.  It tends to be
-             preferred by users who are already comfortable with
-             Emacs.  It requires a separate installation (google
-             "Proof General").
-
-             Adventurous users of Coq within Emacs may also want to
-             check out extensions such as [company-coq] and
-             [control-lock].
-
-           - CoqIDE is a simpler stand-alone IDE.  It is distributed
-             with Coq, so it should be available once you have Coq
-             installed.  It can also be compiled from scratch, but on
-             some platforms this may involve installing additional
-             packages for GUI libraries and such. *)
+(** 章节之间的依赖关系以及一些建议的路径图可以在文件
+    [deps.html] 中找到。 *)
 
 (* ================================================================= *)
-(** ** Exercises *)
+(** ** 系统需求 *)
+
+(** Coq 可以在 Windows、Linux 和 OS X 上运行。你需要：
+       - 一个最近的 Coq 安装，可以从 Coq 主页获得。所有内容都能在 8.4（或 8.5）上运行。
+       - 一个能跟 Coq 交互的 IDE。目前为止有两个选项：
+           - Proof General 是一个基于 Emacs 的 IDE，Emacs 用户应该更喜欢这个。
+             它需要另外安装（Google 搜索「Proof General」）。
+             爱作死的 Emacs 党也可以试试 [company-coq] 和 [control-lock]
+             之类的扩展。
+           - CoqIDE 是一个更简单的独立 IDE。它随 Coq 一起发布，所以若你已经安装了
+             Coq，它应该「刚好能用」。它也可以通过对应的依赖从头编译安装，
+             不过在某些平台上还需要额外安装 GUI 库之类的东西。 *)
+
+(* ================================================================= *)
+(** ** 练习 *)
 
 (** Each chapter includes numerous exercises.  Each is marked with a
     "star rating," which can be interpreted as follows:
@@ -409,32 +294,27 @@
 *)
 
 (* ================================================================= *)
-(** ** Downloading the Coq Files *)
+(** ** 下载 Coq 文件 *)
 
-(** A tar file containing the full sources for the "release version"
-    of this book (as a collection of Coq scripts and HTML files) is
-    available here:
+(** 一个包含本书「发布版」的所有源代码的 tar 包
+    （包含一组 Coq 脚本和 HTML 文件）可在此获得：
 
         http://www.cis.upenn.edu/~bcpierce/sf
 
-    (If you are using the book as part of a class, your professor may
-    give you access to a locally modified version of the files, which
-    you should use instead of the release version.) *)
+    本书的中文版可在此获得：
+
+        https://github.com/MarisaKirisame/SFCT
+
+    （如果你是在一门课程中使用本书的，那么你的教授可能让你访问本地的修改版，
+    此时你应当使用它们而非发布版。）*)
 
 (* ################################################################# *)
-(** * Note for Instructors *)
+(** * 对授课员的标准 *)
 
-(** If you plan to use these materials in your own course, you will
-    undoubtedly find things you'd like to change, improve, or add.
-    Your contributions are welcome!
-
-    In order to keep the legalities simple and to have a single
-    point of responsibility in case the need should ever arise to
-    adjust the license terms, sublicense, etc., we ask all
-    contributors (i.e., everyone with access to the developers'
-    repository) to assign copyright in their contributions to the
-    appropriate "author of record," as follows:
-
+(** 如果你有意用这些课件授课，那肯定会发现希望改进或增加的东西。我们欢迎你的贡献！
+    为保证法律上的简单性和单一责任制，任何情况下都不应出现许可条款的的调整，
+    授权的转移等等，我们要求所有贡献者（即，任何可访问开发者仓库的人）根据
+    「作者记录」为他们的贡献赋予版权信息如下：
       - I hereby assign copyright in my past and future contributions
         to the Software Foundations project to the Author of Record of
         each volume or component, to be licensed under the same terms
@@ -448,22 +328,21 @@
         designated Volumes (e.g., typesetting and grading tools and
         other software infrastructure), the Author of Record is
         Benjamin Pierce.
-
-    To get started, please send an email to Benjamin Pierce, describing
-    yourself and how you plan to use the materials and including 
-       (1) the above copyright transfer text and 
-       (2) the result of doing "htpasswd -s -n NAME"
-    where NAME is your preferred user name. 
-
-    We'll set you up with access to the subversion repository and 
-    developers' mailing lists.  In the repository you'll find a 
-    file [INSTRUCTORS] with further instructions. *)
+    请您向 Benjamin Pierce 发一封电子邮件，描述一下你自己，
+    以及你打算如何使用这些课件，内容包括
+       (1) 以上版权转让协议，以及
+       (2) 执行 "htpasswd -s -n NAME" 后产生的结果，
+    其中 NAME 是你喜欢的用户名。
+    我们为你设置 subversion 仓库和开发者邮件列表的访问权限。
+    在仓库中你会找到一个包含更多指引的 [INSTRUCTORS] 文件。*)
 
 (* ################################################################# *)
-(** * Translations *)
+(** * 翻译版 *)
 
-(** Thanks to the efforts of a team of volunteer translators,
-    _Software Foundations_ can be enjoyed in Japanese at
-    [http://proofcafe.org/sf].  A Chinese translation is underway. *)
+(** 感谢翻译志愿者团队的努力，_'Software Foundations'_
+    有了可以阅读的日文版
+    [http://proofcafe.org/sf]。
+    中文版还在填坑= =||
+*)
 
 (** $Date: 2017-03-05 13:25:50 -0800 (Sun, 05 Mar 2017) $ *)

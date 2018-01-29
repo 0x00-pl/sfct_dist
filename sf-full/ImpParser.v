@@ -1,27 +1,22 @@
-(** * ImpParser: Lexing and Parsing in Coq *)
+(** * ImpParser: 用Coq做词法分析和语法分析 *)
 
-(** The development of the Imp language in [Imp.v] completely ignores
-    issues of concrete syntax -- how an ascii string that a programmer
-    might write gets translated into abstract syntax trees defined by
-    the datatypes [aexp], [bexp], and [com].  In this chapter, we
-    illustrate how the rest of the story can be filled in by building
-    a simple lexical analyzer and parser using Coq's functional
-    programming facilities.
-
-    It is not important to understand all the details here (and
-    accordingly, the explanations are fairly terse and there are no
-    exercises).  The main point is simply to demonstrate that it can
-    be done.  You are invited to look through the code -- most of it
-    is not very complicated, though the parser relies on some
-    "monadic" programming idioms that may require a little work to
-    make out -- but most readers will probably want to just skim down
-    to the Examples section at the very end to get the punchline. *)
+(** 在Imp.v中设计[Imp]语言时完全忽略了具体语法的问题 —— 如何把
+    程序员可能写下的ascii字符串翻译成一棵由[aexp]，[bexp]，
+    [com]所定义的抽象语法树。在这个文件能我们将通过用Coq的
+    函数式语言特性来构建一个简单的词法分析器和语法解析器，并回答
+    之前的遗留问题。
+    
+    这一章读者可以不求甚解：本章解释都相当的简短并且也没什么
+    练习题。主要的意义是为了演示我们能做什么。非常欢迎你通读
+    这段代码 —— 大部分不那么复杂，尽管解析器依赖于某种"monadic"
+    的编程风格，这可能需要你花点时间来理解 —— 大部分读者可以直接
+    跳到末尾的例子部分弄懂这章做了什么。 *)
 
 
 (* DROP *)
 
 (* ################################################################# *)
-(** * Internals *)
+(** * 内部结构 *)
 
 Require Import Coq.Strings.String.
 Require Import Coq.Strings.Ascii.
@@ -33,7 +28,7 @@ Require Import Maps.
 Require Import Imp.
 
 (* ================================================================= *)
-(** ** Lexical Analysis *)
+(** ** 词法分析 *)
 
 Definition isWhite (c : ascii) : bool :=
   let n := nat_of_ascii c in
@@ -116,12 +111,12 @@ Example tokenize_ex1 :
 Proof. reflexivity. Qed.
 
 (* ================================================================= *)
-(** ** Parsing *)
+(** ** 解析 *)
 
 (* ----------------------------------------------------------------- *)
-(** *** Options With Errors *)
+(** *** 出错后的备选 *)
 
-(** An [option] type with error messages: *)
+(* 带出错信息的option *)
 
 Inductive optionE (X:Type) : Type :=
   | SomeE : X -> optionE X
@@ -130,8 +125,7 @@ Inductive optionE (X:Type) : Type :=
 Implicit Arguments SomeE [[X]].
 Implicit Arguments NoneE [[X]].
 
-(** Some syntactic sugar to make writing nested match-expressions on
-    optionE more convenient. *)
+(* 加点语法糖来使得书写嵌套的匹配optionE的表达式更加方便。 *)
 
 Notation "'DO' ( x , y ) <== e1 ; e2"
    := (match e1 with
@@ -148,7 +142,7 @@ Notation "'DO' ( x , y ) <-- e1 ; e2 'OR' e3"
    (right associativity, at level 60, e2 at next level).
 
 (* ----------------------------------------------------------------- *)
-(** *** Generic Combinators for Building Parsers *)
+(** *** 构造解析器的通用组合子 *)
 
 Open Scope string_scope.
 
@@ -165,12 +159,12 @@ Fixpoint many_helper {T} (p : parser T) acc steps xs :=
       many_helper p (t::acc) steps' xs'
   end.
 
-(** A (step-indexed) parser that expects zero or more [p]s: *)
+(* 一个接受零个或多个[p]的解析器 *)
 
 Fixpoint many {T} (p : parser T) (steps : nat) : parser (list T) :=
   many_helper p [] steps.
 
-(** A parser that expects a given token, followed by [p]: *)
+(* 一个接受紧跟在[p]后给定的符号的解析器 *)
 
 Definition firstExpect {T} (t : token) (p : parser T)
                      : parser T :=
@@ -183,15 +177,15 @@ Definition firstExpect {T} (t : token) (p : parser T)
               NoneE ("expected '" ++ t ++ "'.")
             end.
 
-(** A parser that expects a particular token: *)
+(* 一个接受某个特定符号的解析器 *)
 
 Definition expect (t : token) : parser unit :=
   firstExpect t (fun xs => SomeE(tt, xs)).
 
 (* ----------------------------------------------------------------- *)
-(** *** A Recursive-Descent Parser for Imp *)
+(** *** Imp的一个递归下降的解析器 *)
 
-(** Identifiers: *)
+(* 标识符 *)
 
 Definition parseIdentifier (xs : list token)
                          : optionE (id * list token) :=
@@ -204,7 +198,7 @@ match xs with
       NoneE ("Illegal identifier:'" ++ x ++ "'")
 end.
 
-(** Numbers: *)
+(* 数字 *)
 
 Definition parseNumber (xs : list token)
                      : optionE (nat * list token) :=
@@ -223,7 +217,7 @@ match xs with
       NoneE "Expected number"
 end.
 
-(** Parse arithmetic expressions *)
+(* 解析算数表达式 *)
 
 Fixpoint parsePrimaryExp (steps:nat) 
                          (xs : list token)
@@ -282,7 +276,7 @@ with parseSumExp (steps:nat) (xs : list token)  :=
 
 Definition parseAExp := parseSumExp.
 
-(** Parsing boolean expressions: *)
+(* 解析布尔表达式 *)
 
 Fixpoint parseAtomicExp (steps:nat)
                         (xs : list token)  :=
@@ -351,7 +345,7 @@ Eval compute in
   testParsing parseConjunctionExp "not((x==x||x*x<=(x*x)*x)&&x==x". 
 *)
 
-(** Parsing commands: *)
+(* 解析命令 *)
 
 Fixpoint parseSimpleCommand (steps:nat) 
                             (xs : list token) :=
@@ -409,7 +403,7 @@ Definition parse (str : string) : optionE (com * list token) :=
   parseSequencedCommand bignumber tokens.
 
 (* ################################################################# *)
-(** * Examples *)
+(** * 例子 *)
 
 (*
 Compute parse "

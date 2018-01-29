@@ -411,7 +411,7 @@ Require Import Smallstep.
 *)
 
 (* ================================================================= *)
-(** ** Exercises *)
+(** ** 练习 *)
 
 (** **** Exercise: 1 star, optional (subtype_instances_tf_1)  *)
 (** Suppose we have types [S], [T], [U], and [V] with [S <: T]
@@ -1490,7 +1490,7 @@ Qed.
     validated by the encoding. *)
 
 (* ================================================================= *)
-(** ** Exercises *)
+(** ** 练习 *)
 
 (** **** Exercise: 2 starsM (variations)  *)
 (** Each part of this problem suggests a different way of changing the
