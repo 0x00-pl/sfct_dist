@@ -1,4 +1,4 @@
-(** * Bib: Bibliography *)
+(** * Bib: 参考书目 *)
 
 (**
 
