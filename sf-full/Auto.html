@@ -39,30 +39,22 @@
 </div>
 
 <div class="doc">
-Up to now, we've used the more manual part of Coq's tactic
-    facilities.  In this chapter, we'll learn more about some of Coq's
-    powerful automation features: proof search via the <span class="inlinecode"><span class="id" type="tactic">auto</span></span> tactic,
-    automated forward reasoning via the <span class="inlinecode"><span class="id" type="keyword">Ltac</span></span> hypothesis matching
-    machinery, and deferred instantiation of existential variables
-    using <span class="inlinecode"><span class="id" type="tactic">eapply</span></span> and <span class="inlinecode"><span class="id" type="tactic">eauto</span></span>.  Using these features together with
-    Ltac's scripting facilities will enable us to make our proofs
-    startlingly short!  Used properly, they can also make proofs more
-    maintainable and robust to changes in underlying definitions.  A
-    deeper treatment of <span class="inlinecode"><span class="id" type="tactic">auto</span></span> and <span class="inlinecode"><span class="id" type="tactic">eauto</span></span> can be found in the
-    <span class="inlinecode"><span class="id" type="var">UseAuto</span></span> chapter.
+到目前为止, 我们已经使用了超出手册的Coq策略.
+    在这章, 我么将要学习更多关于Coq的强力自动化特性: 证明搜索 也就是
+    <span class="inlinecode"><span class="id" type="tactic">auto</span></span> 策略, 自动向前推理 也就是 <span class="inlinecode"><span class="id" type="keyword">Ltac</span></span> 条件匹配机制, 和延迟实例化exist变量
+    <span class="inlinecode"><span class="id" type="tactic">eapply</span></span> 和 <span class="inlinecode"><span class="id" type="tactic">eauto</span></span>. 用这些特性配合Ltac脚本机制可以让我们的证明步骤
+    惊人的减少, 如果正确的使用它们也能让我们的证明有更强的可维护性和
+    对定义更改的适应能力. 更多关于 <span class="inlinecode"><span class="id" type="tactic">auto</span></span> 和 <span class="inlinecode"><span class="id" type="tactic">eauto</span></span> 的信息可见 <span class="inlinecode"><span class="id" type="var">UseAuto</span></span> 章节.
 
 <div class="paragraph"> </div>
 
-    There's another major category of automation we haven't discussed
-    much yet, namely built-in decision procedures for specific kinds
-    of problems: <span class="inlinecode"><span class="id" type="tactic">omega</span></span> is one example, but there are others.  This
-    topic will be deferred for a while longer.
+    这章的关于自动化的另一个主题我们还没有讨论, 叫做 对于特定问题的内建过程
+    比如 <span class="inlinecode"><span class="id" type="tactic">omega</span></span> 以及其它的. 这个话题会再很久之后继续谈.
 
 <div class="paragraph"> </div>
 
-    Our motivating example will be this proof, repeated with just a
-    few small changes from the <a href="Imp.html"><span class="inlineref">Imp</span></a> chapter.  We will simplify
-    this proof in several stages. 
+    我们的动机实例是下面这个证明, 从 <a href="Imp.html"><span class="inlineref">Imp</span></a> 少量更改, 然后通过
+    几个步骤来简化证明. 
 </div>
 <div class="code code-tight">
 
@@ -109,12 +101,12 @@ Up to now, we've used the more manual part of Coq's tactic
 </div>
 
 <div class="doc">
-<a name="lab527"></a><h1 class="section">The <span class="inlinecode"><span class="id" type="tactic">auto</span></span> Tactic</h1>
+<a name="lab527"></a><h1 class="section"><span class="inlinecode"><span class="id" type="tactic">auto</span></span> 策略</h1>
 
 <div class="paragraph"> </div>
 
- Thus far, our proof scripts mostly apply relevant hypotheses or
-    lemmas by name, and one at a time. 
+ 到目前为止, 我们的证明脚本基本上每次都通过名字应用到
+    一条相关的条件或者引理上. 
 </div>
 <div class="code code-tight">
 

@@ -4,26 +4,18 @@ Require Import Coq.omega.Omega.
 Require Import Maps.
 Require Import Imp.
 
-(** Up to now, we've used the more manual part of Coq's tactic
-    facilities.  In this chapter, we'll learn more about some of Coq's
-    powerful automation features: proof search via the [auto] tactic,
-    automated forward reasoning via the [Ltac] hypothesis matching
-    machinery, and deferred instantiation of existential variables
-    using [eapply] and [eauto].  Using these features together with
-    Ltac's scripting facilities will enable us to make our proofs
-    startlingly short!  Used properly, they can also make proofs more
-    maintainable and robust to changes in underlying definitions.  A
-    deeper treatment of [auto] and [eauto] can be found in the
-    [UseAuto] chapter.
+(** 到目前为止, 我们已经使用了超出手册的Coq策略.
+    在这章, 我么将要学习更多关于Coq的强力自动化特性: 证明搜索 也就是
+    [auto] 策略, 自动向前推理 也就是 [Ltac] 条件匹配机制, 和延迟实例化exist变量
+    [eapply] 和 [eauto]. 用这些特性配合Ltac脚本机制可以让我们的证明步骤
+    惊人的减少, 如果正确的使用它们也能让我们的证明有更强的可维护性和
+    对定义更改的适应能力. 更多关于 [auto] 和 [eauto] 的信息可见 [UseAuto] 章节.
 
-    There's another major category of automation we haven't discussed
-    much yet, namely built-in decision procedures for specific kinds
-    of problems: [omega] is one example, but there are others.  This
-    topic will be deferred for a while longer.
+    这章的关于自动化的另一个主题我们还没有讨论, 叫做 对于特定问题的内建过程
+    比如 [omega] 以及其它的. 这个话题会再很久之后继续谈.
 
-    Our motivating example will be this proof, repeated with just a
-    few small changes from the [Imp] chapter.  We will simplify
-    this proof in several stages. *)
+    我们的动机实例是下面这个证明, 从 [Imp] 少量更改, 然后通过
+    几个步骤来简化证明. *)
 
 Ltac inv H := inversion H; subst; clear H.
 
@@ -67,10 +59,10 @@ Proof.
     apply IHE1_2. assumption.  Qed.
 
 (* ################################################################# *)
-(** * The [auto] Tactic *)
+(** * [auto] 策略 *)
 
-(** Thus far, our proof scripts mostly apply relevant hypotheses or
-    lemmas by name, and one at a time. *)
+(** 到目前为止, 我们的证明脚本基本上每次都通过名字应用到
+    一条相关的条件或者引理上. *)
 
 Example auto_example_1 : forall (P Q R: Prop),
   (P -> Q) -> (Q -> R) -> P -> R.
