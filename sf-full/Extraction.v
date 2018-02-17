@@ -1,9 +1,9 @@
-(** * Extraction: Extracting ML from Coq *)
+(** * 导出: 从Coq导出ML *)
 
 (* DROP *)
 
 (* ################################################################# *)
-(** * Basic Extraction *)
+(** * 基础导出 *)
 
 (** In its simplest form, extracting an efficient program from one
     written in Coq is completely straightforward. 
