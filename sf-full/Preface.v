@@ -1,4 +1,4 @@
-(** * Preface *)
+(** * 前言 *)
 
 (* ################################################################# *)
 (** * 简介 *)
@@ -30,78 +30,57 @@
 (* ################################################################# *)
 (** * 导论 *)
 
-(** Building reliable software is hard.  The scale and complexity of
-    modern systems, the number of people involved in building them,
-    and the range of demands placed on them make it extremely
-    difficult to build software that is even more-or-less correct,
-    much less 100%% correct.  At the same time, the increasing degree
-    to which information processing is woven into every aspect of
-    society greatly amplifies the cost of bugs and insecurities.
+(** 构建可靠软件是困难的。现代系统的规模和复杂度，参与项目的人员数量，
+    以及它们所面临的包罗万象的需求，都使得构建正确软件这件事情格外困难
+    -- 即便这里的"正确"仅仅指部分的，远未及百分之百的正确。而与此同时，
+    信息化却正在日益深入地融入到社会生活的方方面面，这又极大地增加了Bug
+    和安全漏洞可能造成的损失。
 
-    Computer scientists and software engineers have responded to these
-    challenges by developing a whole host of techniques for improving
-    software reliability, ranging from recommendations about managing
-    software projects teams (e.g., extreme programming) to design
-    philosophies for libraries (e.g., model-view-controller,
-    publish-subscribe, etc.) and programming languages (e.g.,
-    object-oriented programming, aspect-oriented programming,
-    functional programming, ...) to mathematical techniques for
-    specifying and reasoning about properties of software and tools
-    for helping validate these properties.  The present course is
-    focused on this last set of techniques.
+    为了应对这些挑战，计算机科学家和软件工程师开发了一系列提高软件可靠性
+    的技术，范围包括从对软件项目团队的管理建议（比如极限编程
+    （Extreme Programming）），到软件库的设计哲学（比如模型-视图-控制器
+    （Model-View-Controller），发布-订阅（Publish-Subscribe））
+    以及从编程语言（比如面向对象编程（Object Oriented Programming），
+    面向剖面编程（Aspect Oriented Programming），函数式编程
+    （Functional Programming））到 指定和论证软件属性的数学技术及用于辅助
+    验证这些属性的工具。本课程所讨论的正是最后这一类技术。
 
-    The text weaves together five conceptual threads:
+    本书将以下五个概念穿插在一起:
 
-    (1) basic tools from _logic_ for making and justifying precise
-        claims about programs;
+    (1) 来自 _'逻辑学'_ 的基本工具，用于构建和检验关于程序的精确声明;
 
-    (2) the use of _proof assistants_ to construct rigorous logical
-        arguments;
+    (2) 关于 _'证明助理'_ 的使用，以构造严谨的逻辑论证;
 
-    (3) _functional programming_, both as a method of programming that
-        simplifies reasoning about programs and as a bridge between
-        programming and logic;
+    (3) _'函数式编程'_，既作为编程的一种方法，简化了对程序的论证，
+        也作为编程和逻辑之间的桥梁;
 
-    (4) formal techniques for _reasoning about the properties of
-        specific programs_ (e.g., the fact that a sorting function or
-        a compiler obeys some formal specification); and
+    (4) 用于 _'特定程序属性论证'_ 的形式化技术 (例如排序函数或编译器
+        服从某些形式化规范);
 
-    (5) the use of _type systems_ for establishing well-behavedness
-        guarantees for _all_ programs in a given programming
-        language (e.g., the fact that well-typed Java programs cannot
-        be subverted at runtime).
+    (5) 使用 _'类型系统'_ 为给定的编程语言中的 _'所有'_ 程序建立良好的
+        行为保证（例如，类型正确Java程序不能在运行时被破坏）。
 
-    Each of these is easily rich enough to fill a whole course in its
-    own right, and tackling all of them together naturally means that
-    much will be left unsaid.  Nevertheless, we hope readers will find
-    that these themes illuminate and amplify each other and that
-    bringing them together creates a good foundation for digging into
-    any of them more deeply.  Some suggestions for further reading can
-    be found in the [Postscript] chapter.  Bibliographic
-    information for all cited works can be found in the file
-    [Bib]. *)
+    这五个主题中的任一个都足够丰富以至于其本身就能轻易填满一整个课程，
+    因此把它们塞在一个课程中自然意味着很多内容会被遗留在外。
+    尽管如此，我们仍希望读者会发现这五个主题相得益彰，它们会为读者
+    打下坚实的基础，使读者可以轻松地深入任一主题。扩展阅读的建议可在
+    [Postscript] 一章中找到；所有被引述著作的书目信息可以在
+    [Bib] 一章中找到。*)
 
 (* ================================================================= *)
-(** ** Logic *)
+(** ** 逻辑学 *)
 
-(** Logic is the field of study whose subject matter is _proofs_ --
-    unassailable arguments for the truth of particular propositions.
-    Volumes have been written about the central role of logic in
-    computer science.  Manna and Waldinger called it "the calculus of
-    computer science," while Halpern et al.'s paper _On the Unusual
-    Effectiveness of Logic in Computer Science_ catalogs scores of
-    ways in which logic offers critical tools and insights.  Indeed,
-    they observe that, "As a matter of fact, logic has turned out to
-    be significiantly more effective in computer science than it has
-    been in mathematics.  This is quite remarkable, especially since
-    much of the impetus for the development of logic during the past
-    one hundred years came from mathematics."
+(** 逻辑学的研究领域为证明——即对特定命题的真伪性进行不容置疑的论证。
+    关于逻辑学在计算机科学中作用的资料汗牛充栋。
+    Manna 以及 Waldinger 称之为“计算机科学的微积分”，而 Halpern 的论文
+    _On the Unusual Effectiveness of Logic in Computer Science_ 则列出了
+    逻辑学为计算机科学提供的洞察力和至关重要的工具。的确，他们发现
+    “事实上，逻辑学在计算机科学中远比在数学中更加有效。
+    这很值得关注，特别是由于过去一百年来，逻辑学发展的动力大都来自于数学。”
 
-    In particular, the fundamental tools of _inductive proof_ are
-    ubiquitous in all of computer science.  You have surely seen them
-    before, perhaps in a course on discrete math or analysis of
-    algorithms, but in this course we will examine them much more
-    deeply than you have probably done so far. *)
+    特别来说，归纳证明的基本概念在计算机科学中无处不在。
+    你以前肯定见过它们，比如说在离散数学或算法分析中。不过在本课程中，
+    我们会在你未曾涉及的深度下对其进行检测。*)
 
 (* ================================================================= *)
 (** ** 证明助理 *)
@@ -261,36 +240,27 @@
 (* ================================================================= *)
 (** ** 练习 *)
 
-(** Each chapter includes numerous exercises.  Each is marked with a
-    "star rating," which can be interpreted as follows:
+(** 每一章都包含大量的习题。每一个习题都有一个“星级”标记，其意义是：
 
-       - One star: easy exercises that underscore points in the text
-         and that, for most readers, should take only a minute or two.
-         Get in the habit of working these as you reach them.
+       - 一星：很简单的，强调课程重点的习题。对于大部分读者，一两分钟应该足够了。
+         养成看到一个就做一个的习惯。
 
-       - Two stars: straightforward exercises (five or ten minutes).
+       - 二星：直截了当的习题（5 或 10分钟）。
 
-       - Three stars: exercises requiring a bit of thought (ten
-         minutes to half an hour).
+       - 三星：需要一点思考的习题（10 分钟到半小时）。
 
-       - Four and five stars: more difficult exercises (half an hour
-         and up).
+       - 四或五星：更困难的习题（半小时以上）。
 
-    Also, some exercises are marked "advanced," and some are marked
-    "optional."  Doing just the non-optional, non-advanced exercises
-    should provide good coverage of the core material.  Optional
-    exercises provide a bit of extra practice with key concepts and
-    introduce secondary themes that may be of interest to some
-    readers.  Advanced exercises are for readers who want an extra
-    challenge and a deeper cut at the material.
+    此外，有些习题被标注为“高阶”，有些习题被标注为“可选”。
+    只做非高阶和非可选的习题已经能达到对核心概念的不错的覆盖率。
+    可选习题会提供一点对关键概念的额外练习，以及一些可能会引起读者兴趣的附加主题。
+    高阶练习留给想要更多挑战（以及对概念更深的理解）的读者。
 
-    _Please do not post solutions to the exercises in a public place_. 
-    Software Foundations is widely used both for self-study and for
-    university courses.  Having solutions easily available makes it
-    much less useful for courses, which typically have graded homework
-    assignments.  We especially request that readers not post
-    solutions to the exercises anyplace where they can be found by
-    search engines.
+     _'请勿将习题解答发布在公共位置'_ . 
+    Software Foundation
+    已被广泛地用作自学教程以及大学课程。如果习题答案很容易获得，
+    那么这本书的效用将大打折扣，对于会为作业打评分的大学课程来说尤其如此。
+    作者特别请求读者，切勿将习题答案放在任何能够被搜索引擎找到的地方。
 *)
 
 (* ================================================================= *)

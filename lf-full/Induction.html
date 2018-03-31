@@ -31,7 +31,7 @@
 
 
 <div class="doc">
-<a name="lab42"></a><h1 class="section">归纳法：用归纳法证明</h1>
+<a name="lab43"></a><h1 class="section">归纳法：用归纳法证明</h1>
 
 <div class="paragraph"> </div>
 
@@ -66,7 +66,7 @@
 </div>
 
 <div class="doc">
-<a name="lab43"></a><h1 class="section">归纳法证明</h1>
+<a name="lab44"></a><h1 class="section">归纳法证明</h1>
 
 <div class="paragraph"> </div>
 
@@ -181,7 +181,7 @@
     包含量化变量的目标中时，它会自动将需要的变量移到上下文中。） 
 <div class="paragraph"> </div>
 
-<a name="lab44"></a><h4 class="section">Exercise: 2 stars, recommended (basic_induction)</h4>
+<a name="lab45"></a><h4 class="section">Exercise: 2 stars, recommended (basic_induction)</h4>
  用归纳法证明以下命题。你可能需要之前的证明结果。 
 </div>
 <div class="code code-tight">
@@ -209,7 +209,7 @@
 <div class="doc less-space">
 <div class="paragraph"> </div>
 
-<a name="lab45"></a><h4 class="section">Exercise: 2 stars (double_plus)</h4>
+<a name="lab46"></a><h4 class="section">Exercise: 2 stars (double_plus)</h4>
  考虑以下函数，它将其参数乘二： 
 </div>
 <div class="code code-tight">
@@ -237,7 +237,7 @@
 <div class="doc less-space">
 <div class="paragraph"> </div>
 
-<a name="lab46"></a><h4 class="section">Exercise: 2 stars, optional (evenb_S)</h4>
+<a name="lab47"></a><h4 class="section">Exercise: 2 stars, optional (evenb_S)</h4>
  我们的 <span class="inlinecode"><span class="id" type="var">evenb</span></span> <span class="inlinecode"><span class="id" type="var">n</span></span> 定义对 <span class="inlinecode"><span class="id" type="var">n</span></span> <span class="inlinecode">-</span> <span class="inlinecode">2</span> 的递归调用不大方便。这让证明 <span class="inlinecode"><span class="id" type="var">evenb</span></span> <span class="inlinecode"><span class="id" type="var">n</span></span>
     时更难对 <span class="inlinecode"><span class="id" type="var">n</span></span> 进行归纳，因此我们需要一个关于 <span class="inlinecode"><span class="id" type="var">n</span></span> <span class="inlinecode">-</span> <span class="inlinecode">2</span> 的归纳假设。
     以下引理给予了 <span class="inlinecode"><span class="id" type="var">evenb</span></span> <span class="inlinecode">(<span class="id" type="var">S</span></span> <span class="inlinecode"><span class="id" type="var">n</span>)</span> 另一个表征，使其在归纳时能够更好地工作：
@@ -259,14 +259,14 @@
 <div class="doc less-space">
 <div class="paragraph"> </div>
 
-<a name="lab47"></a><h4 class="section">Exercise: 1 starM (destruct_induction)</h4>
+<a name="lab48"></a><h4 class="section">Exercise: 1 starM (destruct_induction)</h4>
  简要说明一下 <span class="inlinecode"><span class="id" type="tactic">destruct</span></span> 策略和 <span class="inlinecode"><span class="id" type="tactic">induction</span></span> 策略之间的区别。
 <span class="comment">(*&nbsp;FILL&nbsp;IN&nbsp;HERE&nbsp;*)</span><br/>
  <span class="proofbox">&#9744;</span> 
 </div>
 
 <div class="doc">
-<a name="lab48"></a><h1 class="section">证明里的证明</h1>
+<a name="lab49"></a><h1 class="section">证明里的证明</h1>
 
 <div class="paragraph"> </div>
 
@@ -341,7 +341,7 @@
 </div>
 
 <div class="doc">
-<a name="lab49"></a><h1 class="section">Formal vs. Informal Proof</h1>
+<a name="lab50"></a><h1 class="section">Formal vs. Informal Proof</h1>
 
 <div class="paragraph"> </div>
 
@@ -507,14 +507,14 @@ Coq 对此表示十分满意。然而人类却很难理解它。我们可以用�
     隐含的，而非形式化证明则常会反复告诉读者目前证明进行的状态）。 
 <div class="paragraph"> </div>
 
-<a name="lab50"></a><h4 class="section">Exercise: 2 stars, advanced, recommendedM (plus_comm_informal)</h4>
+<a name="lab51"></a><h4 class="section">Exercise: 2 stars, advanced, recommendedM (plus_comm_informal)</h4>
  将你对 <span class="inlinecode"><span class="id" type="var">plus_comm</span></span> 的解答翻译成非形式化证明：
     定理：加法满足交换律。
     证明： <span class="comment">(*&nbsp;FILL&nbsp;IN&nbsp;HERE&nbsp;*)</span><br/>
  <span class="proofbox">&#9744;</span> 
 <div class="paragraph"> </div>
 
-<a name="lab51"></a><h4 class="section">Exercise: 2 stars, optionalM (beq_nat_refl_informal)</h4>
+<a name="lab52"></a><h4 class="section">Exercise: 2 stars, optionalM (beq_nat_refl_informal)</h4>
  以 <span class="inlinecode"><span class="id" type="var">plus_assoc</span></span> 的非形式化证明为范本，写出以下定理的非形式化证明。
     不要只是用中文来解释 Coq 策略！
     定理： 对于任何 <span class="inlinecode"><span class="id" type="var">n</span></span>，均有 <span class="inlinecode"><span class="id" type="var">true</span></span> <span class="inlinecode">=</span> <span class="inlinecode"><span class="id" type="var">beq_nat</span></span> <span class="inlinecode"><span class="id" type="var">n</span></span> <span class="inlinecode"><span class="id" type="var">n</span></span>。
@@ -523,11 +523,11 @@ Coq 对此表示十分满意。然而人类却很难理解它。我们可以用�
 </div>
 
 <div class="doc">
-<a name="lab52"></a><h1 class="section">更多练习</h1>
+<a name="lab53"></a><h1 class="section">更多练习</h1>
 
 <div class="paragraph"> </div>
 
-<a name="lab53"></a><h4 class="section">Exercise: 3 stars, recommended (mult_comm)</h4>
+<a name="lab54"></a><h4 class="section">Exercise: 3 stars, recommended (mult_comm)</h4>
  用 <span class="inlinecode"><span class="id" type="tactic">assert</span></span> 来帮助证明此定理。你应该不需要对 <span class="inlinecode"><span class="id" type="var">plus_swap</span></span> 进行归纳。 
 </div>
 <div class="code code-tight">
@@ -556,7 +556,7 @@ Coq 对此表示十分满意。然而人类却很难理解它。我们可以用�
 <div class="doc less-space">
 <div class="paragraph"> </div>
 
-<a name="lab54"></a><h4 class="section">Exercise: 3 stars, optional (more_exercises)</h4>
+<a name="lab55"></a><h4 class="section">Exercise: 3 stars, optional (more_exercises)</h4>
  找一张纸。对于以下定理，首先请<i>思考_ (a) 它能否能只用化简和改写来证明，
     (b) 它还需要分类讨论（<span class="inlinecode"><span class="id" type="tactic">destruct</span></span>），以及 (c) 它还需要归纳证明。先写下你的
     预判，然后填写下面的证明（你的纸不用交上来，这只是鼓励你先思考再行动！） 
@@ -609,7 +609,7 @@ Coq 对此表示十分满意。然而人类却很难理解它。我们可以用�
 <div class="doc less-space">
 <div class="paragraph"> </div>
 
-<a name="lab55"></a><h4 class="section">Exercise: 2 stars, optional (beq_nat_refl)</h4>
+<a name="lab56"></a><h4 class="section">Exercise: 2 stars, optional (beq_nat_refl)</h4>
  证明以下定理。（把 <span class="inlinecode"><span class="id" type="var">true</span></span> 放在等式左边可能看起来有点奇怪，不过 Coq 标准库中
     就是这样表示的，我们照做就是。无论按哪个方向改写都一样好用，所以无论我们如何
     表示定理，用起来都没问题。） 
@@ -627,7 +627,7 @@ Coq 对此表示十分满意。然而人类却很难理解它。我们可以用�
 <div class="doc less-space">
 <div class="paragraph"> </div>
 
-<a name="lab56"></a><h4 class="section">Exercise: 2 stars, optional (plus_swap')</h4>
+<a name="lab57"></a><h4 class="section">Exercise: 2 stars, optional (plus_swap')</h4>
  <span class="inlinecode"><span class="id" type="tactic">replace</span></span> 策略允许你指定一个具体的要改写的子项和你想要将它改写成的项：
     <span class="inlinecode"><span class="id" type="tactic">replace</span></span> <span class="inlinecode">(<span class="id" type="var">t</span>)</span> <span class="inlinecode"><span class="id" type="keyword">with</span></span> <span class="inlinecode">(<span class="id" type="var">u</span>)</span> 会将目标中表达式 <span class="inlinecode"><span class="id" type="var">t</span></span>（的所有副本）替换为表达式 <span class="inlinecode"><span class="id" type="var">u</span></span>，
     并生成 <span class="inlinecode"><span class="id" type="var">t</span></span> <span class="inlinecode">=</span> <span class="inlinecode"><span class="id" type="var">u</span></span> 作为附加的子目标。在简单的 <span class="inlinecode"><span class="id" type="tactic">rewrite</span></span> 作用在目标错误的部分上时
@@ -648,7 +648,7 @@ Coq 对此表示十分满意。然而人类却很难理解它。我们可以用�
 <div class="doc less-space">
 <div class="paragraph"> </div>
 
-<a name="lab57"></a><h4 class="section">Exercise: 3 stars, recommendedM (binary_commute)</h4>
+<a name="lab58"></a><h4 class="section">Exercise: 3 stars, recommendedM (binary_commute)</h4>
  回忆一下你在 <a href="Basics.html"><span class="inlineref">Basics</span></a> 中为练习 <span class="inlinecode"><span class="id" type="var">binary</span></span> 编写的 <span class="inlinecode"><span class="id" type="var">incr</span></span> 和 <span class="inlinecode"><span class="id" type="var">bin_to_nat</span></span>
     函数。证明下图可交换。
 
@@ -683,7 +683,7 @@ Coq 对此表示十分满意。然而人类却很难理解它。我们可以用�
 <div class="doc less-space">
 <div class="paragraph"> </div>
 
-<a name="lab58"></a><h4 class="section">Exercise: 5 stars, advancedM (binary_inverse)</h4>
+<a name="lab59"></a><h4 class="section">Exercise: 5 stars, advancedM (binary_inverse)</h4>
  本练习是前一个关于二进制数的练习的延续。你需要你在其中的定义和定理来完成这个；
     请将它们复制到本文件中让它自包含以便评分。
     (a) 首先，写一个将自然数转换为二进制数的的函数。然后证明对于所有自然数，
